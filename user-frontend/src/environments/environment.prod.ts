@@ -22,12 +22,12 @@ export const environment = {
   // casino_operatorId: "9503",
   // header_logo: "diamond222",
 
-  // kuberexchange.com - localhost
-  SOCKET_ENDPOINT: "http://localhost:3099/",
-  userServerUrl: "http://localhost:3099/api/",
-  adminServerUrl: "http://localhost:6003/api/",
-  ADMIN_SOCKET_ENDPOINT: "http://localhost:6003/",
-  SCORE_SOCKET_ENDPOINT: "http://localhost:3099/",
+  // kuberexchange.com - split paths
+  SOCKET_ENDPOINT: "https://api.kuberexchange.com/",
+  userServerUrl: "https://api.kuberexchange.com/api/",
+  adminServerUrl: "https://api.kuberexchange.com/adminapi/",
+  ADMIN_SOCKET_ENDPOINT: "https://api.kuberexchange.com/",
+  SCORE_SOCKET_ENDPOINT: "https://api.kuberexchange.com/",
   casino_operatorId: "9503",
 
 };
