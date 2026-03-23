@@ -128,57 +128,59 @@ export class RentalLoginComponent implements OnInit {
 
   public handleSingleLoginClickDemo() {
     this.ngxLoader.start();
-    const loginData = { user: {"username":"Ad_user","password":"Abcd@1234","manager":""} };
+    const loginData = { user: { "username": "Ad_user", "password": "Abcd@1234", "manager": "" } };
 
+    // Stop loader after 5s if no response
+    const timeout = setTimeout(() => {
+      this.ngxLoader.stop();
+      this.loginButtonDisable = false;
+      this.res_error = "Server not responding. Please try again.";
+      this.socket.removeAllListeners("login-success");
+    }, 5000);
+
+    this.socket.removeAllListeners("login-success");
     this.socket.emit("login", loginData);
 
-    this.socket.on(
-      "login-success",
-      function (data: any) {
-        if (data.success) {
-          this.loginButtonDisable = false;
-          sessionStorage.setItem("loginStatus", "true");
-          sessionStorage.setItem("dashboard_alert", "true");
-          sessionStorage.setItem("userDetails", JSON.stringify(data.output));
-          // refreshExp
-          const refresh_data = {
-            user: {
-              _id: data.output._id,
-              key: data.output.key,
-              token: data.output.verifytoken,
-              details: {
-                username: data.output.details.username,
-                role: data.output.details.role,
-                status: data.output.details.status,
-              }
-            }
-          };
+    this.socket.on("login-success", (data: any) => {
+      clearTimeout(timeout);
+      this.socket.removeAllListeners("login-success");
+      this.ngxLoader.stop();
+      this.loginButtonDisable = false;
 
-          this.socket.emit('refresh-balance', refresh_data);
+      if (data.success) {
+        sessionStorage.setItem("loginStatus", "true");
+        sessionStorage.setItem("dashboard_alert", "true");
+        sessionStorage.setItem("userDetails", JSON.stringify(data.output));
 
-          if (data.output.details.transctionpasswordstatus) {
-            // check_desktop/mobile
-            if (this.deviceService.isDesktop()) {
-              this.router.navigate(["home"]);
-            } else {
-              this.redirectToInplay();
+        const refresh_data = {
+          user: {
+            _id: data.output._id,
+            key: data.output.key,
+            token: data.output.verifytoken,
+            details: {
+              username: data.output.details.username,
+              role: data.output.details.role,
+              status: data.output.details.status,
             }
           }
-          // transpassword 0 change password
-          else {
-            this.router.navigate(["Button-Value/2"]);
-          }
+        };
+        this.socket.emit('refresh-balance', refresh_data);
 
-          this.ngxLoader.stop();
+        if (data.output.details.transctionpasswordstatus) {
+          if (this.deviceService.isDesktop()) {
+            this.router.navigate(["home"]);
+          } else {
+            this.redirectToInplay();
+          }
         } else {
-          this.ngxLoader.stop();
-          this.res_error = data.message;
-          this.socket.removeAllListeners("login-success");
-          this.loginButtonDisable = false;
+          this.router.navigate(["Button-Value/2"]);
         }
-      }.bind(this)
-    );
+      } else {
+        this.res_error = data.message;
+      }
+    });
   }
+
   public handleSingleLoginClick() {
     //The actual action that should be performed on click
     this.submitted = true;
