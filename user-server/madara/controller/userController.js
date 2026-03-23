@@ -36,12 +36,16 @@ const Razorpay = require('razorpay');
 var razorpaykey = process.env.razorpaykey;
 var razorpaysecret = process.env.razorpaysecret;
 
-
-// console.log(razorpaykey, razorpaysecret)
-
-// var instance = new Razorpay({ key_id: 'rzp_live_PJtBK3YRPy64jS', key_secret: 'LmcT6HbJ2P31siFOZHU5lmAK' })
-var instance = new Razorpay({ key_id: razorpaykey, key_secret: razorpaysecret })
-// var instance = new Razorpay({ key_id: 'rzp_live_q09sl8uLmGjfg5', key_secret: 'K1oW3PYSgFPVQQbvfJMo9i4Y' })
+// Lazily initialize Razorpay so missing env vars don't crash startup
+var instance = null;
+function getRazorpay() {
+  if (!instance) {
+    razorpaykey = process.env.razorpaykey;
+    razorpaysecret = process.env.razorpaysecret;
+    instance = new Razorpay({ key_id: razorpaykey, key_secret: razorpaysecret });
+  }
+  return instance;
+}
 
 // Required Helper Function
 const util = require('./util');
@@ -1377,7 +1381,7 @@ module.exports.depositPayment = async (req, res) => {
                 currency: "INR",
                 receipt: "order_zolo_win"
             };
-            instance.orders.create(options, function (err, order) {
+            getRazorpay().orders.create(options, function (err, order) {
                 // console.log("deposit order", err, order);
                 OrderId = order.id;
 
