@@ -1,0 +1,54 @@
+<app-header></app-header>
+<main>
+    <div class="full-wrap">
+        <div class="report-page">
+            <div class="closed-user inner-content">
+                <div class="page-title">
+                    <h3>Closed User</h3>
+                    <div class="breadcrumb">
+                        <a (click)="goToBack()" class="btn btn-secondary back-btn"><i
+                                class="fa fa-arrow-left"></i>Back</a>
+                    </div>
+                </div>
+                <div class="filterDiv">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form>
+                                <div class="filter-btn text-start">
+                                    <ul>
+                                        <li><button type="button" class="btn btn-success">Open User</button></li>
+                                    </ul>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="report-table">
+                    <table datatable class="table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox"></th>
+                                <th>Closed User Name</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                *ngFor="let user of userList | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: total_items } ; let i=index">
+                                <td><input type="checkbox"></td>
+                                <td> {{user?.user_name}} </td>
+                                <td> <button type="button"
+                                        (click)="openAccountOfUserAndTheirChilds(user._id, user.self_close_account)"
+                                        class="btn btn-success">Open User</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="report-bottom-paginate">
+                    <pagination-controls (pageChange)="pageChange($event)"
+                    class="user-list-pagination" ></pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

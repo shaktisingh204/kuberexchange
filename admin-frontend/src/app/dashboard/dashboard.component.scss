@@ -1,0 +1,166 @@
+main > div{
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+}
+//  table,td{
+//     border:1px solid black ;
+//  }
+ td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+ tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+//  .tableHeadingRow
+//  {
+//   background-color: #ECECEC !important;
+//  }
+ 
+.markettabel_ {
+    
+.markettabeltr th, .markettabel tr td{
+    // border: none;
+    border-width: 0 0 1px 1px;
+    white-space: nowrap;
+    color: #1e1e1e;
+    font-weight: 400;
+    padding: 7px 10px;
+    font-size: 12px;
+    vertical-align: middle;
+    white-space: nowrap;
+   }
+}
+.markettabel tr:nth-child(even) td{
+    background-color: #f5f8fe;
+}
+.markettabel tr:hover td{
+    background-color: #e8f2fa;
+}
+ 
+.markettabel tr th {
+ background: #f9f9f9;
+    padding: 5px 10px;
+    line-height: 30px !important;
+    color: #1e1e1e;
+    font-weight: bold;
+    font-size: 14px;text-transform: capitalize;
+    color: rgb(10, 1, 1);
+    font-size: 14px;
+    font-weight: 600;
+    background: #d5d8db;
+    font-size: 14px;
+    font-weight: 600;
+    
+ 
+
+}
+
+.markettabel tr th text{
+    color: #1e1e1e;
+}
+.markettabel tr th:last-child, .markettabel tr td:last-child{
+    border-right-width: 1px;
+}
+.markettabel tr{
+    background-color: #f5f8fe;
+}
+
+.markettabel tr th{color: #fff;font-size: 14px;font-weight: 600;background: #2c3e50;}
+.markettabel tr th a{color: #fff;font-size: 14px;}
+.markettabel tr td{color: #1e1e1e;font-size: 14px;font-weight: normal;}
+
+.markettabel tr th{border: 1px solid #dee2e6;border-collapse: collapse; }
+
+.markettabel tr:nth-child(even) {
+  background-color: #fff;}
+  .markettabel tr:nth-of-type(odd){
+      background-color:#ececec;
+  }
+
+  .markettabel tr:nth-child(even) td tr,
+  .markettabel tr:nth-of-type(odd) td tr,
+  .markettabel tr:nth-child(even) td,
+    .markettabel tr:nth-of-type(odd) td{background: none;}
+.markettabel tr td small,
+.markettabel td  span,
+.markettabel tr td{ font-size: 14px!important;}
+.markettabel tr td{     width: 33.3%;   border: 1px solid #dee2e6;}
+
+
+
+.markettabel tr th {
+    color: rgb(10, 1, 1);
+    font-size: 14px;
+    font-weight: 600;
+    background: #d5d8db;
+}
+.markettabel tr th text{
+    color: #1e1e1e;
+}
+
+
+.markettabel tr th a {
+    color: #1d21e7;
+    font-size: 14px;
+}
+
+
+.markettabel tr th {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    background: #e0e3e6;
+    
+}
+b, strong {
+    font-weight: bolder;
+    color: black;
+}
+.markettabel td span, .markettabel td {
+    font-size: 14px !important;
+    // color: #4ba706 !important;
+}
+
+
+.markettabel tr th a {
+    color: #1d21e7;
+    font-size: 14px;
+    text-decoration: underline;
+}
+.markettabel tr th {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    background: #e3e3e3;
+}
+
+
+.main-div .left-section .main-row{padding-top: 0px;}
+table .evename{ color: #1d21e7;text-transform: uppercase;text-decoration: underline;}
+@media (max-width: 992px){
+    .main-div .left-section{
+        padding-right: 0px;
+    }
+   
+}
+@media (max-width: 767px){
+    
+    .main-div .left-section{
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+    
+
+.main-div .left-section{
+    padding-top: 51px;
+}
+
+@media (max-width:1024px){
+    .main-div .left-section {
+        padding-top: 35px;
+    }
+}

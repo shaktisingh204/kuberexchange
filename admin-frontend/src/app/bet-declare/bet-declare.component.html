@@ -1,0 +1,811 @@
+<app-header></app-header>
+
+<main>
+    <div class="breadcrumb ml-2 mt-2" (click)="goToBack()" style="float:left;z-index:1000;">
+        <a  class="btn btn-secondary back-btn"><i
+                class="fa fa-arrow-left"></i>Back</a>
+    </div>
+    <div class="main-div">
+        <div class="left-section ">
+            <div class="main-row">            
+                    <div class="main-content snybetting-design">
+                        <div class="coupon-card row">
+						<div class="col-md-8 main-content">
+			<div class="game-heading m-b-5">
+				<span class="card-header-title">
+					<span>{{market?.competitionName}} -&gt;</span>
+					<span>{{market?.eventName}} -&gt;</span>
+					<span>{{market?.marketName}} -&gt;</span>
+					<span>{{market?.openDate |date:'MMM d, y  H:mm'}}</span>
+				</span>
+			</div>
+			<div class="card-content">
+                <!-- matchodds_market -->
+				<div  *ngIf="matchodds_market" id="div_gamedata" class="table-responsive m-b-10 main-market">
+					<table class="table coupon-table table table-bordered m-t-10 " border="0">
+						<thead>
+							<tr>
+								<th>Runners</th>
+								<th class="box-w1"></th>
+								<th class="box-w1"></th>
+								<th class="back box-w1">BACK</th>
+								<th class="lay box-w1">LAY</th>
+								<th class="box-w1"></th>
+								<th class="box-w1"></th>
+							</tr>
+						</thead>
+    
+						<tbody>
+							<tr class="bet-info sec-2954261 " data-title="ACTIVE" *ngFor="let r of matchodds_market.marketBook.runners" >
+								<td>
+									<span class="team-name">{{searchRunner(matchodds_market?.runners,r.selectionId)}}</span>
+									<p class="box-w4" *ngIf="runnerProfitK">
+										
+                                     <span *ngIf="runnerProfitK[matchodds_market.marketId]">
+                                        <span class="float-left profit"
+                                        *ngIf="runnerProfitK"  [ngClass]="{'red':(runnerProfitK[matchodds_market.marketId][r.selectionId])<0,'green':(runnerProfitK[matchodds_market.marketId][r.selectionId])>0}"
+                                        >
+                                        {{(runnerProfitK[matchodds_market.marketId][r.selectionId])| number : '0.0-2'}}
+                                    </span>
+                                     </span>
+                                      
+									</p>
+								</td>
+								<td class="box-w1 back2">
+									<button>
+										<span class="odd">-</span>
+										<span>-</span>
+									</button>
+								</td>
+								<td class="box-w1 back1">
+									<button>
+										<span class="odd">-</span>
+										<span>-</span>
+									</button>
+								</td>
+								<td class="back box-w1">
+									<button class="back">
+										<span class="odd">{{r?.availableToBack?.price | number : '0.0-2'}}</span>
+										<span>{{r?.availableToBack?.size}}</span>
+									</button>
+								</td>
+								<td class="lay box-w1">
+									<button class="lay">
+										<span class="odd" >{{r?.availableToLay?.price | number : '0.0-2'}}</span>
+										<span>{{r?.availableToLay?.size}}</span>
+									</button>
+								</td>
+								<td class="box-w1 lay1">
+									<button>
+										<span class="odd">-</span>
+										<span>-</span>
+									</button>
+								</td>
+								<td class="box-w1 lay2">
+									<button>
+										<span class="odd">-</span>
+										<span>-</span>
+									</button>
+								</td>
+                                <span *ngIf="matchodds_market?.marketBook?.status ==='SUSPENDED'" class="suspendtext">suspended</span>
+							</tr>
+							
+						</tbody>
+					</table>
+				</div>
+				<div>
+
+                    <!-- bookmaker -->
+					<div class="row row5 bookmaker-container" *ngIf="bookmaker_market">
+						<div class="fancy-marker-title col-12" id="bm-head">
+							<h4>{{bookmaker_market?.marketName}} <span *ngIf="bookmaker_market?.marketName==='Bookmaker'">Market 0% commission fast bet confirm</span></h4>
+							<div class="m-b-10 bookmaker-market">
+								<div id="bm-section">
+									<table class="table coupon-table table table-bordered m-t-10 " border="0">
+										<thead>
+											<tr>
+												<th>
+													<span class="text-info p-r-5">Min:100</span>
+													<span class="text-info">Max:100000</span>
+												</th>
+												<th class="box-w1"></th>
+												<th class="box-w1"></th>
+												<th class="back box-w1">Back</th>
+												<th class="lay box-w1">lay</th>
+												<th class="box-w1"></th>
+												<th class="box-w1"></th>
+											</tr>
+										</thead>
+										<tbody >
+											
+                                            <tr data-title="ACTIVE" *ngFor="let r of bookmaker_market.marketBook.runners"  [ngClass]="r.status == 'ACTIVE' ? 'bet-info sec-2' : 'bet-info sec-1 suspended'">
+												<td>
+													<span class="team-name">{{searchRunner(bookmaker_market?.runners,r?.selectionId)}} </span>
+													<p class="box-w4" *ngIf="runnerProfitK">
+                                                       <span *ngIf="runnerProfitK[bookmaker_market?.marketId]">
+                                                        <span class="float-left profit"
+                                                        *ngIf="runnerProfitK" [ngClass]="{'red':(runnerProfitK[bookmaker_market?.marketId][r.selectionId])<0,'green':(runnerProfitK[bookmaker_market.marketId][r.selectionId])>0}">
+                                                        {{(runnerProfitK[bookmaker_market.marketId][r.selectionId])| number : '0.0-2'}}
+                                                    </span>
+                                                       </span>
+                                                       
+
+													</p>
+												</td>
+												<td class="back2 box-w1">
+													<button>
+														<span class="odd"></span>
+														<span></span>
+													</button>
+												</td>
+												<td class="back1 box-w1">
+													<button>
+														<span class="odd"></span>
+														<span></span>
+													</button>
+												</td>
+												<td class="back box-w1">
+													<button class="back" *ngIf="r.availableToBack">
+														<span class="odd">{{r?.availableToBack?.kprice | number : '0.0-2'}}</span>
+														<span>{{r?.availableToBack?.size}}</span>
+													</button>
+												</td>
+												<td class="lay box-w1">
+													<button class="lay" *ngIf="r.availableToLay">
+														<span class="odd">{{r?.availableToLay?.kprice | number : '0.0-2'}}</span>
+														<span>{{r?.availableToLay?.size}}</span>
+													</button>
+												</td>
+												<td class="lay1 box-w1">
+													<button>
+														<span class="odd"></span>
+														<span></span>
+													</button>
+												</td>
+												<td class="lay2 box-w1">
+													<button>
+														<span class="odd"></span>
+														<span></span>
+													</button>
+												</td>
+                                                <span *ngIf="checkBookmakerStatus(bookmaker_market,r)" class="suspendtext">suspended</span>
+											</tr>
+
+                                          
+                         <!-- newEnd -->	
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					
+					</div>
+					<div class="row">
+                        <!-- fancy -->
+						<div *ngIf="fancy_market" class="col-md-12 fancy-market" style="padding-right:15px;padding-left:15px;" id="fancy-market">
+							<div class="fancy-marker-title">
+								<h4>Fancy Market</h4>
+							</div>
+							<div id="div_fancy">
+								<table class="table coupon-table table table-bordered m-t-10 ">
+									<thead>
+										<tr>
+											<th></th>
+											<th class="text-center box-w1 lay">No</th>
+											<th class="text-center back box-w1">Yes</th>
+											<th class="box-w2"></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr data-title="" class="bet-info sec-147 "  [ngClass]="fancy_market?.marketBook?.status == 'OPEN' ? 'bet-info sec-2' : 'bet-info sec-1 suspended-fancy'" >
+											<td>
+                                                <!-- (click)="fancyBook(m);userModal(userBooks);select_fancy_market=m.marketName" -->
+												<a href="javascript:void(0)" class="modal-book">{{fancy_market?.marketName}}</a>
+												<p class="client color-red" *ngIf="sessionMarketExposure">
+
+                                                    <span *ngIf="sessionMarketExposure[market?.marketId]">
+                                                        {{sessionMarketExposure[fancy_market?.marketId]| number : '1.2-2'}}
+                                                    </span>
+
+                                                    <!-- <span style="color:#000;" *ngIf="!sessionMarketExposure[m.marketId]">
+                                                       0
+                                                    </span> -->
+                                                </p>
+
+											</td>
+											<td class="lay box-w1">
+												<button class="lay">
+													<span class="odd">{{fancy_market?.marketBook?.availableToLay?.price}}</span>
+													<span>{{fancy_market?.marketBook?.availableToLay?.size}}</span>
+												</button>
+											</td>
+											<td class="back box-w1">
+												<button class="back" >
+													<span class="odd">{{fancy_market?.marketBook?.availableToBack?.price}}</span>
+													<span>{{fancy_market?.marketBook?.availableToBack?.size}}</span>
+												</button>
+											</td>
+											<td class="text-right p-r-10 box-w2">
+												<span class="d-block text-info">Min:100</span>
+												<span class="d-block text-info">Max:100000</span>
+											</td>
+                                            <span class="suspendtext"><span *ngIf="fancy_market?.marketBook?.status==='SUSPENDED' else ball_running">suspended</span>
+                                            <ng-template #ball_running>
+                                                <span>Ball Running</span>
+                                            </ng-template>
+                                        </span>
+										</tr>
+										
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+                        <!-- fancy_ball_by_ball -->
+                        <!-- *ngIf="fancyballbyBall?.length" -->
+						<div class="col-md-6 fancy-market">
+							<div class="fancy-marker-title" *ngIf="false" id="ballsection-market">
+								<h4>Ball by Ball Session Market</h4>
+								<div id="div_ballsection">
+									<table class="table coupon-table table table-bordered m-t-10 ">
+										<thead>
+											<tr>
+												<th></th>
+												<th class="text-center box-w1 lay">No</th>
+												<th class="text-center back box-w1">Yes</th>
+												<th class="box-w2"></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr data-title="" class="bet-info sec-147" *ngFor="let m of fancyballbyBall" [ngClass]="m.marketBook.status == 'OPEN' ? 'bet-info sec-2' : 'bet-info sec-1 suspended-fancy'" >
+                                                <td>
+                                                    <a href="javascript:void(0)" class="modal-book" (click)="fancyBook(m);userModal(userBooks);select_fancy_market=m.marketName">{{m.marketName}}</a>
+                                                    <p class="client color-red" *ngIf="sessionMarketExposure">
+
+                                                        <span *ngIf="sessionMarketExposure[m.marketId]">
+                                                            {{sessionMarketExposure[m.marketId]}}
+                                                        </span>
+    
+                                                        <!-- <span style="color:#000;" *ngIf="!sessionMarketExposure[m.marketId]">
+                                                           0
+                                                        </span> -->
+                                                    </p>
+                                                </td>
+                                                <td class="lay box-w1">
+                                                    <button class="lay">
+                                                        <span class="odd" *ngIf="m.marketBook.availableToLay">{{m.marketBook.availableToLay.price}}</span>
+                                                        <span>{{m.marketBook.availableToLay.size}}</span>
+                                                    </button>
+                                                </td>
+                                                <td class="back box-w1">
+                                                    <button class="back" *ngIf="m.marketBook.availableToBack">
+                                                        <span class="odd">{{m.marketBook.availableToBack.price}}</span>
+                                                        <span>{{m.marketBook.availableToBack.size}}</span>
+                                                    </button>
+                                                </td>
+                                                <td class="text-right p-r-10 box-w2">
+                                                    <span class="d-block text-info">Min:100</span>
+                                                    <span class="d-block text-info">Max:100000</span>
+                                                </td>
+                                                <span class="suspendtext"><span *ngIf="m?.marketBook?.status==='SUSPENDED' else ball_running">suspended</span>
+                                            <ng-template #ball_running>
+                                                <span>Ball Running</span>
+                                            </ng-template>
+                                        </span>
+                                            </tr>
+											
+										</tbody>
+									</table>
+								</div>
+							</div>		
+                            
+                            <!-- fancy_over_by_over -->
+                            <!-- *ngIf="fancyoverBy?.length" -->
+                            <div class="fancy-marker-title" id="fancy1-market" *ngIf="false">
+								<h4>Over By Over Market</h4>
+								<div id="div_ballsection">
+									<table class="table coupon-table table table-bordered m-t-10 ">
+										<thead>
+                                            <tr>
+                                                <th></th>
+                                                <th class="text-center back box-w1">Back</th>
+                                                <th class="text-center lay box-w1">Lay</th>
+                                                <th class="box-w2"></th>
+                                            </tr>
+										</thead>
+										<tbody>
+											<tr data-title="" class="bet-info sec-147  " *ngFor="let m of fancyoverBy" [ngClass]="m.marketBook.status == 'OPEN' ? 'bet-info sec-2' : 'bet-info sec-1 suspended-fancy'" >
+                                                <td>
+                                                    <a href="javascript:void(0)" class="modal-book" (click)="fancyBook(m);userModal(userBooks);select_fancy_market=m.marketName">{{m.marketName}}</a>
+                                                    <p class="client" *ngIf="sessionMarketExposure">
+
+                                                        <span class="color-red" *ngIf="sessionMarketExposure[m.marketId]">
+                                                            {{sessionMarketExposure[m.marketId]}}
+                                                        </span>
+    
+                                                        <!-- <span *ngIf="!sessionMarketExposure[m.marketId]">
+                                                           0
+                                                        </span> -->
+                                                    </p>
+                                                </td>
+                                                <td class="lay box-w1">
+                                                    <button class="lay">
+                                                        <span class="odd" *ngIf="m.marketBook.availableToLay">{{m.marketBook.availableToLay.price}}</span>
+                                                        <span>{{m.marketBook.availableToLay.size}}</span>
+                                                    </button>
+                                                </td>
+                                                <td class="back box-w1">
+                                                    <button class="back" *ngIf="m.marketBook.availableToBack">
+                                                        <span class="odd">{{m.marketBook.availableToBack.price}}</span>
+                                                        <span>{{m.marketBook.availableToBack.size}}</span>
+                                                    </button>
+                                                </td>
+                                                <td class="text-right p-r-10 box-w2">
+                                                    <span class="d-block text-info">Min:100</span>
+                                                    <span class="d-block text-info">Max:100000</span>
+                                                </td>
+                                                <span class="suspendtext"><span *ngIf="m?.marketBook?.status==='SUSPENDED' else ball_running">suspended</span>
+                                                  <ng-template #ball_running>
+                                                    <span>Ball Running</span>
+                                                  </ng-template>
+                                           </span>
+                                            </tr>
+											 
+                                        
+											 
+										 
+										</tbody>
+									</table>
+								</div>
+							</div>	
+						</div>
+					</div>
+				</div>
+			</div>
+
+             <!--betDeclareUndeclare code start -->
+             
+             <div class="mt-4 row mx-1">
+                <!-- auto_manual_show_check -->
+                <ng-container *ngIf="auto_manual_show">
+                <p class="text-white font-weight-bold p-1" style="background-color: #2C3E50;">Rate Step: <select *ngIf="fancy_market" name="cars" id="cars" (change)="change_rateStep($event.target.value);">
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=5>5</option>
+                    <option value=10>10</option>
+                    <option value=15>15</option>
+                    <option value=20>20</option>
+                    <option value=25>25</option>
+                    <option value=30>30</option>
+                  </select></p>
+
+                  <!-- matchodds -->
+                  <ng-container *ngIf="matchodds_market">
+                    <ng-container *ngFor="let r of market?.marketBook?.runners;let i=index;">
+                    <div class="col-2 mt-3">
+                      <p>{{searchRunner(market?.runners,r.selectionId)}}</p>
+                    </div>
+                  <div class="col-6 mt-2 text-center">
+                    <div class="input-group">
+                      <div class="numbers">
+                        <span class="minus" (click)="minus_matchoddsRate('Back',i)">-</span>
+                        <ng-container *ngIf="r?.availableToBack?.price">
+                          <input type="text" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" min="0" step="0.01" id="ShowBetPrice" name="quant[2]" readonly="" class="calProfitLoss odds-input form-control CommanBtn" name="rate_step1"  [(ngModel)]="r.availableToBack.price">
+                        </ng-container>
+                       <span class="plus" (click)="plus_matchoddsRate('Back',i)">+</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-4 mt-2 text-center" >
+                    <div class="input-group">
+                      <div class="numbers">
+                        <span class="minus" (click)="minus_matchoddsRate('Lay',i)">-</span>
+                        <ng-container *ngIf="r?.availableToLay?.price">
+                          <input type="text" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" min="0" step="0.01" name="quant[2]" readonly="" class="calProfitLoss odds-input form-control CommanBtn" name="rate_step2"  [(ngModel)]="r.availableToLay.price">
+                       </ng-container>
+                       <span class="plus" (click)="plus_matchoddsRate('Lay',i)">+</span>
+                      </div>
+                    </div>
+                  </div>
+                    </ng-container> 
+                 </ng-container>
+
+                  <!-- bookmaker -->
+                  <ng-container *ngIf="bookmaker_market">
+                    <ng-container *ngFor="let r of market?.marketBook?.runners;let i=index;">
+                    <div class="col-2 mt-3">
+                      <p>{{searchRunner(market?.runners,r.selectionId)}}</p>
+                    </div>
+                  <div class="col-6 mt-2 text-center">
+                    <div class="input-group">
+                      <div class="numbers">
+                        <span class="minus" (click)="minus_bookmakerRate(r.availableToBack.kprice,'Back',i)">-</span>
+                        <input type="text" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" min="0" step="0.01" id="ShowBetPrice" name="quant[2]" readonly="" class="calProfitLoss odds-input form-control CommanBtn" name="rate_step1"  [(ngModel)]="r.availableToBack.kprice">
+                       <span class="plus" (click)="plus_bookmakerRate(r.availableToBack.kprice,'Back',i)">+</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-4 mt-2 text-center" >
+                    <div class="input-group">
+                      <div class="numbers">
+                        <span class="minus" (click)="minus_bookmakerRate(r.availableToLay.kprice,'Lay',i)">-</span>
+                        <input type="text" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" min="0" step="0.01" name="quant[2]" readonly="" class="calProfitLoss odds-input form-control CommanBtn" name="rate_step2"  [(ngModel)]="r.availableToLay.kprice">
+                       <span class="plus" (click)="plus_bookmakerRate(r.availableToLay.kprice,'Lay',i)">+</span>
+                      </div>
+                    </div>
+                  </div>
+                    </ng-container> 
+                 </ng-container>
+                  <!-- fancy_market -->
+                  <ng-container *ngIf="fancy_market">
+                    <div class="col-8 mt-2 text-center">
+                        <div class="input-group">
+                          <div class="numbers">
+                            <span class="minus" (click)="minus_rateStep1()">-</span>
+                            <input type="text" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" min="0" step="0.01" id="ShowBetPrice" name="quant[2]" readonly="" class="calProfitLoss odds-input form-control CommanBtn" name="rate_step1"  [(ngModel)]="rate_step1">
+                           <span class="plus" (click)="plus_rateStep1()">+</span>
+                          </div>
+                        </div>
+                      </div>
+               
+                  <div class="col-4 mt-2 text-center" >
+                    <div class="input-group">
+                      <div class="numbers">
+                        <span class="minus" (click)="minus_rateStep2()">-</span>
+                        <input type="text" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" min="0" step="0.01" name="quant[2]" readonly="" class="calProfitLoss odds-input form-control CommanBtn" name="rate_step2"  [(ngModel)]="rate_step2">
+                       <span class="plus" (click)="plus_rateStep2()">+</span>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+               
+            </ng-container>
+                  <ng-container *ngIf="fancy_market">
+                    <!--auto_manual_show check -->
+                    <ng-container *ngIf="auto_manual_show">
+                  <p class="mt-3 font-weight-bold text-white p-1" style="background-color: #2C3E50;">Run Step: <select name="cars" id="cars" (change)="change_runStep($event.target.value);">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="25">25</option>
+                    <option value="30">30</option>
+                   </select>
+                  </p>
+                
+                  <div class="col-2"></div>
+                    <div class="col-8 mt-2 text-center">
+                        <div class="input-group" style="align-items:center;justify-content:center;">
+                          <div class="numbers">
+                            <span class="minus" (click)="minus_runStep()">-</span>
+                            <input type="text" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" min="0" step="0.01" id="ShowBetPrice" name="quant[2]" readonly="" class="calProfitLoss odds-input form-control CommanBtn" name="run_step1" placeholder="{{run_step1}} - {{run_step2}}">
+                           <span class="plus" (click)="plus_runStep()">+</span>
+                          </div>
+                        </div>
+                      </div>
+               
+                      <div class="col-2"></div>
+                    
+                      <div class="col-2"></div>
+                      <div class="text-center col-4 mt-4">
+                        <a role="button" style="background-color:#04AA6D;" class="btn-back btn" (click)="manualRateUpdate(market)">UPDATE</a>
+                     </div>
+
+                     <div class="text-center col-4 mt-4">
+                        <a *ngIf="market?.marketBook?.status==='SUSPENDED' else suspendedId" role="button" style="background-color:#04AA6D;" class="btn-back btn" (click)="manualSuspend(market,'OPEN')">OPEN</a>
+                        <ng-template #suspendedId>
+                            <a role="button" style="background-color:#F0AD4E;" class="btn-back btn" (click)="manualSuspend(market,'SUSPENDED')">SUSPEND</a>
+                        </ng-template>
+                     </div>
+                   
+                     <div class="col-2"></div>
+                    </ng-container>
+                </ng-container>
+                     <div class="col-2 text-center mt-4">
+                        <button *ngIf="!auto_manual_show" type="button" class="btn bg-color" (click)="changeAuto(market, 0);this.auto_manual_show=true;">SET RATE MANUALLY</button>
+                        <button *ngIf="auto_manual_show" type="button" class="btn bg-color" (click)="changeAuto(market, 1);this.auto_manual_show=false;">CHANGE TO AUTO</button>
+                    </div>
+                     <div (click)="openfancyResultModal(dec_facny)" class="col-8 text-center mt-4">
+                        <button *ngIf="decResult"
+                         type="button" class="btn bg-color">DECLARE RESULT</button>
+                         <button *ngIf="decResultMsg" type="button" class="btn bg-color">{{decResultMsg}}</button>
+                        </div>
+    
+                     <div class="col-2 text-center mt-4">
+                        <button *ngIf="market?.visible==true else unvisibleID" (click)="unHideMarket(market,'hide')" type="button" class="btn bg-color">HIDE MARKET</button>
+                            <ng-template #unvisibleID>
+                                <button type="button" class="btn bg-color" (click)="unHideMarket(market,'show')">SHOW MARKET</button>
+                            </ng-template>
+                        
+                    </div>
+                         
+             </div>
+             
+             <!--betDeclareUndeclare code end -->
+
+		</div>
+
+        <!-- running_code_end -->
+		 <div class="col-md-4 sidebar-rights">
+                                <div class="bet-list">
+                                    <div class="game-body">
+                                        <div class="tab-content" id="myRightTabContent">
+                                            <div class="tab-pane fade show active" id="allBetRight">
+                                                <div class="betFilter">
+                                                    <div class="row mt-2">
+                                                        <div class="col-md-12">
+                                                            <!-- <div class="nav-tabs "> -->
+                                                                <ul class="nav nav-tabs tabs-table bg-secondary" id="myTab" role="tablist">
+                                                                
+                                                                    <div class="col-md-8 d-flex m-0">
+                                                                            <li class="nav-item tabs-li">
+                                                                      <a class="nav-link btn btn-primary active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                                                                        aria-selected="true">Matched</a>
+                                                                    </li>
+                                                                    <!-- <li class="nav-item tabs-li">
+                                                                      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+                                                                        aria-selected="false">Unmatched</a>
+                                                                    </li> -->
+                                                                    </div>
+                                                                     <div *ngIf="del_btn" class="text-end col-md-4 m-0" (click)="delBets()">
+                                                                        <a role="button" class="btn-back btn bg-danger" >Delete</a>
+                                                                     </div>
+                                                                  </ul>
+                                                                  <div class="tab-content" id="myTabContent">
+                                                                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                                                        <div class="report-table">
+                                                                            <table class="table" >
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th><input type="checkbox" [checked]="allBtnChecked" id="vehicle2" name="vehicle2" value="Car" (change)="selectAll($event.target.checked)">
+                                                                                            <!-- <label for="vehicle2"> Select All</label> -->
+                                                                                        </th>
+                                                                                        <th>Username</th>
+                                                                                        <th style="width: 30%">
+                                                                                            Nation
+                                                                                        </th>
+
+                                                                                        <th>Rate
+                                                                                            </th>
+                                                                                            <th>
+                                                                                            Amount
+                                                                                        </th>
+                                                                                        
+                                                                                        <th>PlaceDate
+                                                                                        </th>
+                                                                                        <th>GameType
+                                                                                        </th>
+                                                                                        
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <ng-container *ngFor="let b of betList;let i=index;">
+                                                                                        
+                                                                                      <tr [ngClass]="{'bg_red': b?.deleted === true,'back': b?.type === 'Back'&& b?.deleted === false , 'lay': b?.type === 'Lay'&& b?.deleted === false}"  >
+                                                                                        <td><input type="checkbox" [checked]="isChecked[i]" id="vehicle1" name="vehicle1"  (change)="multipleDelCheckBox($event.target.checked,b._id,i)"></td>
+                                                                                        <td>
+                                                                                            {{b.username}}
+                                                                                        </td>
+                                                                                        <td style="width: 30%;">
+                                                                                            <span *ngIf="b.marketType==='SESSION' else nationBlock">
+                                                                                                {{b.marketName}} / {{b.rate*100 | number : '0.0-2'}}
+                                                                                               </span>
+
+                                                                                               <ng-template #nationBlock>
+                                                                                                {{b.selectionName}}
+                                                                                               </ng-template>
+                                                                                            
+                                                                                        </td>
+
+                                                                                        <td>
+                                                                                            <span *ngIf="b.marketType==='SESSION' else rateBlock">
+                                                                                                <span id="matchType">{{b.selectionName}}</span>
+                                                                                               
+                                                                                               </span>
+                                                                    
+                                                                                               <ng-template #rateBlock>
+                                                                                                <span id="matchType"><span *ngIf="b.marketType=='Special' else rate_matchOdds">{{(b.rate*100)-100 | number : '0.0-2'}}</span><ng-template #rate_matchOdds>{{b.rate | number : '0.0-2'}}</ng-template></span>
+                                                                                               
+                                                                                            </ng-template>
+                                                                                        </td>
+
+                                                                                        <td>
+                                                                                            <span>
+                                                                                                {{b.stake|number:'1.2-2'}}
+                                                                                             </span> 
+                                                                                            <!-- <span *ngIf="b.type=='Back'">
+                                                                                                {{b.stake|number:'1.2-2'}}
+                                                                                             </span> 
+                                                                                             
+                                                                                             <span *ngIf="b.type=='Lay'">
+                                                                                               <span *ngIf="b.runnerId!='1'">
+                                                                                                {{b.stake*(b.rate-1)|number:'1.2-2'}}
+                                                                                               </span> 
+                                                                                               <span *ngIf="b.runnerId=='1'">
+                                                                                                {{b.stake*(b.rate)}}
+                                                                                               </span> 
+                                                                                             </span> -->
+                                                                                        </td>
+
+                                                                                        <td class="nowarp">
+                                                                                            {{b.placedTime| date:'yyyy/MM/dd'}}<br>
+                                                                                            {{b.placedTime| date:'H:mm'}}
+                                                                                        </td>
+                                                                                        
+                                                                                        <td>
+                                                                                               <span>
+                                                                                                   {{b.marketType}}
+                                                                                                  </span>
+                                                                                        </td>
+
+                                                                                      </tr>
+            
+                                                                                    </ng-container>
+                                                                                </tbody>
+                                                                                </table>
+                                                                                <div class="row" *ngIf="betList?.length==0" >
+                                                                                    <div class="col-md-12 text-center">
+                                                                                        <span> No bets found </span> 
+                                                                                    </div>
+                                                                                </div>
+                                                                                </div>
+                                                                    
+                                                                    
+                                                                    </div>
+                                                                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                                                        <div class="report-table ">
+                                                                            <table class="table">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Username</th>
+                                                                                        <th style="width: 30%">
+                                                                                            Nation
+                                                                                        </th>
+                                                                                        <!-- <th *ngIf="type != 0">Name</th> -->
+                                                                                        <th>Rate
+                                                                                            </th>
+                                                                                            <th>
+                                                                                            Amount
+                                                                                        </th>
+                                                                                        <!-- <th>Bet Type</th> -->
+                                                                                        <!-- <th>Selection</th> -->
+                                                                                        <!-- <th>PlaceDate
+                                                                                        </th> -->
+                                                                                        <!-- <th>Stake</th> -->
+                                                                                        <th>MatchDate
+                                                                                        </th>
+                                                                                        <!-- <th>Placed Time</th> -->
+                                                                                        <th>GameType
+                                                                                        </th>
+                                                                                       
+                                                                                        <!-- <th>IP Address</th> -->
+                                                                                        <!-- <th *ngIf="type == 0"></th> -->
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr *ngFor="let b of betList">
+                                                                                        <td>
+                                                                                            {{b.username}}
+                                                                                        </td>
+                                                                                        <td style="width: 30%;">
+                                                                                            {{b.selectionName}}
+                                                                                        </td>
+
+                                                                                        <td>
+                                                                                            <span *ngIf="b.runnerId=='1'">
+                                                                                                <span id="matchType">{{b.selectionName}}/{{(b.rate)*100}} </span>
+                                                                                               
+                                                                                               </span>
+                                                                    
+                                                                                               <span *ngIf="b.runnerId!='1'">
+                                                                                                <span id="matchType">{{(b.rate)}} </span>
+                                                                                               
+                                                                                               </span>
+                                                                                        </td>
+
+                                                                                        <td>
+                                                                                            <span *ngIf="b.type=='Back'">
+                                                                                                {{b.stake}}
+                                                                                             </span> 
+                                                                                             
+                                                                                             <span *ngIf="b.type=='Lay'">
+                                                                                               <span *ngIf="b.runnerId!='1'">
+                                                                                                {{b.stake*(b.rate-1)}}
+                                                                                               </span> 
+                                                                                               <span *ngIf="b.runnerId=='1'">
+                                                                                                {{b.stake*(b.rate)}}
+                                                                                               </span> 
+                                                                                             </span>
+                                                                                        </td>
+
+                                                                                        <td>
+
+                                                                                        </td>
+                                                                                        <td>
+
+                                                                                        </td>
+
+                                                                                        <!-- <td></td> -->
+
+
+
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                                </table>
+                                                                                </div>
+                                                                    </div>
+                                                                    
+                                                                  </div>
+                                                            <!-- </div>                                                            -->
+                                                            
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                              						
+						</div>
+					<!--New  Code End -->		
+						
+                    </div>
+               
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- declare_result -->
+<ng-template #dec_facny>
+    <form (ngSubmit)="declareFancyResult()">
+    <div class="modal-header cutompophrader">
+        <h4 class="modal-title" ><span *ngIf="matchodds_market">MatchOdds Result</span><span *ngIf="bookmaker_market">Bookmaker Result</span><span *ngIf="fancy_market">Session Result</span></h4>
+        <a type="button" class="close text-white" data-dismiss="modal" (click)="modalRef.hide();">×</a>
+    </div>
+    <div class="modal-body">
+        <div class="body-inner"> 
+            <div class="row-sm d-flex text1-row mt-3">
+                <div class="col-sm-12  text1-col-input-box">
+                    <!-- bookmaker -->
+                    <div *ngIf="matchodds_market" class="form-group">
+                        <label for="" class="form-label">Runner</label>
+                        <select class="browser-default custom-select" (change)="selectRunner($event.target.value)">
+                            <option selected>Select</option>
+                            <ng-container *ngFor="let r of matchodds_market?.marketBook?.runners">
+                            <option [value]="r.selectionId">{{searchRunner(matchodds_market?.runners,r?.selectionId)}}</option>
+                            </ng-container>
+                        </select>
+                    </div>
+                    <!-- fancy -->
+                    <input *ngIf="fancy_market" id="cMrkt_marketName" type="number" class="form-control" style="width: 100%;" name="all_result" placeholder="Enter final result" [(ngModel)]="all_result">
+                </div>
+            </div>
+                    
+        </div>
+    </div>
+  
+    <div class="modal-footer" >
+        <div class="text-end btn-group">
+            <button type="button" class="btn btn-back btn-dark" data-dismiss="modal" (click)="modalRef.hide();"><i class="fas fa-undo"></i> Cancel</button>&nbsp;&nbsp;
+            <!-- fancy_declare -->
+            <button type="submit" class="btn btn-primary btn-login"> Declare <i class="fas fa-sign-in-alt"></i></button>
+        </div>
+    </div>
+  
+  </form>
+  </ng-template>
+
+
+  
+
+
+

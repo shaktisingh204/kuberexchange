@@ -1,0 +1,41 @@
+<app-b-header></app-b-header>
+<div class="maincontainer">
+
+    <div class="pagetitle">
+        <h2>My Market</h2>
+      </div>
+<!-- matchodds -->  
+  <div *ngIf="matchoddMarket?.length>0" class="marektwrap">
+    <div class="table-responsive" id="filterdata">
+        <table class="table table-striped jambo_table bulk_action" id="analysisList">
+            <tbody>
+        <tr *ngFor="let market of matchoddMarket;trackBy: itemTrackBy;let mDTIndex=index;" (click)="matchDetail(market.eventId)">
+                <th colspan="7">{{market?.eventName}}</th>
+        </tr>
+        <tr *ngFor="let runner of market.marketBook.runners; let i = index;">
+            <td>{{searchRunner(market?.runners,runner?.selectionId)}}</td>
+            <td class="text-bold" [ngClass]="{'red':calProLoss(market.runners,market.marketBook,i,market)<0,'green':calProLoss(market.runners,market.marketBook,i,market)>=0}">{{calProLoss(market?.runners,market?.marketBook,i,market)| number : '0.0-2'}}</td>
+            <td *ngIf="runner?.availableToBack">data</td>
+            <td>data</td>
+            <td>data</td>
+            <td>data</td>
+            <td>data</td>
+        </tr>
+        <tr><th colspan="7">No record found</th></tr>
+    </tbody>
+  </table>
+    </div>
+  </div>
+
+<!-- session -->
+  <div *ngIf="sessionMarket?.length>0" class="marektwrap">
+    <div class="table-responsive" id="filterdata">
+        <table class="table table-striped jambo_table bulk_action" id="analysisList">
+            <tbody><tr><th>col</th><th>col</th><th>col</th><th>col</th><th>col</th><th>col</th><th>col</th>
+        </tr>
+        <tr *ngFor="let runner of sessionMarket;trackBy: itemTrackBy;let mDTIndex=index;" (click)="matchDetail(market.eventId)"><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td></tr><tr><th colspan="7">No record found</th></tr></tbody></table>
+    </div>
+  </div>
+
+</div>
+<app-b-footer></app-b-footer>

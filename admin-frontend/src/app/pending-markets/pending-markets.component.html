@@ -1,0 +1,73 @@
+<app-header></app-header>
+<main>
+  <div class="full-wrap">
+    <div class="report-page">
+      <div class="website-setting inner-content">
+        <div class="page-title" style="background-color: #2c3e50">
+          <h3>Active Market</h3>
+        </div>
+      </div>
+
+      <!--pending_market code -->
+
+      <ng-container *ngFor="let x of pending_marketList">
+        <div class="mt-2 mx-2">
+          <div
+            class="card"
+            style="
+              box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            "
+          >
+            <div class="container-fluild">
+              <div
+                class="row"
+                (click)="matchDetail(x?.marketId)"
+                style="cursor: pointer"
+              >
+                <div class="col-1 p-0" style="width: 90px">
+                  <div class="card-body pr-0 text-success">
+                    <img
+                      *ngIf="x.eventTypeId == 4"
+                      src="assets/images/ledgerIcon/cricket.png"
+                      class="iconzo1"
+                    />
+                    <img
+                      *ngIf="x.eventTypeId == 1"
+                      src="assets/images/ledgerIcon/soccer-player.png"
+                      class="iconzo1"
+                    />
+                    <img
+                      *ngIf="x.eventTypeId == 2"
+                      src="assets/images/ledgerIcon/tennis.png"
+                      class="iconzo1"
+                    />
+                  </div>
+                </div>
+                <div class="col-10 p-0">
+                  <!-- Cricket/Soccer/fancy... -->
+                  <ng-container *ngIf="x?.eventName">
+                    <p class="m-0 mt-2" style="font-size: 16px">
+                      {{ x?.marketName }}({{ x?.eventName }})
+                    </p>
+                    <p style="color: #706d97" class="m-0">{{ x?.marketId }}</p>
+                  </ng-container>
+                  <p class="m-0" style="color: #706d97">
+                    {{ x?.createdAt | date : "medium" }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <div
+        style="margin-top: 23rem; font-weight: 500"
+        class="text-center"
+        *ngIf="pending_marketList?.length == 0"
+      >
+        There is no data to display
+      </div>
+    </div>
+  </div>
+</main>

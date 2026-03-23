@@ -1,0 +1,78 @@
+@import 'event_details';
+
+// .suspendmatchods,
+// .suspendBookmaker{    width: 76.4%;
+//     position: absolute;
+//     right: 0;
+//     left: auto;
+//     height: auto;
+//     margin-top: 0;
+//     margin-bottom: 0;
+//     font-weight: 600;
+//     bottom: 0;
+//     background-color: rgba(0,0,0,0.6);
+//     color: #ff3c3c;
+//     border: none;
+//     justify-content: center;
+//     top: 0;
+//     border-radius: 0; 
+
+//     .suspend-cont{
+//         width: 100%;
+//         font-size: 16px;
+//         font-weight: 500;
+//         color: #ff3c3c;
+//     }
+
+// }
+.fancy-market tbody tr{position: relative;} 
+.fancy-market .suspendtext{  width: 31%;
+    position: absolute;
+    right: 0;
+    left: auto;
+    height: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: 600;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #ff3c3c;
+    border: none;
+    justify-content: center;
+    top: 0;
+    border-radius: 0; text-align: center;
+
+}
+.main-market  tbody tr{position: relative;} 
+.main-market .suspendmatchods{ width: 512px;position: absolute;
+    right: 0;
+    left: auto;
+    height: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: 600;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #ff3c3c;
+    border: none;
+    justify-content: center;
+    top: 0;
+    border-radius: 0; text-align: center;
+
+}
+
+.fancy-market .suspendtext span{width: 100%;display: flex;align-items: center;justify-content: center;
+        font-size: 16px;line-height: 26px;
+        font-weight: 500;
+        color: #ff3c3c;}
+@media (min-width:768px) {
+// .bookmaker-market .suspendtext{ width: 60%;}
+    // .desktopmain-main  .table-row{position: relative;}
+    //    .suspendmatchods{    width: 60%;}
+    //   .bookmarkdesk,
+    //   .desktopviewmarket .table-row{position: relative;}
+    //   .bookmarkdesk .suspendBookmaker{    width: 60%;}
+    //   .desktopviewmarket .table-row  .suspendBookmaker{
+    //       width: 46%;}
+    .fancy-market .suspendtext{width: 200px;}
+      }

@@ -1,0 +1,17 @@
+@import "/src/app/dashboard/dashboard.component.scss";
+
+li{
+    cursor: pointer;
+}
+.header-bottom {
+  .navbar-expand {
+    .navbar-nav {
+      .nav-link {
+        svg {
+          height: 30px;
+          transform: rotate(10deg);
+        }
+      }
+    }
+  }
+}

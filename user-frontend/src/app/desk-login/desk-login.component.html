@@ -1,0 +1,117 @@
+<div class="login">
+  <div class="wrapper">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="loginInner1">
+            <div class="log-logo m-b-20 text-center">
+              <!-- <img src="assets/logo/{{ logo_img }}.png" class="logo-login" /> -->
+              <img src="assets/logo/logo.png" class="logo-login" />
+
+            </div>
+            <div class="featured-box-login featured-box-secundary default">
+              <h4 class="text-center" style="font-size: 22px; color: #0088cc;">
+                Login <i class="fas fa-hand-point-down"></i>
+              </h4>
+
+              <!-- alert -->
+              <div *ngIf="res_error" class="alert alert-danger" role="alert">
+                {{ res_error }}
+              </div>
+              <form role="form" autocomplete="off" [formGroup]="loginForm" (ngSubmit)="onSignInClick()">
+                <div class="mb-4 input-group position-relative"><input name="username" type="text" class="form-control"formControlName="username"
+                    placeholder="Username"><span class="input-group-text"><i class="fas fa-user"></i></span></div>
+                <!-- <div class="form-group m-b-20">
+                  <input placeholder="Username/Mobile No." type="text" class="form-control" aria-required="true"
+                    aria-invalid="false" formControlName="username" />
+                  <i class="fas fa-user"></i>
+                  <small class="text-danger" style="display: none"></small>
+                </div> -->
+                <div class="mb-4 input-group position-relative"><input name="password" type="password"
+                    class="form-control" placeholder="Password" formControlName="password"><span class="input-group-text"><i
+                      class="fas fa-key"></i></span></div>
+                <!-- <div class="form-group m-b-20">
+                  <input name="Password" placeholder="Password" type="password" class="form-control"
+                    aria-required="true" aria-invalid="false" formControlName="password" />
+                    
+                  <i class="fas fa-key"></i>
+                  <small class="text-danger" style="display: none"></small>
+                </div> -->
+                <div class="form-group text-center mb-0">
+                  <button type="submit" class="btn btn-submit btn-login" [disabled]="loginButtonDisable">
+                    Login
+                    <i class="ml-2 fas fa-sign-in-alt"></i>
+                  </button>
+                </div>
+                <div class="form-group text-center mb-0 mt-2">
+                  <button (click)="onSignInClickDemo()" type="button" class="btn btn-submit btn-login"
+                    [disabled]="loginButtonDisable">
+                    Login with demo id
+                    <i class="ml-2 fas fa-sign-in-alt"></i>
+                  </button>
+                </div>
+                <p class="font-weight-bold"
+                  style="font-size: 10px ;text-align: center;display: inline-block !important;" class="recaptchaTerms">
+                  This site is protected by reCAPTCHA and the Google
+                  <a href="https://policies.google.com/privacy">Privacy Policy</a>
+                  an
+                  <a href="https://policies.google.com/terms">Terms of Service</a>
+                  apply.
+                </p>
+                <p class="mt-1 text-center">
+                  <a href="https://sitethemedata.com/apk/allpanelexch-1.13.apk" target="_blank"
+                    class="ml-2 mt-2 download-apk">
+                    <i class="fab fa-android"></i> Download APK
+                  </a>
+                </p>
+
+                <!-- <div class="mt-2 text-center download-apk">
+                  <p class="mt-1">
+                    <a href="mailto:info@{{ logo_img }}.com" class="mail-link" style="font-size: 16px">info@{{ logo_img
+                      }}.com</a>
+                  </p>
+                </div> -->
+              </form>
+            </div>
+
+            <div *ngIf="logo_img === 'diamond222'" [routerLink]="['/register']"
+              class="text-warning font-weight-bold text-center mt-2" style="
+                text-decoration: underline;
+                cursor: pointer;
+                color: #ffff !important;
+              ">
+              <p>Register</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="footer footer-login">
+  <div class="footer-top ">
+
+    <!-- Left side -->
+    <div class="footer-links">
+      <nav class="navbar navbar-expand-sm">
+        <ul class="navbar-nav flex space-x-4">
+          <li class="nav-item">
+            <a class="nav-link" href="/terms-and-conditions" target="_blank">Terms and Conditions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/responsible-gaming" target="_blank">Responsible Gaming</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="footer-tag">
+      <div class="support-detail">
+        <h2>24X7 Support</h2>
+        <p></p>
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,133 @@
+<mat-sidenav-container fullscreen>
+    <mat-sidenav-content>
+        <app-header></app-header>
+        <app-b-header *ngIf="page_type==='betHonk'"></app-b-header>
+    <div class="main-card main-content">  
+        <h2 *ngIf="matchoddMarket?.length==0&&sessionMarket?.length==0" class="text-primary text-center" style="margin-top:40vh;">No Bets !</h2>
+      <!-- content -->
+      <mat-card fxLayout="column" class="detail-card">
+    <!-- matchodds -->
+    <mat-accordion *ngIf="matchoddMarket?.length>0" class="tab-body odd-detail" multi>
+      <mat-expansion-panel [expanded]="true" hideToggle style="margin-top: 10px;"
+          *ngFor="let market of matchoddMarket;trackBy: itemTrackBy;let mDTIndex=index;" (click)="matchDetail(market.eventId)"
+          (opened)="panelOpenState1 = true" (closed)="panelOpenState1 = false">
+              <mat-panel-title fxLayout="row" fxLayoutAlign="space-between center" class="panel-title">
+                  <div fxLayout="row">
+                      
+                      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
+                          <span class="market-title">
+                              <mat-icon *ngIf="!panelOpenState1">expand_less</mat-icon>
+                              <mat-icon *ngIf="panelOpenState1">expand_more</mat-icon>
+                              {{market?.eventName}} 
+                          </span>
+                      </div>
+                  </div>
+                  
+              </mat-panel-title>
+              
+          <div class="bottom-border" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1%"
+              *ngFor="let runner of market.marketBook.runners; let i = index;">
+              <label fxLayoutAlign="start left" fxFlex="70%"
+                  style="padding-left: 10px;">
+                  <span>{{searchRunner(market?.runners,runner?.selectionId)}}</span>
+                 
+                  <span class="text-bold" [ngClass]="{'red':calProLoss(market.runners,market.marketBook,i,market)<0,'green':calProLoss(market.runners,market.marketBook,i,market)>=0}">
+                      {{calProLoss(market?.runners,market?.marketBook,i,market)| number : '0.0-2'}}
+                  </span>
+              </label>
+              <button fxLayout="column" fxLayoutAlign="center center" class="back-button"
+                  fxFlex="17%" *ngIf="runner?.availableToBack">
+                  <span class="odds-value">{{(runner?.availableToBack
+                      !=undefined?runner?.availableToBack?.price :'')}}</span>
+                  <span class="odds-small-value">{{(runner?.availableToBack
+                      !=undefined?(runner?.availableToBack?.size ) :'')}}</span>
+              </button>
+              <button fxLayout="column" fxLayoutAlign="center center" class="back-button"
+                  fxFlex="17%" *ngIf="!runner?.availableToBack">
+                  <span class="odds-value">-</span>
+                  <span class="odds-small-value">-</span>
+              </button>
+              <button fxLayout="column" fxLayoutAlign="center center" class="lay-button"
+                  fxFlex="17%" *ngIf="runner?.availableToLay">
+                  <span class="odds-value">{{(runner?.availableToLay
+                      !=undefined?runner?.availableToLay?.price :'')}}</span>
+                  <span class="odds-small-value">{{(runner?.availableToLay
+                      !=undefined?(runner?.availableToLay?.size ) :'')}}</span>
+              </button>
+              <button fxLayout="column" fxLayoutAlign="center center" class="lay-button"
+                  fxFlex="17%" *ngIf="!runner?.availableToLay">
+                  <span class="odds-value">-</span>
+                  <span class="odds-small-value">-</span>
+              </button>
+
+          </div>
+          
+      </mat-expansion-panel>
+
+  </mat-accordion>
+
+ 
+  <!-- session -->
+  <ng-container *ngIf="sessionMarket?.length>0">
+  <mat-accordion *ngFor="let runner of sessionMarket;trackBy: itemTrackBy;let mDTIndex=index;" class="tab-body odd-detail" multi>
+      <mat-expansion-panel [expanded]="true" hideToggle style="margin-top: 10px;"
+          (opened)="panelOpenState1 = true" (closed)="panelOpenState1 = false" (click)="matchDetail(runner.eventId)">
+              <mat-panel-title fxLayout="row" fxLayoutAlign="space-between center" class="panel-title">
+                  <div fxLayout="row">
+                      
+                      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
+                          <span class="market-title">
+                              <mat-icon *ngIf="!panelOpenState1">expand_less</mat-icon>
+                              <mat-icon *ngIf="panelOpenState1">expand_more</mat-icon>
+                              {{runner.eventName}}
+                          </span>
+                          
+                      </div>
+                  </div>
+          
+              </mat-panel-title>
+
+          <div class="bottom-border" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1%">
+              <label fxLayoutAlign="start left" fxFlex="70%"
+                  style="padding-left: 10px;">
+                  <span>{{runner.marketName}}</span>
+              </label>
+              <button fxLayout="column" fxLayoutAlign="center center" class="lay-button"
+                  fxFlex="17%" *ngIf="runner?.marketBook?.availableToLay">
+                  <span class="odds-value">{{(runner?.marketBook?.availableToLay
+                      !=undefined?runner?.marketBook?.availableToLay?.price :'')}}</span>
+                  <span class="odds-small-value">{{(runner?.marketBook?.availableToLay
+                      !=undefined?(runner?.marketBook?.availableToLay?.size ) :'')}}</span>
+              </button>
+              <button fxLayout="column" fxLayoutAlign="center center" class="back-button"
+                  fxFlex="17%" *ngIf="!runner?.marketBook?.availableToLay">
+                  <span class="odds-value">-</span>
+                  <span class="odds-small-value">-</span>
+              </button>
+              <button fxLayout="column" fxLayoutAlign="center center" class="back-button"
+                  fxFlex="17%" *ngIf="runner?.marketBook?.availableToBack">
+                  <span class="odds-value">{{(runner?.marketBook?.availableToBack
+                      !=undefined?runner?.marketBook?.availableToBack?.price :'')}}</span>
+                  <span class="odds-small-value">{{(runner?.marketBook?.availableToBack
+                      !=undefined?(runner?.marketBook?.availableToBack?.size ) :'')}}</span>
+              </button>
+              <button fxLayout="column" fxLayoutAlign="center center" class="lay-button"
+                  fxFlex="17%" *ngIf="!runner?.marketBook?.availableToBack">
+                  <span class="odds-value">-</span>
+                  <span class="odds-small-value">-</span>
+              </button>
+ 
+          </div>
+     
+      </mat-expansion-panel>
+
+  </mat-accordion>
+ </ng-container>
+
+      </mat-card>
+  </div>
+    
+  <app-p-footer *ngIf="page_type==='paisaexch'"></app-p-footer>
+  <app-b-footer *ngIf="page_type==='betHonk'"></app-b-footer>
+</mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,244 @@
+<div class="loginPage">
+  <div class="login-main">
+    <div class="login-inner">
+      <div class="logo text-center">
+        <img src="assets/logo/{{ logo_img }}.png" alt="img" />
+      </div>
+
+      <!-- paisa_register -->
+      <ng-container *ngIf="false">
+        <!-- register -->
+        <div *ngIf="step === 1" class="form">
+          <form
+            class="login-form"
+            [formGroup]="registerForm"
+            (ngSubmit)="onRegisterClick()"
+          >
+            <div class="form-group" appearance="fill">
+              <label class="form-label">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="fullname"
+              />
+              <mat-icon matSuffix>person_outline</mat-icon>
+            </div>
+
+            <div class="form-group" appearance="fill">
+              <label class="form-label">Mobile No.</label>
+              <input type="text" class="form-control" formControlName="phone" />
+              <mat-icon matSuffix>mobile_friendly</mat-icon>
+            </div>
+
+            <div class="form-group" appearance="fill">
+              <label class="form-label">Password</label>
+              <input
+                [type]="showPassword ? 'text' : 'password'"
+                class="form-control"
+                formControlName="password"
+              />
+              <mat-icon
+                style="cursor: pointer"
+                matSuffix
+                [class.hide]="showPassword"
+                (click)="showPassword = !showPassword"
+                >visibility</mat-icon
+              >
+              <mat-icon
+                style="cursor: pointer"
+                matSuffix
+                [class.hide]="!showPassword"
+                (click)="showPassword = !showPassword"
+                >visibility_off</mat-icon
+              >
+            </div>
+
+            <div class="submit-btn">
+              <button mat-raised-button [disabled]="registerButtonDisable">
+                <span style="font-size: 17px">Register </span
+                ><mat-icon matSuffix class="material-icons"
+                  >how_to_reg</mat-icon
+                >
+              </button>
+            </div>
+          </form>
+        </div>
+        <!-- verifyOtp -->
+        <div *ngIf="step === 2" class="form">
+          <form
+            class="login-form"
+            [formGroup]="varifyOtpForm"
+            (ngSubmit)="onVerifyOtpClick()"
+          >
+            <div class="form-group" appearance="fill">
+              <label class="form-label">Mobile No.</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="phone"
+                disabled
+              />
+              <mat-icon matSuffix>mobile_friendly</mat-icon>
+            </div>
+
+            <div class="form-group" appearance="fill">
+              <label class="form-label">OTP</label>
+              <input
+                [type]="showPassword ? 'text' : 'password'"
+                class="form-control"
+                formControlName="otp"
+              />
+              <mat-icon
+                style="cursor: pointer"
+                matSuffix
+                [class.hide]="showPassword"
+                (click)="showPassword = !showPassword"
+                >visibility</mat-icon
+              >
+              <mat-icon
+                style="cursor: pointer"
+                matSuffix
+                [class.hide]="!showPassword"
+                (click)="showPassword = !showPassword"
+                >visibility_off</mat-icon
+              >
+            </div>
+
+            <div class="submit-btn">
+              <button
+                mat-raised-button
+                color="primary"
+                [disabled]="otpButtonDisable"
+              >
+                <span style="font-size: 17px">Verify OTP </span
+                ><mat-icon matSuffix class="material-icons"
+                  >how_to_reg</mat-icon
+                >
+              </button>
+            </div>
+          </form>
+        </div>
+      </ng-container>
+
+      <!-- diamond_register -->
+      <ng-container *ngIf="true">
+        <!-- register -->
+        <div *ngIf="step === 1" class="form">
+          <form
+            class="login-form"
+            [formGroup]="registerForm"
+            (ngSubmit)="onRegisterClick()"
+          >
+            <div class="form-group" appearance="fill">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="fullname"
+                placeholder="Username"
+              />
+            </div>
+
+            <span *ngIf="exit_user_msg" style="color: red; font-size: 12px">{{
+              exit_user_msg
+            }}</span>
+
+            <div class="form-group" appearance="fill">
+              <label class="form-label">Mobile No.</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="username"
+                placeholder="Mobile no"
+              />
+            </div>
+
+            <div class="form-group" appearance="fill">
+              <input
+                [type]="showPassword ? 'text' : 'password'"
+                class="form-control"
+                formControlName="password"
+                placeholder="Password"
+              />
+              <mat-icon
+                style="cursor: pointer"
+                matSuffix
+                [class.hide]="showPassword"
+                (click)="showPassword = !showPassword"
+                >visibility</mat-icon
+              >
+              <mat-icon
+                style="cursor: pointer"
+                matSuffix
+                [class.hide]="!showPassword"
+                (click)="showPassword = !showPassword"
+                >visibility_off</mat-icon
+              >
+            </div>
+
+            <div class="submit-btn">
+              <button mat-raised-button [disabled]="registerButtonDisable">
+                <span style="font-size: 17px">Register </span
+                ><mat-icon matSuffix class="material-icons"
+                  >how_to_reg</mat-icon
+                >
+              </button>
+            </div>
+          </form>
+        </div>
+        <!-- verifyOtp -->
+        <div *ngIf="step === 2" class="form">
+          <form
+            class="login-form"
+            [formGroup]="varifyOtpForm"
+            (ngSubmit)="onVerifyOtpClick()"
+          >
+            <div class="form-group" appearance="fill">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="phone"
+                disabled
+              />
+            </div>
+
+            <div class="form-group" appearance="fill">
+              <input
+                [type]="showPassword ? 'text' : 'password'"
+                class="form-control"
+                formControlName="otp"
+                placeholder="OTP"
+              />
+              <!-- <mat-icon
+                style="cursor: pointer"
+                matSuffix
+                [class.hide]="showPassword"
+                (click)="showPassword = !showPassword"
+                >visibility</mat-icon
+              >
+              <mat-icon
+                style="cursor: pointer"
+                matSuffix
+                [class.hide]="!showPassword"
+                (click)="showPassword = !showPassword"
+                >visibility_off</mat-icon
+              > -->
+            </div>
+
+            <div class="submit-btn">
+              <button
+                mat-raised-button
+                color="primary"
+                [disabled]="otpButtonDisable"
+              >
+                <span style="font-size: 17px">Verify OTP </span
+                ><mat-icon matSuffix class="material-icons"
+                  >how_to_reg</mat-icon
+                >
+              </button>
+            </div>
+          </form>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,696 @@
+<ng-container *ngIf="page_type === 'diamond'">
+  <header>
+    <!-- desktop_header -->
+    <div *ngIf="isDesktop; else mobile" class="header">
+      <mat-toolbar style="margin-bottom: 0px !important" class="mat-toolbar-row">
+        <div class="left-col headerleft" (click)="inplay()">
+          <span><img style="height: 68px;" src="assets/logo/logo.png" alt="img" />
+          </span>
+        </div>
+        <span class="div-spacer"></span>
+        <!-- dektop_searchbar -->
+        <div class="left-col searchbarcol" style="width: 70px">
+          <div class="searchbar_div">
+            <input style="background: transparent" type="text" [ngClass]="
+                search_button === true ? 'search_button1' : 'search_button2'
+              " name="sea" id="search_bar" (keyup)="market_serch($event.target.value)" />
+            <a *ngIf="search_button == true" (click)="search_function_btn()"><mat-icon
+                style="font-size: 34px; margin-right: 20px;" class="text-light" id="search_btn">zoom_in</mat-icon></a>
+            <a *ngIf="search_button == false" (click)="search_function_btn()">
+              <mat-icon id="close_btn">add</mat-icon>
+            </a>
+          </div>
+          <div *ngIf="filter_market?.length > 0" class="desktop-search-box-container">
+            <ul>
+              <li style="cursor: pointer" *ngFor="let n of filter_market" [routerLink]="['/match-detail', n.eventId]">
+                {{ n.eventName }}
+              </li>
+            </ul>
+          </div>
+          <!-- <div class="header_download"> -->
+          <div class=" header-rules font-weight-bold text-light">
+            <div class="font-weight-bold text-light">
+              Rules
+            </div>
+            <div>
+              <a class="font-weight-bold text-light" target="_blank"
+                href="https://sitethemedata.com/apk/allpanelexch-1.13.apk">
+                <span>
+                  <b>Download Apk</b>
+                  <i class="fab fa-android ms-2"></i>
+                </span>
+              </a>
+            </div>
+
+          </div>
+          <!-- <div class="header-rules font-weight-bold text-light ">
+            <div class="rules-cotent">
+              <a class="font-weight-bold text-light " (click)="openModalrules(rules_modal)">
+                Rules</a>
+            </div>
+            <div><a class="font-weight-bold text-light " target="_blank"
+                href="https://sitethemedata.com/apk/allpanelexch-1.13.apk"><span><b>Download
+                    Apk</b>
+                  <i class="fab fa-android"></i></span></a></div>
+          </div> -->
+
+          <!-- <span class="font-weight-bold text-light rulebtn"
+              style="font-size: 14px; margin-top: -23px; cursor: pointer"
+              (click)="openModalrules(rules_modal)">Rules</span>
+
+            <span class="font-weight-bold text-light rulebtn"
+              style="font-size: 14px; margin-top: -23px; cursor: pointer">Downlad
+              Apk</span>
+            <i class="fab fa-android"></i> -->
+        </div>
+
+        <div class="right-col headerrightside">
+          <ng-container *ngIf="loginButtnStatus">
+            <button style="text-align: left; margin-left: -21px" mat-stroked-button class="balance">
+              <span *ngIf="checkBox1"> Balance : {{ walletBalance |
+                number : "0.0-2" }}</span>
+            </button>
+          </ng-container>
+
+          <div class="row expdetail" style="margin-top: 0px; margin-right: 2px">
+            <u *ngIf="checkBox2" style="cursor: pointer" (click)="openModalmyBets(myBets)">
+              Exposure : {{ exposure | number : "0.0-2" }}</u>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="u-name">
+              <u class="userName" style="cursor: pointer"
+              (click)="sidenavRight.toggle()">{{ userName | uppercase }}</u>
+            <span (click)="sidenavRight.toggle()" style="cursor: pointer" class="side_nav_bar_toggle"><a
+                [routerLinkActive]="['active']"> </a></span>
+            </div>
+          </div>
+
+          <button *ngIf="!loginButtnStatus" mat-stroked-button [routerLink]="['/login']" color="accent">
+            <mat-icon>login</mat-icon> login<br />
+          </button>
+        </div>
+      </mat-toolbar>
+      <!-- <div class="row row-one-section">
+        <div class="col-6" style="height:0;"></div>
+        <div class="col-6 p-0" style="line-height: normal;">
+          <marquee direction="left">
+         hello this is test message   {{ mar_msg }}
+          </marquee>
+        </div>
+      </div> -->
+    </div>
+
+    <!-- mobile_header -->
+    <ng-template #mobile>
+      <div class="header">
+        <mat-toolbar class="mat-toolbar-row">
+          <div class="left-col headerleft" (click)="inplay()">
+            <span><img style="width: 90px !important" src="assets/logo/{{ logo }}.png" alt="img" />
+            </span>
+          </div>
+          <span class="div-spacer"></span>
+          <div class="right-col headerrightside">
+            <ng-container *ngIf="loginButtnStatus">
+              <button mat-stroked-button class="balance" style="margin-top: 14px">
+                <mat-icon style="margin-top:-7px;" (click)="refreshBal();">refresh</mat-icon>&nbsp;
+                <i class="fas fa-landmark mr-1"></i>
+                <span *ngIf="checkBox1">
+                  {{ walletBalance | number : "0.0-2" }}</span>
+              </button>
+              <div class="row expdetail" style="margin-top: 0px; margin-right: 2px">
+                <u *ngIf="checkBox2" (click)="openModalmyBets(myBets)">
+                  Exp : {{ exposure | number : "0.0-2" }}</u>
+                &nbsp;<u class="userName" style="cursor: pointer" (click)="sidenavRight.toggle()">{{ userName |
+                  lowercase }}</u>
+                <span class="side_nav_bar_toggle"><a [routerLinkActive]="['active']"> </a></span>
+              </div>
+            </ng-container>
+            <button *ngIf="!loginButtnStatus" mat-stroked-button [routerLink]="['/login']" color="accent">
+              <mat-icon>login</mat-icon> login<br />
+            </button>
+          </div>
+        </mat-toolbar>
+        <mat-toolbar-row class="mat-toolbar-row">
+          <div class="left-col">
+            <div class="searchbar_div">
+              <input type="text" [ngClass]="
+                  search_button === true ? 'search_button1' : 'search_button2'
+                " name="sea" id="search_bar" (keyup)="market_serch($event.target.value)" />
+              <a *ngIf="search_button == true" (click)="search_function_btn()"><mat-icon
+                  id="search_btn">search</mat-icon></a>
+              <a *ngIf="search_button == false" (click)="search_function_btn()"><mat-icon
+                  id="close_btn">add</mat-icon></a>
+              <!-- <a *ngIf="search_button == false" (click)="search_fun()"><mat-icon>send</mat-icon></a> -->
+            </div>
+            <div *ngIf="filter_market?.length > 0" class="search-box-container">
+              <ul>
+                <li *ngFor="let n of filter_market" [routerLink]="['/match-detail', n.eventId]">
+                  {{ n.eventName }}
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div style="width: 91%" class="right-col">
+            <marquee direction="left">
+              {{ mar_msg }}
+            </marquee>
+          </div>
+        </mat-toolbar-row>
+      </div>
+    </ng-template>
+  </header>
+
+  <mat-sidenav style="box-shadow: none !important" mode="side" #sidenavRight closed position="end"
+    (click)="sidenavRight.toggle()" [ngClass]="{ 'right-panel1': !isDesktop, 'right-panel2': isDesktop }">
+    <div [ngClass]="{ 'report-menu': !isDesktop, 'Dreport-menu': isDesktop }" style="width: 47% !important">
+      <ul class="menu-list">
+        <li *ngIf="!isDesktop">
+          <a class="dropdown-item" [routerLink]="['/home']"> Home</a>
+        </li>
+        <li>
+          <a class="dropdown-item" [routerLink]="['/ledger']">Account Statement</a>
+        </li>
+        <li>
+          <a class="dropdown-item" [routerLink]="['/profit&history']">Profit Loss Report</a>
+        </li>
+        <li>
+          <a class="dropdown-item" [routerLink]="['/profile']"> Bet History</a>
+        </li>
+        <li>
+          <a class="dropdown-item" [routerLink]="['/profile/1']">
+            Unsetteled Bet</a>
+        </li>
+        <!-- <li><a class="dropdown-item" [routerLink]="['/casino-wallet']" > Casino Report History</a></li> -->
+        <li>
+          <a class="dropdown-item" [routerLink]="['/Button-Value']">
+            Set Button Values</a>
+        </li>
+        <!-- <li><a class="dropdown-item" [routerLink]="['/security-Auth-verify']" >Security Auth Verification</a></li> -->
+        <li>
+          <a class="dropdown-item" [routerLink]="['/Button-Value/2']">
+            Change Password</a>
+        </li>
+        <!-- <li>
+          <a class="dropdown-item" [routerLink]="['/wallet-home']"> Wallet </a>
+        </li> -->
+        <li *ngIf="!isDesktop" class="d-flex">
+          <a class="dropdown-item"><span> Balance </span></a><label class="custom-checkbox">
+            <input type="checkbox" name="check1" id="" [ngModel]="true" (ngModelChange)="check1Fun()" /><span
+              class="checkmark"></span></label>
+        </li>
+        <li *ngIf="!isDesktop" class="d-flex">
+          <a class="dropdown-item"> <span> Exposure </span> </a><label class="custom-checkbox"><input type="checkbox"
+              name="check2" id="" [ngModel]="true" (ngModelChange)="check2Fun()" /><span
+              class="checkmark"></span></label>
+        </li>
+        <li *ngIf="!isDesktop">
+          <a class="dropdown-item" [routerLink]="['/terms-condition']">Rule</a>
+        </li>
+        <li style="cursor: pointer" *ngIf="logoutButtnStatus" (click)="logoutUser()" class="logotu">
+          <span *ngIf="isDesktop; else noDesktop">Signout</span>
+          <ng-template #noDesktop>Logout</ng-template>
+        </li>
+      </ul>
+    </div>
+  </mat-sidenav>
+
+  <ng-template #myBets>
+    <div class="modal-header">
+      <h4 class="modal-title header-bg" style="background-color: #0188cc !important; color: white">
+        MY Market <i class="material-icons">refresh</i>
+      </h4>
+      <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="material-icons">close</i>
+      </a>
+    </div>
+    <div class="modal-body bg-light matchpopbody">
+      <div class="modelcontentexposer">
+        <div class="table-div mt-0">
+          <table class="table" width="100%">
+            <thead class="thead-dark">
+              <tr>
+                <th>Event Type</th>
+                <th>Event Name</th>
+                <th>Match Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let x of markets">
+                <td>
+                  <span>{{ x?.eventTypeName }}</span><span *ngIf="x.marketType === 'Special'">Cricket</span>
+                </td>
+                <td (click)="matchDetail(x.eventId); modalRef.hide()">
+                  <span class="text-primary">{{ x.eventName }}</span>
+                </td>
+                <td>{{ x.marketType }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer macthpopfoot">
+      <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="modalRef.hide()">
+        Close
+      </button>
+    </div>
+  </ng-template>
+</ng-container>
+
+<app-p-header *ngIf="page_type === 'paisaexch'"></app-p-header>
+
+<!--rules_modal -->
+<ng-template #rules_modal>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title header-bg" style="background-color: #0188cc !important; color: white">
+        Rules
+      </h4>
+      <a style="top: 7px !important" type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i
+          class="material-icons text-white">close</i>
+      </a>
+    </div>
+
+    <div class="modal-body" style="background-color: white">
+      <div class="card" style="width: 100%; border: none">
+        <div class="card-body">
+          <div class="rule-wrap">
+            <div class="rulesidebar">
+              <ul>
+                <li (click)="rule_type = 'Horse Racing'">
+                  <a href="javascript:void(0);">Horse Racing</a>
+                </li>
+                <li (click)="rule_type = 'Handball'">
+                  <a href="javascript:void(0);">Handball</a>
+                </li>
+                <li (click)="rule_type = 'Table Tennis'">
+                  <a href="javascript:void(0);">Table Tennis</a>
+                </li>
+                <li (click)="rule_type = 'Basketball'">
+                  <a href="javascript:void(0);">Basketball</a>
+                </li>
+                <li (click)="rule_type = 'Vollyball'">
+                  <a href="javascript:void(0);">Vollyball</a>
+                </li>
+                <li (click)="rule_type = 'Ice Hockey'">
+                  <a href="javascript:void(0);">Ice Hockey</a>
+                </li>
+                <li (click)="rule_type = 'Football'">
+                  <a href="javascript:void(0);">Football</a>
+                </li>
+                <li (click)="rule_type = 'Tennis'">
+                  <a href="javascript:void(0);">Tennis</a>
+                </li>
+                <li (click)="rule_type = 'Snooker'">
+                  <a href="javascript:void(0);">Snooker</a>
+                </li>
+                <li (click)="rule_type = 'E-Games'">
+                  <a href="javascript:void(0);">E-Games</a>
+                </li>
+                <li (click)="rule_type = 'Fustal'">
+                  <a href="javascript:void(0);">Fustal</a>
+                </li>
+                <li (click)="rule_type = 'Big Bash League'">
+                  <a href="javascript:void(0);">Big Bash League</a>
+                </li>
+                <li (click)="rule_type = 'Lunch Favourite'">
+                  <a href="javascript:void(0);">Lunch Favourite</a>
+                </li>
+                <li (click)="rule_type = 'Politics'">
+                  <a href="javascript:void(0);">Politics</a>
+                </li>
+                <li (click)="rule_type = 'Bookmaker'">
+                  <a href="javascript:void(0);">Bookmaker</a>
+                </li>
+                <li (click)="rule_type = 'Teenpatti'">
+                  <a href="javascript:void(0);">Teenpatti</a>
+                </li>
+                <li (click)="rule_type = 'CricketCasino'">
+                  <a href="javascript:void(0);">CricketCasino</a>
+                </li>
+                <li (click)="rule_type = 'Fancy'">
+                  <a href="javascript:void(0);">Fancy Market 1</a>
+                </li>
+                <li (click)="rule_type = 'Football Fancy'">
+                  <a href="javascript:void(0);">Football Fancy</a>
+                </li>
+                <li (click)="rule_type = 'IPL'">
+                  <a href="javascript:void(0);">IPL</a>
+                </li>
+                <li (click)="rule_type = 'Kabaddi'">
+                  <a href="javascript:void(0);">Kabaddi</a>
+                </li>
+                <li (click)="rule_type = 'World Cup'">
+                  <a href="javascript:void(0);">World Cup</a>
+                </li>
+                <li (click)="rule_type = 'Khado'">
+                  <a href="javascript:void(0);">Khado</a>
+                </li>
+                <li (click)="rule_type = 'Election'">
+                  <a href="javascript:void(0);">Election</a>
+                </li>
+                <li (click)="rule_type = 'Fancy'">
+                  <a href="javascript:void(0);">Fancy</a>
+                </li>
+                <li (click)="rule_type = 'Match'">
+                  <a href="javascript:void(0);">Match</a>
+                </li>
+                <li (click)="rule_type = 'Binary'">
+                  <a href="javascript:void(0);">Binary</a>
+                </li>
+              </ul>
+            </div>
+            <!-- Horse Racing -->
+            <div *ngIf="rule_type === 'Horse Racing'" class="rule-content">
+              <h3>Horse Racing</h3>
+              <div class="rule-content-inner">
+                <h5 style="border-top: none; padding-top: 0px !important">
+                  General
+                </h5>
+                <p>
+                  All individual race markets will be determined according to
+                  the official result at the time of the 'weigh-in' announcement
+                  (or equivalent). Subsequent disqualifications, appeals or
+                  amendments to the result will be disregarded.
+                </p>
+                <p>
+                  If a race is abandoned or otherwise declared void, or in the
+                  event of a walkover, all bets on that race will be void.
+                </p>
+                <p>
+                  If the scheduled venue is changed after the market has been
+                  loaded by us, all bets will be void.
+                </p>
+                <p>
+                  Where a race does not take part on its scheduled day, all bets
+                  will be void.
+                </p>
+                <p>
+                  If a scheduled surface type is changed (e.g., turf to dirt)
+                  all bets will stand.
+                </p>
+
+                <h5>Non-Runner Rule</h5>
+                <p>
+                  Our's non-runner rule relates to the adjustment of odds-on
+                  bets already matched when a horse in a race is declared a
+                  non-runner. Toadjust We apply a reduction factor to the
+                  remaining runners. The reduction factor allocated to a
+                  non-runner is a calculation (the details of which are
+                  described below) of that horse's chances of winning (or being
+                  placed, etc as appropriate) and is applied to bets already
+                  matched on the other runners in the relevant market or
+                  markets.
+                </p>
+                <p>
+                  Any horse listed when the relevant market is loaded which does
+                  not subsequently come under the starter's orders is deemed to
+                  be a non-runner.
+                </p>
+                <p>
+                  When the market is loaded each horse is given a 'reduction
+                  factor, based on a forecast price, which is expressed as a
+                  percentage. These reduction factors may be updated
+                  periodically at the discretion of the Us based on trading in
+                  the market, but after approximately 15 minutes (approximately
+                  5 minutes for Australian and US markets) from the scheduled
+                  'off' time of a given race, they will be updated only in
+                  exceptional circumstances. The current reduction factor
+                  percentage for each horse can be viewed on the 'info' page on
+                  Our website or by asking the Helpdesk.
+                </p>
+                <p>
+                  Accurate reduction factors will only be applied to selections
+                  in the event of a non-runner. Once a non-runner is declared
+                  each selection in the market will be given an appropriate
+                  reduction factor. Reduction factors can be amended at Our’s
+                  discretion at any time throughout the market life cycle
+                  (including post-race).
+                </p>
+                <p>
+                  For Australian racing, reduction factors may be updated
+                  periodically at the discretion of the Us based on trading in
+                  the market, but after approximately five minutes from the
+                  scheduled off time of a given race, they will be updated only
+                  in exceptional circumstances.
+                </p>
+                <p>
+                  Reductions will be made to both win and place markets but
+                  applied differently (as described below), and horses will have
+                  a different reduction factor for each market.
+                </p>
+                <p>
+                  As soon as We become aware that a horse is an official
+                  non-runner or a highly likely non-runner, following a
+                  statement to the press from connections, the following will
+                  happen:
+                </p>
+                <p>
+                  All matched bets on that horse will be void and the horse will
+                  be removed from the market.
+                </p>
+                <p>
+                  In the win market: if the reduction factor of the non-runner
+                  is 2.5% or greater, the traded price of all the matched bets
+                  on the remaining horses will be reduced by an amount equal to
+                  the non-runner final reduction factor and all the unmatched
+                  offers to lay will be cancelled. If the non-runners reduction
+                  factor is less than 2.5%, reductions will not be applied and
+                  unmatched bets will not be cancelled.
+                </p>
+                <p>
+                  In the place market, the reduction factor of all non-runners
+                  will be applied (even if less than 2.5%) and the potential
+                  winnings aboutmatched bets on the remaining horses will be
+                  reduced by an amount equal to the non-runners final reduction
+                  factor. Only if the non-runners reduction factor is 4.0% or
+                  greater will all the unmatched offers to lay be cancelled.
+                </p>
+                <p>
+                  All the reduction factors on the remaining horses will be
+                  adjusted to reflect their improved chance of winning.
+                </p>
+                <p>
+                  Reduction factors are not applied to bets which are struck in
+                  play. However, if a market is turned in-play prematurely by
+                  error (or, for example, there is a false start), all bets
+                  matched during this time will be subject to any later
+                  reduction factor, provided the market is turned out of play
+                  before the race commences. In the event of a late withdrawal,
+                  wereserve the right to remove the runner after the completion
+                  of the race. In this case, only those bets matched before the
+                  off will be affected by a reduction factor.
+                </p>
+                <p>
+                  In the event of a non-runner being removed from a race in
+                  error or following incorrect information regarding a runner’s
+                  participation, we will reinstate both the runner and all
+                  previously matched bets associated with that runner. All bets
+                  made between the time of withdrawal and reinstatement will be
+                  void in both the place market and the win market. The
+                  reduction factor applied to matched bets at the time of
+                  withdrawal will be reversed and the original prices will
+                  become valid.
+                </p>
+                <p>
+                  Any non-runners will be removed from the relevant markets in
+                  the order in which they are brought to our attention. If We
+                  become aware of more than one non-runner at the same time, it
+                  will remove the non-runners from the relevant markets in race
+                  card order.
+                </p>
+                <p>
+                  If a runner is not included in a market because of an error or
+                  because of incorrect information regarding a runner’s
+                  participation, we reserve the right to introduce the missing
+                  runner into the market at any time before settlement (even
+                  after the race has been run), provided that We are determined
+                  that the missing runner is not a material runner (i.e., a
+                  selection with a reduction factor of approx. 2.5% or less in
+                  the win market). In such circumstances, all pre-play unmatched
+                  and matched bets will stand, however, if the runner is not
+                  introduced before the start of the race, all in-play bets will
+                  be void. However, if the missing runner is deemed to be a
+                  material runner, then the malformed market will be void and a
+                  new market will be loaded where possible.
+                </p>
+
+                <h5>How the Reductions are applied to Exchange markets</h5>
+                <p>
+                  In the win market, reductions will be made on the traded
+                  price. For example: if the non-runners final reduction factor
+                  is 25% the traded price on all previously matched bets on
+                  other horses will be reduced by 25% - the traded price of 8.0
+                  would become 6.0 etc. And these might be further reduced if
+                  another horse is subsequently declared a non-runner.
+                </p>
+                <p>
+                  In the EW Market, reductions will be made on the traded win
+                  price. The advertised place terms will then apply to the
+                  revised win prices. For example: if the non-runners final
+                  reduction factor is 25% the traded price on all previously
+                  matched bets on other horses will be reduced by 25% - - the
+                  traded price of 8.0 would become 6.0. If each Way terms were
+                  1/5th odds for 3 places, the corresponding price for the Place
+                  portion of the bet would reduce from 2.4 to 2.0.
+                </p>
+                <p>
+                  In the place market, reductions will be made to the potential
+                  winnings on the bet only, and not the traded price. For
+                  example: if the non-runners final reduction factor is 25% the
+                  potential winnings on all previously matched bets on the other
+                  horses will be reduced by 25% - a traded price of 8.0 would
+                  become 6.25. For example, a £10 bet on a horse to be placed at
+                  a traded price of 8.0 would provide winnings of £70. If there
+                  is a non-runner with a reduction factor of 25% in the race,
+                  that factor will be applied to the £70 of potential winnings
+                  leaving potential winnings of £52.50. Therefore, the revised
+                  traded price will be 6.25.
+                </p>
+                <p>
+                  The traded price may be further reduced if any other horse(s)
+                  is subsequently declared a non-runner, however, odds cannot be
+                  reduced below 1.01.
+                </p>
+                <p>
+                  Reserves: A reserve runner may appear in the relevant markets
+                  but will have a non-applicable reduction factor until we are
+                  received confirmation that it is a confirmed runner, in which
+                  case an applicable reduction factor may apply to it.
+                </p>
+                <p>
+                  For the avoidance of doubt, any reduction factor applicable to
+                  a non-runner replaced by a reserve will be applied to all bets
+                  struck on the relevant markets, before the removal from those
+                  markets of such non-runner by Us. Likewise, should a reserve
+                  runner become a confirmed runner but subsequently become a
+                  non-runner, any reduction factor applicable to such non-runner
+                  will be applied to all bets struck on the relevant markets,
+                  before the removal from those markets of such non-runner by
+                  Us.
+                </p>
+                <h5>Additional rules</h5>
+                <p>
+                  Card numbers are posted as a guide only: bets are placed on a
+                  named horse.
+                </p>
+                <p>Horses will not be coupled.</p>
+                <p>
+                  Where any horse(s) runs for purse money only it is deemed a
+                  non-runner for betting purposes. Should this result in the
+                  number of possible winners stated in the relevant Market
+                  Information being equal to or greater than the number of
+                  runners in the relevant Betfair market, all bets in the market
+                  will be void.
+                </p>
+              </div>
+            </div>
+
+            <!-- Handball -->
+            <div *ngIf="rule_type === 'Handball'" class="rule-content">
+              <h3>Handball</h3>
+              <div class="rule-content-inner">
+                <h5 style="border-top: none; padding-top: 0px !important">
+                  Match
+                </h5>
+                <p>
+                  Match Odds: - Predict which team will be the winner. Bets will
+                  be void if the match is not completed.
+                </p>
+                <p>Next Goal: - Predict which team will score the X-th goal.</p>
+                <p>
+                  Highest Scoring Half: - Predict which half will have the most
+                  goals scored (1st, 2nd, or Draw). Bet will be settled on
+                  regulation time only and exclude overtime if played:
+                </p>
+                <p>
+                  Halftime/Fulltime: - Predict the result of a match at halftime
+                  and at the end of regular time. If a game is abandoned, bets
+                  will be void. Example: If you choose 1/X, you bet on the home
+                  team to lead in the first half and the match to end in a draw.
+                  Extra time doesn’t count.
+                </p>
+              </div>
+            </div>
+
+            <!-- Table Tennis -->
+            <div *ngIf="rule_type === 'Table Tennis'" class="rule-content">
+              <h3>Table Tennis</h3>
+              <div class="rule-content-inner">
+                <h5 style="border-top: none; padding-top: 0px !important">
+                  Match
+                </h5>
+                <p>
+                  Match odds: -Predict which player will win the match. In the
+                  event of any of the named players in a match changing before
+                  the match starts then all bets are void. In the event of a
+                  match starting but not being completed, all bets will be void.
+                </p>
+                <p>
+                  Set Winner: - The specified set must be completed for bets to
+                  stand unless the specific market outcome is already
+                  determined.
+                </p>
+                <p>
+                  Under / Over Points: -For example, a game is abandoned at 9-7:
+                  bets on Over/Under 16.5 Game - Total Points are settled as
+                  winners/losers respectively, since any natural conclusion to
+                  the game would have yielded at least 18 points.
+                </p>
+              </div>
+            </div>
+
+            <!-- Basketball -->
+            <div *ngIf="rule_type === 'Basketball'" class="rule-content">
+              <h3>Basketball</h3>
+              <div class="rule-content-inner">
+                <h5 style="border-top: none; padding-top: 0px !important">
+                  Match
+                </h5>
+                <p>
+                  Match Odds :- Predict which team will be the winner. There
+                  must be 5 minutes or less of scheduled game time left for bets
+                  to have action.
+                </p>
+                <p>
+                  Quarter Winner :- The quarter must be completed for bets to
+                  have action, unless settlement of bets is already determined.
+                </p>
+                <p>
+                  1st Half Winner / 2nd Half Winner :- The first half must be
+                  completed for first half bets to stand. If a game is postponed
+                  or cancelled after the start, for game and second half bets
+                  there must be 5 minutes or less remaining for bets to have
+                  action, unless settlement of bets is already determined.
+                  (Including Overtime if played.)
+                </p>
+                <p>
+                  Highest Scoring Half :- Predict in which half most points will
+                  be scored. OT is not included in 2nd Half.
+                </p>
+              </div>
+            </div>
+
+            <!-- Vollyball -->
+            <div *ngIf="rule_type === 'Vollyball'" class="rule-content">
+              <h3>Vollyball</h3>
+              <div class="rule-content-inner">
+                <h5 style="border-top: none; padding-top: 0px !important">
+                  Match
+                </h5>
+                <p>
+                  Match odds: - Predict which team will be the winner. Bets will
+                  be void if the match is not completed.
+                </p>
+                <p>
+                  Set Winner: - In the event of the set not being completed bets
+                  will be void. Exceptions are made for bets on sets that are
+                  already over, in this case, the bets will be settled.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

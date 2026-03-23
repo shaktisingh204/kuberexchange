@@ -1,0 +1,948 @@
+<mat-sidenav-container fullscreen class="profilepage">
+  <mat-sidenav-content>
+    <app-header></app-header>
+    <app-b-header *ngIf="page_type === 'betHonk'"></app-b-header>
+    <!-- desktop_view -->
+    <div *ngIf="deviceInfo && page_type === 'diamond'" class="desktopmain-main">
+      <!-- desktop_header -->
+      <app-desk-header></app-desk-header>
+      <div class="container-fluid container-fluid-5">
+        <div class="row row5">
+          <div class="sidebar col-md-2" style="padding: 0px">
+            <app-desk-sidebar></app-desk-sidebar>
+          </div>
+
+          <!-- bet_history -->
+          <!-- container -->
+          <div
+            class="col-md-10"
+            style="padding-left: 5px; padding-right: 5px; padding-top: 5px"
+          >
+            <ng-container *ngIf="route_Id === false">
+              <div
+                class="d-flex"
+                style="background-color: var(--theme2-bg); color: #fff"
+              >
+                <span class="ml-2 ptitle" style="padding: 6px; font-weight: 500"
+                  >Bet History</span
+                >
+              </div>
+              <!-- table -->
+              <div class="container mt-1">
+                <div class="row select_option_row">
+                  <div class="col-md-2 match_select_col">
+                    <select
+                      class="browser-default custom-select"
+                      name="sportSelectOption"
+                      [(ngModel)]="sportSelectOption"
+                    >
+                      <option disabled [ngValue]="undefined">Sport Type</option>
+                      <option [ngValue]="1">Football</option>
+                      <option [ngValue]="2">Tennis</option>
+                      <option [ngValue]="4">Cricket</option>
+                      <option [ngValue]="'c' + 9">Casino</option>
+                    </select>
+                  </div>
+                  <div class="col-md-2 match_select_col">
+                    <select
+                      class="browser-default custom-select"
+                      name="deleted_type"
+                      [(ngModel)]="deleted_type"
+                    >
+                      <option disabled [ngValue]="undefined">Bet Status</option>
+                      <option [ngValue]="false">Matched</option>
+                      <option [ngValue]="true">Delete</option>
+                    </select>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="date_picker_row">
+                      <mat-form-field
+                        appearance="fill"
+                        class="example-form-field"
+                      >
+                        <!-- <mat-label>From</mat-label> -->
+                        <input
+                          matInput
+                          [matDatepicker]="datepicker"
+                          name="fromDate"
+                          [(ngModel)]="fromDate"
+                        />
+                        <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                        <mat-datepicker-toggle
+                          matSuffix
+                          [for]="datepicker"
+                        ></mat-datepicker-toggle>
+                        <mat-datepicker #datepicker>
+                          <mat-datepicker-actions>
+                            <button mat-button matDatepickerCancel>
+                              Cancel
+                            </button>
+                            <button
+                              mat-raised-button
+                              color="primary"
+                              matDatepickerApply
+                            >
+                              Apply
+                            </button>
+                          </mat-datepicker-actions>
+                        </mat-datepicker>
+                      </mat-form-field>
+                      <!-- <input type="date" name="" id="" placeholder="01/01/1999"> -->
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="date_picker_row">
+                      <mat-form-field
+                        appearance="fill"
+                        class="example-form-field"
+                      >
+                        <!-- <mat-label>To</mat-label> -->
+                        <input
+                          matInput
+                          [matDatepicker]="datepicker1"
+                          name="toDate"
+                          [(ngModel)]="toDate"
+                        />
+                        <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                        <mat-datepicker-toggle
+                          matSuffix
+                          [for]="datepicker1"
+                        ></mat-datepicker-toggle>
+                        <mat-datepicker #datepicker1>
+                          <mat-datepicker-actions>
+                            <button mat-button matDatepickerCancel>
+                              Cancel
+                            </button>
+                            <button
+                              mat-raised-button
+                              color="primary"
+                              matDatepickerApply
+                            >
+                              Apply
+                            </button>
+                          </mat-datepicker-actions>
+                        </mat-datepicker>
+                      </mat-form-field>
+                      <!-- <input type="date" name="" id="" placeholder="01/01/1999"> -->
+                    </div>
+                  </div>
+
+                  <!-- button -->
+                  <div class="col-md-2">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      (click)="betHistorySubmit()"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </div>
+                <!-- <div class="row date_picker_row">
+      
+    </div> -->
+              </div>
+              <!-- card -->
+
+              <div class="container" style="height: 65vh; overflow-y: scroll">
+                <ng-container *ngIf="betList?.length > 0">
+                  <mat-card
+                    *ngFor="let x of betList"
+                    class="example-card sectionbethis border-primary mt-1"
+                    [ngClass]="x?.type == 'Back' ? 'BackCor' : 'LayCor'"
+                  >
+                    <div class="row pb-1 subtitle_row">
+                      <div class="col-6 subtitle_col-1 text-left">
+                        <span
+                          class="text-primary"
+                          *ngIf="x.marketType === 'SESSION'; else elsBlock"
+                          >{{ x.marketName }}</span
+                        >
+                        <ng-template #elsBlock
+                          ><span class="text-primary">{{
+                            x?.eventName
+                          }}</span></ng-template
+                        >
+                      </div>
+                      <div class="subtitle_col-2 col-2 text-center">
+                        User Rate
+                      </div>
+                      <div class="subtitle_col-3 col-2 text-center">Amount</div>
+                      <div
+                        class="subtitle_col-4 col-2 text-right"
+                        style="padding-right: 0 !important"
+                      >
+                        P&L
+                      </div>
+                    </div>
+                    <mat-card-content class="row">
+                      <div class="row showData">
+                        <div class="col-6 text-left">
+                          Nation:<span
+                            *ngIf="x.marketType === 'SESSION'; else elsBlock1"
+                            >{{ x?.marketName }}</span
+                          ><ng-template #elsBlock1
+                            ><span>{{ x?.selectionName }}</span></ng-template
+                          >
+                        </div>
+                        <div
+                          *ngIf="x.marketType === 'SESSION'; else elseBl"
+                          class="col-2 text-center"
+                        >
+                          {{ x?.selectionName }}
+                        </div>
+                        <ng-template #elseBl>
+                          <div class="col-2 text-center">{{ x?.rate }}</div>
+                        </ng-template>
+                        <div class="col-2 text-center">
+                          {{ x?.stake | number : ".0-2" }}
+                        </div>
+                        <span class="col-2 text-center">
+                          <!-- P/L -->
+                          <ng-container *ngIf="x?.runnerId == 1">
+                            <span
+                              *ngIf="x?.result == 'WON' && x?.type == 'Back'"
+                              class="float-right text-success font-weight-bold"
+                              >+{{ x?.rate * x?.stake | number : ".0-2" }}</span
+                            >
+                            <span
+                              *ngIf="x?.result == 'WON' && x?.type == 'Lay'"
+                              class="float-right text-success font-weight-bold"
+                              >+{{ x?.stake | number : ".0-2" }}</span
+                            >
+                            <span
+                              *ngIf="x?.result == 'LOST' && x?.type == 'Back'"
+                              class="float-right text-danger font-weight-bold"
+                              >-{{ x?.stake | number : ".0-2" }}</span
+                            >
+                            <span
+                              *ngIf="x?.result == 'LOST' && x?.type == 'Lay'"
+                              class="float-right text-danger font-weight-bold"
+                              >-{{ x?.rate * x?.stake | number : ".0-2" }}</span
+                            >
+                          </ng-container>
+                          <ng-container *ngIf="x?.runnerId != 1">
+                            <span
+                              *ngIf="x?.result == 'WON' && x?.type == 'Back'"
+                              class="float-right text-success font-weight-bold"
+                              >+{{
+                                (x?.rate - 1) * x?.stake | number : ".0-2"
+                              }}</span
+                            >
+                            <span
+                              *ngIf="x?.result == 'WON' && x?.type == 'Lay'"
+                              class="float-right text-success font-weight-bold"
+                              >+{{ x?.stake | number : ".0-2" }}</span
+                            >
+                            <span
+                              *ngIf="x?.result == 'LOST' && x?.type == 'Back'"
+                              class="float-right text-danger font-weight-bold"
+                              >-{{ x?.stake | number : ".0-2" }}</span
+                            >
+                            <span
+                              *ngIf="x?.result == 'LOST' && x?.type == 'Lay'"
+                              class="c float-right text-danger font-weight-bold"
+                              >-{{
+                                (x?.rate - 1) * x?.stake | number : ".0-2"
+                              }}</span
+                            >
+                          </ng-container>
+                        </span>
+                      </div>
+                      <p
+                        class="col-12 text-left"
+                        style="
+                          padding-left: 0px !important;
+                          margin-top: 8px !important;
+                        "
+                      >
+                        Placed Bet:
+                        {{ x?.placedTime | date : "yyyy-MM-dd H:mm" }}
+                      </p>
+                      <p
+                        class="col-12 text-left"
+                        style="padding-left: 0px !important"
+                      >
+                        Matched Bet:
+                        {{ x?.matchedTime | date : "yyyy-MM-dd H:mm" }}
+                      </p>
+                      <!-- <hr class="bg-defualt"> -->
+                      <!-- <div class="row mrketlist">
+              <span class="col-5">Market</span><span class="col-7 float-right">{{x?.marketName}}</span>  </div>
+              <div class="row mrketlist">  <span class="col-5">Selection</span><span class="col-7 float-right">{{x?.selectionName}}</span>  </div>
+              <div class="row mrketlist"> <span class="col-5">Rate</span><span class="col-7 float-right text-success">{{x?.type}}@{{x?.rate}}</span>  </div>
+              <div class="row mrketlist"> <span class="col-5">Stake</span><span class="col-7 float-right text-success">{{x?.stake|number:'.0-2'}}</span>  </div>
+              <div class="row mrketlist"><span class="col-5">Time</span><span class="col-7 float-right">{{x?.placedTime|date:'medium'}}</span>      </div> -->
+                    </mat-card-content>
+                    <!-- </div> -->
+                  </mat-card>
+                </ng-container>
+                <div
+                  class="font-weight-bold mt-4"
+                  *ngIf="betList?.length == 0"
+                  style="text-align: center"
+                >
+                  <span id="no_data">There is no data to display.</span>
+                </div>
+              </div>
+            </ng-container>
+            <!-- table_bet_history_end -->
+
+            <!-- table_un_settelded_bet -->
+            <ng-container *ngIf="route_Id === true">
+              <div
+                class="d-flex"
+                style="background-color: var(--theme2-bg); color: #fff"
+              >
+                <span class="ml-2 ptitle" style="padding: 6px; font-weight: 500"
+                  >Un-Setteled Bet</span
+                >
+              </div>
+              <!-- table -->
+              <div class="container mt-1">
+                <div class="row">
+                  <div class="col-12 d-flex mt-1">
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions"
+                        id="inlineRadio1"
+                        value="option1"
+                        (change)="matched_filter()"
+                        checked
+                      />
+                      <label class="form-check-label" for="inlineRadio1"
+                        >Matched</label
+                      >
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions"
+                        id="inlineRadio2"
+                        value="option2"
+                        (change)="fancy_filter()"
+                      />
+                      <label class="form-check-label" for="inlineRadio2"
+                        >Fancy</label
+                      >
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions"
+                        id="inlineRadio3"
+                        value="option3"
+                        (change)="deleted_bet()"
+                      />
+                      <label class="form-check-label" for="inlineRadio3">
+                        Deleted</label
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="container mt-2"
+                style="height: 80vh; overflow-y: scroll"
+              >
+                <ng-container *ngIf="betList?.length > 0">
+                  <mat-card
+                    *ngFor="let x of betList"
+                    class="example-card sectionbethis border-primary mt-1"
+                    [ngClass]="x?.type == 'Back' ? 'BackCor' : 'LayCor'"
+                  >
+                    <div class="row pb-1 subtitle_row">
+                      <div
+                        class="col-8 subtitle_col-1 text-left text-primary"
+                        style="padding-left: 0px !important"
+                      >
+                        {{ x?.eventName }}
+                      </div>
+                      <div class="subtitle_col-2 col-2 text-center">
+                        User Rate
+                      </div>
+                      <div class="subtitle_col-3 col-2 text-center">Amount</div>
+                    </div>
+                    <mat-card-content class="row">
+                      <div class="row showData">
+                        <div
+                          class="col-8 text-left"
+                          style="padding-left: 0px !important"
+                        >
+                          Event type: {{ x?.eventTypeName }}
+                        </div>
+                        <div
+                          class="col-8 text-left"
+                          style="padding-left: 0px !important"
+                        >
+                          Nation:<span
+                            *ngIf="x.marketType === 'SESSION'; else elsBlock1"
+                            >{{ x?.marketName }}</span
+                          ><ng-template #elsBlock1
+                            ><span>{{ x?.selectionName }}</span></ng-template
+                          >
+                        </div>
+                        <div
+                          *ngIf="x.marketType === 'SESSION'; else elseBl"
+                          class="col-2 text-center"
+                        >
+                          {{ x?.selectionName }}
+                        </div>
+                        <ng-template #elseBl>
+                          <div class="col-2 text-center">
+                            <span
+                              *ngIf="
+                                x.marketType === 'Special';
+                                else rate_matchOdds
+                              "
+                              >{{ x.rate * 100 - 100 | number : "0.0-2" }}</span
+                            ><ng-template #rate_matchOdds>{{
+                              x?.rate | number : "0.0-2"
+                            }}</ng-template>
+                          </div>
+                        </ng-template>
+                        <div class="col-2 text-center">
+                          {{ x?.stake | number : ".0-2" }}
+                        </div>
+                        <span class="col-2 text-center">
+                          <ng-container *ngIf="x?.runnerId == 1">
+                            <span
+                              *ngIf="x?.result == 'WON' && x?.type == 'Back'"
+                              class="float-right text-success font-weight-bold"
+                              >+{{ x?.rate * x?.stake | number : ".0-2" }}</span
+                            >
+                            <span
+                              *ngIf="x?.result == 'WON' && x?.type == 'Lay'"
+                              class="float-right text-success font-weight-bold"
+                              >+{{ x?.stake | number : ".0-2" }}</span
+                            >
+                            <span
+                              *ngIf="x?.result == 'LOST' && x?.type == 'Back'"
+                              class="float-right text-danger font-weight-bold"
+                              >-{{ x?.stake | number : ".0-2" }}</span
+                            >
+                            <span
+                              *ngIf="x?.result == 'LOST' && x?.type == 'Lay'"
+                              class="float-right text-danger font-weight-bold"
+                              >-{{ x?.rate * x?.stake | number : ".0-2" }}</span
+                            >
+                          </ng-container>
+                          <ng-container *ngIf="x?.runnerId != 1">
+                            <span
+                              *ngIf="x?.result == 'WON' && x?.type == 'Back'"
+                              class="float-right text-success font-weight-bold"
+                              >+{{
+                                (x?.rate - 1) * x?.stake | number : ".0-2"
+                              }}</span
+                            >
+                            <span
+                              *ngIf="x?.result == 'WON' && x?.type == 'Lay'"
+                              class="float-right text-success font-weight-bold"
+                              >+{{ x?.stake | number : ".0-2" }}</span
+                            >
+                            <span
+                              *ngIf="x?.result == 'LOST' && x?.type == 'Back'"
+                              class="float-right text-danger font-weight-bold"
+                              >-{{ x?.stake | number : ".0-2" }}</span
+                            >
+                            <span
+                              *ngIf="x?.result == 'LOST' && x?.type == 'Lay'"
+                              class="c float-right text-danger font-weight-bold"
+                              >-{{
+                                (x?.rate - 1) * x?.stake | number : ".0-2"
+                              }}</span
+                            >
+                          </ng-container>
+                        </span>
+                      </div>
+
+                      <p
+                        class="col-12 text-left"
+                        style="padding-left: 0px !important"
+                      >
+                        Placed Bet:
+                        {{ x?.placedTime | date : "yyyy-MM-dd H:mm" }}
+                      </p>
+                      <p
+                        class="col-12 text-left"
+                        style="padding-left: 0px !important"
+                      >
+                        Matched Bet:
+                        {{ x?.matchedTime | date : "yyyy-MM-dd H:mm" }}
+                      </p>
+                      <!-- <hr class="bg-defualt"> -->
+                      <!-- <div class="row mrketlist">
+            <span class="col-5">Market</span><span class="col-7 float-right">{{x?.marketName}}</span>  </div>
+            <div class="row mrketlist">  <span class="col-5">Selection</span><span class="col-7 float-right">{{x?.selectionName}}</span>  </div>
+            <div class="row mrketlist"> <span class="col-5">Rate</span><span class="col-7 float-right text-success">{{x?.type}}@{{x?.rate}}</span>  </div>
+            <div class="row mrketlist"> <span class="col-5">Stake</span><span class="col-7 float-right text-success">{{x?.stake|number:'.0-2'}}</span>  </div>
+            <div class="row mrketlist"><span class="col-5">Time</span><span class="col-7 float-right">{{x?.placedTime|date:'medium'}}</span>      </div> -->
+                    </mat-card-content>
+                    <!-- </div> -->
+                  </mat-card>
+                </ng-container>
+                <div
+                  class="font-weight-bold text-center"
+                  *ngIf="betList?.length == 0"
+                  style="margin-top: 50%"
+                >
+                  <span>There is no data to display.</span>
+                </div>
+              </div>
+            </ng-container>
+            <!--  -->
+          </div>
+        </div>
+      </div>
+      <!-- deshboard_footer -->
+      <app-desk-footer></app-desk-footer>
+    </div>
+
+    <ng-container *ngIf="!deviceInfo">
+      <!-- mobile_view/bet_history -->
+      <div class="main-content topinfo" *ngIf="route_Id === false">
+        <div class="d-flex main_heading" style="width: 100%">
+          <span
+            class="ml-2 ptitle"
+            style="padding: 6px; font-weight: 500; color: #fff !important"
+            >Bet History</span
+          >
+        </div>
+        <div class="container mt-1">
+          <div class="row select_option_row">
+            <div class="col-sm-6 match_select_col">
+              <select
+                class="browser-default custom-select"
+                name="sportSelectOption"
+                [(ngModel)]="sportSelectOption"
+              >
+                <option disabled [ngValue]="undefined">Sport Type</option>
+                <option [ngValue]="1">Football</option>
+                <option [ngValue]="2">Tennis</option>
+                <option [ngValue]="4">Cricket</option>
+                <option [ngValue]="'c' + 9">Casino</option>
+              </select>
+            </div>
+            <div class="col-sm-6 match_select_col">
+              <select
+                class="browser-default custom-select"
+                name="deleted_type"
+                [(ngModel)]="deleted_type"
+              >
+                <option disabled [ngValue]="undefined">Bet Status</option>
+                <option [ngValue]="false">Matched</option>
+                <option [ngValue]="true">Delete</option>
+              </select>
+            </div>
+          </div>
+          <div class="row date_picker_row">
+            <div class="col-sm-6 date_picker_col">
+              <mat-form-field appearance="fill" class="example-form-field">
+                <!-- <mat-label>From</mat-label> -->
+                <input
+                  matInput
+                  [matDatepicker]="datepicker"
+                  name="fromDate"
+                  [(ngModel)]="fromDate"
+                />
+                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="datepicker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #datepicker>
+                  <mat-datepicker-actions>
+                    <button mat-button matDatepickerCancel>Cancel</button>
+                    <button
+                      mat-raised-button
+                      color="primary"
+                      matDatepickerApply
+                    >
+                      Apply
+                    </button>
+                  </mat-datepicker-actions>
+                </mat-datepicker>
+              </mat-form-field>
+              <!-- <input type="date" name="" id="" placeholder="01/01/1999"> -->
+            </div>
+            <div
+              class="col-sm-6 date_picker_col"
+              style="padding-left: 16px !important"
+            >
+              <mat-form-field appearance="fill" class="example-form-field">
+                <!-- <mat-label>To</mat-label> -->
+                <input
+                  matInput
+                  [matDatepicker]="datepicker1"
+                  name="toDate"
+                  [(ngModel)]="toDate"
+                />
+                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="datepicker1"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #datepicker1>
+                  <mat-datepicker-actions>
+                    <button mat-button matDatepickerCancel>Cancel</button>
+                    <button
+                      mat-raised-button
+                      color="primary"
+                      matDatepickerApply
+                    >
+                      Apply
+                    </button>
+                  </mat-datepicker-actions>
+                </mat-datepicker>
+              </mat-form-field>
+              <!-- <input type="date" name="" id="" placeholder="01/01/1999"> -->
+            </div>
+          </div>
+          <div class="row button_row">
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="betHistorySubmit()"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+        <!-- card -->
+
+        <div class="container" style="height: 65vh; overflow-y: scroll">
+          <ng-container *ngIf="betList?.length > 0">
+            <mat-card
+              *ngFor="let x of betList"
+              class="example-card sectionbethis border-primary mt-1"
+              [ngClass]="x?.type == 'Back' ? 'BackCor' : 'LayCor'"
+            >
+              <div class="row pb-1 subtitle_row">
+                <div class="col-6 subtitle_col-1 text-left">
+                  <span
+                    class="text-primary"
+                    *ngIf="x.marketType === 'SESSION'; else elsBlock"
+                    >{{ x.marketName }}</span
+                  >
+                  <ng-template #elsBlock
+                    ><span class="text-primary">{{
+                      x?.eventName
+                    }}</span></ng-template
+                  >
+                </div>
+                <div class="subtitle_col-2 col-2 text-center">User Rate</div>
+                <div class="subtitle_col-3 col-2 text-center">Amount</div>
+                <div
+                  class="subtitle_col-4 col-2 text-right"
+                  style="padding-right: 0 !important"
+                >
+                  P&L
+                </div>
+              </div>
+              <mat-card-content class="row">
+                <div class="row showData">
+                  <div class="col-6 text-left">
+                    Nation:<span
+                      *ngIf="x.marketType === 'SESSION'; else elsBlock1"
+                      >{{ x?.marketName }}</span
+                    ><ng-template #elsBlock1
+                      ><span>{{ x?.selectionName }}</span></ng-template
+                    >
+                  </div>
+                  <div
+                    *ngIf="x.marketType === 'SESSION'; else elseBl"
+                    class="col-2 text-center"
+                  >
+                    {{ x?.selectionName }}
+                  </div>
+                  <ng-template #elseBl>
+                    <div class="col-2 text-center">{{ x?.rate }}</div>
+                  </ng-template>
+                  <div class="col-2 text-center">
+                    {{ x?.stake | number : ".0-2" }}
+                  </div>
+                  <span class="col-2 text-center">
+                    <!-- P/L -->
+                    <ng-container *ngIf="x?.runnerId == 1">
+                      <span
+                        *ngIf="x?.result == 'WON' && x?.type == 'Back'"
+                        class="float-right text-success font-weight-bold"
+                        >+{{ x?.rate * x?.stake | number : ".0-2" }}</span
+                      >
+                      <span
+                        *ngIf="x?.result == 'WON' && x?.type == 'Lay'"
+                        class="float-right text-success font-weight-bold"
+                        >+{{ x?.stake | number : ".0-2" }}</span
+                      >
+                      <span
+                        *ngIf="x?.result == 'LOST' && x?.type == 'Back'"
+                        class="float-right text-danger font-weight-bold"
+                        >-{{ x?.stake | number : ".0-2" }}</span
+                      >
+                      <span
+                        *ngIf="x?.result == 'LOST' && x?.type == 'Lay'"
+                        class="float-right text-danger font-weight-bold"
+                        >-{{ x?.rate * x?.stake | number : ".0-2" }}</span
+                      >
+                    </ng-container>
+                    <ng-container *ngIf="x?.runnerId != 1">
+                      <span
+                        *ngIf="x?.result == 'WON' && x?.type == 'Back'"
+                        class="float-right text-success font-weight-bold"
+                        >+{{ (x?.rate - 1) * x?.stake | number : ".0-2" }}</span
+                      >
+                      <span
+                        *ngIf="x?.result == 'WON' && x?.type == 'Lay'"
+                        class="float-right text-success font-weight-bold"
+                        >+{{ x?.stake | number : ".0-2" }}</span
+                      >
+                      <span
+                        *ngIf="x?.result == 'LOST' && x?.type == 'Back'"
+                        class="float-right text-danger font-weight-bold"
+                        >-{{ x?.stake | number : ".0-2" }}</span
+                      >
+                      <span
+                        *ngIf="x?.result == 'LOST' && x?.type == 'Lay'"
+                        class="c float-right text-danger font-weight-bold"
+                        >-{{ (x?.rate - 1) * x?.stake | number : ".0-2" }}</span
+                      >
+                    </ng-container>
+                  </span>
+                </div>
+                <p
+                  class="col-12 text-left"
+                  style="
+                    padding-left: 0px !important;
+                    margin-top: 8px !important;
+                  "
+                >
+                  Placed Bet: {{ x?.placedTime | date : "yyyy-MM-dd H:mm" }}
+                </p>
+                <p
+                  class="col-12 text-left"
+                  style="padding-left: 0px !important"
+                >
+                  Matched Bet: {{ x?.matchedTime | date : "yyyy-MM-dd H:mm" }}
+                </p>
+                <!-- <hr class="bg-defualt"> -->
+                <!-- <div class="row mrketlist">
+                  <span class="col-5">Market</span><span class="col-7 float-right">{{x?.marketName}}</span>  </div>
+                  <div class="row mrketlist">  <span class="col-5">Selection</span><span class="col-7 float-right">{{x?.selectionName}}</span>  </div>
+                  <div class="row mrketlist"> <span class="col-5">Rate</span><span class="col-7 float-right text-success">{{x?.type}}@{{x?.rate}}</span>  </div>
+                  <div class="row mrketlist"> <span class="col-5">Stake</span><span class="col-7 float-right text-success">{{x?.stake|number:'.0-2'}}</span>  </div>
+                  <div class="row mrketlist"><span class="col-5">Time</span><span class="col-7 float-right">{{x?.placedTime|date:'medium'}}</span>      </div> -->
+              </mat-card-content>
+              <!-- </div> -->
+            </mat-card>
+          </ng-container>
+          <div
+            class="font-weight-bold mt-4"
+            *ngIf="betList?.length == 0"
+            style="text-align: center"
+          >
+            <span id="no_data">There is no data to display.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- mobile_view/un_setteled bet-->
+      <div class="main-content topinfo" *ngIf="route_Id === true">
+        <div class="d-flex main_heading" style="width: 100%">
+          <span
+            class="ml-2 ptitle"
+            style="padding: 6px; font-weight: 500; color: #fff !important"
+            >Un-Setteled Bet</span
+          >
+        </div>
+        <div class="container mt-1">
+          <div class="row">
+            <div class="col-12 d-flex mt-1 justify-content-center">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="inlineRadioOptions"
+                  id="inlineRadio1"
+                  value="option1"
+                  (change)="matched_filter()"
+                  checked
+                />
+                <label class="form-check-label" for="inlineRadio1"
+                  >Matched</label
+                >
+              </div>
+
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="inlineRadioOptions"
+                  id="inlineRadio2"
+                  value="option2"
+                  (change)="fancy_filter()"
+                />
+                <label class="form-check-label" for="inlineRadio2">Fancy</label>
+              </div>
+
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="inlineRadioOptions"
+                  id="inlineRadio3"
+                  value="option3"
+                  (change)="deleted_bet()"
+                />
+                <label class="form-check-label" for="inlineRadio3">
+                  Deleted</label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container mt-2" style="height: 80vh; overflow-y: scroll">
+          <ng-container *ngIf="betList?.length > 0">
+            <mat-card
+              *ngFor="let x of betList"
+              class="example-card sectionbethis border-primary mt-1"
+              [ngClass]="x?.type == 'Back' ? 'BackCor' : 'LayCor'"
+            >
+              <div class="row pb-1 subtitle_row">
+                <div
+                  class="col-8 subtitle_col-1 text-left text-primary"
+                  style="padding-left: 0px !important"
+                >
+                  {{ x?.eventName }}
+                </div>
+                <div class="subtitle_col-2 col-2 text-center">User Rate</div>
+                <div class="subtitle_col-3 col-2 text-center">Amount</div>
+              </div>
+              <mat-card-content class="row">
+                <div class="row showData">
+                  <div
+                    class="col-8 text-left"
+                    style="padding-left: 0px !important"
+                  >
+                    Event type: {{ x?.eventTypeName }}
+                  </div>
+                  <div
+                    class="col-8 text-left"
+                    style="padding-left: 0px !important"
+                  >
+                    Nation:<span
+                      *ngIf="x.marketType === 'SESSION'; else elsBlock1"
+                      >{{ x?.marketName }}</span
+                    ><ng-template #elsBlock1
+                      ><span>{{ x?.selectionName }}</span></ng-template
+                    >
+                  </div>
+                  <div
+                    *ngIf="x.marketType === 'SESSION'; else elseBl"
+                    class="col-2 text-center"
+                  >
+                    {{ x?.selectionName }}
+                  </div>
+                  <ng-template #elseBl>
+                    <div class="col-2 text-center">
+                      <span
+                        *ngIf="x.marketType === 'Special'; else rate_matchOdds"
+                        >{{ x.rate * 100 - 100 | number : "0.0-2" }}</span
+                      ><ng-template #rate_matchOdds>{{
+                        x?.rate | number : "0.0-2"
+                      }}</ng-template>
+                    </div>
+                  </ng-template>
+                  <div class="col-2 text-center">
+                    {{ x?.stake | number : ".0-2" }}
+                  </div>
+                  <span class="col-2 text-center">
+                    <ng-container *ngIf="x?.runnerId == 1">
+                      <span
+                        *ngIf="x?.result == 'WON' && x?.type == 'Back'"
+                        class="float-right text-success font-weight-bold"
+                        >+{{ x?.rate * x?.stake | number : ".0-2" }}</span
+                      >
+                      <span
+                        *ngIf="x?.result == 'WON' && x?.type == 'Lay'"
+                        class="float-right text-success font-weight-bold"
+                        >+{{ x?.stake | number : ".0-2" }}</span
+                      >
+                      <span
+                        *ngIf="x?.result == 'LOST' && x?.type == 'Back'"
+                        class="float-right text-danger font-weight-bold"
+                        >-{{ x?.stake | number : ".0-2" }}</span
+                      >
+                      <span
+                        *ngIf="x?.result == 'LOST' && x?.type == 'Lay'"
+                        class="float-right text-danger font-weight-bold"
+                        >-{{ x?.rate * x?.stake | number : ".0-2" }}</span
+                      >
+                    </ng-container>
+                    <ng-container *ngIf="x?.runnerId != 1">
+                      <span
+                        *ngIf="x?.result == 'WON' && x?.type == 'Back'"
+                        class="float-right text-success font-weight-bold"
+                        >+{{ (x?.rate - 1) * x?.stake | number : ".0-2" }}</span
+                      >
+                      <span
+                        *ngIf="x?.result == 'WON' && x?.type == 'Lay'"
+                        class="float-right text-success font-weight-bold"
+                        >+{{ x?.stake | number : ".0-2" }}</span
+                      >
+                      <span
+                        *ngIf="x?.result == 'LOST' && x?.type == 'Back'"
+                        class="float-right text-danger font-weight-bold"
+                        >-{{ x?.stake | number : ".0-2" }}</span
+                      >
+                      <span
+                        *ngIf="x?.result == 'LOST' && x?.type == 'Lay'"
+                        class="c float-right text-danger font-weight-bold"
+                        >-{{ (x?.rate - 1) * x?.stake | number : ".0-2" }}</span
+                      >
+                    </ng-container>
+                  </span>
+                </div>
+
+                <p
+                  class="col-12 text-left"
+                  style="padding-left: 0px !important"
+                >
+                  Placed Bet: {{ x?.placedTime | date : "yyyy-MM-dd H:mm" }}
+                </p>
+                <p
+                  class="col-12 text-left"
+                  style="padding-left: 0px !important"
+                >
+                  Matched Bet: {{ x?.matchedTime | date : "yyyy-MM-dd H:mm" }}
+                </p>
+                <!-- <hr class="bg-defualt"> -->
+                <!-- <div class="row mrketlist">
+                  <span class="col-5">Market</span><span class="col-7 float-right">{{x?.marketName}}</span>  </div>
+                  <div class="row mrketlist">  <span class="col-5">Selection</span><span class="col-7 float-right">{{x?.selectionName}}</span>  </div>
+                  <div class="row mrketlist"> <span class="col-5">Rate</span><span class="col-7 float-right text-success">{{x?.type}}@{{x?.rate}}</span>  </div>
+                  <div class="row mrketlist"> <span class="col-5">Stake</span><span class="col-7 float-right text-success">{{x?.stake|number:'.0-2'}}</span>  </div>
+                  <div class="row mrketlist"><span class="col-5">Time</span><span class="col-7 float-right">{{x?.placedTime|date:'medium'}}</span>      </div> -->
+              </mat-card-content>
+              <!-- </div> -->
+            </mat-card>
+          </ng-container>
+          <div
+            class="font-weight-bold text-center"
+            *ngIf="betList?.length == 0"
+            style="margin-top: 50%"
+          >
+            <span>There is no data to display.</span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <app-p-footer *ngIf="page_type === 'paisaexch'"></app-p-footer>
+    <app-b-footer *ngIf="page_type === 'betHonk'"></app-b-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

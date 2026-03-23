@@ -1,0 +1,244 @@
+<div style="background: black">
+  <div
+    class="row fixed-top"
+    style="background: #00897b; padding: 11px 5px 0px 22px"
+  >
+    <div
+      class="col-2"
+      [routerLink]="['/wallet-home']"
+      style="padding: 8px 0px 8px 15px"
+    >
+      <i class="fa fa-arrow-left" style="color: white; font-size: 19px"></i>
+    </div>
+    <div class="col-8" style="text-align: center">
+      <h2>Payment Method</h2>
+    </div>
+    <div class="col-2" [routerLink]="['/notifications']">
+      <i class="far fa-bell" style="font-size: 20px; color: white"></i>
+    </div>
+  </div>
+  <div class="container" style="margin: 55px 0px 0px 0px">
+    <div
+      class="row"
+      style="padding: 28px 0px 10px 12px; justify-content: center"
+    >
+      <div
+        class="col-8"
+        style="
+          text-align: center;
+          padding: 17px 0px 0px 0px;
+          background: #343232;
+          border-radius: 10px;
+        "
+      >
+        <h1 style="color: white">Pay ₹{{ amount }}/-</h1>
+      </div>
+    </div>
+    <div
+      class="row"
+      style="
+        justify-content: center;
+        margin: 9px 10px 22px 10px;
+        background: #343232;
+        padding: 19px 0px;
+        border-radius: 10px;
+      "
+    >
+      <div
+        class="col-3"
+        *ngFor="let m of paymentmethods; index as i"
+        id="{{ i }}"
+        style="
+          text-align: center;
+          background: black;
+          color: white;
+          margin: 10px 10px 0px 10px;
+          justify-content: center;
+          padding: 11px 0px 0px 0px;
+          border-radius: 5px;
+        "
+        (click)="select(m); getid(i)"
+      >
+        <img
+          class="rounded-circle"
+          src="https://adminsocket.diamond222.com/uploads/payments/{{
+            m.image
+          }}"
+          alt=""
+          style="width: 52px; height: 50px"
+        /><br /><br />
+        <h5 style="margin: -8px 0px 3px 0px">{{ m?.name }}</h5>
+      </div>
+    </div>
+    <div class="row" style="margin: 16px 0px 0px 0px">
+      <div class="col-12" style="justify-content: center">
+        <input
+          type="text"
+          style="
+            padding: 15px 0px 15px 20px;
+            width: 100%;
+            background: #343232;
+            border: 1px solid;
+            border-radius: 10px;
+            color: white;
+            outline: 0;
+            font-size: 18px;
+          "
+          placeholder="Enter transaction Id"
+          [(ngModel)]="transactionId"
+        />
+      </div>
+    </div>
+    <div class="row" style="margin: 20px 0px 0px 0px">
+      <div class="col-12">
+        <mat-expansion-panel
+          style="background: #343232; border: 1px solid white"
+          [expanded]="showdetails"
+        >
+          <mat-expansion-panel-header style="background: #343232">
+            <mat-panel-title style="color: white">
+              Payment method details
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div
+            class="row"
+            style="justify-content: center"
+            *ngIf="selectedmethod.length == 0"
+          >
+            <div class="col-10" style="text-align: center">
+              <h4 style="color: white">Please select a payment method</h4>
+            </div>
+          </div>
+          <div class="row" *ngFor="let x of selectedmethod">
+            <div
+              *ngIf="x?.paymenttype == 'upi'"
+              class="col-6"
+              style="font-size: 15px; color: white; padding: 5px 5px 5px 16px"
+            >
+              Name
+            </div>
+            <div
+              *ngIf="x?.paymenttype == 'upi'"
+              class="col-6"
+              style="font-size: 15px; color: white; padding: 5px"
+            >
+              {{ x.upiName }}
+            </div>
+            <div
+              *ngIf="x?.paymenttype == 'bank'"
+              class="col-6"
+              style="font-size: 15px; color: white; padding: 5px 5px 5px 16px"
+            >
+              Account No.
+            </div>
+            <div
+              *ngIf="x?.paymenttype == 'bank'"
+              class="col-6"
+              style="font-size: 15px; color: white; padding: 5px"
+            >
+              {{ x?.accnumber }}
+            </div>
+
+            <div
+              *ngIf="x?.paymenttype == 'upi'"
+              class="col-6"
+              style="font-size: 15px; color: white; padding: 5px 5px 5px 16px"
+            >
+              Mobile
+            </div>
+
+            <div
+              *ngIf="x?.paymenttype == 'upi'"
+              class="col-6"
+              style="font-size: 15px; color: white; padding: 5px"
+            >
+              {{ x?.mobile }}
+            </div>
+
+            <div
+              *ngIf="x?.paymenttype == 'bank'"
+              class="col-6"
+              style="font-size: 15px; color: white; padding: 5px 5px 5px 16px"
+            >
+              IFSC
+            </div>
+            <div
+              *ngIf="x?.paymenttype == 'bank'"
+              class="col-6"
+              style="font-size: 15px; color: white; padding: 5px"
+            >
+              {{ x?.ifsc }}
+            </div>
+            <div
+              *ngIf="x?.paymenttype == 'bank'"
+              class="col-6"
+              style="font-size: 15px; color: white; padding: 5px 5px 5px 16px"
+            >
+              Bank Name
+            </div>
+            <div
+              *ngIf="x?.paymenttype == 'bank'"
+              class="col-6"
+              style="font-size: 15px; color: white; padding: 5px"
+            >
+              {{ x?.name }}
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </div>
+    </div>
+
+    <div class="row" style="margin: 46px 0px 0px 0px; justify-content: center">
+      <div
+        class="col-11"
+        style="
+          text-align: center;
+          color: white;
+          padding: 27px 0px 17px 0px;
+          border: 1px solid white;
+          border-radius: 6px;
+        "
+      >
+        <h4 *ngIf="!imgsrc" style="color: #ffd000">
+          *Please upload Screenshot here
+        </h4>
+        <img [src]="imgsrc" *ngIf="imgsrc" style="height: 100%; width: 100%" />
+        <input
+          placeholder="*Please Upload Screenshot here"
+          type="file"
+          style="
+            background: black;
+            outline: 0px;
+            border: 0px;
+            width: 80%;
+            text-align: center;
+            opacity: 0;
+          "
+          (change)="upload($event)"
+        />
+        <h4 *ngIf="!imgsrc" style="color: green; font-size: 20px">
+          <u> Select <i class="fas fa-image"></i></u>
+        </h4>
+      </div>
+      <div class="col-12" style="margin: 26px 0px 20px 0px">
+        <button
+          class="btn btn-block"
+          [disabled]="deposite"
+          style="
+            padding: 8px 0px 8px 0px;
+            background: green;
+            border: 0px;
+            border-radius: 4px;
+            color: white;
+          "
+        >
+          <b
+            style="font-size: 15px; letter-spacing: 2px; font-weight: 550"
+            (click)="onDeposit()"
+            >DEPOSIT &nbsp;<i class="fas fa-landmark"></i
+          ></b>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

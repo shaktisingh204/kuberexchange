@@ -1,0 +1,72 @@
+.red-brackets {
+    color: #000fcc;
+  }
+.form-field .col-inner .form-group {
+    padding-right: 0px;
+    margin-bottom:10px;
+}
+.btn-list {
+    .btn-success {
+        margin-right: 10px;
+    }
+}
+.filter-btn{
+    padding-bottom: 10px;
+}
+
+.form-div .form-group-div .text-label {
+    position: absolute;
+    top: -22px !important;
+    left: -2px !important;
+    // background-color: #fff;
+    // z-index: 2;
+    // padding: 0 5px;
+    color: #000;
+    // font-weight: 400;
+    // margin: 0;
+}
+.report-page .filterDiv .text-select{
+    // background-color: #0000002e !important;
+    // background-image: !important;
+    color: #323232 !important;
+}
+.report-page .filterDiv .form-select{
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 34px;
+    color: #495057;
+    box-shadow: none;
+    padding-top: 0;
+    padding-bottom: 0;
+    outline: none;
+
+    
+}
+@media (max-width: 557px) {
+    .form-div{
+        .col-md-1{
+            .col-btn1{
+                margin-left: 19px;
+            }
+        }
+    }
+    
+}
+.customreport-page.report-page .filterDiv {padding-bottom: 0px;}
+.customreport-page.report-page .filterDiv .form-control::placeholder{ color: #495057!important;font-size:14px;}
+.customreport-page.report-page  button{font-size: 14px;} 
+
+.page-title{margin-top: 10px;margin-bottom: 5px;}
+.customreport-page.report-page .report-table table thead tr th{border: none;    border-bottom: 2px solid #111 !important;}
+.filterDiv form .row{margin: 0 -15px;}
+.filterDiv  .row .col-md-12,
+.filterDiv form .row .col-md-2,
+.filterDiv form .row .col-md-4,
+.filterDiv form .row .col-md-6{padding: 0 15px;}
+.report-page.customreport-page .report-table{padding-left: 5px;padding-right: 5px;}
+.nodatats{border-bottom: none;}

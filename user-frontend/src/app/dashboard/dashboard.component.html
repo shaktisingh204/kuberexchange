@@ -1,0 +1,2266 @@
+<mat-sidenav-container *ngIf="page_type === 'diamond' || page_type === 'paisaexch'" fullscreen>
+  <mat-sidenav-content>
+    <app-header></app-header>
+    <ng-container *ngIf="page_type === 'diamond'">
+      <app-footer *ngIf="!deviceInfo"></app-footer>
+
+      <div class="main-content">
+        <div *ngIf="!deviceInfo && casinoStatus" class="tab-content">
+          <div id="home" class="tab-pane sports active">
+            <ul class="nav nav-tabs game-nav-bar">
+              <li class="nav-item text-center" *ngIf="cricket_menu">
+                <a data-toggle="tab" (click)="cricket_fun()" [ngClass]="{ active: var_cricket === true }"
+                  class="sports nav-link">
+                  <div>
+                    <img src="assets/images/game-icon/4.png" alt="img" />
+                  </div>
+                  <div>Cricket</div>
+                </a>
+              </li>
+
+              <li class="nav-item text-center" *ngIf="soccer_menu">
+                <a data-toggle="tab" (click)="football_fun()" [ngClass]="{ active: var_football === true }"
+                  class="sports nav-link">
+                  <div>
+                    <img src="assets/images/game-icon/1.png" alt="img" />
+                  </div>
+                  <div>Football</div>
+                </a>
+              </li>
+
+              <li class="nav-item text-center" *ngIf="tennis_menu">
+                <a data-toggle="tab" (click)="tennis_fun()" [ngClass]="{ active: var_tennis === true }"
+                  class="sports nav-link">
+                  <div>
+                    <img src="assets/images/game-icon/2.png" alt="img" />
+                  </div>
+                  <div>Tennis</div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- <div *ngIf="marquetext" class="marquee-text">
+                <mat-icon> rss_feed</mat-icon>
+                <marquee width="100%" direction="left">{{marquetext}}</marquee>
+            </div> -->
+
+        <!-- <div id="demo" class="carousel slide my-2" data-ride="carousel">
+          <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+            <li data-target="#demo" data-slide-to="3"></li>
+            <li data-target="#demo" data-slide-to="4"></li>
+            <li data-target="#demo" data-slide-to="5"></li>
+          </ul>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="https://kushubmedia.com/build/new-osg-app/slider/1.png" alt="Los Angeles" height="180">
+            </div>
+            <div class="carousel-item">
+              <img src="https://kushubmedia.com/build/new-osg-app/slider/2.png" alt="Chicago" height="180">
+            </div>
+            <div class="carousel-item">
+              <img src="https://kushubmedia.com/build/new-osg-app/slider/3.png" alt="New York" height="180">
+            </div>
+            <div class="carousel-item">
+              <img src="https://kushubmedia.com/build/new-osg-app/slider/4.png" alt="Los Angeles" height="180">
+            </div>
+            <div class="carousel-item">
+              <img src="https://kushubmedia.com/build/new-osg-app/slider/5.png" alt="Chicago" height="180">
+            </div>
+            <div class="carousel-item">
+              <img src="https://kushubmedia.com/build/new-osg-app/slider/6.png" alt="New York" height="180">
+            </div>
+          </div>
+          <a class="carousel-control-prev" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </a>
+          <a class="carousel-control-next" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </a>
+        </div> -->
+
+        <!--//////////////////Desktop Start////////////////////////-->
+        <!--//////////////////Desktop Start////////////////////////-->
+        <div class="desktopmain-main">
+          <!-- desktop_header -->
+          <app-desk-header></app-desk-header>
+          <!-- desktop_header_end -->
+          <div class="container-fluid container-fluid-5">
+            <div class="row row5">
+              <!--desktop_sidebar_others  -->
+              <div class="sidebar col-md-2">
+                <app-desk-sidebar></app-desk-sidebar>
+              </div>
+
+              <!--flterTabsGrey_dashboard-->
+              <div class="col-md-10 featured-box">
+                <div class="latest-event d-none d-xl-flex">
+                  <div class="latest-event-item "><a class="blink_me" href="/game-details/4/819541284"><i
+                        class="d-icon me-1 icon-4"></i><span class="new-launch-text">India W v Sri Lanka W</span></a>
+                  </div>
+                  <div class="latest-event-item "><a class="blink_me" href="/game-details/1/550720064"><i
+                        class="d-icon me-1 icon-1"></i><span class="new-launch-text">Kairat Almaty v Real
+                        Madrid</span></a></div>
+                  <div class="latest-event-item "><a class="blink_me" href="/game-details/1/564854067"><i
+                        class="d-icon me-1 icon-1"></i><span class="new-launch-text">Atalanta v Club Brugge</span></a>
+                  </div>
+                  <div class="latest-event-item "><a class="blink_me" href="/game-details/2/482948110"><i
+                        class="d-icon me-1 icon-2"></i><span class="new-launch-text">Bencic v C Gauff</span></a></div>
+                  <div class="latest-event-item "><a class="blink_me" href="/game-details/10/728196310"><i
+                        class="d-icon me-1 icon-10"></i><span class="new-launch-text">Albion Park</span></a></div>
+                </div>
+                <div>
+                  <!--flterTabsandMatchDetails-->
+                  <div class="pb-4">
+
+                    <ul role="tablist" id="home-events" class="nav nav-tabs">
+                      <li (click)="cricket_fun()" class="nav-item">
+                        <a href="javascript:void(0)" data-toggle="tab" class="nav-link active">Cricket</a>
+                      </li>
+                      <li (click)="football_fun()" class="nav-item">
+                        <a href="javascript:void(0)" data-toggle="tab" class="nav-link">Football</a>
+                      </li>
+                      <li (click)="tennis_fun()" class="nav-item">
+                        <a href="javascript:void(0)" data-toggle="tab" class="nav-link">Tennis</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="javascript:void(0)" class="nav-link">Table Tennis</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="javascript:void(0)" class="nav-link">Kabaddi</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link">Horse Racing</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="javascript:void(0)" class="nav-link">Greyhound Racing</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="javascript:void(0)" class="nav-link">Basketball</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="javascript:void(0)" class="nav-link">Wrestling</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="javascript:void(0)" class="nav-link">Volleyball</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="javascript:void(0)" class="nav-link">Kabaddi</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="javascript:void(0)" class="nav-link">Ice Hockey</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="javascript:void(0)" class="nav-link">Futsal</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="javascript:void(0)" class="nav-link">E Games</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="javascript:void(0)" class="nav-link">Snooker</a>
+                      </li>
+                    </ul>
+                    <div class="tab-content">
+                      <div class="tab-pane active">
+                        <div class="coupon-card coupon-card-first">
+                          <div class="card-content">
+                            <table class="table coupon-table">
+                              <thead>
+                                <tr>
+                                  <th style="width: 63%">Game</th>
+                                  <th colspan="2">1</th>
+                                  <th colspan="2">X</th>
+                                  <th colspan="2">2</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <!-- Soccer -->
+                                <ng-container *ngIf="var_football">
+                                  <ng-container *ngIf="soccerData?.length">
+                                    <tr style="cursor: pointer" *ngFor="let x of soccerData"
+                                      (click)="matchDetail(x.eventId)">
+                                      <td>
+                                        <div class="game-name">
+                                          <a class="text-dark">
+                                            {{ x?.eventName }} /
+                                            {{
+                                            moment(x?.openDate)
+                                            .utcOffset("+05:30")
+                                            .format("MMM D YYYY h:mm:ss A")
+                                            }}
+                                          </a>
+                                        </div>
+                                        <div *ngIf="currentDate > x.openDate" class="game-icons">
+                                          <span class="game-icon"><span class="active"></span></span>
+                                        </div>
+                                      </td>
+                                      <!---->
+                                      <td>
+                                        <button class="back">
+                                          <span class="odd">{{
+                                            x?.marketBook?.runners[0]
+                                            ?.availableToBack?.price
+                                            }}</span>
+                                        </button>
+                                      </td>
+                                      <!----><!---->
+                                      <td>
+                                        <button class="lay">
+                                          <span class="odd">{{
+                                            x?.marketBook?.runners[1]
+                                            ?.availableToLay?.price
+                                            }}</span>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <button class="back">
+                                          <span class="odd">-</span>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <button class="lay">
+                                          <span class="odd">-</span>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <button class="back">
+                                          <span class="odd">{{
+                                            x?.marketBook?.runners[1]
+                                            ?.availableToBack?.price
+                                            }}</span>
+                                        </button>
+                                      </td>
+                                      <!----><!---->
+                                      <td>
+                                        <button class="lay">
+                                          <span class="odd">{{
+                                            x?.marketBook?.runners[1]
+                                            ?.availableToLay?.price
+                                            }}</span>
+                                        </button>
+                                      </td>
+                                    </tr>
+                                  </ng-container>
+                                </ng-container>
+
+                                <!-- Tennis -->
+                                <ng-container *ngIf="var_tennis">
+                                  <ng-container *ngIf="tennisData?.length">
+                                    <tr style="cursor: pointer" *ngFor="let x of tennisData"
+                                      (click)="matchDetail(x.eventId)">
+                                      <td>
+                                        <div class="game-name">
+                                          <a class="text-dark">
+                                            {{ x?.eventName }} /
+                                            {{
+                                            moment(x?.openDate)
+                                            .utcOffset("+05:30")
+                                            .format("MMM D YYYY h:mm:ss A")
+                                            }}
+                                          </a>
+                                        </div>
+                                        <div *ngIf="currentDate > x.openDate" class="game-icons">
+                                          <span class="game-icon"><span class="active"></span></span>
+                                        </div>
+                                      </td>
+                                      <!---->
+                                      <td>
+                                        <button class="back">
+                                          <span class="odd">{{
+                                            x?.marketBook?.runners[0]
+                                            ?.availableToBack?.price
+                                            }}</span>
+                                        </button>
+                                      </td>
+                                      <!----><!---->
+                                      <td>
+                                        <button class="lay">
+                                          <span class="odd">{{
+                                            x?.marketBook?.runners[1]
+                                            ?.availableToLay?.price
+                                            }}</span>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <button class="back">
+                                          <span class="odd">-</span>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <button class="lay">
+                                          <span class="odd">-</span>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <button class="back">
+                                          <span class="odd">{{
+                                            x?.marketBook?.runners[1]
+                                            ?.availableToBack?.price
+                                            }}</span>
+                                        </button>
+                                      </td>
+                                      <!----><!---->
+                                      <td>
+                                        <button class="lay">
+                                          <span class="odd">{{
+                                            x?.marketBook?.runners[1]
+                                            ?.availableToLay?.price
+                                            }}</span>
+                                        </button>
+                                      </td>
+                                    </tr>
+                                  </ng-container>
+                                </ng-container>
+
+                                <ng-container *ngIf="var_cricket">
+                                  <!-- virtual -->
+                                  <ng-container *ngIf="virtualCricketData?.length">
+                                    <tr style="cursor: pointer" *ngFor="let x of virtualCricketData"
+                                      (click)="virtualDetial(x.eventId)">
+                                      <td>
+                                        <div class="game-name">
+                                          <a class="text-dark">
+                                            {{ x?.eventName }} /
+                                            {{
+                                            moment(x?.openDate)
+                                            .utcOffset("+05:30")
+                                            .format("MMM D YYYY h:mm:ss A")
+                                            }}
+                                          </a>
+                                        </div>
+                                        <div class="game-icons">
+                                          <span *ngIf="currentDate > x.openDate" class="game-icon"><span
+                                              class="active"></span></span>
+                                          <span class="game-icon">
+                                            <!---->
+                                          </span>
+                                          <span class="game-icon">V</span>
+                                        </div>
+                                      </td>
+                                      <!---->
+                                      <td>
+                                        <button class="back">
+                                          <span class="odd">{{
+                                            x?.marketBook?.runners[0]
+                                            ?.availableToBack?.price
+                                            }}</span>
+                                        </button>
+                                      </td>
+                                      <!----><!---->
+                                      <td>
+                                        <button class="lay">
+                                          <span class="odd">{{
+                                            x?.marketBook?.runners[1]
+                                            ?.availableToLay?.price
+                                            }}</span>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <button class="back">
+                                          <span class="odd">-</span>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <button class="lay">
+                                          <span class="odd">-</span>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <button class="back">
+                                          <span class="odd">{{
+                                            x?.marketBook?.runners[1]
+                                            ?.availableToBack?.price
+                                            }}</span>
+                                        </button>
+                                      </td>
+                                      <!----><!---->
+                                      <td>
+                                        <button class="lay">
+                                          <span class="odd">{{
+                                            x?.marketBook?.runners[1]
+                                            ?.availableToLay?.price
+                                            }}</span>
+                                        </button>
+                                      </td>
+                                    </tr>
+                                  </ng-container>
+
+                                  <!-- cricket -->
+                                  <ng-container *ngIf="cricketData?.length">
+                                    <tr style="cursor: pointer" *ngFor="let x of cricketData"
+                                      (click)="matchDetail(x.eventId)">
+                                      <td>
+                                        <div class="game-name">
+                                          <a class="text-dark">
+                                            {{ x?.eventName }} /
+                                            {{
+                                            moment(x?.openDate)
+                                            .utcOffset("+05:30")
+                                            .format("MMM D YYYY h:mm:ss A")
+                                            }}
+                                          </a>
+                                        </div>
+                                        <div class="game-icons">
+                                          <span *ngIf="currentDate > x.openDate" class="game-icon"><span
+                                              class="active"></span></span>
+                                          <span class="game-icon">
+                                            <!---->
+                                          </span>
+                                          <span class="game-icon"><img
+                                              src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/icons/ic_fancy.png"
+                                              class="fancy-icon" /></span>
+                                          <span class="game-icon"><img
+                                              src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/icons/ic_bm.png"
+                                              class="bookmaker-icon" /></span>
+                                        </div>
+                                      </td>
+                                      <!---->
+                                      <td>
+                                        <button class="back">
+                                          <span class="odd">{{
+                                            x?.marketBook?.runners[0]
+                                            ?.availableToBack?.price
+                                            }}</span>
+                                        </button>
+                                      </td>
+                                      <!----><!---->
+                                      <td>
+                                        <button class="lay">
+                                          <span class="odd">{{
+                                            x?.marketBook?.runners[1]
+                                            ?.availableToLay?.price
+                                            }}</span>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <button class="back">
+                                          <span class="odd">-</span>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <button class="lay">
+                                          <span class="odd">-</span>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <button class="back">
+                                          <span class="odd">{{
+                                            x?.marketBook?.runners[1]
+                                            ?.availableToBack?.price
+                                            }}</span>
+                                        </button>
+                                      </td>
+                                      <!----><!---->
+                                      <td>
+                                        <button class="lay">
+                                          <span class="odd">{{
+                                            x?.marketBook?.runners[1]
+                                            ?.availableToLay?.price
+                                            }}</span>
+                                        </button>
+                                      </td>
+                                    </tr>
+                                  </ng-container>
+                                </ng-container>
+                              </tbody>
+                            </table>
+
+                            <ng-container *ngIf="
+                                (soccerData?.length == 0 && var_football) ||
+                                (tennisData?.length == 0 && var_tennis) ||
+                                (cricketData?.length == 0 &&
+                                  virtualCricketData?.length == 0 &&
+                                  var_cricket)
+                              ">
+                              <div style="background-color: #cccccc" class="text-dark text-center p-2">
+                                No real-time records found
+                              </div>
+                            </ng-container>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- desktop our_casino -->
+                  <!-- casinoImg -->
+                  <!-- <div class="home-products-container">
+                    <div class="row row5">
+                      <div class="col-md-12">
+                        <a (click)="openCasinoDetail('diamond_3002')">
+                          <div class="d-inline-block casinoicons">
+                            <img
+                              src="https://dataobj.ecoassetsservice.com/casino-icons/lc/lucky5.jpg"
+                              class="img-fluid" />
+                            <div class="casino-name">Lucky 6</div>
+                            <div class="new-launch-casino">
+                              <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/img/offer-patch.png" />
+                            </div>
+                          </div>
+                        </a>
+                        <a (click)="openCasinoDetail('diamond_3001')">
+                          <div class="d-inline-block casinoicons">
+                            <img
+                              src="https://dataobj.ecoassetsservice.com/casino-icons/lc/roulette12.jpg"
+                              class="img-fluid" />
+                            <div class="casino-name">Beach Roulette</div>
+                          </div>
+                        </a>
+                        <a (click)="openCasinoDetail('diamond_3003')">
+                          <div class="d-inline-block casinoicons">
+                            <img src="https://dataobj.ecoassetsservice.com/casino-icons/lc/roulette13.jpg"
+                              class="img-fluid" />
+                            <div class="casino-name">Dream Catcher</div>
+                          </div>
+                        </a>
+                       
+                      </div>
+                    </div>
+                  </div> -->
+                  <div class="casino-list mt-2">
+                    <div class="casino-list-item"><a href="/casino/lucky5">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/lucky5.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Lucky 6</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/roulette12">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/roulette12.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Beach Roulette</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/roulette13">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/roulette13.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Roulette</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/roulette11">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/roulette11.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Golden Roulette</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/teenunique">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/teenunique.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Unique Teenpatti</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/poison">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/poison.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Teenpatti Poison One Day</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/poison20">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/poison20.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Teenpatti Poison 20-20</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/joker120">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/joker120.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Unlimited Joker 20-20</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/joker20">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/joker20.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Teenpatti Joker 20-20</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/joker1">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/joker1.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Unlimited Joker Oneday</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/teen20c">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/teen20c.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">20-20 Teenpatti C</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/btable2">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/btable2.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Bollywood Casino 2</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/ourroullete">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/ourroullete.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Unique Roulette</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/superover3">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/superover3.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Mini Superover</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/goal">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/goal.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Goal</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/ab4">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/ab4.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">ANDAR BAHAR 150 cards</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/lucky15">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/lucky15.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Lucky 15</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/superover2">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/superover2.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Super Over2</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/teen41">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/teen41.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Queen Top Open Teenpatti</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/teen42">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/teen42.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Jack Top Open Teenpatti</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/sicbo2">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/sicbo2.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Sic Bo2</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/teen33">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/teen33.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Instant Teenpatti 3.0</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/sicbo">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/sicbo.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Sic Bo</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/ballbyball">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/ballbyball.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Ball by Ball</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/teen32">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/teen32.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Instant Teenpatti 2.0</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/teen">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/teen.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Teenpatti 1-day</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/teen20">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/teen20.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">20-20 Teenpatti</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/teen9">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/teen9.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Teenpatti Test</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/teen8">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/teen8.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Teenpatti Open</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/poker">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/poker.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Poker 1-Day</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/poker20">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/poker20.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">20-20 Poker</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/poker6">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/poker6.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Poker 6 Players</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/baccarat">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/baccarat.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Baccarat</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/baccarat2">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/baccarat2.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Baccarat 2</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/dt20">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/dt20.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">20-20 Dragon Tiger</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/dt6">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/dt6.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">1 Day Dragon Tiger</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/dtl20">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/dtl20.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">20-20 D T L</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/dt202">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/dt202.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">20-20 Dragon Tiger 2</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/card32">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/card32.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">32 Cards A</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/card32eu">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/card32eu.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">32 Cards B</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/ab20">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/ab20.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Andar Bahar</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/abj">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/abj.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Andar Bahar 2</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/lucky7">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/lucky7.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Lucky 7 - A</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/lucky7eu">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/lucky7eu.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Lucky 7 - B</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/3cardj">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/3cardj.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">3 Cards Judgement</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/war">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/war.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Casino War</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/worli">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/worli.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Worli Matka</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/worli2">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/worli2.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Instant Worli</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/aaa">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/aaa.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Amar Akbar Anthony</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/btable">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/btable.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Bollywood Casino</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/lottcard">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/lottcard.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Lottery</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/cricketv3">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/cricketv3.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">5Five Cricket</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/cmatch20">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/cmatch20.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Cricket Match 20-20</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/cmeter">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/cmeter.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Casino Meter</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/teen6">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/teen6.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Teenpatti - 2.0</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/queen">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/queen.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Queen</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/race20">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/race20.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Race20</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/lucky7eu2">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/lucky7eu2.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Lucky 7 - C</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/superover">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/superover.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Super Over</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/trap">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/trap.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">The Trap</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/patti2">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/patti2.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">2 Cards Teenpatti</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/teensin">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/teensin.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">29Card Baccarat</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/teenmuf">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/teenmuf.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Muflis Teenpatti</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/race17">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/race17.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Race To 17</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/teen20b">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/teen20b.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">20-20 Teenpatti B</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/trio">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/trio.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Trio</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/notenum">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/notenum.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Note Number</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/kbc">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/kbc.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">K.B.C</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/teen120">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/teen120.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">1 CARD 20-20</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/teen1">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/teen1.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">1 CARD ONE-DAY</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/ab3">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/ab3.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">ANDAR BAHAR 50 cards</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/aaa2">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/aaa2.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Amar Akbar Anthony 2</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/race2">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/race2.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Race to 2nd</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/teen3">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/teen3.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Instant Teenpatti</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/dum10">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/dum10.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">Dus ka Dum</div>
+                      </a></div>
+                    <div class="casino-list-item"><a href="/casino/cmeter1">
+                        <div class="casino-list-item-banner"
+                          style="background-image: url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/lc/cmeter1.jpg&quot;), url(&quot;https://dataobj.ecoassetsservice.com/casino-icons/default.jpg&quot;);">
+                        </div>
+                        <div class="casino-list-name">1 Card Meter</div>
+                      </a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--///////////////Desktop end/////////////////////////-->
+        <!--///////////////Desktop end/////////////////////////-->
+
+        <div class="dashboard-page" *ngIf="!deviceInfo" [ngStyle]="
+            casinoFooter == true
+              ? { 'max-height': '410px' }
+              : { 'max-height': '590px' }
+          " style="overflow: scroll; overflow-x: hidden">
+          <!-- virtualCricketData -->
+          <!-- <ng-container *ngIf="virtualCricketData?.length">
+          <div class="game-list-card"> -->
+          <!-- <div class="game-list-header">
+              <img src="assets/icons/cricket.png">Virtual Cricket ({{virtualCricketData?.length}})
+            </div> -->
+          <!-- <mat-card *ngFor="let x of virtualCricketData" class="match-event-list m-1"
+              (click)="virtualDetial(x.eventId);"> -->
+
+          <!-- <mat-divider inset></mat-divider> -->
+          <!-- <div class="match-name" fxLayout="row" fxLayoutAlign="start space-arround" fxLayoutGap="5px">
+                <div class="col-8"> -->
+          <!-- <div class="odd-content "> -->
+          <!-- <div class="odd-title" style="margin-bottom: 5px;word-spacing: 3px;">
+                    <span style="line-height: 23px;font-size: 1rem;font-weight: 600;
+                      display: block;">{{x?.eventName}}</span>
+                  </div>
+                  <div class="date_time">
+                    <span>{{"Sep 28, 2022 7:30 pm"}}</span>
+                  </div>
+                </div>
+                <div class="col-3" style="text-align: end;">
+                  <span class="green_point"><img src="../../assets/icons/Green-Circle.png" width="10"
+                      height="10"></span>
+                  <span class="tv_icon"><span class="material-symbols-outlined">
+                      tv
+                    </span></span>
+                  <span class="bw_word"><b><i>BM</i></b></span>
+                </div>
+              </div>
+              <div class="row" style="flex-wrap: nowrap !important;">
+                <div class="col-sm-4 text-center">
+                  <span style="margin-left: 31px;">1</span>
+                </div>
+                <div class="col-sm-4 text-center">
+                  <span>x</span>
+                </div>
+                <div class="col-sm-4 text-center">
+                  <span style="margin-right: 31px;">2</span>
+                </div>
+              </div>
+              <div class="event-odds" fxLayout="row" fxLayoutAlign="start space-arround" fxLayoutGap="5px">
+                <div class="match-rate">
+                  <div class="odd-list back-rate back-1">{{x?.marketBook?.runners[0]?.availableToBack?.price}}</div>
+                  <div class="odd-list lay-rate lay-1">{{x?.marketBook?.runners[0]?.availableToLay?.price}}</div>
+                  <div class="odd-list back-rate back-2">--</div>
+                  <div class="odd-list lay-rate lay-2">--</div>
+                  <div class="odd-list back-rate back-3">
+                    {{x?.marketBook?.runners[1]?.availableToBack?.price}}</div>
+                  <div class="odd-list lay-rate lay-3">
+                    {{x?.marketBook?.runners[1]?.availableToLay?.price}}</div>
+                </div>
+              </div>
+            </mat-card>
+          </div>
+        </ng-container> -->
+
+          <!-- Cricket -->
+          <ng-container *ngIf="var_cricket">
+            <!-- virtualCricketData -->
+            <ng-container *ngIf="virtualCricketData?.length">
+              <div class="game-list-card">
+                <!-- <div class="game-list-header">
+              <img src="assets/icons/cricket.png"><span class="text-white">Virtual ({{virtualCricketData?.length}})</span>
+            </div> -->
+                <mat-card *ngFor="let x of virtualCricketData" class="match-event-list m-1"
+                  (click)="virtualDetial(x.eventId)">
+                  <div class="match-name" fxLayout="row" fxLayoutAlign="start space-arround" fxLayoutGap="5px">
+                    <div class="col-8">
+                      <p class="odd-title" style="margin-bottom: 5px">
+                        <strong style="
+                            line-height: 18px;
+                            font-size: 14px;
+                            display: block;
+                          ">{{ x?.eventName }}</strong>
+                      </p>
+                      <div class="date_time">
+                        <span>{{
+                          moment(x?.openDate)
+                          .utcOffset("+05:30")
+                          .format("MMM D YYYY")
+                          }}
+                          {{
+                          moment(x?.openDate)
+                          .utcOffset("+05:30")
+                          .format("h:mm A")
+                          }}
+                          (IST)</span>
+                      </div>
+                    </div>
+                    <div class="col-3" style="text-align: end">
+                      <span *ngIf="currentDate > x.openDate" class="green_point"><img
+                          src="../../assets/icons/Green-Circle.png" width="10" height="10" /></span>
+                      <span class="tv_icon"><i class="fa fa-tv"></i></span>
+                      <span class="bw_word text-danger"><b>Virtual</b></span>
+                    </div>
+                  </div>
+                  <div class="row" style="flex-wrap: nowrap !important">
+                    <div class="col-sm-4 text-center">
+                      <span style="margin-left: 31px; font-weight: 600">1</span>
+                    </div>
+                    <div class="col-sm-4 text-center">
+                      <span style="font-weight: 600">x</span>
+                    </div>
+                    <div class="col-sm-4 text-center">
+                      <span style="margin-right: 31px; font-weight: 600">2</span>
+                    </div>
+                  </div>
+                  <div class="event-odds" fxLayout="row" fxLayoutAlign="start space-arround" fxLayoutGap="5px">
+                    <div class="match-rate">
+                      <div class="odd-list back-rate back-1">
+                        {{ x?.marketBook?.runners[0]?.availableToBack?.price }}
+                      </div>
+                      <div class="odd-list lay-rate lay-1">
+                        {{ x?.marketBook?.runners[0]?.availableToLay?.price }}
+                      </div>
+                      <div class="odd-list back-rate back-2">--</div>
+                      <div class="odd-list lay-rate lay-2">--</div>
+                      <div class="odd-list back-rate back-3">
+                        {{ x?.marketBook?.runners[1]?.availableToBack?.price }}
+                      </div>
+                      <div class="odd-list lay-rate lay-3">
+                        {{ x?.marketBook?.runners[1]?.availableToLay?.price }}
+                      </div>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+            </ng-container>
+
+            <!-- virtual_end -->
+
+            <!-- cricket -->
+            <ng-container *ngIf="cricketData?.length">
+              <div class="game-list-card">
+                <!-- <div class="game-list-header">
+              <img src="assets/icons/cricket.png"><span class="text-white">Cricket ({{cricketData?.length}})</span>
+            </div> -->
+                <mat-card *ngFor="let x of cricketData" class="match-event-list m-1" (click)="matchDetail(x.eventId)">
+                  <div class="match-name" fxLayout="row" fxLayoutAlign="start space-arround" fxLayoutGap="5px">
+                    <div class="col-8">
+                      <p class="odd-title" style="margin-bottom: 5px">
+                        <strong style="
+                            line-height: 18px;
+                            font-size: 14px;
+                            display: block;
+                          ">{{ x?.eventName }}</strong>
+                      </p>
+                      <div class="date_time">
+                        <span>{{
+                          moment(x?.openDate)
+                          .utcOffset("+05:30")
+                          .format("MMM D YYYY")
+                          }}
+                          {{
+                          moment(x?.openDate)
+                          .utcOffset("+05:30")
+                          .format("h:mm A")
+                          }}
+                          (IST)</span>
+                      </div>
+                    </div>
+                    <div class="col-3" style="text-align: end">
+                      <span *ngIf="currentDate > x.openDate" class="green_point"><img
+                          src="../../assets/icons/Green-Circle.png" width="10" height="10" /></span>
+                      <span class="tv_icon"><i class="fa fa-tv"></i></span>
+                      <span class="bw_word"><b><i>BM</i></b></span>
+                    </div>
+                  </div>
+                  <div class="row" style="flex-wrap: nowrap !important">
+                    <div class="col-sm-4 text-center">
+                      <span style="margin-left: 31px; font-weight: 600">1</span>
+                    </div>
+                    <div class="col-sm-4 text-center">
+                      <span style="font-weight: 600">x</span>
+                    </div>
+                    <div class="col-sm-4 text-center">
+                      <span style="margin-right: 31px; font-weight: 600">2</span>
+                    </div>
+                  </div>
+                  <div class="event-odds" fxLayout="row" fxLayoutAlign="start space-arround" fxLayoutGap="5px">
+                    <div class="match-rate">
+                      <div class="odd-list back-rate back-1">
+                        {{ x?.marketBook?.runners[0]?.availableToBack?.price }}
+                      </div>
+                      <div class="odd-list lay-rate lay-1">
+                        {{ x?.marketBook?.runners[0]?.availableToLay?.price }}
+                      </div>
+                      <div class="odd-list back-rate back-2">--</div>
+                      <div class="odd-list lay-rate lay-2">--</div>
+                      <div class="odd-list back-rate back-3">
+                        {{ x?.marketBook?.runners[1]?.availableToBack?.price }}
+                      </div>
+                      <div class="odd-list lay-rate lay-3">
+                        {{ x?.marketBook?.runners[1]?.availableToLay?.price }}
+                      </div>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+            </ng-container>
+          </ng-container>
+
+          <!-- Soccer -->
+          <ng-container *ngIf="var_football">
+            <ng-container *ngIf="soccerData?.length">
+              <div class="game-list-card">
+                <!-- <div class="game-list-header">
+              <img src="assets/icons/Soccer.png">Soccer ({{soccerData?.length}})
+            </div> -->
+                <mat-card *ngFor="let x of soccerData" class="match-event-list m-1" (click)="matchDetail(x.eventId)">
+                  <div class="match-name" fxLayout="row" fxLayoutAlign="start space-arround" fxLayoutGap="5px">
+                    <div class="col-8">
+                      <!-- <div class="odd-content "> -->
+                      <div class="odd-title" style="margin-bottom: 5px; word-spacing: 3px">
+                        <span style="
+                            line-height: 18px;
+                            font-size: 14px;
+                            font-weight: 600;
+                            display: block;
+                          ">{{ x?.eventName }}</span>
+                      </div>
+                      <div class="date_time">
+                        <span>{{
+                          moment(x?.openDate)
+                          .utcOffset("+05:30")
+                          .format("MMM D YYYY")
+                          }}
+                          {{
+                          moment(x?.openDate)
+                          .utcOffset("+05:30")
+                          .format("h:mm A")
+                          }}
+                          (IST)</span>
+                      </div>
+                    </div>
+                    <div class="col-3" style="text-align: end">
+                      <span class="green_point"><img src="../../assets/icons/Green-Circle.png" width="10"
+                          height="10" /></span>
+                      <span class="tv_icon"><i class="fa fa-tv"></i></span>
+                      <span class="bw_word"><b><i>BM</i></b></span>
+                    </div>
+                  </div>
+                  <div class="row" style="flex-wrap: nowrap !important">
+                    <div class="col-sm-4 text-center">
+                      <span style="margin-left: 31px; font-weight: 600">1</span>
+                    </div>
+                    <div class="col-sm-4 text-center">
+                      <span style="font-weight: 600">x</span>
+                    </div>
+                    <div class="col-sm-4 text-center">
+                      <span style="margin-right: 31px; font-weight: 600">2</span>
+                    </div>
+                  </div>
+                  <div class="event-odds" fxLayout="row" fxLayoutAlign="start space-arround" fxLayoutGap="5px">
+                    <div class="match-rate">
+                      <div class="odd-list back-rate back-1">
+                        {{ x?.marketBook?.runners[0]?.availableToBack?.price }}
+                      </div>
+                      <div class="odd-list lay-rate lay-1">
+                        {{ x?.marketBook?.runners[0]?.availableToLay?.price }}
+                      </div>
+                      <div class="odd-list back-rate back-2">--</div>
+                      <div class="odd-list lay-rate lay-2">--</div>
+                      <div class="odd-list back-rate back-3">
+                        {{ x?.marketBook?.runners[1]?.availableToBack?.price }}
+                      </div>
+                      <div class="odd-list lay-rate lay-3">
+                        {{ x?.marketBook?.runners[1]?.availableToLay?.price }}
+                      </div>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+            </ng-container>
+          </ng-container>
+
+          <!-- Tennis -->
+          <ng-container *ngIf="var_tennis">
+            <ng-container *ngIf="tennisData?.length">
+              <div class="game-list-card">
+                <!-- <div class="game-list-header">
+              <img src="assets/icons/Tennis.png">Tennis ({{tennisData?.length}})
+            </div> -->
+                <mat-card *ngFor="let x of tennisData" class="match-event-list m-1" (click)="matchDetail(x.eventId)">
+                  <div class="match-name" fxLayout="row" fxLayoutAlign="start space-arround" fxLayoutGap="5px">
+                    <div class="col-8">
+                      <!-- <div class="odd-content "> -->
+                      <div class="odd-title" style="margin-bottom: 5px; word-spacing: 3px">
+                        <span style="
+                            line-height: 18px;
+                            font-size: 14px;
+                            font-weight: 600;
+                            display: block;
+                          ">{{ x?.eventName }}</span>
+                      </div>
+                      <div class="date_time">
+                        <span>{{
+                          moment(x?.openDate)
+                          .utcOffset("+05:30")
+                          .format("MMM D YYYY")
+                          }}
+                          {{
+                          moment(x?.openDate)
+                          .utcOffset("+05:30")
+                          .format("h:mm A")
+                          }}
+                          (IST)</span>
+                      </div>
+                    </div>
+                    <div class="col-3" style="text-align: end">
+                      <span class="green_point"><img src="../../assets/icons/Green-Circle.png" width="10"
+                          height="10" /></span>
+                      <span class="tv_icon"><i class="fa fa-tv"></i></span>
+                      <span class="bw_word"><b><i>BM</i></b></span>
+                    </div>
+                  </div>
+                  <div class="row" style="flex-wrap: nowrap !important">
+                    <div class="col-sm-4 text-center">
+                      <span style="margin-left: 31px; font-weight: 600">1</span>
+                    </div>
+                    <div class="col-sm-4 text-center">
+                      <span style="font-weight: 600">x</span>
+                    </div>
+                    <div class="col-sm-4 text-center">
+                      <span style="margin-right: 31px; font-weight: 600">2</span>
+                    </div>
+                  </div>
+                  <div class="event-odds" fxLayout="row" fxLayoutAlign="start space-arround" fxLayoutGap="5px">
+                    <div class="match-rate">
+                      <div class="odd-list back-rate back-1">
+                        {{ x?.marketBook?.runners[0]?.availableToBack?.price }}
+                      </div>
+                      <div class="odd-list lay-rate lay-1">
+                        {{ x?.marketBook?.runners[0]?.availableToLay?.price }}
+                      </div>
+                      <div class="odd-list back-rate back-2">--</div>
+                      <div class="odd-list lay-rate lay-2">--</div>
+                      <div class="odd-list back-rate back-3">
+                        {{ x?.marketBook?.runners[1]?.availableToBack?.price }}
+                      </div>
+                      <div class="odd-list lay-rate lay-3">
+                        {{ x?.marketBook?.runners[1]?.availableToLay?.price }}
+                      </div>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+            </ng-container>
+          </ng-container>
+
+          <ng-container *ngIf="
+              (soccerData?.length == 0 && var_football) ||
+              (tennisData?.length == 0 && var_tennis) ||
+              (cricketData?.length == 0 &&
+                virtualCricketData?.length == 0 &&
+                var_cricket)
+            ">
+            <div *ngIf="casinoStatus" style="background-color: #cccccc" class="text-dark text-center p-2">
+              No real-time records found
+            </div>
+          </ng-container>
+        </div>
+
+        <!-- casinoFooter -->
+        <ng-container *ngIf="!deviceInfo">
+          <!-- casinoFilter start -->
+          <div class="mobile-top-bar" *ngIf="!casinoStatus">
+            <div class="bottom-menu">
+              <mat-list>
+                <mat-list-item *ngIf="casino_menu" (click)="casino_games('OUR CASINO');"
+                  [ngClass]="{'active': casino_type === 'OUR CASINO'}"> <span>OUR CASINO</span></mat-list-item>
+                <ng-container *ngIf="live_casino_menu">
+                  <span class="dash_line" style="
+                      margin-top: 3px;
+                      color: #ffff;
+                      font-size: 1.5rem;
+                      font-weight: 100;
+                    ">|</span>
+                  <mat-list-item (click)="casino_games('LIVECASINO')"
+                    [ngClass]="{ active: casino_type === 'LIVECASINO' }">
+                    <span>LIVE CASINO</span></mat-list-item><span class="dash_line" style="
+                      margin-top: 3px;
+                      color: #ffff;
+                      font-size: 1.5rem;
+                      font-weight: 100;
+                    ">|</span>
+                  <mat-list-item (click)="casino_games('SLOT')" [ngClass]="{ active: casino_type === 'SLOT' }">
+                    <span>SLOTS</span></mat-list-item><span class="dash_line" style="
+                      margin-top: 3px;
+                      color: #ffff;
+                      font-size: 1.5rem;
+                      font-weight: 100;
+                    ">|</span>
+                  <mat-list-item (click)="casino_games('TABLEGAME')"
+                    [ngClass]="{ active: casino_type === 'TABLEGAME' }">
+                    <span>TABLE GAMES</span></mat-list-item>
+                  <span class="dash_line" style="
+                      margin-top: 3px;
+                      color: #ffff;
+                      font-size: 1.5rem;
+                      font-weight: 100;
+                    ">|</span>
+                  <mat-list-item (click)="casino_games('SHOOTING')" [ngClass]="{ active: casino_type === 'SHOOTING' }">
+                    <span>SHOOTING GAMES</span></mat-list-item><span class="dash_line" style="
+                      margin-top: 3px;
+                      color: #ffff;
+                      font-size: 1.5rem;
+                      font-weight: 100;
+                    ">|</span>
+                  <mat-list-item (click)="casino_games('INSTANTWIN')"
+                    [ngClass]="{ active: casino_type === 'INSTANTWIN' }">
+                    <span>INSTANT WIN </span>
+                  </mat-list-item>
+                  <span class="dash_line" style="
+                      margin-top: 3px;
+                      color: #ffff;
+                      font-size: 1.5rem;
+                      font-weight: 100;
+                    ">|</span>
+                  <mat-list-item (click)="casino_games('SCRATCHCARD')"
+                    [ngClass]="{ active: casino_type === 'SCRATCHCARD' }">
+                    <span>SCRATCH CARD </span>
+                  </mat-list-item>
+                  <span class="dash_line" style="
+                      margin-top: 3px;
+                      color: #ffff;
+                      font-size: 1.5rem;
+                      font-weight: 100;
+                    ">|</span>
+                  <mat-list-item (click)="casino_games('VIRTUAL_SPORTS')"
+                    [ngClass]="{ active: casino_type === 'VIRTUAL_SPORTS' }">
+                    <span>VIRTUAL SPORTS </span>
+                  </mat-list-item>
+                  <!-- <span class="dash_line" style=" margin-top: 3px; color: #ffff;
+                    font-size: 1.5rem;font-weight: 100;">|</span>
+                    <mat-list-item (click)="casino_games('AURA_CASINO');" [ngClass]="{'active': casino_type === 'AURA_CASINO'}"> <span>AURA CASINO </span> </mat-list-item> -->
+                </ng-container>
+              </mat-list>
+            </div>
+          </div>
+          <!-- casinoFilter end -->
+
+          <div *ngIf="casinoFooter" class="multi-card">
+            <div class="scroll-card" style="padding: 0 14px 14px">
+              <!-- type_filter -->
+              <div *ngIf="casino_type != 'OUR CASINO' && !casinoStatus"
+                class="itemsContain casioncustom slotsmallgames">
+                <!-- live_casino -->
+                <ng-container *ngIf="casino_type === 'LIVECASINO'">
+                  <div class="card" (click)="openCasino('BTL-betonteenpatti', '')">
+                    <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/img/livecasino/livecasinogaming.jpg"
+                      class="card-img-top" alt="..." />
+                    <div class="button"><a>Pragmatic Play</a></div>
+                  </div>
+                  <div class="card" (click)="openCasino('EZU-cricketwar', '')">
+                    <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/img/livecasino/euzgi_casino.png"
+                      class="card-img-top" alt="..." />
+                    <div class="button"><a>Euzgi Casino</a></div>
+                  </div>
+                  <div class="card" (click)="openCasino('EVO-blackjack', '')">
+                    <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/img/livecasino/evolution_casino.png"
+                      class="card-img-top" alt="..." />
+                    <div class="button"><a>Evolution Casino</a></div>
+                  </div>
+                </ng-container>
+
+                <div class="d-flex card-group">
+                  <ng-container *ngIf="casino_data?.length > 0">
+                    <div class="card" *ngFor="let x of casino_data" style="padding: 0px 5px 0px 5px">
+                      <div *ngIf="x.images" class="card-img" (click)="openCasino(x.id, '')">
+                        <img [src]="x.images[0].url" class="card-img-top" alt="..." />
+                        <!-- <div class="button"><a>{{x.name}}</a></div> -->
+                      </div>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+              <!-- mobile_ourCasino -->
+              <div *ngIf="casino_type==='OUR CASINO' && casino_menu" class="itemsContain casioncustom">
+
+                <h3 *ngIf="casinoStatus" class="titlesecnew">OUR CASINO</h3>
+
+                <div class="d-flex card-group" style="padding: 0px 5px 0px 5px">
+                  <!-- <div class="card" (click)="openCasino('', '67720')"> -->
+                  <div class="card" (click)="openCasinoDetail('diamond_3002')">
+                    <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/casinoicons/img/superover.jpg"
+                      class="card-img-top" alt="..." />
+                    <a>
+                      <div class="new-launch-casino">New Launch</div>
+                    </a>
+                    <div class="button"><a>Super Over</a></div>
+                  </div>
+
+                  <div class="card" (click)="openCasinoDetail('diamond_3001')">
+                    <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/casinoicons/img/race20.png"
+                      class="card-img-top" alt="..." />
+                    <div class="button"><a>RACE 20</a></div>
+                  </div>
+                  <div class="card" (click)="openCasinoDetail('diamond_3003')">
+                    <img src="https://m2.fawk.app/assets/images/Games/new/Dream%20Catcher.png" class="card-img-top"
+                      alt="..." />
+                    <div class="button"><a>Dream Catcher</a></div>
+                  </div>
+                  <div class="card" (click)="openCasinoDetail('diamond_3002')">
+                    <img src="https://m2.fawk.app/assets/images/Games/new/Roulette.png" class="card-img-top"
+                      alt="..." />
+                    <div class="button"><a>ROULETTE</a></div>
+                  </div>
+                </div>
+                <div class="d-flex card-group" style="padding: 0px 5px 0px 5px">
+                  <div class="card" (click)="openCasinoDetail('diamond_3002')">
+                    <img src="https://m2.fawk.app/assets/images/Games/new/Sicbo.png" class="card-img-top" alt="..." />
+                    <div class="button"><a>Sicbo</a></div>
+                  </div>
+
+                  <div class="card" (click)="openCasinoDetail('diamond_3003')">
+                    <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/casinoicons/img/dt202.jpg"
+                      class="card-img-top" alt="..." />
+                    <div class="button"><a>DRAGON TIGER</a></div>
+                  </div>
+
+                  <div class="card" (click)="openCasinoDetail('diamond_3002')">
+                    <img src="https://m2.fawk.app/assets/images/Games/new/Teenpatti%20T20.png" class="card-img-top"
+                      alt="..." />
+                    <div class="button"><a>TEENPATTI T20</a></div>
+                  </div>
+                  <!-- (click)="openCasinoDetail('EZU-baccarat','100')" -->
+                  <div class="card" (click)="openCasinoDetail('diamond_3002')">
+                    <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/casinoicons/img/baccarat.png"
+                      class="card-img-top" alt="..." />
+                    <div class="button"><a>Baccarat</a></div>
+                  </div>
+                </div>
+                <div class="d-flex card-group" style="padding: 0px 5px 0px 5px">
+                  <div class="card" (click)="openCasinoDetail('diamond_3002')">
+                    <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/casinoicons/img/lucky7eu.jpg"
+                      class="card-img-top" alt="..." />
+                    <div class="button"><a>lucky7</a></div>
+                  </div>
+
+                  <div class="card" (click)="openCasinoDetail('diamond_3001')">
+                    <img src="https://m2.fawk.app/assets/images/Games/new/Hi%20Low.png" class="card-img-top"
+                      alt="..." />
+                    <div class="button"><a>HIGH LOW</a></div>
+                  </div>
+
+                  <div class="card" (click)="openCasinoDetail('diamond_3002')">
+                    <img src="https://m2.fawk.app/assets/images/Games/new/Poker.png" class="card-img-top" alt="..." />
+                    <div class="button"><a>POKER</a></div>
+                  </div>
+                  <div class="card" (click)="openCasinoDetail('diamond_3003')">
+                    <img src="https://m2.fawk.app/assets/images/Games/new/Teenpatti%20Test.png" class="card-img-top"
+                      alt="..." />
+                    <div class="button"><a>TEENPATTI TEST</a></div>
+                  </div>
+                </div>
+                <div class="d-flex card-group" style="padding: 0px 5px 0px 5px">
+                  <div class="card" (click)="openCasinoDetail('diamond_3002')">
+                    <img src="https://m2.fawk.app/assets/images/Games/new/32%20cards%20casino.png" class="card-img-top"
+                      alt="..." />
+                    <div class="button"><a>32 CARD CASINO</a></div>
+                  </div>
+
+                  <div class="card" (click)="openCasinoDetail('diamond_3001')">
+                    <img src="https://m2.fawk.app/assets/images/Games/new/Worli%20Matka.png" class="card-img-top"
+                      alt="..." />
+                    <div class="button"><a>WORLI MATKA</a></div>
+                  </div>
+
+                  <div class="card" (click)="openCasinoDetail('diamond_3002')">
+                    <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/casinoicons/img/teenpatti.jpg"
+                      class="card-img-top" alt="..." />
+                    <div class="button"><a>Teenpatti Open</a></div>
+                  </div>
+                  <div class="card" (click)="openCasinoDetail('diamond_3003')">
+                    <img src="https://m2.fawk.app/assets/images/Games/new/Poker%2020-20.png" class="card-img-top"
+                      alt="..." />
+                    <div class="button"><a>POKER 20-20</a></div>
+                  </div>
+                </div>
+                <div class="d-flex card-group" style="padding: 0px 5px 0px 5px">
+                  <div class="card" (click)="openCasinoDetail('diamond_3002')">
+                    <img src="https://m2.fawk.app/assets/images/Games/new/29%20Card%20Baccarat.png" class="card-img-top"
+                      alt="..." />
+                    <div class="button"><a>29 CARD BACCARAT</a></div>
+                  </div>
+
+                  <div class="card" (click)="openCasinoDetail('diamond_3001')">
+                    <img src="https://m2.fawk.app/assets/images/Games/new/Muflis%20Teenpatti.png" class="card-img-top"
+                      alt="..." />
+                    <div class="button"><a>MUFLIS TEENPATTI</a></div>
+                  </div>
+
+                  <div class="card" (click)="openCasinoDetail('diamond_3002')">
+                    <img src="https://m2.fawk.app/assets/images/Games/new/Race%20to%2017.png" class="card-img-top"
+                      alt="..." />
+                    <div class="button"><a>RACE TO 17</a></div>
+                  </div>
+                  <div class="card" (click)="openCasinoDetail('diamond_3000')">
+                    <img src="https://m2.fawk.app/assets/images/Games/new/Trio.png" class="card-img-top" alt="..." />
+                    <div class="button"><a>TRIO</a></div>
+                  </div>
+                </div>
+                <div class="d-flex card-group" style="padding: 0px 5px 0px 5px">
+                  <div class="card" (click)="openCasinoDetail('diamond_3002')">
+                    <img src="https://m2.fawk.app/assets/images/Games/new/The%20Trap.png" class="card-img-top"
+                      alt="..." />
+                    <div class="button"><a>THE TRAP</a></div>
+                  </div>
+
+                  <div class="card" (click)="openCasinoDetail('diamond_3001')">
+                    <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/casinoicons/img/andar-bahar.jpg"
+                      class="card-img-top" alt="..." />
+                    <div class="button"><a>Andar Bahar</a></div>
+                  </div>
+                  <div class="card" (click)="openCasinoDetail('diamond_3002')">
+                    <img src="https://m2.fawk.app/assets/images/Games/new/Six%20player%20poker.png" class="card-img-top"
+                      alt="..." />
+                    <div class="button"><a>SIX PLAYER POKER</a></div>
+                  </div>
+                  <div class="card" (click)="openCasinoDetail('diamond_3000')">
+                    <img src="https://m2.fawk.app/assets/images/Games/new/Casino%20Meter.png" class="card-img-top"
+                      alt="..." />
+                    <div class="button"><a>CASINO METER</a></div>
+                  </div>
+                </div>
+                <div class="d-flex card-group" style="padding: 0px 5px 0px 5px">
+                  <div class="card" (click)="openCasinoDetail('diamond_3001')">
+                    <img src="https://m2.fawk.app/assets/images/Games/new/Casino%20War.png" class="card-img-top"
+                      alt="..." />
+                    <div class="button"><a>CASINO WAR</a></div>
+                  </div>
+
+                  <div class="card" (click)="openCasinoDetail('diamond_3003')">
+                    <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/casinoicons/img/aaa.jpg"
+                      class="card-img-top" alt="..." />
+                    <div class="button"><a>Amar Akbar Anthony</a></div>
+                  </div>
+
+                  <div class="card" (click)="openCasinoDetail('diamond_3002')">
+                    <img
+                      src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/casinoicons/img/bollywood-casino.jpg"
+                      class="card-img-top" alt="..." />
+                    <div class="button"><a>Bollywood Casino</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+
+    <!-- paisaexch -->
+    <ng-container *ngIf="page_type === 'paisaexch'">
+      <app-p-dashboard *ngIf="casinoStatus"></app-p-dashboard>
+
+      <!-- b_casinoFooter -->
+
+      <ng-container *ngIf="!deviceInfo">
+        <!-- casinoFilter start -->
+        <div class="mobile-top-bar" style="margin-top: 4rem" *ngIf="!casinoStatus">
+          <div class="bottom-menu">
+            <mat-list>
+              <mat-list-item *ngIf="casino_menu" (click)="casino_games('OUR CASINO')"
+                [ngClass]="{ active: casino_type === 'OUR CASINO' }">
+                <span>OUR CASINO</span></mat-list-item>
+              <ng-container *ngIf="live_casino_menu">
+                <span class="dash_line" style="
+                    margin-top: 3px;
+                    color: #ffff;
+                    font-size: 1.5rem;
+                    font-weight: 100;
+                  ">|</span>
+                <mat-list-item (click)="casino_games('LIVECASINO')"
+                  [ngClass]="{ active: casino_type === 'LIVECASINO' }">
+                  <span>LIVE CASINO</span></mat-list-item><span class="dash_line" style="
+                    margin-top: 3px;
+                    color: #ffff;
+                    font-size: 1.5rem;
+                    font-weight: 100;
+                  ">|</span>
+                <mat-list-item (click)="casino_games('SLOT')" [ngClass]="{ active: casino_type === 'SLOT' }">
+                  <span>SLOTS</span></mat-list-item><span class="dash_line" style="
+                    margin-top: 3px;
+                    color: #ffff;
+                    font-size: 1.5rem;
+                    font-weight: 100;
+                  ">|</span>
+                <mat-list-item (click)="casino_games('TABLEGAME')" [ngClass]="{ active: casino_type === 'TABLEGAME' }">
+                  <span>TABLE GAMES</span></mat-list-item>
+                <span class="dash_line" style="
+                    margin-top: 3px;
+                    color: #ffff;
+                    font-size: 1.5rem;
+                    font-weight: 100;
+                  ">|</span>
+                <mat-list-item (click)="casino_games('SHOOTING')" [ngClass]="{ active: casino_type === 'SHOOTING' }">
+                  <span>SHOOTING GAMES</span></mat-list-item><span class="dash_line" style="
+                    margin-top: 3px;
+                    color: #ffff;
+                    font-size: 1.5rem;
+                    font-weight: 100;
+                  ">|</span>
+                <mat-list-item (click)="casino_games('INSTANTWIN')"
+                  [ngClass]="{ active: casino_type === 'INSTANTWIN' }">
+                  <span>INSTANT WIN </span>
+                </mat-list-item>
+                <span class="dash_line" style="
+                    margin-top: 3px;
+                    color: #ffff;
+                    font-size: 1.5rem;
+                    font-weight: 100;
+                  ">|</span>
+                <mat-list-item (click)="casino_games('SCRATCHCARD')"
+                  [ngClass]="{ active: casino_type === 'SCRATCHCARD' }">
+                  <span>SCRATCH CARD </span>
+                </mat-list-item>
+                <span class="dash_line" style="
+                    margin-top: 3px;
+                    color: #ffff;
+                    font-size: 1.5rem;
+                    font-weight: 100;
+                  ">|</span>
+                <mat-list-item (click)="casino_games('VIRTUAL_SPORTS')"
+                  [ngClass]="{ active: casino_type === 'VIRTUAL_SPORTS' }">
+                  <span>VIRTUAL SPORTS </span>
+                </mat-list-item>
+                <!-- <span class="dash_line" style=" margin-top: 3px; color: #ffff;
+                font-size: 1.5rem;font-weight: 100;">|</span>
+                <mat-list-item (click)="casino_games('AURA_CASINO');" [ngClass]="{'active': casino_type === 'AURA_CASINO'}"> <span>AURA CASINO </span> </mat-list-item> -->
+              </ng-container>
+            </mat-list>
+          </div>
+        </div>
+        <!-- casinoFilter end -->
+
+        <div *ngIf="casinoFooter" class="multi-card">
+          <div class="scroll-card" style="padding: 0 14px 14px">
+            <!-- type_filter -->
+            <div *ngIf="casino_type != 'OUR CASINO' && !casinoStatus" class="itemsContain casioncustom slotsmallgames">
+              <!-- live_casino -->
+              <ng-container *ngIf="casino_type === 'LIVECASINO'">
+                <div class="card" (click)="openCasino('BTL-betonteenpatti', '')">
+                  <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/img/livecasino/livecasinogaming.jpg"
+                    class="card-img-top" alt="..." />
+                  <div class="button"><a>Pragmatic Play</a></div>
+                </div>
+                <div class="card" (click)="openCasino('EZU-cricketwar', '')">
+                  <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/img/livecasino/euzgi_casino.png"
+                    class="card-img-top" alt="..." />
+                  <div class="button"><a>Euzgi Casino</a></div>
+                </div>
+                <div class="card" (click)="openCasino('EVO-blackjack', '')">
+                  <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/img/livecasino/evolution_casino.png"
+                    class="card-img-top" alt="..." />
+                  <div class="button"><a>Evolution Casino</a></div>
+                </div>
+              </ng-container>
+
+              <div class="d-flex card-group">
+                <ng-container *ngIf="casino_data?.length > 0">
+                  <div class="card" *ngFor="let x of casino_data" style="padding: 0px 5px 0px 5px">
+                    <div *ngIf="x.images" class="card-img" (click)="openCasino(x.id, '')">
+                      <img [src]="x.images[0].url" class="card-img-top" alt="..." />
+                      <!-- <div class="button"><a>{{x.name}}</a></div> -->
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+            <!-- ourCasino -->
+            <div *ngIf="
+                casino_type === 'OUR CASINO' && casino_menu && !casinoStatus
+              " class="itemsContain casioncustom">
+              <div class="d-flex card-group" style="padding: 0px 5px 0px 5px">
+                <div class="card" (click)="openCasino('', '67720')">
+                  <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/casinoicons/img/superover.jpg"
+                    class="card-img-top" alt="..." />
+                  <a>
+                    <div class="new-launch-casino">New Launch</div>
+                  </a>
+                  <div class="button"><a>Super Over</a></div>
+                </div>
+
+                <div class="card" (click)="openCasino('', '90100')">
+                  <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/casinoicons/img/race20.png"
+                    class="card-img-top" alt="..." />
+                  <div class="button"><a>RACE 20</a></div>
+                </div>
+                <div class="card" (click)="openCasino('', '98567')">
+                  <img src="https://m2.fawk.app/assets/images/Games/new/Dream%20Catcher.png" class="card-img-top"
+                    alt="..." />
+                  <div class="button"><a>Dream Catcher</a></div>
+                </div>
+                <div class="card" (click)="openCasino('', '98788')">
+                  <img src="https://m2.fawk.app/assets/images/Games/new/Roulette.png" class="card-img-top" alt="..." />
+                  <div class="button"><a>ROULETTE</a></div>
+                </div>
+              </div>
+              <div class="d-flex card-group" style="padding: 0px 5px 0px 5px">
+                <div class="card" (click)="openCasino('', '98566')">
+                  <img src="https://m2.fawk.app/assets/images/Games/new/Sicbo.png" class="card-img-top" alt="..." />
+                  <div class="button"><a>Sicbo</a></div>
+                </div>
+
+                <div class="card" (click)="openCasino('', '98790')">
+                  <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/casinoicons/img/dt202.jpg"
+                    class="card-img-top" alt="..." />
+                  <div class="button"><a>DRAGON TIGER</a></div>
+                </div>
+
+                <div class="card" (click)="openCasino('', '56768')">
+                  <img src="https://m2.fawk.app/assets/images/Games/new/Teenpatti%20T20.png" class="card-img-top"
+                    alt="..." />
+                  <div class="button"><a>TEENPATTI T20</a></div>
+                </div>
+                <!-- (click)="openCasino('EZU-baccarat','100')" -->
+                <div class="card" (click)="openCasino('', '92038')">
+                  <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/casinoicons/img/baccarat.png"
+                    class="card-img-top" alt="..." />
+                  <div class="button"><a>Baccarat</a></div>
+                </div>
+              </div>
+              <div class="d-flex card-group" style="padding: 0px 5px 0px 5px">
+                <div class="card" (click)="openCasino('', '98789')">
+                  <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/casinoicons/img/lucky7eu.jpg"
+                    class="card-img-top" alt="..." />
+                  <div class="button"><a>lucky7</a></div>
+                </div>
+
+                <div class="card" (click)="openCasino('', '56968')">
+                  <img src="https://m2.fawk.app/assets/images/Games/new/Hi%20Low.png" class="card-img-top" alt="..." />
+                  <div class="button"><a>HIGH LOW</a></div>
+                </div>
+
+                <div class="card" (click)="openCasino('', '67564')">
+                  <img src="https://m2.fawk.app/assets/images/Games/new/Poker.png" class="card-img-top" alt="..." />
+                  <div class="button"><a>POKER</a></div>
+                </div>
+                <div class="card" (click)="openCasino('', '67630')">
+                  <img src="https://m2.fawk.app/assets/images/Games/new/Teenpatti%20Test.png" class="card-img-top"
+                    alt="..." />
+                  <div class="button"><a>TEENPATTI TEST</a></div>
+                </div>
+              </div>
+              <div class="d-flex card-group" style="padding: 0px 5px 0px 5px">
+                <div class="card" (click)="openCasino('', '56967')">
+                  <img src="https://m2.fawk.app/assets/images/Games/new/32%20cards%20casino.png" class="card-img-top"
+                    alt="..." />
+                  <div class="button"><a>32 CARD CASINO</a></div>
+                </div>
+
+                <div class="card" (click)="openCasino('', '92037')">
+                  <img src="https://m2.fawk.app/assets/images/Games/new/Worli%20Matka.png" class="card-img-top"
+                    alt="..." />
+                  <div class="button"><a>WORLI MATKA</a></div>
+                </div>
+
+                <div class="card" (click)="openCasino('', '67640 ')">
+                  <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/casinoicons/img/teenpatti.jpg"
+                    class="card-img-top" alt="..." />
+                  <div class="button"><a>Teenpatti Open</a></div>
+                </div>
+                <div class="card" (click)="openCasino('', '67567')">
+                  <img src="https://m2.fawk.app/assets/images/Games/new/Poker%2020-20.png" class="card-img-top"
+                    alt="..." />
+                  <div class="button"><a>POKER 20-20</a></div>
+                </div>
+              </div>
+              <div class="d-flex card-group" style="padding: 0px 5px 0px 5px">
+                <div class="card" (click)="openCasino('', '67690')">
+                  <img src="https://m2.fawk.app/assets/images/Games/new/29%20Card%20Baccarat.png" class="card-img-top"
+                    alt="..." />
+                  <div class="button"><a>29 CARD BACCARAT</a></div>
+                </div>
+
+                <div class="card" (click)="openCasino('', '67600')">
+                  <img src="https://m2.fawk.app/assets/images/Games/new/Muflis%20Teenpatti.png" class="card-img-top"
+                    alt="..." />
+                  <div class="button"><a>MUFLIS TEENPATTI</a></div>
+                </div>
+
+                <div class="card" (click)="openCasino('', '67710')">
+                  <img src="https://m2.fawk.app/assets/images/Games/new/Race%20to%2017.png" class="card-img-top"
+                    alt="..." />
+                  <div class="button"><a>RACE TO 17</a></div>
+                </div>
+                <div class="card" (click)="openCasino('', '67610')">
+                  <img src="https://m2.fawk.app/assets/images/Games/new/Trio.png" class="card-img-top" alt="..." />
+                  <div class="button"><a>TRIO</a></div>
+                </div>
+              </div>
+              <div class="d-flex card-group" style="padding: 0px 5px 0px 5px">
+                <div class="card" (click)="openCasino('', '67680')">
+                  <img src="https://m2.fawk.app/assets/images/Games/new/The%20Trap.png" class="card-img-top"
+                    alt="..." />
+                  <div class="button"><a>THE TRAP</a></div>
+                </div>
+
+                <div class="card" (click)="openCasino('', '87564')">
+                  <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/casinoicons/img/andar-bahar.jpg"
+                    class="card-img-top" alt="..." />
+                  <div class="button"><a>Andar Bahar</a></div>
+                </div>
+                <div class="card" (click)="openCasino('', '67565')">
+                  <img src="https://m2.fawk.app/assets/images/Games/new/Six%20player%20poker.png" class="card-img-top"
+                    alt="..." />
+                  <div class="button"><a>SIX PLAYER POKER</a></div>
+                </div>
+                <div class="card" (click)="openCasino('', '67575')">
+                  <img src="https://m2.fawk.app/assets/images/Games/new/Casino%20Meter.png" class="card-img-top"
+                    alt="..." />
+                  <div class="button"><a>CASINO METER</a></div>
+                </div>
+              </div>
+              <div class="d-flex card-group" style="padding: 0px 5px 0px 5px">
+                <div class="card" (click)="openCasino('', '67580')">
+                  <img src="https://m2.fawk.app/assets/images/Games/new/Casino%20War.png" class="card-img-top"
+                    alt="..." />
+                  <div class="button"><a>CASINO WAR</a></div>
+                </div>
+
+                <div class="card" (click)="openCasino('', '98791')">
+                  <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/casinoicons/img/aaa.jpg"
+                    class="card-img-top" alt="..." />
+                  <div class="button"><a>Amar Akbar Anthony</a></div>
+                </div>
+
+                <div class="card" (click)="openCasino('', '67570')">
+                  <img
+                    src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/casinoicons/img/bollywood-casino.jpg"
+                    class="card-img-top" alt="..." />
+                  <div class="button"><a>Bollywood Casino</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <app-p-footer></app-p-footer>
+    </ng-container>
+
+    <!-- deshboard_footer -->
+    <app-desk-footer *ngIf="deviceInfo"></app-desk-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!-- bet_Honk -->
+<ng-container *ngIf="page_type === 'betHonk'">
+  <app-b-header></app-b-header>
+  <app-b-dashboard *ngIf="casinoStatus"></app-b-dashboard>
+  <!-- b_casinoFooter -->
+  <ng-container *ngIf="!deviceInfo">
+    <!-- casinoFilter start -->
+    <div class="mobile-top-bar" style="margin-top: 8rem" *ngIf="!casinoStatus">
+      <div class="bottom-menu">
+        <mat-list>
+          <mat-list-item *ngIf="casino_menu" (click)="casino_games('OUR CASINO')"
+            [ngClass]="{ active: casino_type === 'OUR CASINO' }">
+            <span>OUR CASINO</span></mat-list-item>
+          <ng-container *ngIf="live_casino_menu">
+            <span class="dash_line" style="
+                margin-top: 3px;
+                color: #ffff;
+                font-size: 1.5rem;
+                font-weight: 100;
+              ">|</span>
+            <mat-list-item (click)="casino_games('LIVECASINO')" [ngClass]="{ active: casino_type === 'LIVECASINO' }">
+              <span>LIVE CASINO</span></mat-list-item><span class="dash_line" style="
+                margin-top: 3px;
+                color: #ffff;
+                font-size: 1.5rem;
+                font-weight: 100;
+              ">|</span>
+            <mat-list-item (click)="casino_games('SLOT')" [ngClass]="{ active: casino_type === 'SLOT' }">
+              <span>SLOTS</span></mat-list-item><span class="dash_line" style="
+                margin-top: 3px;
+                color: #ffff;
+                font-size: 1.5rem;
+                font-weight: 100;
+              ">|</span>
+            <mat-list-item (click)="casino_games('TABLEGAME')" [ngClass]="{ active: casino_type === 'TABLEGAME' }">
+              <span>TABLE GAMES</span></mat-list-item>
+            <span class="dash_line" style="
+                margin-top: 3px;
+                color: #ffff;
+                font-size: 1.5rem;
+                font-weight: 100;
+              ">|</span>
+            <mat-list-item (click)="casino_games('SHOOTING')" [ngClass]="{ active: casino_type === 'SHOOTING' }">
+              <span>SHOOTING GAMES</span></mat-list-item><span class="dash_line" style="
+                margin-top: 3px;
+                color: #ffff;
+                font-size: 1.5rem;
+                font-weight: 100;
+              ">|</span>
+            <mat-list-item (click)="casino_games('INSTANTWIN')" [ngClass]="{ active: casino_type === 'INSTANTWIN' }">
+              <span>INSTANT WIN </span>
+            </mat-list-item>
+            <span class="dash_line" style="
+                margin-top: 3px;
+                color: #ffff;
+                font-size: 1.5rem;
+                font-weight: 100;
+              ">|</span>
+            <mat-list-item (click)="casino_games('SCRATCHCARD')" [ngClass]="{ active: casino_type === 'SCRATCHCARD' }">
+              <span>SCRATCH CARD </span>
+            </mat-list-item>
+            <span class="dash_line" style="
+                margin-top: 3px;
+                color: #ffff;
+                font-size: 1.5rem;
+                font-weight: 100;
+              ">|</span>
+            <mat-list-item (click)="casino_games('VIRTUAL_SPORTS')"
+              [ngClass]="{ active: casino_type === 'VIRTUAL_SPORTS' }">
+              <span>VIRTUAL SPORTS </span>
+            </mat-list-item>
+            <!-- <span class="dash_line" style=" margin-top: 3px; color: #ffff;
+              font-size: 1.5rem;font-weight: 100;">|</span>
+              <mat-list-item (click)="casino_games('AURA_CASINO');" [ngClass]="{'active': casino_type === 'AURA_CASINO'}"> <span>AURA CASINO </span> </mat-list-item> -->
+          </ng-container>
+        </mat-list>
+      </div>
+    </div>
+    <!-- casinoFilter end -->
+
+    <div *ngIf="casinoFooter" class="multi-card">
+      <div class="scroll-card" style="padding: 0 14px 14px">
+        <!-- type_filter -->
+        <div *ngIf="casino_type != 'OUR CASINO' && !casinoStatus" class="itemsContain casioncustom slotsmallgames">
+          <!-- live_casino -->
+          <ng-container *ngIf="casino_type === 'LIVECASINO'">
+            <div class="card" (click)="openCasino('BTL-betonteenpatti', '')">
+              <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/img/livecasino/livecasinogaming.jpg"
+                class="card-img-top" alt="..." />
+              <div class="button"><a>Pragmatic Play</a></div>
+            </div>
+            <div class="card" (click)="openCasino('EZU-cricketwar', '')">
+              <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/img/livecasino/euzgi_casino.png"
+                class="card-img-top" alt="..." />
+              <div class="button"><a>Euzgi Casino</a></div>
+            </div>
+            <div class="card" (click)="openCasino('EVO-blackjack', '')">
+              <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/img/livecasino/evolution_casino.png"
+                class="card-img-top" alt="..." />
+              <div class="button"><a>Evolution Casino</a></div>
+            </div>
+          </ng-container>
+
+          <div class="d-flex card-group">
+            <ng-container *ngIf="casino_data?.length > 0">
+              <div class="card" *ngFor="let x of casino_data" style="padding: 0px 5px 0px 5px">
+                <div *ngIf="x.images" class="card-img" (click)="openCasino(x.id, '')">
+                  <img [src]="x.images[0].url" class="card-img-top" alt="..." />
+                  <!-- <div class="button"><a>{{x.name}}</a></div> -->
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <!-- ourCasino -->
+        <div *ngIf="casino_type === 'OUR CASINO' && casino_menu && !casinoStatus" class="itemsContain casioncustom">
+          <div class="d-flex card-group" style="padding: 0px 5px 0px 5px">
+            <div class="card" (click)="openCasino('', '67720')">
+              <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/casinoicons/img/superover.jpg"
+                class="card-img-top" alt="..." />
+              <a>
+                <div class="new-launch-casino">New Launch</div>
+              </a>
+              <div class="button"><a>Super Over</a></div>
+            </div>
+
+            <div class="card" (click)="openCasino('', '90100')">
+              <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/casinoicons/img/race20.png"
+                class="card-img-top" alt="..." />
+              <div class="button"><a>RACE 20</a></div>
+            </div>
+            <div class="card" (click)="openCasino('', '98567')">
+              <img src="https://m2.fawk.app/assets/images/Games/new/Dream%20Catcher.png" class="card-img-top"
+                alt="..." />
+              <div class="button"><a>Dream Catcher</a></div>
+            </div>
+            <div class="card" (click)="openCasino('', '98788')">
+              <img src="https://m2.fawk.app/assets/images/Games/new/Roulette.png" class="card-img-top" alt="..." />
+              <div class="button"><a>ROULETTE</a></div>
+            </div>
+          </div>
+          <div class="d-flex card-group" style="padding: 0px 5px 0px 5px">
+            <div class="card" (click)="openCasino('', '98566')">
+              <img src="https://m2.fawk.app/assets/images/Games/new/Sicbo.png" class="card-img-top" alt="..." />
+              <div class="button"><a>Sicbo</a></div>
+            </div>
+
+            <div class="card" (click)="openCasino('', '98790')">
+              <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/casinoicons/img/dt202.jpg"
+                class="card-img-top" alt="..." />
+              <div class="button"><a>DRAGON TIGER</a></div>
+            </div>
+
+            <div class="card" (click)="openCasino('', '56768')">
+              <img src="https://m2.fawk.app/assets/images/Games/new/Teenpatti%20T20.png" class="card-img-top"
+                alt="..." />
+              <div class="button"><a>TEENPATTI T20</a></div>
+            </div>
+            <!-- (click)="openCasino('EZU-baccarat','100')" -->
+            <div class="card" (click)="openCasino('', '92038')">
+              <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/casinoicons/img/baccarat.png"
+                class="card-img-top" alt="..." />
+              <div class="button"><a>Baccarat</a></div>
+            </div>
+          </div>
+          <div class="d-flex card-group" style="padding: 0px 5px 0px 5px">
+            <div class="card" (click)="openCasino('', '98789')">
+              <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/casinoicons/img/lucky7eu.jpg"
+                class="card-img-top" alt="..." />
+              <div class="button"><a>lucky7</a></div>
+            </div>
+
+            <div class="card" (click)="openCasino('', '56968')">
+              <img src="https://m2.fawk.app/assets/images/Games/new/Hi%20Low.png" class="card-img-top" alt="..." />
+              <div class="button"><a>HIGH LOW</a></div>
+            </div>
+
+            <div class="card" (click)="openCasino('', '67564')">
+              <img src="https://m2.fawk.app/assets/images/Games/new/Poker.png" class="card-img-top" alt="..." />
+              <div class="button"><a>POKER</a></div>
+            </div>
+            <div class="card" (click)="openCasino('', '67630')">
+              <img src="https://m2.fawk.app/assets/images/Games/new/Teenpatti%20Test.png" class="card-img-top"
+                alt="..." />
+              <div class="button"><a>TEENPATTI TEST</a></div>
+            </div>
+          </div>
+          <div class="d-flex card-group" style="padding: 0px 5px 0px 5px">
+            <div class="card" (click)="openCasino('', '56967')">
+              <img src="https://m2.fawk.app/assets/images/Games/new/32%20cards%20casino.png" class="card-img-top"
+                alt="..." />
+              <div class="button"><a>32 CARD CASINO</a></div>
+            </div>
+
+            <div class="card" (click)="openCasino('', '92037')">
+              <img src="https://m2.fawk.app/assets/images/Games/new/Worli%20Matka.png" class="card-img-top" alt="..." />
+              <div class="button"><a>WORLI MATKA</a></div>
+            </div>
+
+            <div class="card" (click)="openCasino('', '67640 ')">
+              <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/casinoicons/img/teenpatti.jpg"
+                class="card-img-top" alt="..." />
+              <div class="button"><a>Teenpatti Open</a></div>
+            </div>
+            <div class="card" (click)="openCasino('', '67567')">
+              <img src="https://m2.fawk.app/assets/images/Games/new/Poker%2020-20.png" class="card-img-top" alt="..." />
+              <div class="button"><a>POKER 20-20</a></div>
+            </div>
+          </div>
+          <div class="d-flex card-group" style="padding: 0px 5px 0px 5px">
+            <div class="card" (click)="openCasino('', '67690')">
+              <img src="https://m2.fawk.app/assets/images/Games/new/29%20Card%20Baccarat.png" class="card-img-top"
+                alt="..." />
+              <div class="button"><a>29 CARD BACCARAT</a></div>
+            </div>
+
+            <div class="card" (click)="openCasino('', '67600')">
+              <img src="https://m2.fawk.app/assets/images/Games/new/Muflis%20Teenpatti.png" class="card-img-top"
+                alt="..." />
+              <div class="button"><a>MUFLIS TEENPATTI</a></div>
+            </div>
+
+            <div class="card" (click)="openCasino('', '67710')">
+              <img src="https://m2.fawk.app/assets/images/Games/new/Race%20to%2017.png" class="card-img-top"
+                alt="..." />
+              <div class="button"><a>RACE TO 17</a></div>
+            </div>
+            <div class="card" (click)="openCasino('', '67610')">
+              <img src="https://m2.fawk.app/assets/images/Games/new/Trio.png" class="card-img-top" alt="..." />
+              <div class="button"><a>TRIO</a></div>
+            </div>
+          </div>
+          <div class="d-flex card-group" style="padding: 0px 5px 0px 5px">
+            <div class="card" (click)="openCasino('', '67680')">
+              <img src="https://m2.fawk.app/assets/images/Games/new/The%20Trap.png" class="card-img-top" alt="..." />
+              <div class="button"><a>THE TRAP</a></div>
+            </div>
+
+            <div class="card" (click)="openCasino('', '87564')">
+              <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/casinoicons/img/andar-bahar.jpg"
+                class="card-img-top" alt="..." />
+              <div class="button"><a>Andar Bahar</a></div>
+            </div>
+            <div class="card" (click)="openCasino('', '67565')">
+              <img src="https://m2.fawk.app/assets/images/Games/new/Six%20player%20poker.png" class="card-img-top"
+                alt="..." />
+              <div class="button"><a>SIX PLAYER POKER</a></div>
+            </div>
+            <div class="card" (click)="openCasino('', '67575')">
+              <img src="https://m2.fawk.app/assets/images/Games/new/Casino%20Meter.png" class="card-img-top"
+                alt="..." />
+              <div class="button"><a>CASINO METER</a></div>
+            </div>
+          </div>
+          <div class="d-flex card-group" style="padding: 0px 5px 0px 5px">
+            <div class="card" (click)="openCasino('', '67580')">
+              <img src="https://m2.fawk.app/assets/images/Games/new/Casino%20War.png" class="card-img-top" alt="..." />
+              <div class="button"><a>CASINO WAR</a></div>
+            </div>
+
+            <div class="card" (click)="openCasino('', '98791')">
+              <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/casinoicons/img/aaa.jpg"
+                class="card-img-top" alt="..." />
+              <div class="button"><a>Amar Akbar Anthony</a></div>
+            </div>
+
+            <div class="card" (click)="openCasino('', '67570')">
+              <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/casinoicons/img/bollywood-casino.jpg"
+                class="card-img-top" alt="..." />
+              <div class="button"><a>Bollywood Casino</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <app-b-footer></app-b-footer>
+</ng-container>
+
+<!--welcome_modal -->
+<!-- <ng-template #dashModal1>
+  <div id="dashModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button style="top: 10px !important" type="button" (click)="modalRef.hide()" class="close">
+          <span aria-hidden="true" style="color: #fff">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="card" style="width: 100%; margin-top: 20px">
+          <div class="p-0 modal-body"><img src="https://sitethemedata.com/common/wel-banner/wel-1759968603912.png"
+              class="img-fluid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template> -->
+
+
+<!-- Welcome Modal -->
+<!-- Welcome Modal -->
+<ng-template #dashModal1>
+  <div id="dashModal" class="custom-modal-backdrop">
+    <div class="custom-modal-content">
+      <div class="modal-header-bar">
+        <button type="button" class="close-btn" (click)="modalRef.hide()">
+          &times;
+        </button>
+      </div>
+
+      <div class="modal-body p-0">
+        <img
+          src="https://sitethemedata.com/common/wel-banner/wel-1759968603912.png"
+          alt="Welcome Banner"
+          class="modal-banner"
+        />
+      </div>
+    </div>
+  </div>
+</ng-template>
+

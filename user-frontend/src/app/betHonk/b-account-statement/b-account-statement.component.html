@@ -1,0 +1,439 @@
+<app-b-header></app-b-header>
+<div class="maincontainer">
+
+    <div class="pagetitle">
+        <h2>Account Statement <div class="pull-right">
+            <!-- <button class="btn_back">Back</button>  -->
+        </div></h2>
+      </div>
+  <div class="accoutstatement-wrap">
+    <ul class="nav mactch-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" id="macthpro-tab" data-toggle="tab" data-target="#macthpro" type="button" role="tab" aria-controls="macthpro" aria-selected="true">Match Profit </a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="casinopro-tab" data-toggle="tab" data-target="#casinopro" type="button" role="tab" aria-controls="casinopro" aria-selected="false"> Casino Profit </a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="dw-tab" data-toggle="tab" data-target="#dw" type="button" role="tab" aria-controls="dw" aria-selected="false">D & W </a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="settlement-tab" data-toggle="tab" data-target="#settlement" type="button" role="tab" aria-controls="settlement" aria-selected="false">Settlement</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="ledger-tab" data-toggle="tab" data-target="#ledger" type="button" role="tab" aria-controls="ledger" aria-selected="false">Ledger</a>
+          </li>
+      </ul>
+
+      <div class="filter-wrap">
+        <div class="row m-0">
+            <div class="col-6"><div class="form-wrap"><input type="date" name="" id="" value="" class="form-control" value="{{startDate}}" (change)="somethingChanged1($event.target.value)" autocomplete="off"></div></div>
+            <div class="col-6"><div class="form-wrap"><input type="date" name="" id="" value="" class="form-control" value="{{endDate}}" (change)="somethingChanged2($event.target.value)" autocomplete="off"></div></div>
+            <div class="col-6 select_option_row">
+                  <select class="browser-default custom-select" name="selectData" [(ngModel)]="selectData">
+                    <option value="0">All</option>
+                    <option value="1" >Game Report </option>
+                    <option value="2" >Deposite/Withdraw Report </option>
+                    <!-- <option value="3">Three</option> -->
+                  </select>
+                
+              </div>
+            <div class="col-6"><div class="form-wrap btnswrap"><div class="block_2 buttonacount">
+				<button type="button" name="submit" id="submit_form_button" class="blue_button" data-attr="submit" (click)="onValChange()"> Filter</button>
+				<a class="red_button"> Clear</a>
+            </div></div></div>
+        </div>
+
+      </div>
+
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="macthpro" role="tabpanel" aria-labelledby="macthpro-tab">
+            <div class="tabs-inner">    
+                <div id="filterdata" class="table-scroll table-responsive">
+                    <div id="DataTables_Table_2_wrapper" class="dataTables_wrapper no-footer">
+                    
+                           <div class=" ">
+                <div class="dataTables_length" id="DataTables_Table_0_length">
+                    <label>Show
+                        <select name="itemsPerPage" aria-controls="DataTables_Table_0" id="pages" (ngModelChange)="item_pr_pageChange($event)" [(ngModel)]="itemsPerPage">
+                            <option [ngValue]="5">5</option>
+                            <option [ngValue]="20">20</option>
+                            <option [ngValue]="50">50</option>
+                            <option [ngValue]="100">100</option>
+                            <option [ngValue]="150">150</option>
+                            <option [ngValue]="200">200</option> 
+                        </select>entries</label>
+                </div>
+                <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                    <label>Search:
+                        <input type="search" name="searchTerm" id="searchTerm" (keyup)="onchangeSearch($event.target.value)" autocomplete="off">
+                    </label>
+                </div>
+            </div>
+                           
+                            <div class=" ">
+                                <div id="divLoading"></div>
+                                <!--Loading class -->
+                                 <div class=" " id="filterdata">
+                       <table class="table table-striped jambo_table bulk_action no-footer dataTable" id="datatablesss">
+                    <thead>
+                        <tr class="headings">
+                            <th class="darkpurplecolor sorting_asc">S.No.</th>
+                            <th class="lightgreencolor sorting">Date</th>
+                            <th class="darkpurplecolor sorting">Description</th>
+                            <th class="lightgreencolor sorting rrig text-right">Credit</th>
+                            <th class="darkpurplecolor sorting rrig text-right">Debit</th>
+                            <th class="lightgreencolor sorting rrig text-right">Balance</th>
+                        </tr>
+                    </thead>
+                  
+                    <tbody id="statments">
+                        <tr *ngFor="let x of ledgerList | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: total_items }; let i = index; ">
+                        <td>{{i+1}}</td>
+                        <td class=" ">{{x.time | date : "dd/MM/YYYY H:mm:ss a" }}</td>
+                        <!-- Description -->
+                        <td style="color:#4083a9" class=" "><a> <p style="margin-bottom: 0 !important;" *ngIf="x?.subAction === 'BALANCE_DEPOSIT' || x?.subAction === 'BALANCE_WITHDRAWL'; else else1Block"><span *ngIf="x.subAction === 'BALANCE_DEPOSIT'">{{x.from}}/{{x.to}}</span><span *ngIf="x.subAction === 'BALANCE_WITHDRAWL'">{{x.to}}/{{x.from}}</span></p>
+                        <ng-template #else1Block>
+                          <p style="margin-bottom: 0 !important; " (click)="openModalUserParentList(x.marketId,x.action,userParentList);">{{x.eventName}}/{{x.marketName}}/{{x.result}}<span *ngIf="x.subAction==='COMMISSION_LOST'">/{{x?.subAction}}</span></p>
+                        </ng-template></a>
+                        </td>
+                        <!-- Credit/Debit -->
+                        <ng-container *ngIf="x.subAction == 'BALANCE_WITHDRAWL'  || x.subAction == 'AMOUNT_LOST' || x.subAction == 'COMMISSION_LOST'; else elseBlock">
+                          <td scope="col" class="green text-center">-</td>
+                          <td scope="col" class="red text-right">{{x.amount | number : "0.2"}}</td>
+                        </ng-container>
+                        <ng-template #elseBlock>
+                          <td scope="col" class="green text-right">{{x.amount  | number : "0.2"}}</td>
+                          <td scope="col" class="red text-center">-</td>
+                        </ng-template>
+                        <!-- Bal -->
+                        <td scope="col" class="green text-right"> {{x.newLimit | number : "0.2"}} </td>
+                       
+                    </tr>
+                    <tr style="margin-top:15rem;font-weight:500; color:black !important;" class="text-center" *ngIf="ledgerList?.length==0">There is no data to display</tr>
+                </tbody>
+
+  
+                </table>
+                <!-- <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div> -->
+                
+                
+                                   
+                                </div>
+                                
+                            </div>
+                            
+                           
+                            </div>
+                            
+                        </div>   
+                        <!-- pagination -->
+                        <div class="dataTables_paginate paging_full_numbers float-right" id="pages_data">
+                            <pagination-controls (pageChange)="pageChange($event)" class="user-list-pagination"></pagination-controls>
+                        </div>                           
+            </div>
+        </div>
+        <!-- tab_filter -->
+        <div class="tab-pane fade" id="casinopro" role="tabpanel" aria-labelledby="casinopro-tab">
+            <div class="tabs-inner">    
+                <div id="filterdata" class="table-scroll table-responsive">
+                    <div id="DataTables_Table_2_wrapper" class="dataTables_wrapper no-footer">
+                    
+                           <div class=" ">
+                <div class="dataTables_length" id="DataTables_Table_0_length">
+                    <label>Show
+                        <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" id="pages">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>entries</label>
+                </div>
+                <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                    <label>Search:
+                        <input type="search" name="searchTerm" id="searchTerm" class="" autocomplete="off">
+                    </label>
+                </div>
+            </div>
+                           
+                            <div class=" ">
+                                <div id="divLoading"></div>
+                                <!--Loading class -->
+                                 <div class=" " id="filterdata">
+                       <table class="table table-striped jambo_table bulk_action no-footer dataTable" id="datatablesss">
+                    <thead>
+                        <tr class="headings">
+                            <th class="darkpurplecolor sorting_asc">S.No.</th>
+                            <th class="lightgreencolor sorting">Date</th>
+                            <th class="darkpurplecolor sorting">Description</th>
+                            <th class="lightgreencolor sorting rrig text-right">Credit</th>
+                            <th class="darkpurplecolor sorting rrig text-right">Debit</th>
+                            <th class="lightgreencolor sorting rrig text-right">Commission</th>
+                            <th class="darkpurplecolor sorting rrig text-right">Match P&amp;L</th>
+                            <th class="lightgreencolor sorting rrig text-right">Final P&amp;L</th>
+                            <!-- <th class="lightgreencolor sorting rrig text-right">Remarks</th> -->
+                        </tr>
+                    </thead>
+                    <tbody id="statments"><tr><td>1</td><td class=" ">3/2/2023, 11:32:14 PM</td><td style="color:#4083a9" class=" "><a href="/userMatchDetailsList/c75838/32132449">Cricket / Lahore Qalandars v Quetta Gladiators</a></td><td class="green text-right">0</td><td class="red text-right">-36000</td><td class="red text-right">0</td><td class="red text-right">-36000.00</td><td class="red text-right">-46003.00</td></tr><tr><td>2</td><td class=" ">3/2/2023, 5:57:48 PM</td><td style="color:#4083a9" class=" "><a href="/userMatchDetailsList/c75838/32144676">Cricket / UAE v Nepal</a></td><td class="green text-right">0</td><td class="red text-right">-10003</td><td class="red text-right">0</td><td class="red text-right">-10003.00</td><td class="red text-right">-10003.00</td></tr></tbody>
+                </table>
+                <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
+                <div class="dataTables_paginate paging_full_numbers" id="pages_data">
+            
+                </div>
+                                   
+                                </div>
+                            </div>
+                            </div></div>                              
+            </div>
+        </div>
+        <div class="tab-pane fade" id="dw" role="tabpanel" aria-labelledby="dw-tab">
+            <div class="tabs-inner">    
+                <div id="filterdata" class="table-scroll table-responsive">
+                    <div id="DataTables_Table_2_wrapper" class="dataTables_wrapper no-footer">
+                    
+                           <div class=" ">
+                <div class="dataTables_length" id="DataTables_Table_0_length">
+                    <label>Show
+                        <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" id="pages">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>entries</label>
+                </div>
+                <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                    <label>Search:
+                        <input type="search" name="searchTerm" id="searchTerm" class="" autocomplete="off">
+                    </label>
+                </div>
+            </div>
+                           
+                            <div class=" ">
+                                <div id="divLoading"></div>
+                                <!--Loading class -->
+                                 <div class=" " id="filterdata">
+                       <table class="table table-striped jambo_table bulk_action no-footer dataTable" id="datatablesss">
+                    <thead>
+                        <tr class="headings">
+                            <th class="darkpurplecolor sorting_asc">S.No.</th>
+                            <th class="lightgreencolor sorting">Date</th>
+                            <th class="darkpurplecolor sorting">Description</th>
+                            <th class="lightgreencolor sorting rrig text-right">Credit</th>
+                            <th class="darkpurplecolor sorting rrig text-right">Debit</th>
+                            <th class="lightgreencolor sorting rrig text-right">Commission</th>
+                            <th class="darkpurplecolor sorting rrig text-right">Match P&amp;L</th>
+                            <th class="lightgreencolor sorting rrig text-right">Final P&amp;L</th>
+                            <!-- <th class="lightgreencolor sorting rrig text-right">Remarks</th> -->
+                        </tr>
+                    </thead>
+                    <tbody id="statments"><tr><td>1</td><td class=" ">3/2/2023, 11:32:14 PM</td><td style="color:#4083a9" class=" "><a href="/userMatchDetailsList/c75838/32132449">Cricket / Lahore Qalandars v Quetta Gladiators</a></td><td class="green text-right">0</td><td class="red text-right">-36000</td><td class="red text-right">0</td><td class="red text-right">-36000.00</td><td class="red text-right">-46003.00</td></tr><tr><td>2</td><td class=" ">3/2/2023, 5:57:48 PM</td><td style="color:#4083a9" class=" "><a href="/userMatchDetailsList/c75838/32144676">Cricket / UAE v Nepal</a></td><td class="green text-right">0</td><td class="red text-right">-10003</td><td class="red text-right">0</td><td class="red text-right">-10003.00</td><td class="red text-right">-10003.00</td></tr></tbody>
+                </table>
+                <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
+                <div class="dataTables_paginate paging_full_numbers" id="pages_data">
+            
+                </div>
+                                   
+                                </div>
+                            </div>
+                            </div></div>                              
+            </div>
+        </div>
+        <div class="tab-pane fade" id="settlement" role="tabpanel" aria-labelledby="settlement-tab">
+            <div class="tabs-inner">    
+                <div id="filterdata" class="table-scroll table-responsive">
+                    <div id="DataTables_Table_2_wrapper" class="dataTables_wrapper no-footer">
+                    
+                           <div class=" ">
+                <div class="dataTables_length" id="DataTables_Table_0_length">
+                    <label>Show
+                        <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" id="pages">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>entries</label>
+                </div>
+                <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                    <label>Search:
+                        <input type="search" name="searchTerm" id="searchTerm" class="" autocomplete="off">
+                    </label>
+                </div>
+            </div>
+                           
+                            <div class=" ">
+                                <div id="divLoading"></div>
+                                <!--Loading class -->
+                                 <div class=" " id="filterdata">
+                       <table class="table table-striped jambo_table bulk_action no-footer dataTable" id="datatablesss">
+                    <thead>
+                        <tr class="headings">
+                            <th class="darkpurplecolor sorting_asc">S.No.</th>
+                            <th class="lightgreencolor sorting">Date</th>
+                            <th class="darkpurplecolor sorting">Description</th>
+                            <th class="lightgreencolor sorting rrig text-right">Credit</th>
+                            <th class="darkpurplecolor sorting rrig text-right">Debit</th>
+                            <th class="lightgreencolor sorting rrig text-right">Commission</th>
+                            <th class="darkpurplecolor sorting rrig text-right">Match P&amp;L</th>
+                            <th class="lightgreencolor sorting rrig text-right">Final P&amp;L</th>
+                            <!-- <th class="lightgreencolor sorting rrig text-right">Remarks</th> -->
+                        </tr>
+                    </thead>
+                    <tbody id="statments"><tr><td>1</td><td class=" ">3/2/2023, 11:32:14 PM</td><td style="color:#4083a9" class=" "><a href="/userMatchDetailsList/c75838/32132449">Cricket / Lahore Qalandars v Quetta Gladiators</a></td><td class="green text-right">0</td><td class="red text-right">-36000</td><td class="red text-right">0</td><td class="red text-right">-36000.00</td><td class="red text-right">-46003.00</td></tr><tr><td>2</td><td class=" ">3/2/2023, 5:57:48 PM</td><td style="color:#4083a9" class=" "><a href="/userMatchDetailsList/c75838/32144676">Cricket / UAE v Nepal</a></td><td class="green text-right">0</td><td class="red text-right">-10003</td><td class="red text-right">0</td><td class="red text-right">-10003.00</td><td class="red text-right">-10003.00</td></tr></tbody>
+                </table>
+                <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
+                <div class="dataTables_paginate paging_full_numbers" id="pages_data">
+            
+                </div>
+                                   
+                                </div>
+                            </div>
+                            </div></div>                              
+            </div>
+        </div>
+        <div class="tab-pane fade" id="ledger" role="tabpanel" aria-labelledby="ledger-tab">
+            <div class="tabs-inner">    
+                <div id="filterdata" class="table-scroll table-responsive">
+                    <div id="DataTables_Table_2_wrapper" class="dataTables_wrapper no-footer">
+                    
+                           <div class=" ">
+                <div class="dataTables_length" id="DataTables_Table_0_length">
+                    <label>Show
+                        <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" id="pages">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>entries</label>
+                </div>
+                <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                    <label>Search:
+                        <input type="search" name="searchTerm" id="searchTerm" class="" autocomplete="off">
+                    </label>
+                </div>
+            </div>
+                           
+                            <div class=" ">
+                                <div id="divLoading"></div>
+                                <!--Loading class -->
+                                 <div class=" " id="filterdata">
+                       <table class="table table-striped jambo_table bulk_action no-footer dataTable" id="datatablesss">
+                    <thead>
+                        <tr class="headings">
+                            <th class="darkpurplecolor sorting_asc">S.No.</th>
+                            <th class="lightgreencolor sorting">Date</th>
+                            <th class="darkpurplecolor sorting">Description</th>
+                            <th class="lightgreencolor sorting rrig text-right">Credit</th>
+                            <th class="darkpurplecolor sorting rrig text-right">Debit</th>
+                            <th class="lightgreencolor sorting rrig text-right">Commission</th>
+                            <th class="darkpurplecolor sorting rrig text-right">Match P&amp;L</th>
+                            <th class="lightgreencolor sorting rrig text-right">Final P&amp;L</th>
+                            <!-- <th class="lightgreencolor sorting rrig text-right">Remarks</th> -->
+                        </tr>
+                    </thead>
+                    <tbody id="statments"><tr><td>1</td><td class=" ">3/2/2023, 11:32:14 PM</td><td style="color:#4083a9" class=" "><a href="/userMatchDetailsList/c75838/32132449">Cricket / Lahore Qalandars v Quetta Gladiators</a></td><td class="green text-right">0</td><td class="red text-right">-36000</td><td class="red text-right">0</td><td class="red text-right">-36000.00</td><td class="red text-right">-46003.00</td></tr><tr><td>2</td><td class=" ">3/2/2023, 5:57:48 PM</td><td style="color:#4083a9" class=" "><a href="/userMatchDetailsList/c75838/32144676">Cricket / UAE v Nepal</a></td><td class="green text-right">0</td><td class="red text-right">-10003</td><td class="red text-right">0</td><td class="red text-right">-10003.00</td><td class="red text-right">-10003.00</td></tr></tbody>
+                </table>
+                <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
+                <div class="dataTables_paginate paging_full_numbers" id="pages_data">
+            
+                </div>
+                                   
+                                </div>
+                            </div>
+                            </div></div>                              
+            </div>
+        </div>
+        </div>
+  </div>
+
+</div>
+<app-b-footer></app-b-footer>
+<ng-template #userParentList>
+    <div class="modal-body bg-light matchpopbody">
+        <div class="row field-from">
+            <div class="col-md-12 text-center customrediobutton">
+                <!-- <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                    <label class="form-check-label" for="exampleRadios1">
+                      All
+                    </label>
+                  </div> -->
+  
+                  <label class="cusradiobtnwrapper">Matched
+                    <input type="radio" checked="checked" name="radio" (change)="matched_bet();">
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="cusradiobtnwrapper">Deleted
+                    <input type="radio" name="radio" (change)="deleted_bet();">
+                    <span class="checkmark"></span>
+                  </label>
+                   
+                  <!-- <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option1" checked>
+                    <label class="form-check-label" for="exampleRadios2">
+                      Matched
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option2" >
+                    <label class="form-check-label" for="exampleRadios3">
+                      Deleted
+                    </label>
+                  </div> -->
+            </div>
+            </div>
+       <div class="datamatcheddele"> 
+  
+        <div *ngFor="let x of usrBet" class="row field-from tableShadow mb-2" [ngClass]="{'back': x?.type === 'Back', 'lay': x?.type === 'Lay'}">
+          <div class="col-6 datamatchsde">
+            <p><strong>Nation:</strong>&nbsp;<span *ngIf="x.marketType==='SESSION' else elsBlock1;">{{x?.marketName}} / {{x.rate*100 |number:'.0-2'}}</span><ng-template #elsBlock1><span>{{x?.selectionName}}</span></ng-template></p>
+            <p><strong>Place Date:</strong>&nbsp;{{x?.placedTime | date : "dd/MM/yyyy H:mm"}}</p>
+            <p><strong>Match Date:</strong>&nbsp;{{x?.matchedTime | date : "dd/MM/yyyy H:mm"}}</p>
+            </div>
+            <div class="col-6 datamatchsdetabel">
+              <table class="table mt-2">
+                <thead>
+                    <tr style="font-weight:600;">
+                        <th>Rate</th>
+                        <th>Amount</th>
+                        <th>W&L</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                      <td>
+                      <span *ngIf="x.marketType==='SESSION' else elseBl">{{x?.selectionName}}</span>
+                          <ng-template #elseBl>
+                             <span>{{x?.rate}}</span>
+                           </ng-template>
+                      </td>   
+                        <td>{{x?.stake|number:'.0-2'}}</td>
+                        <td>
+                          <ng-container *ngIf="x?.runnerId == 1 else elseBlock2;">
+                             <span *ngIf="((x?.result=='WON') && (x?.type=='Back'))" class="float-right text-success font-weight-bold">+{{(x?.rate*x?.stake) | number:'.0-2'}}</span>
+                             <span *ngIf="((x?.result=='WON') && (x?.type=='Lay'))" class=" float-right text-success font-weight-bold">+{{x?.stake | number:'.0-2'}}</span>
+                             <span *ngIf="((x?.result=='LOST') && (x?.type=='Back'))" class=" float-right text-danger font-weight-bold">-{{x?.stake | number:'.0-2'}}</span>
+                             <span *ngIf="((x?.result=='LOST') && (x?.type=='Lay'))" class=" float-right text-danger font-weight-bold">-{{x?.rate*x?.stake | number:'.0-2'}}</span>
+                          </ng-container>
+                          <ng-template #elseBlock2>
+                             <span *ngIf="((x?.result=='WON') && (x?.type=='Back'))" class=" float-right text-success font-weight-bold">+{{(x?.rate-1)*x?.stake | number:'.0-2'}}</span>
+                             <span *ngIf="((x?.result=='WON') && (x?.type=='Lay'))" class=" float-right text-success font-weight-bold">+{{x?.stake | number:'.0-2'}}</span>
+                             <span *ngIf="((x?.result=='LOST') && (x?.type=='Back'))" class="float-right text-danger font-weight-bold">-{{x?.stake | number:'.0-2'}}</span>
+                             <span *ngIf="((x?.result=='LOST') && (x?.type=='Lay'))" class="c float-right text-danger font-weight-bold">-{{(x?.rate-1)*x?.stake | number:'.0-2'}}</span>
+                             <span *ngIf="x?.result=='REMOVED'" class="float-right text-danger font-weight-bold">RM</span>
+                          </ng-template>
+                        </td>
+                    </tr>
+                </tbody>
+                
+            </table>
+            </div>
+            </div>
+            </div>
+        
+    </div>
+    <div class="modal-footer macthpopfoot">
+      <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+    </div>
+   
+  </ng-template>

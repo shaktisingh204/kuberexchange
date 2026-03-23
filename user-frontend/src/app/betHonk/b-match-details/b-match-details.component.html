@@ -1,0 +1,904 @@
+<app-b-header></app-b-header>
+<div class="maincontainer">
+    <div class="match-score-box">
+        <div class="score-header">
+            <div class="block_box">
+                <span id="tital_change">{{matchName}}</span>
+                <div class="block_box_btn">
+                  <!--tv and score  -->
+                    <span (click)="openTvDiv();this.liveScoreStatus=false" class="tvformobile divcric click-tv hidden-lg"><img src="/assets/images/betHonk/tv-screen.png" alt="" class="tv-icons"></span>
+                   
+                    <button (click)="openScoreDiv();this.liveTVStatus=false;" class="btn btn-primary btn-xs" >Score</button>
+                   
+                </div>
+            </div>
+        </div>
+    
+        <div class="scorearea">
+          <!-- score board and tv -->
+          <mat-card *ngIf="graphicTvUrl" style="background-color:black;"
+          [ngClass]="liveScoreStatus ? 'liveTV-block' : 'liveTV-none'">
+          <mat-tab-group>
+              <mat-tab label="Live Score">
+                  <!-- <mat-icon class="text-warning" [ngClass]="liveScoreStatus ? 'liveTV-block' : 'liveTV-none'" (click)="openScoreDiv()">close</mat-icon> -->
+                  <iframe id="fp_embed_player" [src]="graphicTvUrl" marginwidth="0" marginheight="0"
+                      frameborder="0" width="100%" height="190px" scrolling="yes"
+                      allowfullscreen="allowfullscreen"></iframe>
+              </mat-tab>
+          </mat-tab-group>
+      </mat-card>
+      <mat-card *ngIf="liveUrl" style="height:270px;"
+          [ngClass]="liveTVStatus ? 'liveTV-block' : 'liveTV-none'">
+          <mat-tab-group>
+              <mat-tab label="Live TV">
+                  <!-- <mat-icon class="text-warning" [ngClass]="liveTVStatus ? 'liveTV-block' : 'liveTV-none'" (click)="openTvDiv()">close</mat-icon> -->
+                  <iframe id="fp_embed_player" [src]="liveUrl" marginwidth="0" marginheight="0"
+                      frameborder="0" width="100%" height="240px" scrolling="no"
+                      allowfullscreen="allowfullscreen"></iframe>
+              </mat-tab>
+          </mat-tab-group>
+      </mat-card>
+        </div>
+    </div>
+    <div class="matchodds-section">
+        <div class="fullrow matchoddsinner" id="" *ngIf="matchoddMarket?.length>0 && manualMatchStatus">
+            <table class="table table-striped bulk_actions" id="">
+              <tbody class="" id="oddsBody" *ngFor="let matchOddsData of matchoddMarket;trackBy: itemTrackBy;let mDTIndex=index;">
+                <tr class="headings mobile_heading">
+                  <th class="fix_heading color_red">
+                    <span *ngIf="matchodds_max_limit_check===true else matchodds_max_check">Min :{{matchodds_min_limit | shortNumber}} Max :{{matchodds_max_limit |
+                      shortNumber}}</span>
+                      <ng-template #matchodds_max_check>
+                        <span *ngIf="matchOddsData?.eventTypeId==='4'">Min :{{userDetails?.setting[0]?.min_bet
+                          | shortNumber}} Max :{{userDetails?.setting[0]?.max_bet |
+                            shortNumber}}
+                          </span>
+                          <span *ngIf="matchOddsData?.eventTypeId==='2'">Min :{{userDetails?.setting[2]?.min_bet
+                            | shortNumber}} Max :{{userDetails?.setting[2]?.max_bet |
+                              shortNumber}}
+                            </span>
+                            <span *ngIf="matchOddsData?.eventTypeId==='1'">Min :{{userDetails?.setting[1]?.min_bet
+                              | shortNumber}} Max :{{userDetails?.setting[1]?.max_bet |
+                                shortNumber}}
+                              </span>
+                      </ng-template>
+                  </th>
+     
+                  <th class="back_heading_color backcol">Back</th>
+                  <th class="lay_heading_color laycol">Lay</th>
+                   
+                </tr>
+                
+                <tr *ngFor="let runner of matchOddsData.marketBook.runners; let i = index;" id="user_row0"  class="back_lay_color runner-row-1" >
+                  <td>
+                    <p class="runner_text">{{searchRunner(matchOddsData?.runners,runner?.selectionId)}}</p>
+                    <p class="blue-odds" id="" [ngClass]="{'red':calProLoss(matchOddsData.runners,matchOddsData.marketBook,i,matchOddsData)<0,'green':calProLoss(matchOddsData.runners,matchOddsData.marketBook,i,matchOddsData)>=0}">{{calProLoss(matchOddsData?.runners,matchOddsData?.marketBook,i,matchOddsData)| number : '0.0-2'}}</p>
+                  </td>
+                  
+                  <td class="mark-back" [ngClass]="runner?.availableToBack?.price===runner?.availableToBack?.oprice ? 'backcol' : 'price_blinking'" *ngIf="runner?.availableToBack"
+                  (click)="getOddsValue((runner?.availableToBack?.price),runner?.selectionId,matchOddsData?.marketId,matchOddsData?.marketName,matchOddsData?.eventName,1,searchRunner(matchOddsData?.runners,runner?.selectionId),matchOddsData?.marketType,betPlace);">
+                    <span id="">{{(runner?.availableToBack
+                      !=undefined?runner?.availableToBack?.price :'')}}</span>
+                    <span id="">{{(runner?.availableToBack
+                      !=undefined?(runner?.availableToBack?.size ) :'') | shortNumber}}</span>
+                  </td> 
+                  <td class="mark-back backcol" *ngIf="!runner?.availableToBack">
+                    <span id="">-</span>
+                    <span id="">-</span>
+                  </td> 
+                  <td [ngClass]="runner?.availableToLay?.price===runner?.availableToLay?.oprice ? 'laycol' : 'price_blinking'" *ngIf="runner?.availableToLay" (click)="getOddsValue((runner?.availableToLay?.price),runner?.selectionId,matchOddsData?.marketId,matchOddsData?.marketName,matchOddsData?.eventName,0,searchRunner(matchOddsData?.runners,runner?.selectionId),matchOddsData?.marketType,betPlace);">
+                    <span id="">{{(runner?.availableToLay
+                      !=undefined?runner?.availableToLay?.price :'')}}</span>
+                    <span id="">{{(runner?.availableToLay
+                      !=undefined?(runner?.availableToLay?.size ) :'') | shortNumber}}</span>
+                  </td>
+
+                  <td *ngIf="!runner?.availableToLay" class="laycol">
+                    <span id="">-</span>
+                    <span id="">-</span>
+                  </td>
+                 
+                </tr>
+                <tr style="padding:0">
+                  <td colspan="3" style="padding:0">
+                    <div id="" class="palcebetdesign col-lg-12 col-xs-12"></div>
+                  </td>
+                </tr>
+                
+              </tbody>
+            </table>
+          </div>
+
+        <!-- ToWinToss -->
+        <div *ngIf="toWinTossMarket?.length>0" class="fullrow matchoddsinner" id="">
+            <table class="table table-striped bulk_actions" id="">
+              <tbody class="" *ngFor="let matchOddsData of toWinTossMarket;trackBy: itemTrackBy;let mDTIndex=index;" id="oddsBody">
+                <tr class="headings mobile_heading">
+                  <th class="fix_heading color_red">
+                    <span *ngIf="matchodds_max_limit_check===true else matchodds_max_check">Min :{{matchodds_min_limit | shortNumber}} Max :{{matchodds_max_limit |
+                      shortNumber}}</span>
+                      <ng-template #matchodds_max_check>
+                        <span *ngIf="matchOddsData?.eventTypeId==='4'">Min :{{userDetails?.setting[0]?.min_bet
+                          | shortNumber}} Max :{{userDetails?.setting[0]?.max_bet |
+                            shortNumber}}
+                          </span>
+                          <span *ngIf="matchOddsData?.eventTypeId==='2'">Min :{{userDetails?.setting[2]?.min_bet
+                            | shortNumber}} Max :{{userDetails?.setting[2]?.max_bet |
+                              shortNumber}}
+                            </span>
+                            <span *ngIf="matchOddsData?.eventTypeId==='1'">Min :{{userDetails?.setting[1]?.min_bet
+                              | shortNumber}} Max :{{userDetails?.setting[1]?.max_bet |
+                                shortNumber}}
+                              </span>
+                      </ng-template>
+                  </th>
+     
+                  <th class="back_heading_color backcol">Back</th>
+                  <th class="lay_heading_color laycol">Lay</th>
+                   
+                </tr>
+                <tr id="user_row0" *ngFor="let runner of matchOddsData.marketBook.runners; let i = index;" class="back_lay_color runner-row-1">
+                  <td>
+                    <p class="runner_text">{{searchRunner(matchOddsData?.runners,runner?.selectionId)}}</p>
+                    <p class="blue-odds" id="" [ngClass]="{'red':calProLoss(matchOddsData.runners,matchOddsData.marketBook,i,matchOddsData)<0,'green':calProLoss(matchOddsData.runners,matchOddsData.marketBook,i,matchOddsData)>=0}">{{calProLoss(matchOddsData?.runners,matchOddsData?.marketBook,i,matchOddsData) | number: '1.0-0'}}</p>
+                  </td>
+                  
+                  <td class="mark-back" [ngClass]="runner?.availableToBack?.price===runner?.availableToBack?.oprice ? 'backcol' : 'price_blinking'"
+                   *ngIf="runner?.availableToBack"
+                  (click)="getOddsValue((runner?.availableToBack?.price),runner?.selectionId,matchOddsData?.marketId,matchOddsData?.marketName,matchOddsData?.eventName,1,searchRunner(matchOddsData?.runners,runner?.selectionId),matchOddsData?.marketType,betPlace);">
+                    <span id="">{{(runner?.availableToBack
+                      !=undefined?runner?.availableToBack?.price :'')}}</span>
+                    <span id="">{{(runner?.availableToBack
+                      !=undefined?(runner?.availableToBack?.size ) :'') | shortNumber}}</span>
+                  </td> 
+                  <td class="mark-back backcol"
+                   *ngIf="!runner?.availableToBack">
+                    <span id="">-</span>
+                    <span id="">-</span>
+                  </td> 
+                  <td [ngClass]="runner?.availableToLay?.price===runner?.availableToLay?.oprice ? 'laycol' : 'price_blinking'"
+                   *ngIf="runner?.availableToLay"
+                  (click)="getOddsValue((runner?.availableToLay?.price),runner?.selectionId,matchOddsData?.marketId,matchOddsData?.marketName,matchOddsData?.eventName,0,searchRunner(matchOddsData?.runners,runner?.selectionId),matchOddsData?.marketType,betPlace);">
+                    <span id="">{{(runner?.availableToLay
+                      !=undefined?runner?.availableToLay?.price :'')}}</span>
+                    <span id="">{{(runner?.availableToLay
+                      !=undefined?(runner?.availableToLay?.size ) :'') | shortNumber}}</span>
+                  </td>
+                  <td class="laycol" >
+                    <span id="">-</span>
+                    <span id="">-</span>
+                  </td>
+                 
+                </tr>
+                <tr style="padding:0">
+                  <td colspan="3" style="padding:0">
+                    <div id="" class="palcebetdesign col-lg-12 col-xs-12"></div>
+                  </td>
+                </tr>
+              
+              </tbody>
+            </table>
+          </div>
+
+        <!--bookmaker  -->
+        <ng-container *ngIf="bookmakerMarket?.length>0">
+          <div *ngFor="let matchOddsData of bookmakerMarket;trackBy: itemTrackBy;let mDTIndex=index;" class="fullrow matchoddsinner" id="">
+            <table  class="table table-striped bulk_actions" id="">
+              <tbody class="" id="oddsBody">
+                <tr class="headings mobile_heading">
+                  <th class="fix_heading color_red">
+                    <span *ngIf="matchOddsData.maxlimit else bmax_min">Min :{{matchOddsData.minlimit | shortNumber}} Max :{{matchOddsData.maxlimit |
+                      shortNumber}}</span>
+                      <ng-template #bmax_min>
+                        <span *ngIf="bookmaker_max_limit_check===true else bookmaker_max_check">Min :{{bookmaker_min_limit
+                          | shortNumber}} Max :{{bookmaker_max_limit |
+                            shortNumber}}
+                          </span>
+                          <ng-template #bookmaker_max_check>
+                            <span>Min :{{userDetails?.setting[0]?.min_bet
+                              | shortNumber}} Max :{{userDetails?.setting[0]?.max_bet |
+                                shortNumber}}
+                              </span>
+                          </ng-template>
+                      </ng-template>
+                  </th>
+     
+                  <th class="back_heading_color backcol">Back</th>
+                  <th class="lay_heading_color laycol">Lay</th>
+                   
+                </tr>
+                <tr id="user_row0" *ngFor="let runner of matchOddsData.marketBook.runners; let i = index;" class="back_lay_color runner-row-1">
+                  <td>
+                    <p class="runner_text">{{searchRunner(matchOddsData?.runners,runner?.selectionId)}}</p>
+                    <p class="blue-odds" id="" [ngClass]="{'red':calProLoss(matchOddsData?.runners,matchOddsData?.marketBook,i,matchOddsData)<0,'green':calProLoss(matchOddsData?.runners,matchOddsData?.marketBook,i,matchOddsData)>=0}">{{calProLoss(matchOddsData?.runners,matchOddsData?.marketBook,i,matchOddsData)| number: '1.0-0'}}</p>
+                  </td>
+                  
+                  <td class="mark-back backcol"
+                   *ngIf="runner?.availableToBack"
+                  (click)="getOddsValue((runner?.availableToBack?.price),runner?.selectionId,matchOddsData?.marketId,matchOddsData?.marketName,matchOddsData?.eventName,1,searchRunner(matchOddsData?.runners,runner?.selectionId),matchOddsData?.marketType,betPlace);">
+                    <span id="">{{(runner?.availableToBack
+                      !=undefined?runner?.availableToBack?.kprice :'')}}</span>
+                    <span id="">{{(runner?.availableToBack
+                      !=undefined?(runner?.availableToBack?.size ) :'') | shortNumber}}</span>
+                  </td> 
+                  <td class="mark-back backcol"
+                   *ngIf="!runner?.availableToBack">
+                    <span id="">-</span>
+                    <span id="">-</span>
+                  </td> 
+                  <td class="laycol"
+                   *ngIf="runner?.availableToLay"
+                  (click)="getOddsValue((runner?.availableToLay?.price),runner?.selectionId,matchOddsData?.marketId,matchOddsData?.marketName,matchOddsData?.eventName,0,searchRunner(matchOddsData?.runners,runner?.selectionId),matchOddsData?.marketType,betPlace);">
+                    <span id="">{{(runner?.availableToLay
+                      !=undefined?runner?.availableToLay?.kprice :'')}}</span>
+                    <span id="">{{(runner?.availableToLay
+                      !=undefined?(runner?.availableToLay?.size ) :'') | shortNumber}}</span>
+                  </td>
+                  <td class="laycol" *ngIf="!runner?.availableToLay">
+                    <span id="">-</span>
+                    <span id="">-</span>
+                  </td>
+                 
+                </tr>
+                <tr style="padding:0">
+                  <td colspan="3" style="padding:0">
+                    <div id="" class="palcebetdesign col-lg-12 col-xs-12"></div>
+                  </td>
+                </tr>
+              
+              </tbody>
+            </table>
+          </div>
+        </ng-container>
+        
+      <!-- fancyButton -->
+      <ng-container *ngIf="eventTypeId=='4'">
+        <ul class="nav nav-tabs mt-2 fancy-nav">
+            <li class="nav-item" [ngClass]="{'active': fancy_click === true}"
+                (click)="fancy_click=true;meter_click=false;"><a data-toggle="tab"
+                    class="nav-link">Fancy</a></li>
+            <li class="nav-item" [ngClass]="{'active': meter_click === true}"><a data-toggle="tab"
+                    class="nav-link" (click)="meter_click=true;fancy_click=false;">Meter</a></li>
+        </ul>
+        <ng-container *ngIf="sessionMarket?.length==0">
+            <div style="background-color:#CCCCCC;" class="text-dark text-center p-2">No real-time
+                records found</div>
+        </ng-container>
+    </ng-container>
+
+        <!-- session -->
+        <!-- normal_fancy -->
+        <ng-container *ngIf="fancy_click">
+          <div *ngIf="sessionMarket?.length>0" class="fullrow matchoddsinner fancyboxs" id="">
+            <table class="table table-striped bulk_actions" id="">
+              <tbody class="" id="oddsBody">
+                <tr class="headings mobile_heading">
+                  <th class="fix_heading color_red">
+                    <span>Session Market</span>
+                  </th>
+                  <th class="lay_heading_color laycol">NO</th>
+                  <th class="back_heading_color backcol">YES</th>
+                  
+    
+                </tr>
+                </tbody>
+                </table>
+                <div *ngFor="let runner of sessionMarket;trackBy: itemTrackBy;let mDTIndex=index;" class="ses-fan-box">
+                <table class="table table-striped bulk_actions" id="">
+                  <tbody class="" id="oddsBody">
+                <tr id="user_row0" class="back_lay_color runner-row-1">
+                  <td>
+                    <p class="runner_text">{{runner?.marketName}}</p>
+                    <!-- session_exp -->
+                    <p class="font-weight-bold" *ngIf="sessionMarketExposure">
+                      <span class="red" *ngIf="sessionMarketExposure[runner.marketId]">
+                          {{sessionMarketExposure[runner.marketId]}}
+                      </span>
+
+                      <!-- <span *ngIf="!sessionMarketExposure[runner.marketId]">
+                     0
+                  </span> -->
+                  </p>
+
+                    <p class="position_btn">
+                       <!-- min_max_limit -->
+                      <span [matMenuTriggerFor]="menu">                                            
+                        <i class="fas fa-info-circle blackicon"></i>
+                        <mat-menu #menu="matMenu" yPosition="below">
+                            <ng-container *ngIf="runner.maxlimit else nfancy_assites">
+                                <button mat-menu-item>Min:{{runner.minlimit | shortNumber}}</button>
+                                <button mat-menu-item>Max:{{runner.maxlimit | shortNumber}}</button>
+                            </ng-container>
+                            <ng-template #nfancy_assites>
+                            <ng-container *ngIf="fancy_max_limit_check===true else normal_session">
+                                <button mat-menu-item>Min:{{fancy_min_limit | shortNumber}}</button>
+                                <button mat-menu-item>Max:{{fancy_max_limit | shortNumber}}</button>
+                            </ng-container>
+                            <ng-template #normal_session>
+                                <button mat-menu-item>Min:{{userDetails?.setting[0]?.min_bet |
+                                    shortNumber}}</button>
+                                <button mat-menu-item>Max:{{userDetails?.setting[0]?.max_bet |
+                                    shortNumber}}</button>
+                            </ng-template>
+                        </ng-template>
+                        </mat-menu>
+                    </span>
+                    <span>
+                      <button (click)="session_book(sessionBook,runner)" data-toggle="modal" data-target="#fancyposition"  class="btn-book">Book</button>
+                    </span>
+                    </p>
+                  </td>
+                  <td class="laycol" (click)="setSessionValue(runner?.marketBook?.availableToLay?.price,runner?.marketId,runner?.marketName,runner?.eventName,0,runner?.marketBook?.availableToLay?.size,runner?.marketType,betPlace)">
+                    <span id="">{{(runner?.marketBook?.availableToLay
+                      !=undefined?runner?.marketBook?.availableToLay?.price :'')}}</span>
+                    <span id="">{{(runner?.marketBook?.availableToLay
+                      !=undefined?(runner?.marketBook?.availableToLay?.size ) :'') | shortNumber}}</span>
+                  </td>
+                  <td *ngIf="runner?.marketBook?.availableToLay?.length == 0" class="laycol">
+                    <span id="">-</span>
+                    <span id="">-</span>
+                  </td>
+                  <td class="mark-back backcol" (click)="setSessionValue(runner?.marketBook?.availableToBack?.price,runner?.marketId,runner?.marketName,runner?.eventName,1,runner?.marketBook?.availableToBack?.size,runner?.marketType,betPlace)">
+                    <span id="">{{(runner?.marketBook?.availableToBack
+                      !=undefined?runner?.marketBook?.availableToBack?.price :'')}}</span>
+                    <span id="">{{(runner?.marketBook?.availableToBack
+                      !=undefined?(runner?.marketBook?.availableToBack?.size ) :'') | shortNumber }}</span>
+                  </td>    
+                  <td *ngIf="runner?.marketBook?.availableToBack?.length == 0" class="mark-back backcol">
+                    <span id="">-</span>
+                    <span id="">-</span>
+                  </td>          
+                  </tr>           
+                <span *ngIf="runner?.marketBook?.statusLabel=='Ball Running'" class="ball-msg-box"> Ball runnig </span>
+                <span *ngIf="runner?.marketBook?.statusLabel=='SUSPENDED'" class="ball-msg-box"> SUSPENDED </span>
+              </tbody>
+            </table>
+          </div>
+         
+          </div>
+
+          <!--fancy_over_by_over_session_market  -->
+          <div *ngIf="over_by_over_Market?.length>0" class="fullrow matchoddsinner fancyboxs" id="">
+            <table class="table table-striped bulk_actions" id="">
+              <tbody class="" id="oddsBody">
+                <tr class="headings mobile_heading">
+                  <th class="fix_heading color_red">
+                    <span>Over By Over Session Market</span>
+                  </th>
+                  <th class="lay_heading_color laycol">NO</th>
+                  <th class="back_heading_color backcol">YES</th>
+                  
+    
+                </tr>
+                </tbody>
+                </table>
+                <div *ngFor="let runner of over_by_over_Market;trackBy: itemTrackBy;let mDTIndex=index;" class="ses-fan-box">
+                <table class="table table-striped bulk_actions" id="">
+                  <tbody class="" id="oddsBody">
+                <tr id="user_row0" class="back_lay_color runner-row-1">
+                  <td>
+                    <p class="runner_text">{{runner?.marketName}}</p>
+                    <!-- session_exp -->
+                    <p class="font-weight-bold" *ngIf="sessionMarketExposure">
+                      <span class="red" *ngIf="sessionMarketExposure[runner.marketId]">
+                          {{sessionMarketExposure[runner.marketId]}}
+                      </span>
+
+                      <!-- <span *ngIf="!sessionMarketExposure[runner.marketId]">
+                     0
+                  </span> -->
+                  </p>
+
+                    <p class="position_btn">
+                       <!-- min_max_limit -->
+                      <span [matMenuTriggerFor]="menu">                                            
+                        <i class="fas fa-info-circle blackicon"></i>
+                        <mat-menu #menu="matMenu" yPosition="below">
+                            <ng-container *ngIf="runner.maxlimit else nfancy_assites">
+                                <button mat-menu-item>Min:{{runner.minlimit | shortNumber}}</button>
+                                <button mat-menu-item>Max:{{runner.maxlimit | shortNumber}}</button>
+                            </ng-container>
+                            <ng-template #nfancy_assites>
+                            <ng-container *ngIf="fancy_max_limit_check===true else normal_session">
+                                <button mat-menu-item>Min:{{fancy_min_limit | shortNumber}}</button>
+                                <button mat-menu-item>Max:{{fancy_max_limit | shortNumber}}</button>
+                            </ng-container>
+                            <ng-template #normal_session>
+                                <button mat-menu-item>Min:{{userDetails?.setting[0]?.min_bet |
+                                    shortNumber}}</button>
+                                <button mat-menu-item>Max:{{userDetails?.setting[0]?.max_bet |
+                                    shortNumber}}</button>
+                            </ng-template>
+                        </ng-template>
+                        </mat-menu>
+                    </span>
+                    <span>
+                      <button (click)="session_book(sessionBook,runner)" data-toggle="modal" data-target="#fancyposition"  class="btn-book">Book</button>
+                    </span>
+                    </p>
+                  </td>
+                  <td class="laycol" (click)="setSessionValue(runner?.marketBook?.availableToLay?.price,runner?.marketId,runner?.marketName,runner?.eventName,0,runner?.marketBook?.availableToLay?.size,runner?.marketType,betPlace)">
+                    <span id="">{{(runner?.marketBook?.availableToLay
+                      !=undefined?runner?.marketBook?.availableToLay?.price :'')}}</span>
+                    <span id="">{{(runner?.marketBook?.availableToLay
+                      !=undefined?(runner?.marketBook?.availableToLay?.size ) :'') | shortNumber}}</span>
+                  </td>
+                  <td *ngIf="runner?.marketBook?.availableToLay?.length == 0" class="laycol">
+                    <span id="">-</span>
+                    <span id="">-</span>
+                  </td>
+                  <td class="mark-back backcol" (click)="setSessionValue(runner?.marketBook?.availableToBack?.price,runner?.marketId,runner?.marketName,runner?.eventName,1,runner?.marketBook?.availableToBack?.size,runner?.marketType,betPlace)">
+                    <span id="">{{(runner?.marketBook?.availableToBack
+                      !=undefined?runner?.marketBook?.availableToBack?.price :'')}}</span>
+                    <span id="">{{(runner?.marketBook?.availableToBack
+                      !=undefined?(runner?.marketBook?.availableToBack?.size ) :'') | shortNumber }}</span>
+                  </td>    
+                  <td *ngIf="runner?.marketBook?.availableToBack?.length == 0" class="mark-back backcol">
+                    <span id="">-</span>
+                    <span id="">-</span>
+                  </td>          
+                  </tr>           
+                <span *ngIf="runner?.marketBook?.statusLabel=='Ball Running'" class="ball-msg-box"> Ball runnig </span>
+                <span *ngIf="runner?.marketBook?.statusLabel=='SUSPENDED'" class="ball-msg-box"> SUSPENDED </span>
+              </tbody>
+            </table>
+          </div>
+         
+          </div>
+
+          <!--fancy_ball_by_ball_session_market  -->
+          <div *ngIf="ball_by_ballMarket?.length>0" class="fullrow matchoddsinner fancyboxs" id="">
+            <table class="table table-striped bulk_actions" id="">
+              <tbody class="" id="oddsBody">
+                <tr class="headings mobile_heading">
+                  <th class="fix_heading color_red">
+                    <span>Ball by ball Session Market</span>
+                  </th>
+                  <th class="lay_heading_color laycol">NO</th>
+                  <th class="back_heading_color backcol">YES</th>
+                  
+    
+                </tr>
+                </tbody>
+                </table>
+                <div *ngFor="let runner of ball_by_ballMarket;trackBy: itemTrackBy;let mDTIndex=index;" class="ses-fan-box">
+                <table class="table table-striped bulk_actions" id="">
+                  <tbody class="" id="oddsBody">
+                <tr id="user_row0" class="back_lay_color runner-row-1">
+                  <td>
+                    <p class="runner_text">{{runner?.marketName}}</p>
+                    <!-- session_exp -->
+                    <p class="font-weight-bold" *ngIf="sessionMarketExposure">
+                      <span class="red" *ngIf="sessionMarketExposure[runner.marketId]">
+                          {{sessionMarketExposure[runner.marketId]}}
+                      </span>
+
+                      <!-- <span *ngIf="!sessionMarketExposure[runner.marketId]">
+                     0
+                  </span> -->
+                  </p>
+
+                    <p class="position_btn">
+                       <!-- min_max_limit -->
+                      <span [matMenuTriggerFor]="menu">                                            
+                        <i class="fas fa-info-circle blackicon"></i>
+                        <mat-menu #menu="matMenu" yPosition="below">
+                            <ng-container *ngIf="runner.maxlimit else nfancy_assites">
+                                <button mat-menu-item>Min:{{runner.minlimit | shortNumber}}</button>
+                                <button mat-menu-item>Max:{{runner.maxlimit | shortNumber}}</button>
+                            </ng-container>
+                            <ng-template #nfancy_assites>
+                            <ng-container *ngIf="fancy_max_limit_check===true else normal_session">
+                                <button mat-menu-item>Min:{{fancy_min_limit | shortNumber}}</button>
+                                <button mat-menu-item>Max:{{fancy_max_limit | shortNumber}}</button>
+                            </ng-container>
+                            <ng-template #normal_session>
+                                <button mat-menu-item>Min:{{userDetails?.setting[0]?.min_bet |
+                                    shortNumber}}</button>
+                                <button mat-menu-item>Max:{{userDetails?.setting[0]?.max_bet |
+                                    shortNumber}}</button>
+                            </ng-template>
+                        </ng-template>
+                        </mat-menu>
+                    </span>
+                    <span>
+                      <button (click)="session_book(sessionBook,runner)" data-toggle="modal" data-target="#fancyposition"  class="btn-book">Book</button>
+                    </span>
+                    </p>
+                  </td>
+                  <td class="laycol" (click)="setSessionValue(runner?.marketBook?.availableToLay?.price,runner?.marketId,runner?.marketName,runner?.eventName,0,runner?.marketBook?.availableToLay?.size,runner?.marketType,betPlace)">
+                    <span id="">{{(runner?.marketBook?.availableToLay
+                      !=undefined?runner?.marketBook?.availableToLay?.price :'')}}</span>
+                    <span id="">{{(runner?.marketBook?.availableToLay
+                      !=undefined?(runner?.marketBook?.availableToLay?.size ) :'') | shortNumber}}</span>
+                  </td>
+                  <td *ngIf="runner?.marketBook?.availableToLay?.length == 0" class="laycol">
+                    <span id="">-</span>
+                    <span id="">-</span>
+                  </td>
+                  <td class="mark-back backcol" (click)="setSessionValue(runner?.marketBook?.availableToBack?.price,runner?.marketId,runner?.marketName,runner?.eventName,1,runner?.marketBook?.availableToBack?.size,runner?.marketType,betPlace)">
+                    <span id="">{{(runner?.marketBook?.availableToBack
+                      !=undefined?runner?.marketBook?.availableToBack?.price :'')}}</span>
+                    <span id="">{{(runner?.marketBook?.availableToBack
+                      !=undefined?(runner?.marketBook?.availableToBack?.size ) :'') | shortNumber }}</span>
+                  </td>    
+                  <td *ngIf="runner?.marketBook?.availableToBack?.length == 0" class="mark-back backcol">
+                    <span id="">-</span>
+                    <span id="">-</span>
+                  </td>          
+                  </tr>           
+                <span *ngIf="runner?.marketBook?.statusLabel=='Ball Running'" class="ball-msg-box"> Ball runnig </span>
+                <span *ngIf="runner?.marketBook?.statusLabel=='SUSPENDED'" class="ball-msg-box"> SUSPENDED </span>
+              </tbody>
+            </table>
+          </div>
+         
+          </div>
+        </ng-container>
+
+        <!-- meter_normal_fancy -->
+        <ng-container *ngIf="meter_click">
+          <div *ngIf="meterMarket?.length>0" class="fullrow matchoddsinner fancyboxs" id="">
+            <table class="table table-striped bulk_actions" id="">
+              <tbody class="" id="oddsBody">
+                <tr class="headings mobile_heading">
+                  <th class="fix_heading color_red">
+                    <span>Meter Market</span>
+                  </th>
+                  <th class="lay_heading_color laycol">NO</th>
+                  <th class="back_heading_color backcol">YES</th>
+                  
+    
+                </tr>
+                </tbody>
+                </table>
+                <div *ngFor="let runner of meterMarket;trackBy: itemTrackBy;let mDTIndex=index;" class="ses-fan-box">
+                <table class="table table-striped bulk_actions" id="">
+                  <tbody class="" id="oddsBody">
+                <tr id="user_row0" class="back_lay_color runner-row-1">
+                  <td>
+                    <p class="runner_text">{{runner?.marketName}}</p>
+                    <!-- session_exp -->
+                    <p class="font-weight-bold" *ngIf="sessionMarketExposure">
+                      <span class="red" *ngIf="sessionMarketExposure[runner.marketId]">
+                          {{sessionMarketExposure[runner.marketId]}}
+                      </span>
+
+                      <!-- <span *ngIf="!sessionMarketExposure[runner.marketId]">
+                     0
+                  </span> -->
+                  </p>
+
+                    <p class="position_btn">
+                       <!-- min_max_limit -->
+                      <span [matMenuTriggerFor]="menu">                                            
+                        <i class="fas fa-info-circle blackicon"></i>
+                        <mat-menu #menu="matMenu" yPosition="below">
+                            <ng-container *ngIf="runner.maxlimit else nfancy_assites">
+                                <button mat-menu-item>Min:{{runner.minlimit | shortNumber}}</button>
+                                <button mat-menu-item>Max:{{runner.maxlimit | shortNumber}}</button>
+                            </ng-container>
+                            <ng-template #nfancy_assites>
+                            <ng-container *ngIf="fancy_max_limit_check===true else normal_session">
+                                <button mat-menu-item>Min:{{fancy_min_limit | shortNumber}}</button>
+                                <button mat-menu-item>Max:{{fancy_max_limit | shortNumber}}</button>
+                            </ng-container>
+                            <ng-template #normal_session>
+                                <button mat-menu-item>Min:{{userDetails?.setting[0]?.min_bet |
+                                    shortNumber}}</button>
+                                <button mat-menu-item>Max:{{userDetails?.setting[0]?.max_bet |
+                                    shortNumber}}</button>
+                            </ng-template>
+                        </ng-template>
+                        </mat-menu>
+                    </span>
+                    <span>
+                      <button (click)="session_book(sessionBook,runner)" data-toggle="modal" data-target="#fancyposition"  class="btn-book">Book</button>
+                    </span>
+                    </p>
+                  </td>
+                  <td class="laycol" (click)="setSessionValue(runner?.marketBook?.availableToLay?.price,runner?.marketId,runner?.marketName,runner?.eventName,0,runner?.marketBook?.availableToLay?.size,runner?.marketType,betPlace)">
+                    <span id="">{{(runner?.marketBook?.availableToLay
+                      !=undefined?runner?.marketBook?.availableToLay?.price :'')}}</span>
+                    <span id="">{{(runner?.marketBook?.availableToLay
+                      !=undefined?(runner?.marketBook?.availableToLay?.size ) :'') | shortNumber}}</span>
+                  </td>
+                  <td *ngIf="runner?.marketBook?.availableToLay?.length == 0" class="laycol">
+                    <span id="">-</span>
+                    <span id="">-</span>
+                  </td>
+                  <td class="mark-back backcol" (click)="setSessionValue(runner?.marketBook?.availableToBack?.price,runner?.marketId,runner?.marketName,runner?.eventName,1,runner?.marketBook?.availableToBack?.size,runner?.marketType,betPlace)">
+                    <span id="">{{(runner?.marketBook?.availableToBack
+                      !=undefined?runner?.marketBook?.availableToBack?.price :'')}}</span>
+                    <span id="">{{(runner?.marketBook?.availableToBack
+                      !=undefined?(runner?.marketBook?.availableToBack?.size ) :'') | shortNumber }}</span>
+                  </td>    
+                  <td *ngIf="runner?.marketBook?.availableToBack?.length == 0" class="mark-back backcol">
+                    <span id="">-</span>
+                    <span id="">-</span>
+                  </td>          
+                  </tr>           
+                <span *ngIf="runner?.marketBook?.statusLabel=='Ball Running'" class="ball-msg-box"> Ball runnig </span>
+                <span *ngIf="runner?.marketBook?.statusLabel=='SUSPENDED'" class="ball-msg-box"> SUSPENDED </span>
+              </tbody>
+            </table>
+          </div>
+         
+          </div>
+
+        </ng-container>
+
+    <!-- show_bets -->
+          <div class="betsliptabs">
+            <ul class="nav mactch-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="allebt-tab" data-toggle="tab" data-target="#allebt" type="button" role="tab" aria-controls="allebt" aria-selected="true">All Bet ({{allBetDataLength == '0' ? '0' : allBetDataLength}})</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="fancybet-tab" data-toggle="tab" data-target="#fancybet" type="button" role="tab" aria-controls="fancybet" aria-selected="false">Fancy Bet (0)</a>
+              </li>
+            </ul>
+            <div *ngIf="allBetDataLength != 0" class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="allebt" role="tabpanel" aria-labelledby="allebt-tab">
+                
+    
+                <div class="match_bets" id="allbetss">
+                  <table class="table table-striped" >
+                      <thead>
+                          <tr class="headings">
+                              <td style="width:4%;">No.</td>
+                              <td style="width:18%;">Runner</td>
+                               
+                              <td style="width:6%;">Odds</td>
+                              <td style="width:10%;">Stack</td>
+                              <td style="width:8%">Bet Type</td>
+                              <td style="width:21%">PnL</td>
+                              <td>Time</td>
+                          </tr>
+                      </thead>
+                      <tbody id="matchBets">
+                        <ng-container *ngFor="let bet of allBetData;let i=index">
+                          <!-- matchodds/bookmaker -->
+
+                          <tr [ngClass]="{'lay':(bet?.type)=='Lay','back':(bet?.type)=='Back'}">
+                            <td class="right-text">{{i+1}}</td>
+                              <!-- matchOdds/bookmaker -->
+                              <ng-container
+                                  *ngIf="bet?.marketType === 'MATCH_ODDS' || bet?.marketType === 'Special' else else_session_block">
+                                  <td> {{bet?.selectionName}} </td>
+                                  <td class="right-text"><span
+                                          *ngIf="bet.marketType==='Special' else rate_matchOdds">{{(bet.rate*100)-100
+                                          | number : '0.0-2'}}</span>
+                                      <ng-template #rate_matchOdds>{{bet?.rate | number : '0.0-2'}}</ng-template>
+                                  </td>
+
+                              </ng-container>
+
+                              <!-- session -->
+                              <ng-template #else_session_block>
+                                  <td>{{bet?.marketName}} / {{bet?.rate*100 |number:'.0-2'}}</td>
+                                  <td class="right-text">{{bet?.selectionName}}</td>
+                              </ng-template>
+                              <td class="right-text">{{bet?.stake}} </td>
+                              <td><span *ngIf="bet?.marketType==='Special' else fancy_match_type">bookmaker</span>
+                                <ng-template #fancy_match_type>{{bet?.marketType}}</ng-template>
+                            </td>
+                             
+                              <td class="right-text">-</td>
+                              <td class="right-text">{{bet?.createDate}}</td>
+                          </tr>
+                      </ng-container>
+                      <div class="text-warning" style="color:black !important;" *ngIf="allBetDataLength == 0">No Bet
+                        Found</div>
+                      </tbody>
+                  </table>
+              </div>
+    
+    
+                </div>
+                <div class="tab-pane fade" id="fancybet" role="tabpanel" aria-labelledby="fancybet-tab">
+                  
+                  <div class="match_bets" id="fbets">
+                    <table class="table table-striped">
+        <thead>
+                     <tr class="headings">
+                            <td style="width:4%;">No.</td>
+                            <td style="width:18%;">Runner</td>
+                            <td style="width:8%;">Bet Type</td>
+                           
+                           <td style="width:8%;">Odds</td>
+                           <td style="width:8%">Stack</td>
+                           <td style="width:21%">PnL</td>
+                            <td style="">Time</td>
+                           
+                           </tr>
+          </thead>
+          <tbody id="fancybets">
+    
+          </tbody>
+                      
+                                                </table>						
+                </div>
+    
+    
+                </div>
+          </div>
+    
+    </div>
+    </div>
+    </div>
+
+<app-b-footer></app-b-footer>
+
+
+  <div class="modal matchlistpop fade" id="matchlistpop" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document"> 
+  <div class="modal-content">
+    <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal">×</button>
+    </div>
+    <div class="modal-body" style="padding:0">
+       <div class="table-responsive" id="matchlistdiv">
+          <table class="table table-bordered common-table" style="margin-bottom:0">
+             <tbody id="matchListBody">
+                <tr>
+                   <td class="cell-market-title"><span><a class="event-name" href="#">Asia Lions v India Maharajas</a> </span></td>
+                </tr>
+                <tr>
+                   <td class="cell-market-title"><span><a class="event-name" href="#">AC Milan U19 v Atletico Madrid U19</a> </span></td>
+                </tr>
+                <tr>
+                   <td class="cell-market-title"><span><a class="event-name" href="#">Wydad Casablanca v IRT Tanger</a> </span></td>
+                </tr>
+                <tr>
+                   <td class="cell-market-title"><span><a class="event-name" href="#">Paris FC v Amiens</a> </span></td>
+                </tr>
+                <tr>
+                   <td class="cell-market-title"><span><a class="event-name" href="#">Rot-Weiss Essen v VfL Osnabruck</a> </span></td>
+                </tr>
+                <tr>
+                   <td class="cell-market-title"><span><a class="event-name" href="#">Hallescher FC v Viktoria Koln</a> </span></td>
+                </tr>
+                <tr>
+                   <td class="cell-market-title"><span><a class="event-name" href="#">1860 Munich v Elversberg</a> </span></td>
+                </tr>
+                <tr>
+                   <td class="cell-market-title"><span><a class="event-name" href="#">SV Meppen v Verl</a> </span></td>
+                </tr>
+                <tr>
+                   <td class="cell-market-title"><span><a class="event-name" href="#">FSV Zwickau v Erzgebirge</a> </span></td>
+                </tr>
+                <tr>
+                   <td class="cell-market-title"><span><a class="event-name" href="#">Sanchez Izquierdo v Giannessi</a> </span></td>
+                </tr>
+                <tr>
+                   <td class="cell-market-title"><span><a class="event-name" href="#">Olivieri v Cam Ugo Carabelli</a> </span></td>
+                </tr>
+                <tr>
+                   <td class="cell-market-title"><span><a class="event-name" href="#">Collarini v Gaio</a> </span></td>
+                </tr>
+                <tr>
+                   <td class="cell-market-title"><span><a class="event-name" href="#">Lopez San Martin v Darderi</a> </span></td>
+                </tr>
+                <tr>
+                   <td class="cell-market-title"><span><a class="event-name" href="#">L Midon v Th Seyboth Wild</a> </span></td>
+                </tr>
+                <tr>
+                   <td class="cell-market-title"><span><a class="event-name" href="#">Pellegrino v Villanueva</a> </span></td>
+                </tr>
+             </tbody>
+          </table>
+       </div>
+    </div>
+  </div>
+  
+  
+  </div>
+  </div>
+
+  <!-- bet_place_model -->
+<ng-template #betPlace>
+  <div class="modal-content custom-modal-main">
+      <div class="newmatchpopup" [ngClass]="arrayObj.is_back==1 ? 'back' : 'lay'">
+          <div fxLayout="row" fxLayoutAlign="space-between center" class="bet-slip-header">
+          <span class="bet-slip-title">Placebet</span>
+          <div class="close-btn" style="color:black" data-dismiss="modal" (click)="modalRef.hide()">
+              <mat-icon>close</mat-icon>
+          </div>
+      </div>   
+      <div fxlayout="column" fxlayoutgap="5px" fxlayoutalign="start" class="bet-slip-body " ng-reflect-fx-layout="column" ng-reflect-fx-layout-align="start" ng-reflect-fx-layout-gap="5px" style="flex-direction: column; box-sizing: border-box; display: flex; place-content: stretch flex-start; align-items: stretch;">
+          <div class="row title-second" style="background-color: transparent; color: rgb(33, 37, 41); margin-bottom: 5px; flex-wrap: inherit;">
+            <div class="col-7 p-0 text-left">
+              <span class="text-center"><span *ngIf="arrayObj.is_fancy == 0 else fancy_name">{{odds_bookmaker_db.bet.selectionName}}</span><ng-template #fancy_name>{{session_db.bet.marketName}}</ng-template></span>
+            </div>
+            <div class="col-5 p-0 text-center">
+              <div class="input-group">
+                <div class="numbers">
+                  <span class="minus">-</span>
+                  <input type="text" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" min="0" step="0.01" id="ShowBetPrice" name="quant[2]" readonly="" class="calProfitLoss odds-input form-control CommanBtn" [(ngModel)]="arrayObj.odds">
+                 <span class="plus">+</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div fxlayout="row" fxlayoutgap="10px" ng-reflect-fx-layout="row" ng-reflect-fx-layout-gap="10px" style="margin-bottom: 5px; flex-direction: row; box-sizing: border-box; display: flex;">
+            <div class="col-4 p-0" style="margin-right: 10px;">
+              <input type="number" min="0" id="stakeValue" pattern="[0-9]*" step="1" placeholder="0" class="form-control calProfitLoss stake-input f0orm-control CommanBtn " ng-reflect-pattern="[0-9]*" ng-reflect-model="0" (input)="calculateP_lOnStackOnInput(arrayObj.stake,arrayObj.stake,arrayObj.is_back,arrayObj);" [ngModel]="(arrayObj.stake < 0) ? '0' :arrayObj.stake" (ngModelChange)="(arrayObj.stake < 0) ? '0' : arrayObj.stake = $event">
+            </div>
+            <div class="col-4 p-0" style="flex-direction: row; box-sizing: border-box; display: flex;">
+              <div fxflex="100%" fxlayout="column" style="display: flex; flex-direction: column; box-sizing: border-box; flex: 1 1 100%; max-width: 100%;" ng-reflect-fx-layout="column" ng-reflect-fx-flex="100%">
+              
+                <button type="button" class="btn btn-outline-primary btn-primary btnblue btn-sm rounded " style="height: 29px;" [disabled]="arrayObj.stake===0 || betloder"
+                (click)="saveFancyBet(arrayObj)" *ngIf="arrayObj.is_fancy == 1">Place Bet</button>
+                <button type="button" class="btn btn-outline-primary btn-primary btnblue btn-sm rounded " style="height: 29px;" [disabled]="arrayObj.stake===0 || betloder"
+                (click)="saveBet(arrayObj)" *ngIf="arrayObj.is_fancy == 0">Place Bet</button>
+              </div>
+            </div>
+          </div>
+          <div class="betslip-button text-center" style="margin-bottom: 5px;">
+            <div style="display: flex; width: 100%; vertical-align: middle;">
+              <div class="scrollmenu">
+                <div class="tab-btn-card" *ngFor="let stake of userMatchStack;let i= index" (click)="calculateP_lOnStack(((arrayObj.odds*arrayObj.stake)-arrayObj.stake),stake.price,arrayObj.is_back,arrayObj);">{{stake.label}}</div> 
+              </div>
+            </div>
+          </div>
+          <!-- matchodds_bookmaker_profit_loss -->
+          <div *ngIf="arrayObj.is_session_fancy=='N'" fxlayout="row" fxlayoutalign="space-between center" fxlayoutgap="10px" class="form-list " ng-reflect-fx-layout="row" ng-reflect-fx-layout-align="space-between center" ng-reflect-fx-layout-gap="10px" style="flex-direction: row; box-sizing: border-box; display: flex; place-content: center space-between; align-items: center; margin-bottom: 5px;">
+              <div class="stack_input_field" style="margin-right: 10px;">
+                <label class="form-label">Profit</label>
+                <span id="profitData" class="profit" style="color: green;">{{arrayObj.stake <= '0' ? '0' : (arrayObj.is_back==0
+                  ? arrayObj.stake :((arrayObj.odds*arrayObj.stake)-arrayObj.stake)=='NaN' ?0:
+                  ((arrayObj.odds*arrayObj.stake)-arrayObj.stake).toFixed(2))}}</span>
+              </div>
+              <div class="stack_input_field">
+                <label class="form-label">Loss</label>
+                <span id="profitData" class="profit" style="color: red;">-{{arrayObj.stake <= '0' ? '0' :(arrayObj.is_back==0 ?
+                  ((arrayObj.odds*arrayObj.stake)-arrayObj.stake)=='NaN' ?0: ((arrayObj.odds*arrayObj.stake)-arrayObj.stake).toFixed(2) :
+                  arrayObj.stake)}}</span>
+              </div>
+            </div> 
+          <!-- fancy_profit_loss -->
+          <div *ngIf="arrayObj.is_session_fancy=='Y'" fxlayout="row" fxlayoutalign="space-between center" fxlayoutgap="10px" class="form-list " ng-reflect-fx-layout="row" ng-reflect-fx-layout-align="space-between center" ng-reflect-fx-layout-gap="10px" style="flex-direction: row; box-sizing: border-box; display: flex; place-content: center space-between; align-items: center; margin-bottom: 5px;">
+            <div class="stack_input_field" style="margin-right: 10px;">
+              <label class="form-label">Profit</label>
+              <span id="profitData" class="profit" style="color: green;">{{arrayObj.is_back ==
+                  0 ? arrayObj.stake : ((arrayObj.size * arrayObj.stake)/100).toFixed(2)}}</span>
+            </div>
+            <div class="stack_input_field">
+              <label class="form-label">Loss</label>
+              <span id="profitData" class="profit" style="color: red;">{{arrayObj.is_back == 0
+                  ? ((arrayObj.size * arrayObj.stake)/100).toFixed(2) : arrayObj.stake}}</span>
+            </div>
+          </div>  
+          <div fxlayout="row" fxlayoutalign="space-around center" fxlayoutgap="10px" ng-reflect-fx-layout="row" ng-reflect-fx-layout-align="space-around center" ng-reflect-fx-layout-gap="10px" style="flex-direction: row; box-sizing: border-box; display: flex; place-content: center space-around; align-items: center;"></div>
+        </div>
+  </div>
+  
+  </div>
+</ng-template>
+
+  <!-- sessionBook bets -->
+<ng-template #sessionBook>
+  <div class="modal-header model_header bg-primary">
+      <h4 class="modal-title">Run Position</h4>
+      <a type="button" class="close" data-dismiss="modal">
+          <mat-icon (click)="modalRef.hide()" style="color:white">close</mat-icon>
+      </a>
+  </div>
+
+  <div class="modal-body" style="background-color:white;">
+      <div class="table-div modeltable">
+          <table class="table table-bordered">
+              <tr>
+                  <th class="text-center" align="center">Run</th>
+                  <th class="text-right" align="right">Amount</th>
+              </tr>
+              <tr *ngFor="let l of sessionrunnerProfit|keyvalue" [ngClass]="l.value > 0 ? 'back' : 'lay'">
+                  <td align="center">{{l.key}}</td>
+                  <td align="right">{{l.value}}</td>
+              </tr>
+          </table>
+          <button style="float:right" class="button-button3" (click)="modalRef.hide()">Close</button>
+      </div>
+  </div>
+</ng-template>

@@ -1,0 +1,54 @@
+<app-header></app-header>
+
+<main class="full-wrap dashboard-page">
+    <div class="main-div">
+        <div class="left-section">
+            <div class="main-row">
+            <div class="row m-3" style="background-color:#F9F9F9">
+                <div class="col-md-12 p-2">
+                    <div class="main-content">
+                       <h1 class="mb-0">Market Analysis</h1> 
+                       <small style="font-size: 14px;">You can view your cricket card books from sports menu.</small>
+                    </div>
+                </div>
+                <ng-container *ngFor="let x of marketAnalysis" style="border:1px solid red">
+                    <ng-container *ngIf="x.marketType=='MATCH_ODDS'"> 
+                        <table class="markettabel" >
+                            <tr><th colspan="12"><a (click)="matchDetail(x.eventId);" class="evename">{{x.eventName}}</a>
+                                <!-- <span >Bet Lock</span> -->
+                                <div class="dropdown" style="float:right;">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" (click)="show_status(x.eventId)">Bet Lock
+                                    <span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                      <li *ngIf="all_bet_status===true else unlock" (click)="all_status(x.eventId,'deactive')"><a>Unlock</a></li>
+                                      <ng-template #unlock>
+                                      <li (click)="all_status(x.eventId,'active')"><a>Lock</a></li>
+                                    </ng-template>
+                                    </ul>
+                                  </div>
+                            </th>
+                                  
+                            </tr>  
+                                                    
+                        <tr>
+                            <td *ngFor="let y of x.marketBook.runners" colspan="4">
+                                <strong>{{searchRunner(x?.runners,y?.selectionId)}}</strong>&nbsp; 
+                                <span  *ngIf="runnerProfit">
+                                    <span *ngIf="runnerProfit[x.marketId]" class="font-weight-bold" [ngStyle]="{ 'color': runnerProfit[x.marketId][y.selectionId] > 0 ? 'green': 'red' }">
+                                       {{runnerProfit[x.marketId][y.selectionId] | number : '0.0-2'}}
+                                    </span>
+                                </span>
+                            </td>
+                             
+                        </tr>
+                        </table>
+              </ng-container>
+                </ng-container>
+               
+            </div>
+        </div>
+        </div>
+
+    </div>
+   
+</main>

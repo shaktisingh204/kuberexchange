@@ -1,0 +1,34 @@
+<ng-container *ngIf="maintenance_page">
+  <img
+    style="height: 100%; width: 100%"
+    src="assets/background/under_maintainance.jpg"
+    alt="cinque terre"
+  />
+</ng-container>
+
+<div
+  *ngIf="inactive_usr"
+  style="margin-top: 76%; background-color: white; padding: 40px"
+>
+  <div class="text-center" role="alert">
+    <p class="text-danger" style="font-size: 25px">
+      Your session has been expired,<br />Redirected to Login Page.
+    </p>
+    <button type="button" (click)="logoutUser()" class="btn btn-dark">
+      Back to Login
+    </button>
+  </div>
+</div>
+
+<ng-container *ngIf="router_outlet">
+  <router-outlet></router-outlet>
+  <!-- <div *ngIf="displayLoadingIndigatior" class="spinner"></div> -->
+  <ngx-ui-loader [fgsTemplate]="foregroundSpinner"></ngx-ui-loader>
+  <!-- <ngx-http-loader [loader]="loader.HOURGLASS" [iconColor]="'#ffc107'"></ngx-http-loader> -->
+
+  <ng-template #foregroundSpinner>
+    <img
+      src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/loader.gif"
+    />
+  </ng-template>
+</ng-container>

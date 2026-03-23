@@ -1,0 +1,214 @@
+<app-header></app-header>
+<main>
+  <div class="full-wrap">
+    <div class="report-page">
+      <div class="website-setting inner-content">
+        <div class="page-title">
+          <h3>
+            <span>Complete markets</span>
+          </h3>
+        </div>
+        <div class="row">
+          <div class="mt-2 mx-2" style="width: 15%">
+            <label for="" class="form-label text-label">Game Type</label>
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              (change)="change_gameType($event.target.value)"
+            >
+              <option value="" selected>All</option>
+              <option value="MATCH_ODDS">MatchOdds</option>
+              <option value="Special">Bookmaker</option>
+              <option value="SESSION">Fancy</option>
+            </select>
+          </div>
+
+          <div class="mt-2 mx-2" style="width: 15%">
+            <label for="" class="form-label text-label">Market Type</label>
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              (change)="change_gameName($event.target.value)"
+            >
+              <option value="" selected>All</option>
+              <option value="4">Cricket</option>
+              <option value="1">Soccer</option>
+              <option value="2">Tennis</option>
+            </select>
+          </div>
+
+          <div class="col-md-6 mt-2">
+            <div class="col-inner">
+              <div class="btn-list">
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  style="margin-top: 21px !important"
+                  (click)="this.currentPage = 1; onLoad()"
+                >
+                  Load
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-end" style="width: 17%; margin-top: 30px !important">
+            <input
+              style="background-image: none !important"
+              class="form-select"
+              type="text"
+              id="search"
+              placeholder="search market name"
+              (keyup)="
+                searchOnClosedMarket($event.target.value); this.currentPage = 1
+              "
+            />
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <!--complete_market-->
+          <div class="col-12">
+            <table>
+              <tr>
+                <th>Date</th>
+                <th>Event Name</th>
+                <th>Market Name</th>
+                <th>Market Id</th>
+                <th>Result</th>
+                <th>Action</th>
+              </tr>
+              <tr
+                *ngFor="
+                  let x of closed_market
+                    | paginate
+                      : {
+                          itemsPerPage: itemsPerPage,
+                          currentPage: currentPage,
+                          totalItems: totalItems
+                        };
+                  let i = index
+                "
+              >
+                <td>{{ x.updatedAt | date : "MMM d, y  H:mm a" }}</td>
+                <td>
+                  <span
+                    *ngIf="x.marketType === 'SESSION'; else matchodds_bookmaker"
+                    >{{ x.marketName }}</span
+                  ><ng-template #matchodds_bookmaker>
+                    {{ x.eventName }}</ng-template
+                  >
+                </td>
+                <td>{{ x.marketName }}</td>
+                <td>{{ x.marketId }}</td>
+                <!-- marketType -->
+                <td>
+                  <span
+                    *ngIf="
+                      x.marketType === 'Special' ||
+                      x.marketType === 'MATCH_ODDS'
+                    "
+                  ></span
+                  >{{ x.Result
+                  }}<span *ngIf="x.marketType === 'SESSION'">{{
+                    x.sessionResult
+                  }}</span>
+                </td>
+                <td>
+                  <a
+                    *ngIf="x.marketType === 'Special' && x.rollbackstatus == 0"
+                    class="td-btn balance-sheet btn-dark text-light"
+                    (click)="
+                      set_marketId(un_declare_market, x.marketId, 'bookmaker')
+                    "
+                    ngbTooltip="unset_bookmaker_market"
+                    >Unset Bookmaker Market</a
+                  >
+                  <a
+                    *ngIf="x.marketType === 'SESSION' && x.rollbackstatus == 0"
+                    class="td-btn balance-sheet btn-dark text-light"
+                    (click)="
+                      set_marketId(un_declare_market, x.marketId, 'fancy')
+                    "
+                    ngbTooltip="unset_fancy_market"
+                    >Unset Fancy Market</a
+                  >
+                </td>
+              </tr>
+              <tr *ngIf="closed_market?.length === 0">
+                <td colspan="8" class="text-center">No data found</td>
+              </tr>
+              <!-- <div class="d-flex"> -->
+
+              <!-- </div> -->
+            </table>
+            <div class="col-6">
+              <span
+                >Showing
+                <span>{{ itemsPerPage * (currentPage - 1) + 1 }}</span> to
+                <span
+                  *ngIf="
+                    currentPage == math.ceil(totalItems / itemsPerPage) ||
+                      (totalItems / itemsPerPage | number : '1.0-0') == 0;
+                    else toPage
+                  "
+                  >{{ totalItems }}</span
+                ><ng-template #toPage>{{
+                  itemsPerPage * currentPage
+                }}</ng-template>
+                of <span>{{ totalItems }}</span> entries</span
+              >
+            </div>
+            <div class="col-6" style="float: right">
+              <pagination-controls
+                (pageChange)="pageChange($event)"
+                class="user-list-pagination"
+              ></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- un_declare_market -->
+<ng-template #un_declare_market>
+  <div class="modal-header bg-danger">
+    <h4 class="modal-title text-white">Confirmation</h4>
+    <a
+      type="button"
+      class="close text-white"
+      data-dismiss="modal"
+      (click)="modalRef.hide()"
+      >×</a
+    >
+  </div>
+  <div class="modal-body no-scroll-body">
+    <div class="body-inner text-danger">
+      <h3>Are you sure you want to Unset Fancy Market ?</h3>
+    </div>
+  </div>
+
+  <div class="modal-footer pt-0">
+    <div class="text-end btn-group">
+      <button
+        type="button"
+        class="btn btn-back"
+        data-dismiss="modal"
+        (click)="modalRef.hide()"
+      >
+        <i class="fas fa-undo"></i> Back
+      </button>
+      <button
+        type="submit"
+        class="btn btn-login ml-3 bg-danger"
+        style="margin-right: -7px"
+        [disabled]="unset_market_status"
+        (click)="unset_market()"
+      >
+        Unset
+      </button>
+    </div>
+  </div>
+</ng-template>

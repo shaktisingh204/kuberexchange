@@ -1,0 +1,86 @@
+
+  .main-content{
+    margin-top: 29px;
+  }
+   
+
+  @media (max-width:557px) {
+  
+    .main-content{
+       margin-top: 29px;
+   }
+  }
+
+  .table-div{
+    overflow-x: auto !important;padding: 0 10px;
+}
+.customtabelne{padding: 0 10px;overflow: hidden;}
+.table .thead-dark th {
+    color: #fff;
+    font-size:14px;
+    background-color: var(--theme2-bg);
+    border-color: #73787c !important;
+    padding: 3px 10px;font-weight: 500;font-family: 'Roboto Condensed', sans-serif!important;
+}
+.table .thead-dark th  span{font-family: 'Roboto Condensed', sans-serif!important;}
+.table th {
+    padding:0;
+}
+.table .thead-dark th[_ngcontent-serverApp-c196] {
+    color: #fff;
+    font-size: 0.9rem;
+    background-color: #343a40;
+    border-color: #73787c !important;
+    
+}
+
+.table{
+    td
+   {
+      max-width: 100%;
+    
+      font-size: 14px !important;
+       overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+   }
+}
+.table td{ 
+    vertical-align: top; 
+    
+}
+
+  .casinowalletpage .form-group label{display: block;font-size: 13px;margin-bottom: 2px;font-weight: 500;}
+
+ .custom-select  {
+    width: 100%;
+}
+.btn-list  .btn
+{
+  width: 100%;
+  background-color: var(--theme1-bg) !important;
+  font-weight: normal;margin-bottom: 10px;
+}
+
+.form-group  {margin-bottom: 10px;}
+
+.filed-from{padding-bottom: 10px;}
+.filed-from  small{font-size: 12px; display: block;    font-weight: 600;}
+.filed-from  label{display: block;font-size: 13px;margin: 0px;  font-weight: 600;}
+.filed-from  select{    width: auto;
+    padding: 6px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    font-size: 14px;
+    height: 33px;background: #f2f2f2;}
+.filed-from  input
+{    width: 100%;
+    padding: 6px;
+    border: none;
+    border-bottom: 1px solid #435463;
+    font-size: 14px;
+    height: 33px;
+}
+.filed-from  input::placeholder{color: #6c757d!important}
+
+

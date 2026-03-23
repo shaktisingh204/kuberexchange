@@ -1,0 +1,81 @@
+<div style="background: black;padding-bottom: 77vh;">
+<div class="row" style="background: #00897B;padding: 14px 5px 4px 22px;">
+    <div class="col-2" [routerLink]="['/wallet-home']" style="padding: 8px 0px 8px 15px;">
+        <i class="fa fa-arrow-left" style="color: white;font-size: 19px;"></i>
+    </div>
+    <div class="col-8" style="text-align: center;">
+        <h1 style="color: white;">IDs</h1>
+    </div>
+    <div class="col-2" style="padding: 8px 0px 8px 15px;">
+        <i class="far fa-bell" style="font-size: 20px;color: white;" [routerLink]="['/notifications']"></i>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row" style="background: #1e1d1d;padding: 10px 0px 10px 0px;">
+        <div class="col-6" style="padding: 0px 0px 6px 0px;" [ngClass]="{activetab :tabselect1}" (click)="tabchange()">
+            <button class="btn btn-block" style="
+            color: white;
+            letter-spacing: 1px;
+            font-size: 15px;">My ID</button>
+        </div>
+        <div class="col-6" style="padding: 0px 0px 6px 0px;" [ngClass]="{activetab :tabselect2}" (click)="tabchange2()">
+            <button class="btn btn-block" style="
+            color: white;
+            letter-spacing: 1px;
+            font-size: 15px;">Create ID</button>
+        </div>
+    </div>
+    <div class="row" style="justify-content: center;margin: 1px 0px 0px 0px;" *ngIf="tabselect2">
+        <div class="col-12" style="background: #2b2a2a;padding: 10px 15px;border-radius: 7px;margin: 12px 0px 0px 0px;">
+            <div class="row">
+                <div class="col-3">
+                    <img class="rounded-circle" style="width: 99%;height: 85%;margin-top: 3px;"
+                        src="https://tse3.mm.bing.net/th?id=OIP.l3ElVBY69HeWRS_d3UPi0wHaEh&pid=Api&P=0" alt="">
+                </div>
+                <div class="col-6" style="color: white;">
+                    <p style="font-size: 16px;margin: 4px 0px 0px 0px;letter-spacing: 1px;">GoExch</p>
+                    <p style="letter-spacing: 1px;">goexch9.com</p>
+                </div>
+                <div class="col-3" style="color: white;text-align: center;">
+                    <button class="btn btn-success"
+                        style="margin: 9px 0px 0px -5px;letter-spacing: 1px;">create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="justify-content: center;margin: 1px 0px 0px 0px;" *ngIf="tabselect1">
+        <div class="col-12" style="background: #2b2a2a;padding: 10px 15px;border-radius: 7px;margin: 12px 0px 0px 0px;">
+            <div class="row">
+                <div class="col-3">
+                    <img class="rounded-circle" style="width: 99%;height: 75%;margin-top: 3px;"
+                        src="https://tse3.mm.bing.net/th?id=OIP.l3ElVBY69HeWRS_d3UPi0wHaEh&pid=Api&P=0" alt="">
+                </div>
+                <div class="col-6" style="color: white;">
+                    <p style="font-size: 16px;margin: 4px 0px 0px 0px;letter-spacing: 1px;">GoExch</p>
+                    <p style="letter-spacing: 1px;">Apr-19-2023 03:59 PM</p><p style="color:#41e7d5;margin: -10px 0px 5px;font-size: 16px;letter-spacing: 1px;">test</p>
+                </div>
+                <div class="col-3" style="text-align: center;color: white;padding: 12px 0px 0px 0px;">
+                    <i class="fa fa-info-circle" style="font-size: 24px;"></i>
+                </div>
+
+                <div class="col-12">
+                    <div class="row" style="color:white;margin: 0px 0px 7px 0px;">
+                        <div class="col-6" style="text-align: center;padding: 9px 0px 0px 0px;"><button
+                                class="btn  btn-danger"
+                                style="height: 100%;width: 90%;font-size: 15px;letter-spacing: 1px;margin: 2px 0px 0px -6px;">Deposit</button>
+                        </div>
+
+                        <div class="col-6" style="text-align: center;padding: 9px 0px 0px 0px;margin: 2px -6px 0px 0px ;"><button
+                                class="btn  btn-success"
+                                style="height:105%;width: 90%;font-size: 15px;letter-spacing: 1px;">Withdraw</button>
+                        </div>
+
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <app-footerbar></app-footerbar>

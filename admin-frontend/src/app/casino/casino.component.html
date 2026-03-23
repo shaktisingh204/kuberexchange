@@ -1,0 +1,584 @@
+<app-header></app-header>
+
+<main>
+    <div class="main-div">
+        <div class="left-section ">
+            <div class="main-row">            
+                    <div class="main-content snybetting-design">
+                        <!-- usrBook -->
+                        <div class="tabletopbutton row">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-4 float-right text-right">  
+                                <div class="betFilter">
+                                <div class="filter-input-list">
+                            
+                                    <div class="form-group dropdown">
+                                        <button (click)="casino_Book(userBook);" type="button" class=" dropbtn btn btn-back">
+                                            User Book
+                                        </button>
+                                    </div>
+                                    
+                                
+                                </div>
+                        
+                              
+                            </div>
+                        </div>
+                        </div>
+						
+						
+                        <div class="coupon-card row">
+						<div class="col-md-8 main-content">
+			
+            <iframe class="sun" [src]="iframUrl" *ngIf="iframUrl" marginwidth="0" marginheight="0" frameborder="0" width="100%" height="90%;" scrolling="yes" allowfullscreen="allowfullscreen"></iframe>
+		                 </div>
+
+       <!-- view_more_section -->
+		
+		 <div class="col-md-4 sidebar-rights">
+                                <div class="bet-list">
+                                    
+                                    <div class="game-body">
+                                        <div class="tab-content" id="myRightTabContent">
+                                            <div class="tab-pane fade show active" id="allBetRight">
+                                                <div class="betFilter">
+                                                    
+                                                    <div class="row mt-2">
+                                                        <div class="col-md-12">
+                                                          
+                                                                <ul class="nav nav-tabs tabs-table bg-secondary" id="myTab" role="tablist">
+                                                                
+                                                                    <div class="col-md-8 d-flex m-0">
+                                                                            <li class="nav-item tabs-li">
+                                                                      <a class="nav-link btn btn-primary active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                                                                        aria-selected="true">Matched</a>
+                                                                    </li>
+                                                                    
+                                                                    </div>
+                                                                     <div class="text-end col-md-4 m-0">
+                                                                        <a role="button" class="btn-back btn" (click)="openModalSearchMarket(matchBet)" >View More</a>
+                                                                     </div>
+                                                                  </ul>
+                                                                  <div class="tab-content" id="myTabContent">
+                                                                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                                                        <div class="report-table">
+                                                                            <table class="table" >
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Username</th>
+                                                                                        <th style="width: 30%">
+                                                                                            Nation
+                                                                                        </th>
+                                                                                        
+                                                                                        <th>Rate
+                                                                                            </th>
+                                                                                            <th>
+                                                                                            Amount
+                                                                                        </th>
+                                                                                        
+                                                                                        <th>PlaceDate
+                                                                                        </th>
+                                                                                        <th>GameType
+                                                                                        </th>
+                                                                                        
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <ng-container *ngFor="let b of betList">
+                                                                                      <tr [ngClass]="{'bg_red': b?.deleted === true,'back': b?.type === 'Back'&& b?.deleted === false , 'lay': b?.type === 'Lay'&& b?.deleted === false}">
+                                                                                        <td>
+                                                                                            {{b.username}}
+                                                                                        </td>
+                                                                                        <td style="width: 30%;">
+                                                                                            <span *ngIf="b.marketType==='Casino' else nationBlock">
+                                                                                                <!-- {{b.marketName}} / {{b.rate*100 | number : '0.0-2'}} -->
+                                                                                                {{b.selectionName}}
+                                                                                               </span>
+
+                                                                                               <ng-template #nationBlock>
+                                                                                                {{b.selectionName}}
+                                                                                               </ng-template>
+                                                                                            
+                                                                                        </td>
+
+                                                                                        <td>
+                                                                                            <span *ngIf="b.marketType==='SESSION' else rateBlock">
+                                                                                                <span id="matchType">{{b.selectionName}}</span>
+                                                                                               
+                                                                                               </span>
+                                                                    
+                                                                                               <ng-template #rateBlock>
+                                                                                                <span id="matchType"><span *ngIf="b.marketType=='Special' else rate_matchOdds">{{(b.rate*100)-100 | number : '0.0-2'}}</span><ng-template #rate_matchOdds>{{b.rate | number : '0.0-2'}}</ng-template></span>
+                                                                                               
+                                                                                            </ng-template>
+                                                                                        </td>
+
+                                                                                        <td>
+                                                                                            <span>
+                                                                                                {{b.stake|number:'1.2-2'}}
+                                                                                             </span> 
+                                                                                            <!-- <span *ngIf="b.type=='Back'">
+                                                                                                {{b.stake|number:'1.2-2'}}
+                                                                                             </span> 
+                                                                                             
+                                                                                             <span *ngIf="b.type=='Lay'">
+                                                                                               <span *ngIf="b.runnerId!='1'">
+                                                                                                {{b.stake*(b.rate-1)|number:'1.2-2'}}
+                                                                                               </span> 
+                                                                                               <span *ngIf="b.runnerId=='1'">
+                                                                                                {{b.stake*(b.rate)}}
+                                                                                               </span> 
+                                                                                             </span> -->
+                                                                                        </td>
+
+                                                                                        <td class="nowrap">
+                                                                                            {{b.placedTime| date:'yyyy/MM/dd hh:mm:s a'}}<br>
+                                                                                        </td>
+                                                                                        
+                                                                                        <td>
+                                                                                               <span>
+                                                                                                   {{b.marketType}}
+                                                                                                  </span>
+                                                                                        </td>
+
+
+
+                                                                                      </tr>
+                                                                                    </ng-container>
+                                                                                </tbody>
+                                                                                </table>
+                                                                                <div class="row" *ngIf="betList?.length==0" >
+                                                                                    <div class="col-md-12 text-center">
+                                                                                        <span> No data avalible </span> 
+                                                                                    </div>
+                                                                                </div>
+                                                                                </div>
+                                                                    
+                                                                    
+                                                                    </div>
+                                                                    
+                                                                    
+                                                                  </div>
+                                                                                                                   
+                                                            
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                
+                                            </div>
+                                            
+        
+                                        </div>
+                                    </div>
+                                </div>
+         </div>
+
+         <!-- view_more_section end -->
+						
+						</div>
+						
+                    </div>
+               
+            </div>
+        </div>
+
+        
+    </div>
+</main>
+
+<!-- view More bets -->
+<ng-template #matchBet>
+    <div class="bigmodal">
+    <div class="modal-header">
+        <h4 class="modal-title">View More Bet</h4>
+        <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()">×</a>
+    </div>
+
+    <div class="modal-body morebetbody">
+
+        <div id="exTab1">	
+            <!-- <ul class="nav nav-tabs tabs-table " id="myTab" role="tablist">
+                <li class="nav-item tabs-li">
+                  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#1a" role="tab" aria-controls="home"
+                    aria-selected="true" (click)="getBetList()">Matched Bets</a>
+                </li>
+                <li class="nav-item tabs-li">
+                  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#2a" role="tab" aria-controls="profile"
+                    aria-selected="false">Unmatched Bets </a>
+                </li>
+                <li class="nav-item tabs-li">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#3a" role="tab" aria-controls="profile"
+                      aria-selected="false" (click)="deleteBet()">Deleted Bets </a>
+                  </li>
+                 
+              </ul> -->
+                 <div class="tab-content clearfix p-0">
+                    <div class="tab-pane active" id="1a">
+                      <div class="forwrapbetes">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group m-t-20">
+                                    <label for="" class="form-label"> Enter Code</label>
+                                   <div class="customslect">
+<!-- new -->
+<input list="browsers" name="browser" id="browser" [(ngModel)]="view_more_bet_form.filterusername" (keyup)="searchUser();">
+  <datalist id="browsers">
+    <option *ngFor="let user of filter_user_arr">{{user.username}}</option>
+  </datalist>
+                                    <!-- <select class="form-select" name="userSearch" aria-label="Default select example" [(ngModel)]="view_more_bet_form.filterusername">
+                                        <option value="">All</option>
+                                        <option *ngFor="let user of userList" [ngValue]="user.username" class="option" selected>{{user.username}}</option>
+                                    </select> -->
+                                      </div>
+                                    </div>
+                                    <div class="form-group m-t-20">
+                                        <label for="" class="form-label"> IP Address</label>
+                                        <input type="text" name="ip_address" id="" class="from-control" [(ngModel)]="view_more_bet_form.ip_address">
+                                    </div>
+                                    </div>
+
+
+                                    <div class="col-md-7">
+                                        <div class="form-group m-t-20">
+                                            <label for="" class="form-label">Amount</label>
+                                            <input type="text" name="minstake" class="from-control" [(ngModel)]="view_more_bet_form.minstake" >
+                                            <input type="text" name="maxstake" class="from-control" [(ngModel)]="view_more_bet_form.maxstake" >
+                                            </div>
+                                            <div class="form-group m-t-20">
+                                                <label for="" class="form-label">Type</label>
+   <select class="browser-default custom-select" [(ngModel)]="view_more_bet_form.type">
+                                            <option selected value="">ALL</option>
+                                            <!-- <option value="select" ><input type="text"></option> -->
+                                            <option value="Back">Back</option>
+                                            <option value="Lay">Lay</option>
+                                          </select>
+  <button type="button" class="btn btn-back" style="margin-right: 5px;" (click)="getSearchDate()">Search</button>
+                                                    <button type="button" class="btn btn-back" (click)="view_more_viewAll()">View All</button>
+                                            </div>
+                                            </div>
+                        </div>
+                    </div>
+                        
+                    
+                        <div class="report-table mt-2">
+                            <table class="table" >
+                                <thead>
+                                    <tr>
+                                        <th>
+                                        <span>No.</span>
+                                        </th>
+                                        <th >UserName
+                                            
+                                        </th>
+                                        <!-- <th *ngIf="type != 0">Name</th> -->
+                                        <th>Nation</th>
+                                        <th>M type</th>
+                                        <th>Bet Type</th>
+                                        <th>Amount</th>
+                                        <th><span>User</span> <span>Rate</span> </th>
+                                        <th><span>Place</span> <span>Date</span></th>
+                                        <th>IP</th>
+                                        <th><span>Browser</span> <span>Details</span></th>
+                                            
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+
+                                    <tr *ngFor="let b of view_more_betList;let i=index" [ngClass]="{'bg_red': b?.deleted === true,'back': b?.type === 'Back'&& b?.deleted === false , 'lay': b?.type === 'Lay'&& b?.deleted === false}">
+                                       <td>
+                                        {{i+1}}
+                                       </td>
+                                        <td>
+                                            {{b.username}}
+                                        </td>
+                                        <td style="width: 30%;">
+                                            <span *ngIf="b.marketType==='Casino' else clck_more_nationBlock">
+                                                {{b.selectionName}}
+                                               </span>
+
+                                               <ng-template  #clck_more_nationBlock>
+                                                {{b.selectionName}}
+                                               </ng-template>
+                                            
+                                            
+                                        </td>
+                                        <td ><span *ngIf="b.marketType==='SESSION' else marktTypeB">SESSION</span>
+                                            <ng-template #marktTypeB>{{b.marketName}}</ng-template>
+                                        </td>
+                                        <td>
+                                            {{b.type}}
+                                        </td>
+
+
+                                        
+
+                                        <td>
+                                            <span>
+                                                {{b.stake|number:'1.2-2'}}
+                                             </span> 
+                                            <!-- <span *ngIf="b.type=='Back'">
+                                                {{b.stake|number:'1.2-2'}}
+                                             </span> 
+                                             
+                                             <span *ngIf="b.type=='Lay'">
+                                               <span *ngIf="b.runnerId!='1'">
+                                                {{b.stake*(b.rate-1)|number:'1.2-2'}}
+                                               </span> 
+                                               <span *ngIf="b.runnerId=='1'">
+                                                {{b.stake*(b.rate)}}
+                                               </span> 
+                                             </span> -->
+                                        </td>
+
+                                       
+                                        <td>
+                                            <span *ngIf="b.marketType==='SESSION' else clck_more_rateBlock">
+                                                <span id="matchType">{{b.selectionName}}</span>
+                                               
+                                               </span>
+                    
+                                               <ng-template #clck_more_rateBlock>
+                                                <span id="matchType"><span *ngIf="b.marketType=='Special' else rate_matchOdds">{{(b.rate*100)-100|number : '1.2-2'}}</span><ng-template #rate_matchOdds>{{b.rate|number : '1.2-2'}}</ng-template></span>
+                                               
+                                            </ng-template>
+                                            
+                                        </td>
+
+                                       
+                                        <td class="nowarp">
+                                            {{b.placedTime|date:'MMM d, y  H:mm'}}
+                                        </td>
+
+                                 <td>
+                                       {{b?.ipaddress}}
+                                 </td>
+
+                                 <td>
+                                    <a style="color:#6D7B86" title="{{b?.browserdetail}}">
+                                        Detail
+                                     </a>
+                                 </td>
+
+                                      </tr>
+                                </tbody>
+                                </table>
+                                <div class="row" *ngIf="view_more_betList?.length==0" >
+                                    <div class="col-md-12  text-center">
+                                        <span> No data avalible </span> 
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="2a">
+                                <div class="report-table">
+                                    <table class="table" >
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                <span>No.</span>
+                                                </th>
+                                                <th >UserName
+                                                    
+                                                </th>
+                                                <!-- <th *ngIf="type != 0">Name</th> -->
+                                                <th>Nation</th>
+                                                <th>Bet Type</th>
+                                                <th>Amount</th>
+                                                <th><span>User</span> <span>Rate</span> </th>
+                                                <th><span>Place</span> <span>Date</span></th>
+                                                <th>IP</th>
+                                                <th><span>Browser</span> <span>Details</span></th>
+                                                    
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td ></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>                    
+                                                <td></td>
+                    
+                                            </tr>
+                                        </tbody>
+                                        </table>
+                                        <div class="row" *ngIf="1" >
+                                            <div class="col-md-12  text-center">
+                                                <span> No data avalible </span> 
+                                            </div>
+                                        </div>
+                                </div>
+                     </div>
+                    <div class="tab-pane" id="3a">
+                        <div class="report-table">
+                            <table class="table" >
+                                <thead>
+                                    <tr>
+                                        <th>
+                                        <span>No.</span>
+                                        </th>
+                                        <th >UserName
+                                            
+                                        </th>
+                                        <!-- <th *ngIf="type != 0">Name</th> -->
+                                        <th>Nation</th>
+                                        <th>Bet Type</th>
+                                        <th>Amount</th>
+                                        <th><span>User</span> <span>Rate</span> </th>
+                                        <th><span>Place</span> <span>Date</span></th>
+                                        <th>IP</th>
+                                        <th><span>Browser</span> <span>Details</span></th>
+                                            
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                 <tr *ngFor="let b of betList;let i=index" [ngClass]="{'bg_red': b?.deleted === true,'back': b?.type === 'Back'&& b?.deleted === false , 'lay': b?.type === 'Lay'&& b?.deleted === false}">
+                                       <td>
+                                        {{i+1}}
+                                       </td>
+                                        <td>
+                                            {{b.username}}
+                                        </td>
+                                        <td style="width: 30%;">
+                                            <span *ngIf="b.runnerId=='1'">
+                                                {{b.marketName}}
+                                               
+                                               </span>
+
+                                               <span *ngIf="b.runnerId!='1'">
+                                                {{b.selectionName}}
+                                               
+                                               </span>
+                                            
+                                        </td>
+                                        <td>
+                                            {{b.type}}
+                                        </td>
+
+
+                                        
+
+                                        <td>
+                                            <span *ngIf="b.type=='Back'">
+                                                {{b.stake|number:'1.2-2'}}
+                                             </span> 
+                                             
+                                             <span *ngIf="b.type=='Lay'">
+                                               <span *ngIf="b.runnerId!='1'">
+                                                {{b.stake*(b.rate-1)|number:'1.2-2'}}
+                                               </span> 
+                                               <span *ngIf="b.runnerId=='1'">
+                                                {{b.stake*(b.rate)}}
+                                               </span> 
+                                             </span>
+                                        </td>
+
+                                       
+                                        <td>
+                                            <span *ngIf="b.runnerId=='1'">
+                                                <span id="matchType">{{b.selectionName}}/{{(b.rate)*100|number:'1.2-2'}} </span>
+                                               
+                                               </span>
+                    
+                                               <span *ngIf="b.runnerId!='1'">
+                                                <span id="matchType">{{(b.rate)}} </span>
+                                               
+                                               </span>
+                                        </td>
+
+                                       
+                                        <td>
+                                            {{b.placedTime|date:'MMM d, y  H:mm'}}
+                                        </td>
+
+                                 <td>
+
+                                 </td>
+
+                                 <td>
+                                    
+                                 </td>
+
+
+
+                                      </tr>
+                                </tbody>
+                                </table>
+                                <div class="row" *ngIf="1" >
+                                    <div class="col-md-12  text-center">
+                                        <span> No data avalible </span> 
+                                    </div>
+                                </div>
+                        </div>
+                      
+                    </div>
+                      
+                     </div>
+              </div>
+            
+
+
+    </div>
+</div>
+</ng-template>
+
+<ng-template #userBook>
+    <div class="bigmodal">
+    <div class="modal-header">
+        <h4 class="modal-title">User Book</h4>
+        <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()">×</a>
+    </div>
+
+    <div class="modal-body">
+        <div class="body-inner">
+             <div class="report-table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                User Name
+                            </th>
+                            <th>Profit</th>
+                            <th>Loss</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let x of casino_book">
+                        <tr *ngIf="x?.profit!=0 && x?.loss!=0">
+                          
+                            <td>{{x?.runnerName}}</td>
+
+                            <td class="text-success">
+                                  {{x?.profit | number : '0.0-2'}}
+                            </td>
+                            <td class="text-danger">
+                                <span *ngIf="x?.loss!=0 else elseR">
+                                    -{{x?.loss | number : '0.0-2'}}
+                                </span>
+                                <ng-template #elseR>
+                                   0
+                                </ng-template>
+                               
+                          </td>
+
+                        </tr>
+                    </ng-container>
+                    </tbody>
+                    </table>
+                    </div> 
+
+        </div>
+    </div>
+    </div>
+
+</ng-template>

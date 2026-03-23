@@ -1,0 +1,240 @@
+<app-header></app-header>
+
+<main>
+  <div class="full-wrap">
+    <div class="report-page customreport-page">
+      <div class="closed-user inner-content">
+        <div class="page-title bg-light">
+          <h3 class="pagetitleheading" style="color: #000">
+            Game Report
+          </h3>
+        </div>
+
+        <div class="filterDiv bg-light choosetype">
+          <div class="row">
+            <div class="col-md-12">
+              <form>
+                <div class="row form-field form-div">
+                  <div class="col-md-2">
+                    <div class="col-inner">
+                      <div class="form-group form-group-div">
+                        <label for="" class="form-label text-label">Account Type</label>
+                        <select class="form-select" aria-label="Default select example"
+                          (change)="change_acc_type($event.target.value)">
+                          <option value="1">Game Report</option>
+                          <option value="2">Balance Report</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-2">
+                    <div class="col-inner">
+                      <div class="form-group form-group-div mb-0">
+                        <label for="" class="form-label text-label">Game Type</label>
+                        <select class="form-select text-select" aria-label="Default select example"
+                          (change)="change_game_type($event.target.value)">
+                          <option value="" class="option" selected>All</option>
+                          <option value="4" class="option">Cricket</option>
+                          <option value="2" class="option">Tennis</option>
+                          <option value="1" class="option">Soccer</option>
+                          <option value="c9" class="option">Casino</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-2">
+                    <div class="col-inner">
+                      <div class="form-group form-group-div mb-0">
+                        <label for="" class="form-label text-label">Client Type</label>
+                        <select class="form-select text-select" aria-label="Default select example"
+                          (change)="change_client_type($event.target.value)">
+                          <option value="" selected>All</option>
+                          <option *ngIf="userDetails.details.role=='admin'" value="subadmin">Super Master</option>
+                          <option *ngIf="userDetails.details.role=='admin' || userDetails.details.role=='subadmin'"
+                            value="master">Master
+                          </option>
+                          <option
+                            *ngIf="userDetails.details.role==='admin' || userDetails.details.role==='subadmin' || userDetails.details.role==='master'"
+                            value="manager">Agent</option>
+                          <option value="user">User</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-2">
+                    <div class="col-inner">
+                      <div class="form-group form-group-div dateTimePicker">
+                        <label for="" class="form-label text-label">From</label>
+                        <input type="text" class="form-control" [popover]="popTemplate" placement="bottom"
+                          [outsideClick]="true" #startpopoverRef="bs-popover"
+                          value="{{ startdateTime | date : 'yyyy-MM-dd' }}" (click)="showDate()" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="col-inner">
+                      <div class="form-group form-group-div dateTimePicker">
+                        <label for="" class="form-label text-label">To</label>
+                        <input type="text" class="form-control" [popover]="popTemplate1" placement="bottom"
+                          [outsideClick]="true" #endpopoverRef="bs-popover"
+                          value="{{ enddateTime | date : 'yyyy-MM-dd' }}" (click)="showDate()" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-2">
+                    <div class="col-inner">
+                      <div class="btn-list">
+                        <button type="button" class="btn btn-primary" style="margin-top: 21px !important"
+                          (click)="getProfitLoss();">
+                          Load
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="report-table">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Credit Refrence <span class="red-brackets">[</span>{{all_profit_loss?.creditrefrence}}<span
+                    class="red-brackets">]</span></th>
+                <th>Balance <span class="red-brackets">[</span>{{all_profit_loss?.balance | number :'0.0-2'}}<span
+                    class="red-brackets">]</span></th>
+                <ng-container *ngIf="acc_type==='1' else elseblock">
+                  <th>Total Won <span class="red-brackets">[</span><span
+                      class="green">{{all_profit_loss?.totalwon}}</span><span class="red-brackets">]</span></th>
+                  <th>Total Loss <span class="red-brackets">[</span><span
+                      class="red">{{all_profit_loss?.totalloss}}</span><span class="red-brackets">]</span></th>
+                </ng-container>
+                <ng-template #elseblock>
+                  <th>Total Deposit <span class="red-brackets">[</span><span
+                      class="green">{{all_profit_loss?.totalwon}}</span><span class="red-brackets">]</span></th>
+                  <th>Total Withdraw <span class="red-brackets">[</span><span
+                      class="red">{{all_profit_loss?.totalloss}}</span><span class="red-brackets">]</span></th>
+                </ng-template>
+
+                <th>P|L <span class="red-brackets">[</span><span
+                    [ngClass]="{'red font-weight-bold':all_profit_loss?.profit < 0 ,'green font-weight-bold':all_profit_loss?.profit > 0}">{{all_profit_loss?.profit}}</span><span
+                    class="red-brackets">]</span>
+                </th>
+
+                <th *ngIf="acc_type==='1'">My P|L <span class="red-brackets">[</span><span
+                    [ngClass]="{'red font-weight-bold':all_profit_loss?.profit < 0 ,'green font-weight-bold':all_profit_loss?.profit > 0}">{{all_profit_loss?.myprofit}}</span><span
+                    class="red-brackets">]</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let x of userPlList | keyvalue | paginate
+              : {
+                  itemsPerPage: itemsPerPage,
+                  currentPage: currentPage,
+                  totalItems: totalItems
+                };
+          let i = index">
+                <td>{{ x.value.username }}</td>
+                <td>{{x.value.creditrefrence}}</td>
+                <td> {{ x.value.balance | number : '0.0-2'}}</td>
+                <td [ngClass]="{'green font-weight-bold':x.value.profit > 0}">{{x.value.totalwon}}</td>
+                <td [ngClass]="{'red font-weight-bold':x.value.totalloss < 0}">{{x.value.totalloss}}</td>
+                <td
+                  [ngClass]="{'red font-weight-bold':x.value.profit < 0 ,'green font-weight-bold':x.value.profit > 0}">
+                  {{x.value.profit}}
+                </td>
+                <td *ngIf="acc_type==='1'"
+                  [ngClass]="{'red font-weight-bold':x.value.myprofit < 0 ,'green font-weight-bold':x.value.myprofit > 0}">
+                  {{x.value.myprofit}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="row" *ngIf="userPlList?.length == 0">
+            <div class="col-md-12 p-0 text-center">
+              <div class="nodatats">
+                <span> No data avalible </span>
+              </div>
+            </div>
+          </div>
+
+          <pagination-controls (pageChange)="pageChange($event)" class="user-list-pagination"></pagination-controls>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Date Time Picker -->
+<ng-template #popTemplate>
+  <datepicker [hidden]="!isDateVisible" [(ngModel)]="date" [minDate]="minDate" [maxDate]="todayDateTime"
+    [showWeeks]="false" (ngModelChange)="updateDate()" (selectionDone)="dateSelectionDone()">
+  </datepicker>
+  <timepicker [hidden]="!isDateVisible" [(ngModel)]="time" (ngModelChange)="updateTime()" showSeconds="true"
+    [showMeridian]="isMeridian">
+  </timepicker>
+
+  <div style="padding: 5px">
+    <span class="btn-group pull-left" style="margin-right: 10px">
+      <button type="button" class="btn btn-sm btn-info" [hidden]="!isDateVisible" (click)="today()">
+        Today
+      </button>
+      <button type="button" class="btn btn-sm btn-danger" (click)="clear()">
+        Clear
+      </button>
+    </span>
+    <span class="btn-group pull-right">
+      <!-- <button type=button class="btn btn-sm btn-light" [hidden]="isDateVisible" 
+            (click)="showDate()">Date
+            </button>
+            <button type=button class="btn btn-sm btn-light" [hidden]="!isDateVisible" 
+            (click)="showTime()">Time
+            </button> -->
+      <button type="button" class="btn btn-sm btn-success" (click)="close()">
+        Close
+      </button>
+    </span>
+    <span class="clearfix"></span>
+  </div>
+</ng-template>
+
+<ng-template #popTemplate1>
+  <datepicker [hidden]="!isDateVisible" [(ngModel)]="endDate" [minDate]="date" [maxDate]="todayDateTime"
+    [showWeeks]="false" (ngModelChange)="updateEndDate()" (selectionDone)="dateSelectionDone()">
+  </datepicker>
+  <timepicker [hidden]="!isDateVisible" [(ngModel)]="endTime" (ngModelChange)="updateEndTime()"
+    [showMeridian]="isMeridian" showSeconds="true">
+  </timepicker>
+
+  <div style="padding: 5px">
+    <span class="btn-group pull-left" style="margin-right: 10px">
+      <button type="button" class="btn btn-sm btn-info" [hidden]="!isDateVisible" (click)="today()">
+        Today
+      </button>
+      <button type="button" class="btn btn-sm btn-danger" (click)="clear()">
+        Clear
+      </button>
+    </span>
+    <span class="btn-group pull-right">
+      <!-- <button type=button class="btn btn-sm btn-light" [hidden]="isDateVisible" 
+            (click)="showDate()">Date
+            </button>
+            <button type=button class="btn btn-sm btn-light" [hidden]="!isDateVisible" 
+            (click)="showTime()">Time
+            </button> -->
+      <button type="button" class="btn btn-sm btn-success" (click)="closeEndDatepicker()">
+        Close
+      </button>
+    </span>
+    <span class="clearfix"></span>
+  </div>
+</ng-template>

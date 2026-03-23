@@ -1,0 +1,290 @@
+<!-- <div class="container" style="background: black;padding: 5px 0px 5px 0px;">
+    <div class="row" style="color:white;padding: 3px;margin: 0px 0px 0px 0px;">
+        <div class="col-6">
+          
+            <div class="row">
+               
+                <div class="col-2">
+                    <img :src={{team2logo}} alt="" style=" width: 32px;
+                    margin: 15px 0px 0px 3px;
+                    height: 32px;">   
+                </div>
+                <div class="col-10">
+                    
+                    <p style="font-size: 15px;
+                    letter-spacing: 1px;margin: 15px 0px 0px 13px;">{{team2scorename}} - {{team2Score}}</p>
+                </div>
+                <div class="col-2">
+                    <img :src={{team1logo}} alt="" style=" width: 50px;margin: 0px 0px 0px -5px;
+                    height: 52px;">   
+                </div>
+                <div class="col-10">
+                    <p style="font-size: 15px;
+                    letter-spacing: 1px;margin: 15px 0px 0px 13px;">{{team1scorename}} - {{team1Score}}</p>
+                </div>
+           <div class="col-10" style="margin: 10px 0px 0px 8px;"> <p style="font-size: 14px;
+            letter-spacing: 1px;color: #ffff40;">{{remark}}</p></div>
+               
+            </div>
+        </div>
+        <div class="col-6" style="text-align: center;margin: 40px 0px 0px 0px;font-weight: 700;">
+            <h4 style="border: 2px solid #4CAF50;
+            border-radius: 3px;
+            padding: 37px;
+            background: #000000;
+            color: #ffffff;
+            font-size: 20px;
+            margin: -18px 0px 10px 0px;
+            letter-spacing: 1px;
+            font-weight: 600;">{{Dis}}</h4>
+        </div>
+    </div>
+
+<ng-container>
+    <table class="table" style="color: white;">
+        <thead style="color:#20fdff ;letter-spacing: 1px;">
+            <tr>
+                <th>
+             Batter
+                </th>
+                <th>
+                R
+             </th>
+             <th>
+                B
+             </th>
+             <th>
+                4s
+             </th>
+             <th>
+                6s
+             </th>
+             <th>
+                SR
+             </th>
+            </tr>
+        </thead>
+        <tbody  *ngFor="let x of batsmen">
+            <tr style="color: #ffff50;">
+        <td>{{x.batn}} <span *ngIf="x.os ==  'true'"> <sup><b>*</b></sup> </span></td>
+        <td>{{x.trun}}</td>
+        <td>{{x.tball}}</td>
+        <td>{{x.t4}}</td>
+        <td>{{x.t6}}</td>
+        <td>{{x.sr}}</td>
+            </tr>
+        
+        </tbody>
+    </table>
+    <table class="table" style="color: white;">
+        <thead style="color:#20fdff;letter-spacing: 1px;">
+            <tr>
+                <th>
+             Bowler
+                </th>
+                <th>
+                O
+             </th>
+             <th>
+                M
+             </th>
+             <th>
+                R
+             </th>
+             <th>
+                W
+             </th>
+            
+            </tr>
+        </thead>
+        <tbody  *ngFor="let x of bowler">
+            <tr style="color: #ffff40;">
+        <td>{{x.pn}} <span *ngIf="x.os ==  'true'"> <sup><b>*</b></sup> </span></td>
+        <td>{{x.tov}}.{{x.cob}}</td>
+        <td>{{x.mov}}</td>
+        <td>{{x.trun}}</td>
+        <td>{{x.twik}}</td>
+      
+            </tr>
+        
+        </tbody>
+    </table>
+</ng-container>
+</div>-->
+  <!-- <div class="row"  style="margin: 0px 0px 10px 0px;color:white;padding: 3px;background: #003b35;">
+    <div class="col-12" style="padding: 14px 14px 0px 14px;border-bottom: 1px solid;">
+        <h5>D.Shanaka to-and Virat Kohli</h5>
+        <p style="width: 20px;
+        background: red;
+        text-align: center;
+        border-radius: 10px;">
+        W</p>
+        
+ </div>
+  <div class="col-12" style="padding: 14px 14px 0px 14px; ">
+     <p>Ovr 49 | 0 runs | 15-1</p>
+</div>
+   </div>
+   <div class="row"  style="margin: 0px 0px 10px 0px;color:white;padding: 3px;background: #003b35;">
+    <div class="col-12" style="padding: 14px 14px 0px 14px;border-bottom: 1px solid;">
+        <h5>D.Shanaka to-and Virat Kohli</h5>
+        <p style="width: 20px;
+        background: red;
+        text-align: center;
+        border-radius: 10px;">
+        W</p>
+ </div>
+  <div class="col-12" style="padding: 14px 14px 0px 14px;">
+     <p>Ovr 49 | 0 runs | 15-1</p>
+</div>
+   </div> --> 
+   <div class="scard-change">
+    <div class="scoreboard-2 new-scoreboard" id="divScore" style="margin: -22px 0px 0px 0px">
+      <div class="score-header">
+        <div class="valign-wrapper top-header">
+          <div class="left-team">
+            <span class="tName">{{team1scorename}}</span>
+            <div class="team-name">
+              <span class="team-img"> 
+                <img class="left-icon team1Side " :src={{team1logo}} >
+              </span>
+              <div class="left-score">
+             
+                <div class="team-score">
+                  <span class="team-score team1Score" [innerHtml]="team1Score | slice: 0:6"></span>
+                  <div class="overs">
+                    <span class="team1Over"  [innerHtml]="team1Score | slice: -5:-1"></span>
+                    <span class="team1RefScore"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="separator">
+            <div class="center-content">
+              <!---->
+              <div class="status-text ">
+                <div class="over-title Status zoominout-text"> {{Dis}} </div>
+              </div>
+              <div class="zoominout six divZoom hide"></div>
+              <!---->
+            </div>
+            <!---->
+            <p class="crrSec ">CRR  {{CRR}} <strong>4.91</strong>
+              <!---->
+              <span class=""> RRR  {{REQ}} </span>
+              <strong>0.0</strong>
+            </p>
+          </div>
+          <div class="right-team">
+            <span class="tName">{{team2scorename}}</span>
+            <div class="team-name">
+              <div class="right-score">
+                <div class="team-score">
+                  <span class="team-score team2Score" [innerHtml]="team2Score | slice: 0:5"></span>
+                  <div class="overs text-right">
+                    <span class="team2Over"  [innerHtml]="team2Score | slice: -5:-1"></span>
+                    <span class="team2RefScore"></span>
+                  </div>
+                </div>
+                
+              </div>
+              <span class="team-img">
+                <!---->
+                <img class="team2Side " :src={{team2logo}}>
+                <!---->
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="grayBox">
+          <div class="detail-score">
+            
+            <div class="score-details down-content disflx">
+              <div class="details-left">
+                <table>
+                  <tbody class="tbodybatter-bowler" id="tblBatsManScorecardlistbody">
+                    <tr class="header">
+                      <td>Batsmen</td>
+                      <td class="center-align">R</td>
+                      <td class="center-align">B</td>
+                      <td class="center-align">4s</td>
+                      <td class="center-align">6s</td>
+                      <td class="center-align">SR</td>
+                    </tr>
+                    <!---->
+                    <ng-container *ngFor="let x of batsmen">
+                    <tr class="trBatsman ">
+                      <td class="batsman-name"> {{x.batn}} </td>
+                      <td class="center-align">{{x.trun}}</td>
+                      <td class="center-align">{{x.tball}}</td>
+                      <td class="center-align">{{x.t4}}</td>
+                      <td class="center-align">{{x.t6}}</td>
+                      <td class="center-align">{{x.sr}}</td>
+                    </tr>
+                </ng-container>
+                    <!-- <tr class="trBatsman ">
+                      <td class="batsman-name">* Agha Salman</td>
+                      <td class="center-align">60</td>
+                      <td class="center-align">80</td>
+                      <td class="center-align">6</td>
+                      <td class="center-align">1</td>
+                      <td class="center-align">75</td>
+                    </tr> -->
+                  </tbody>
+                </table>
+            
+              </div>
+              <div class="details-center">
+             
+                <div class="over-details">
+                  <div class="current-over">
+                    <ol class="balls balls_currentOver" >
+                      <!---->
+                      <li class="ball INFIELDBOUNDARY_1 " *ngFor="let m of balls" > <small *ngIf="m.isw==false" style="font-size: 14px;
+                      ">{{m.run}}</small>
+                        <small *ngIf="m.isw==true">Wk</small></li>
+                        <!-- <small *ngIf="m.isb==true">lb</small><small *ngIf="m.wbr > 0">Wd</small> -->
+                      
+                    </ol>
+                  </div>
+                </div>
+              </div>
+              <div class="runs-need">
+                <span class="title runs-needs">Pakistan trail by 91 Runs.</span>
+              </div>
+            
+              <div class="details-right">
+                <table class="">
+                  <tbody class="tbodybatter-bowler" id="tblBowlerScorecardlistbody">
+                    <tr class="header">
+                      <td class="center-align">Bowler</td>
+                      <td class="center-align">O</td>
+                      <td class="center-align">M</td>
+                      <td class="center-align">R</td>
+                      <td class="center-align">W</td>
+                      <!-- <td class="center-align">ECO</td> -->
+                    </tr>
+                    <!---->
+                    <ng-container  *ngFor="let x of bowler">
+                    <tr class="trBatsman ">
+                      <td class="batsman-name">{{x.pn}}</td>
+                      <td class="center-align">{{x.tov}}</td>
+                      <td class="center-align">{{x.mov}}</td>
+                      <td class="center-align">{{x.trun}}</td>
+                      <td class="center-align">{{x.twik}}</td>
+                     
+                    </tr>
+                </ng-container>
+                  </tbody>
+                </table>
+            
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- src="https://dhanbox.com/assets/images/NewBall.svg" -->
+  <!-- src="https://dhanbox.com/assets/images/NewBat.svg" -->

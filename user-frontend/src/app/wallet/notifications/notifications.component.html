@@ -1,0 +1,44 @@
+<div style="background: black;padding-bottom: 77vh;">
+<div class="row" style="background: #00897B;padding: 11px 5px 0px 22px;">
+    <div class="col-2" [routerLink]="['/wallet-home']" style="padding: 8px 0px 8px 15px;">
+      <i class="fa fa-arrow-left" style="color: white;font-size: 19px;"></i>
+    </div>
+    <div class="col-8" style="text-align: center;">
+        <h2>Notifications</h2>
+    </div>
+    <!-- <div class="col-2" [routerLink]="['/notifications']">
+        <i class="far fa-bell" style="font-size: 20px;color: white;"></i>
+    </div> -->
+    </div>
+    <div class="container">
+    <div class="row" style="justify-content: center;margin: 1px 0px 0px 0px;">
+        <div class="col-12" *ngFor="let x of notifications,index as i" style="background: #2b2a2a;padding: 10px 15px;border-radius: 7px;margin: 12px 0px 0px 0px;" (click)="expand(i)">
+            <div class="row">
+                <div class="col-3" *ngIf="x.payment.type != 'Withdrawal'" >
+                    <img class="" style="width: 57px;
+                    height: 53px;margin-top: 3px;border-radius: 60px"
+                        src="https://adminsocket.diamond222.com/uploads/screenshot/{{x.payment.image}}" alt="">
+                       
+                </div>
+                <div class="col-3" *ngIf="x.payment.type == 'Withdrawal'" > <img class=""  style="width: 57px;
+                    height: 53px;margin-top: 3px;border-radius: 60px" src="https://tse4.mm.bing.net/th?id=OIP.jrNBWH_YIfM_HB9luYF6AwHaHa&pid=Api&P=0&h=180" alt=""></div>
+               
+                <div class="col-9" style="color: white;">
+                    <p style="font-size: 14px;margin: 4px 0px 0px 0px;letter-spacing: 1px;" [ngClass]="{'approve': x.status == 'Approved' , 'declined':x.status == 'Decline'}">{{x.name}}</p>
+                    <p style="letter-spacing: 1px;">{{x.createdAt}}</p>
+                </div>
+                <!-- <div class="col-3" style="color: white;text-align: center;">
+                    <button class="btn btn-success"
+                        style="margin: 9px 0px 0px -5px;letter-spacing: 1px;">create</button>
+                </div> -->
+                <div class="collapse" id="{{i}}">
+                    <div class="card card-body"  style="background: #2b2a2a;color: white;border: 0;">
+                     <p>{{x.message}}</p>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<app-footerbar></app-footerbar>

@@ -1,0 +1,75 @@
+<div class="mobile-bottom-bar">
+    <div class="bottom-menu">
+        <mat-list>
+            <mat-list-item [routerLink]="['/home/inplay']" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']"> <i class="material-icons">ondemand_video</i> <span>Inplay</span></mat-list-item>
+            <mat-list-item [routerLink]="['/home']" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']"> <i class="material-icons" >home</i> <span>Home</span></mat-list-item>
+            <mat-list-item [routerLink]="['/home/casino']" [routerLinkActive]="['active']"> <i class="material-icons">casino</i> <span>Casino</span> </mat-list-item>
+            <mat-list-item  [routerLink]="['/my-bet']" [routerLinkActive]="['active']"> <i class="material-icons">bar_chart</i> <span>MyBets</span></mat-list-item>
+            <!-- <mat-list-item [routerLink]="['/wallet']" [routerLinkActive]="['active']"> <i class="material-icons">account_balance_wallet</i> <span>Wallet</span></mat-list-item> -->
+            <mat-list-item (click)="sidenavRight.toggle();" [routerLinkActive]="['active']"> <i class="material-icons">person</i><span>User</span></mat-list-item>
+        </mat-list>
+    </div>
+</div>
+
+<mat-sidenav mode="side" #sidenavRight closed position="end" (click)="sidenavRight.toggle();"  class="right-panel">
+    <!-- <div class="sidebar-first-heading">
+        <span><mat-icon>close</mat-icon></span>
+        <button mat-stroked-button color="warn" (click)="logoutUser()">Logout <mat-icon>logout</mat-icon></button>
+    </div> -->
+    <div class="row user-profile  align-items-center">
+        <div class="col-xs-3">
+            <img src="assets/images/user-circle.svg">
+        </div>
+        <div class="col-xs-3 username">{{userDetails?.details?.username}}
+            <div class="last-login">
+                <!-- <div>Last login</div>
+                <div>{{moment(userDetails?.details?.updatedAt).utcOffset("+05:30").format('lll')}}</div> -->
+            </div>
+        </div>
+        <div class="sidebar-first-heading">
+            <button mat-stroked-button color="warn" (click)="logoutUser()"> <mat-icon>logout</mat-icon></button>
+        </div>
+    </div>
+    <div class="row " style="margin:5px 10px;">
+
+        <div class="winning-card">
+            <a style="color:#FFFFFF">
+            <img src="assets/icons/account_balance.png">
+            <div>Balance</div>
+            <h5><b>{{walletBalance | number : '0.0-2'}}</b></h5>
+        </a>
+        </div>
+
+        <!-- <div class="winning-card">
+            <a style="color:#FFFFFF">
+                <i class="material-icons">casino</i>
+            <div>Casino</div>
+            <h5><b>{{casinoBal | number : '0.0-2'}}</b></h5>
+        </a>
+        </div> -->
+        
+        <div class="exposure-card">
+            <img src="assets/icons/exposure.png">
+            <div>Exposure</div>
+            <h5 ><b>{{exposure | number : '0.0-2'}}</b></h5>
+
+        </div>
+        
+    </div>
+    <div class="report-menu">
+        <h4>Reports</h4>
+        <ul class="menu-list">
+            <li><a class="dropdown-item" [routerLink]="['/home']"><img src="assets/images/icon/home.png"> Home</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/ledger']"><img src="assets/images/icon/open_bet.png"> Ledger</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/profit&history']"><img src="assets/images/icon/user.svg"> Profit Loss Report</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/profile']"><img src="assets/images/icon/open_bet.png"> Bet History</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/profile/1']"><img src="assets/images/icon/open_bet.png"> Unsetteled Bet</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/Button-Value']"><img src="assets/images/wallet.svg"> Set Button Values</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/terms-condition']"><img src="assets/images/icon/report.svg"> Terms & Conditions</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/Button-Value/2']"><img src="assets/images/icon/change_stack.png"> Settings</a></li>
+            <li (click)="logoutUser()" ><a style="color: red !important;"> <mat-icon>logout</mat-icon></a> LogOut</li>
+        </ul>
+    </div>
+    
+</mat-sidenav>
+

@@ -1,0 +1,118 @@
+<!-- background:linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(/assets/background/sports.jpg); -->
+<!-- check_desktop_alert -->
+<div
+  *ngIf="true"
+  class="loginPage"
+  style="
+    background:var(--theme2-loginbg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  "
+>
+  <div *ngIf="page_type === 'diamond' && !device_alert" class="login-main">
+    <!-- mobile_view -->
+    <div class="login-inner">
+      <div class="logo text-center">
+        <img src="assets/logo/{{ logo_img }}.png" alt="img" />
+        <!-- <img src="https://dzm0kbaskt4pv.cloudfront.net/v2/static/themes/diamondexch.com/mobile/logo.png" alt="img"> -->
+      </div>
+      <div class="form">
+        <!-- alert -->
+        <div *ngIf="res_error" class="alert alert-danger" role="alert">
+          {{ res_error }}
+        </div>
+        <form
+          class="login-form"
+          [formGroup]="loginForm"
+          (ngSubmit)="onSignInClick()"
+        >
+          <!-- <div class="login-title">LOGIN</div> -->
+          <div class="form-group" appearance="fill">
+            <!-- <label class="form-label">Username/Mobile No.</label> -->
+            <input
+              type="text"
+              class="form-control"
+              formControlName="username"
+              placeholder="Username/Mobile No."
+            />
+
+            <!-- <mat-icon matSuffix>person_outline</mat-icon> -->
+          </div>
+
+          <div class="form-group" appearance="fill">
+            <!-- <label class="form-label">Password</label> -->
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              class="form-control"
+              formControlName="password"
+              placeholder="Password"
+            />
+
+            <!-- <mat-icon style="cursor:pointer;" matSuffix [class.hide]="showPassword" (click)="showPassword = !showPassword">visibility</mat-icon>
+                        <mat-icon style="cursor:pointer;" matSuffix [class.hide]="!showPassword" (click)="showPassword = !showPassword">visibility_off</mat-icon> -->
+          </div>
+
+          <!-- <mat-checkbox class="checkbox-div">Remember me!</mat-checkbox> -->
+          <div class="submit-btn">
+            <button mat-raised-button [disabled]="loginButtonDisable">
+              Login <i class="fas fa-sign-in-alt"></i>
+            </button>
+          </div>
+          <div class="row m-0">
+            <small
+              style="
+                text-align: left;
+                color: black;
+                padding: 5px 0px;
+                line-height: 16px;
+              "
+              >This site is protected by reCAPTCHA and the Google
+              <a href="">Privacy Policy</a> and
+              <a href="">Terms of service</a> apply.</small
+            >
+            <!-- <p class="col-12 text-center colorblue" style="font-size: 12px;">info@diamondexch.com</p> -->
+          </div>
+        </form>
+      </div>
+    </div>
+    <div
+      *ngIf="logo_img === 'diamond222'"
+      [routerLink]="['/register']"
+      class="text-warning font-weight-bold text-center mt-2"
+      style="
+        text-decoration: underline;
+        cursor: pointer;
+        color: #ffff !important;
+      "
+    >
+      <p>Register</p>
+    </div>
+  </div>
+
+  <!-- diamond_desktop_view -->
+  <app-desk-login
+    *ngIf="page_type === 'diamond' && device_alert"
+  ></app-desk-login>
+
+  <app-login *ngIf="page_type === 'paisaexch'"></app-login>
+  <app-b-login *ngIf="page_type === 'betHonk'"></app-b-login>
+  <!-- <div style="display:table-row;vertical-align:bottom;" class="download-apk-btn text-center">
+        <button (click)="downloadApk();" mat-raised-button style="background-color:#ffff; color: black;"><mat-icon class="android">android</mat-icon> Get ANDROID APP <mat-icon class="arrow">arrow_forward</mat-icon></button>
+    </div> -->
+  <!-- <div class="text-center text-warning font-weight-bold mb-4" style="display:table-row;vertical-align:bottom;">Powered by OSG</div> -->
+</div>
+
+<!-- device_alert -->
+<div *ngIf="false" style="margin-top: 20%">
+  <div
+    class="alert"
+    style="background-color: #f44336; border: 5px solid white"
+    role="alert"
+  >
+    <p class="text-light font-weight-bold" style="font-size: 25px">
+      Due to some inactivity or security reasons stop your website, please use
+      the mobile version.<br />Thank you for your support
+    </p>
+  </div>
+</div>

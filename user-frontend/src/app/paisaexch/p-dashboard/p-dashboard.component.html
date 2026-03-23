@@ -1,0 +1,499 @@
+<div class="main-content">
+    <div *ngIf="marquetext" class="marquee-text">
+        <mat-icon> rss_feed</mat-icon>
+        <marquee width="100%" direction="left">{{marquetext}}</marquee>
+    </div>
+    
+  <!-- offerDesign -->
+  <div *ngIf="tokenCheck" class="offer_header">
+    <div class="left">
+        <img src="/assets/images/offer/inplay.png" alt="">
+        <p>INPLAY</p>
+    </div>
+
+    <div class="main">
+        <img src="/assets/images/offer/sportsbook.png" alt="">
+        <p>SPORTSBOOK</p>
+    </div>
+
+    <div class="right">
+        <img src="/assets/images/offer/casinologo.png" alt="">
+        <p>CASINO</p>
+    </div>
+</div>
+
+<!-- banner -->
+<div id="demo" class="carousel slide my-2" data-ride="carousel">
+<!-- Indicators -->
+<ul class="carousel-indicators">
+<li data-target="#demo" data-slide-to="0" class="active"></li>
+<li data-target="#demo" data-slide-to="1"></li>
+<li data-target="#demo" data-slide-to="2"></li>
+<li data-target="#demo" data-slide-to="3"></li>
+<li data-target="#demo" data-slide-to="4"></li>
+<li data-target="#demo" data-slide-to="5"></li>
+</ul>
+
+<!-- The slideshow -->
+<div class="carousel-inner">
+<!-- <div class="carousel-item" [ngClass]="{'active': i == 0}" *ngFor="let x of banner_img;let i = index">
+<img src='{{ "http://138.68.129.236:3006/uploads/" + wonder.id + ".jpg" }}' [src]="http://138.68.129.236:3006/uploads/{{x?.name}}" alt="{{x?.name}}" height="180">
+</div> -->
+<div class="carousel-item active">
+<img src="https://kushubmedia.com/build/new-osg-app/slider/1.png" alt="Chicago" height="180">
+</div>
+<div class="carousel-item">
+<img src="https://kushubmedia.com/build/new-osg-app/slider/2.png" alt="Chicago" height="180">
+</div>
+<div class="carousel-item">
+<img src="https://kushubmedia.com/build/new-osg-app/slider/3.png" alt="New York" height="180">
+</div>
+<div class="carousel-item">
+<img src="https://kushubmedia.com/build/new-osg-app/slider/4.png" alt="Los Angeles" height="180">
+</div>
+<div class="carousel-item">
+<img src="https://kushubmedia.com/build/new-osg-app/slider/5.png" alt="Chicago" height="180">
+</div>
+<div class="carousel-item">
+<img src="https://kushubmedia.com/build/new-osg-app/slider/6.png" alt="New York" height="180">
+</div>
+</div>
+
+<!-- Left and right controls -->
+<a class="carousel-control-prev" href="#demo" data-slide="prev">
+<span class="carousel-control-prev-icon"></span>
+</a>
+<a class="carousel-control-next" href="#demo" data-slide="next">
+<span class="carousel-control-next-icon"></span>
+</a>
+</div>
+<!-- bannerEnd -->
+
+<div *ngIf="offer_data?.length>0 && tokenCheck" class="container offer_icon" style="background:url(/assets/background/offer_back.jpg);background-size: cover;background-repeat: no-repeat;background-position: center center;min-height:21vh;">
+<div class="row mx-1">
+<span class="col-12"><i class="fas fa-light fa-gifts"></i><br>
+<h2>BOUNS ON YOUR DEPOSITE</h2> 
+</span>
+<ng-container *ngFor="let x of offer_data">
+<div class="col-6">{{x?.percentage}}%</div>
+<div class="col-6">Greter then &#8377;{{x?.amount}}</div>
+</ng-container>
+</div>
+
+
+</div>
+
+<!-- casinoImg -->
+<ng-container *ngIf="tokenCheck && dataLength">
+<div class="multi-card">
+<div class="scroll-card" style="padding: 14px;">
+<div class="itemsContain">
+<div class="d-flex card-group " style="padding: 0px 5px 0px 5px;">
+  <div class="card">
+    <img
+      src="https://images.supernowa.net/Document/GameImages/85246d801fef4d43a325637243661631_neon-thumbnails-18.png"
+      class="card-img-top" alt="...">
+    <div class="button"><a href="#"> Play Now</a></div>
+  </div>
+
+  <div class="card">
+    <img
+      src="https://images.supernowa.net/Document/GameImages/912af3fca2144874b7b7ab2de03cf63a_neon-thumbnails-13.png"
+      class="card-img-top" alt="...">
+    <div class="button"><a href="#"> Play Now</a></div>
+  </div>
+  
+</div>
+<div class="d-flex card-group" style="padding: 0px 5px 0px 5px;">
+  <div class="card">
+    <img
+      src="https://images.supernowa.net/Document/GameImages/bce4691827854b14a631ba020001e847_neon-thumbnails-03.png"
+      class="card-img-top" alt="...">
+    <div class="button"><a href="#"> Play Now</a></div>
+  </div>
+
+  <div class="card">
+    <img
+      src="https://images.supernowa.net/Document/GameImages/7343dec5ab5b4a36a6f926874f216389_neon-thumbnails-02.png"
+      class="card-img-top" alt="...">
+    <div class="button"><a href="#"> Play Now</a></div>
+  </div>
+  
+</div>
+
+<div class="d-flex card-group " style="padding: 0px 5px 0px 5px;">
+  <div class="card">
+    <img
+      src="https://images.supernowa.net/Document/GameImages/bce4691827854b14a631ba020001e847_neon-thumbnails-03.png"
+      class="card-img-top" alt="...">
+    <div class="button"><a href="#"> Play Now</a></div>
+  </div>
+
+  <div class="card">
+    <img
+      src="https://images.supernowa.net/Document/GameImages/7343dec5ab5b4a36a6f926874f216389_neon-thumbnails-02.png"
+      class="card-img-top" alt="...">
+    <div class="button"><a href="#"> Play Now</a></div>
+  </div>
+  
+</div>
+<div class="d-flex card-group " style="padding: 0px 5px 0px 5px;">
+  <div class="card">
+    <img
+      src="https://images.supernowa.net/Document/GameImages/0730f21c63544456a0fa1eb250ae4992_neon-thumbnails-17.png"
+      class="card-img-top" alt="...">
+    <div class="button"><a href="#"> Play Now</a></div>
+  </div>
+
+  <div class="card">
+    <img
+      src="https://images.supernowa.net/Document/GameImages/e910c519f92c41a58a9c59dc09e11250_neon-thumbnails-14.png"
+      class="card-img-top" alt="...">
+    <div class="button"><a href="#"> Play Now</a></div>
+  </div>
+  
+</div>
+<div class="d-flex card-group " style="padding: 0px 5px 0px 5px;">
+  <div class="card">
+    <img
+      src="https://images.supernowa.net/Document/GameImages/da0706276b4444d491846159bb1bf07a_neon-thumbnails-09.png"
+      class="card-img-top" alt="...">
+    <div class="button"><a href="#"> Play Now</a></div>
+  </div>
+
+  <div class="card">
+    <img
+      src="https://images.supernowa.net/Document/GameImages/1afe8e32eb0d43a496d56979bf5e8b60_neon-thumbnails-10.png"
+      class="card-img-top" alt="...">
+    <div class="button"><a href="#"> Play Now</a></div>
+  </div>
+  
+</div>
+<div class="d-flex card-group " style="padding: 0px 5px 0px 5px;">
+  <div class="card">
+    <img
+      src="https://images.supernowa.net/Document/GameImages/89685a59c2dc46429b805875c37066a6_neon-thumbnails-16.png"
+      class="card-img-top" alt="...">
+    <div class="button"><a href="#"> Play Now</a></div>
+  </div>
+
+  <div class="card">
+    <img
+      src="https://images.supernowa.net/Document/GameImages/8e0efab978a14ed483a794f9bb71ff96_neon-thumbnails-19.png"
+      class="card-img-top" alt="...">
+    <div class="button"><a href="#"> Play Now</a></div>
+  </div>
+  
+</div>
+<div class="d-flex card-group " style="padding: 0px 5px 0px 5px;">
+  <div class="card">
+    <img
+      src="https://images.supernowa.net/Document/GameImages/d67c61187ab248a58aefdeceff2edd96_neon-thumbnails-06.png"
+      class="card-img-top" alt="...">
+      <div class="button"><a href="#"> Play Now</a></div>
+  </div>
+
+  <div class="card">
+    <img
+      src="https://images.supernowa.net/Document/GameImages/f42e05b9dcee4275b3e2addc2f73c606_neon-thumbnails-08.png"
+      class="card-img-top" alt="...">
+      <div class="button"><a href="#"> Play Now</a></div>
+  </div>
+  
+</div>
+
+<div class="d-flex card-group " style="padding: 0px 5px 0px 5px;">
+  <div class="card">
+    <img
+      src="https://images.supernowa.net/Document/GameImages/c33323b773474acf9f3c43b33e31ae91_neon-thumbnails-12.png"
+      class="card-img-top" alt="...">
+    <div class="button"><a href="#"> Play Now</a></div>
+  </div>
+
+  <div class="card">
+    <img
+      src="https://images.supernowa.net/Document/GameImages/6fbb02d51cf044ea856eaa77faa77cd6_neon-thumbnails-15.png"
+      class="card-img-top" alt="...">
+    <div class="button"><a href="#"> Play Now</a></div>
+  </div>
+  
+</div>
+<div class="d-flex card-group " style="padding: 0px 5px 0px 5px;">
+  <div class="card">
+    <img
+      src="https://images.supernowa.net/Document/GameImages/23bce1903ca24717bfa7e6958f026aee_neon-thumbnails-07.png"
+      class="card-img-top" alt="...">
+    <div class="button"><a href="#"> Play Now</a></div>
+  </div>
+
+  <div class="card">
+    <img
+      src="https://images.supernowa.net/Document/GameImages/2b26c9bd6797460dae6697ee093b0825_neon-thumbnails-05.png"
+      class="card-img-top" alt="...">
+    <div class="button"><a href="#"> Play Now</a></div>
+  </div>
+  
+</div>
+<div class="d-flex card-group " style="padding: 0px 5px 0px 5px;">
+  <div class="card">
+    <img src="https://images.supernowa.net/Document/GameImages/2594257625a948feaf82aee8447a8cfc_23-RNG-queen.jpg"
+      class="card-img-top" alt="...">
+    <div class="button"><a href="#"> Play Now</a></div>
+  </div>
+
+  <div class="card">
+    <img
+      src="https://images.supernowa.net/Document/GameImages/198dec4fe9634a0493825705892cbd1f_neon-thumbnails-11.png"
+      class="card-img-top" alt="...">
+    <div class="button"><a href="#"> Play Now</a></div>
+  </div>
+ 
+</div>
+<div class="d-flex card-group " style="padding: 0px 5px 0px 5px;">
+  <div class="card">
+    <img
+      src="https://images.supernowa.net/Document/GameImages/c88fc9c1bfc34e97b8e96a80007e34cf_neon-thumbnails-01.png"
+      class="card-img-top" alt="...">
+    <div class="button"><a href="#"> Play Now</a></div>
+  </div>
+
+</div>
+
+</div>
+                  
+</div>
+
+</div>
+</ng-container>
+<!-- casinoImgEnd -->
+
+  <!-- offerDesign end-->
+
+    <div class="dashboard-page">
+        <!-- Cricket -->
+        <ng-container *ngIf="cricketData?.length">
+            <div class="game-list-card">
+                <div class="game-list-header">
+                    <img src="assets/icons/cricket.png">Cricket ({{cricketData?.length}})
+                </div>
+                <mat-card *ngFor="let x of cricketData" class="match-event-list m-1" (click)="matchDetail(x.eventId);">
+
+                    <div class="match-name" fxLayout="row" fxLayoutAlign="start space-arround"
+                        fxLayoutGap="5px">
+                        <div class="time-day inplay-btn"
+                        *ngIf="currentDate > x.openDate">In-Play</div>
+                        <div class="time-day"
+                        *ngIf="!(currentDate > x.openDate)">
+                            <span class="bet-datetime">{{moment(x?.openDate).utcOffset("+05:30").format('MMM')}}
+                                {{moment(x?.openDate).utcOffset("+05:30").format('D')}} <br>
+                                {{moment(x?.openDate).utcOffset("+05:30").format('hh:mm a')}}</span>
+                        </div>
+                        <img src="assets/images/icon/cricket.svg">
+                        <div class="odd-content">
+                            <div class="odd-title">
+                                <b>{{x?.eventName}}</b>
+
+                                <!--tvicon -->
+                                <!-- <div class="card-space">
+                                    <div fxLayout="row" fxLayoutAlign="end center">
+                                        <span class="live-tv-icon" *ngIf="x.marketBook.inplay == true">
+                                            <mat-icon>live_tv</mat-icon>
+                                        </span>
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event-odds" fxLayout="row" fxLayoutAlign="start space-arround"
+                        fxLayoutGap="5px">
+                        <div class="match-rate">
+                            <div class="odd-list back-rate back-1">{{x?.marketBook?.runners[0]?.availableToBack?.price}}</div>
+                            <div class="odd-list lay-rate lay-1">{{x?.marketBook?.runners[0]?.availableToLay?.price}}</div>
+                            <div class="odd-list back-rate back-2">--</div>
+                            <div class="odd-list lay-rate lay-2">--</div>
+                            <div class="odd-list back-rate back-3">
+                                {{x?.marketBook?.runners[1]?.availableToBack?.price}}</div>
+                            <div class="odd-list lay-rate lay-3">
+                                {{x?.marketBook?.runners[1]?.availableToLay?.price}}</div>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+        </ng-container>
+
+        <!-- Soccer -->
+        <ng-container *ngIf="soccerData?.length">
+            <div class="game-list-card">
+                <div class="game-list-header">
+                    <img src="assets/icons/Soccer.png">Soccer ({{soccerData?.length}})
+                </div>
+                <mat-card *ngFor="let x of soccerData" class="match-event-list m-1" (click)="matchDetail(x.eventId);">
+
+                    <!-- <mat-divider inset></mat-divider> -->
+                    <div class="match-name" fxLayout="row" fxLayoutAlign="start space-arround"
+                        fxLayoutGap="5px">
+                        <div class="time-day inplay-btn"
+                        *ngIf="currentDate > x.openDate">In-Play</div>
+                            <div class="time-day" *ngIf="!(currentDate > x.openDate)">
+                            <span
+                                class="bet-datetime">{{moment(x?.openDate).utcOffset("+05:30").format('MMM')}}
+                                {{moment(x?.openDate).utcOffset("+05:30").format('D')}} <br>
+                                {{moment(x?.openDate).utcOffset("+05:30").format('hh:mm a')}}</span>
+                          </div>
+                        <img src="assets/images/icon/soccer.svg">
+                        <div class="odd-content">
+                            <div class="odd-title">
+                                <b>{{x?.eventName}}</b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event-odds" fxLayout="row" fxLayoutAlign="start space-arround"
+                        fxLayoutGap="5px">
+                        <div class="match-rate">
+                            <div class="odd-list back-rate back-1">{{x?.marketBook?.runners[0]?.availableToBack?.price}}</div>
+                            <div class="odd-list lay-rate lay-1">{{x?.marketBook?.runners[0]?.availableToLay?.price}}</div>
+                            <div class="odd-list back-rate back-2">--</div>
+                            <div class="odd-list lay-rate lay-2">--</div>
+                            <div class="odd-list back-rate back-3">
+                                {{x?.marketBook?.runners[1]?.availableToBack?.price}}</div>
+                            <div class="odd-list lay-rate lay-3">
+                                {{x?.marketBook?.runners[1]?.availableToLay?.price}}</div>
+                        </div>
+                        <!-- Suspend Box -->
+                        <!-- <div class="suspend" *ngIf="homeMatch?.status == 'SUSPENDED'">
+                            <div class="suspend-status">Suspended</div>
+                        </div> -->
+                        <!-- <div class="suspend"
+                            *ngIf="homeMatch?.status != 'SUSPENDED' && homeMatch?.is_lock == true">
+                            <div class="suspend-status">LOCK</div>
+                        </div> -->
+                    </div>
+                    <!-- <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <button mat-flat-button>{{homeMatch?.series_name}}</button>
+                </div> -->
+                </mat-card>
+            </div>
+        </ng-container>
+
+        <!-- Tennis -->
+        <ng-container *ngIf="tennisData?.length">
+            <div class="game-list-card">
+                <div class="game-list-header">
+                    <img src="assets/icons/Tennis.png">Tennis ({{tennisData?.length}})
+                </div>
+                <mat-card *ngFor="let x of tennisData" class="match-event-list m-1" (click)="matchDetail(x.eventId);">
+
+                    <!-- <mat-divider inset></mat-divider> -->
+                    <div class="match-name" fxLayout="row" fxLayoutAlign="start space-arround"
+                        fxLayoutGap="5px">
+                        <div class="time-day inplay-btn"
+                        *ngIf="currentDate > x.openDate" >In-Play</div>
+                            <div class="time-day" *ngIf="!(currentDate > x.openDate)"
+                           >
+                            <span
+                                class="bet-datetime">{{moment(x?.openDate).utcOffset("+05:30").format('MMM')}}
+                                {{moment(x?.openDate).utcOffset("+05:30").format('D')}} <br>
+                                {{moment(x?.openDate).utcOffset("+05:30").format('hh:mm a')}}</span>
+                        </div>
+                        <img src="assets/images/icon/tennis.svg">
+                        <div class="odd-content">
+                            <div class="odd-title">
+                                <b>{{x?.eventName}}</b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event-odds" fxLayout="row" fxLayoutAlign="start space-arround"
+                        fxLayoutGap="5px">
+                        <div class="match-rate">
+                            <div class="odd-list back-rate back-1">{{x?.marketBook?.runners[0]?.availableToBack?.price}}</div>
+                            <div class="odd-list lay-rate lay-1">{{x?.marketBook?.runners[0]?.availableToLay?.price}}</div>
+                            <div class="odd-list back-rate back-2">--</div>
+                            <div class="odd-list lay-rate lay-2">--</div>
+                            <div class="odd-list back-rate back-3">
+                                {{x?.marketBook?.runners[1]?.availableToBack?.price}}</div>
+                            <div class="odd-list lay-rate lay-3">
+                                {{x?.marketBook?.runners[1]?.availableToLay?.price}}</div>
+                        </div>
+                        <!-- Suspend Box -->
+                        <!-- <div class="suspend" *ngIf="homeMatch?.status == 'SUSPENDED'">
+                            <div class="suspend-status">Suspended</div>
+                        </div> -->
+                        <!-- <div class="suspend"
+                            *ngIf="homeMatch?.status != 'SUSPENDED' && homeMatch?.is_lock == true">
+                            <div class="suspend-status">LOCK</div>
+                        </div> -->
+                    </div>
+                    <!-- <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <button mat-flat-button>{{homeMatch?.series_name}}</button>
+                </div> -->
+                </mat-card>
+            </div>
+        </ng-container>
+
+        <!-- casinoFooter -->
+        <ng-container *ngIf="tokenCheck && dataLength">
+           <!-- footer -->
+<footer class="text-center text-white" style="background:black;">
+  <!-- Grid container -->
+  <div class="container p-4 pb-0">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+      <!-- Facebook -->
+      <a class="btn text-white btn-floating m-1" style="background-color: #3b5998;" href="#!" role="button"><i
+          class="fab fa-facebook-f"></i></a>
+
+      <!-- Twitter -->
+      <a class="btn text-white btn-floating m-1" style="background-color: #55acee;" href="#!" role="button"><i
+          class="fab fa-twitter"></i></a>
+
+      <!-- Google -->
+      <a class="btn text-white btn-floating m-1" style="background-color: #dd4b39;" href="#!" role="button"><i
+          class="fab fa-google"></i></a>
+
+      <!-- Instagram -->
+      <a class="btn text-white btn-floating m-1" style="background-color: #ac2bac;" href="#!" role="button"><i
+          class="fab fa-instagram"></i></a>
+
+      <!-- Linkedin -->
+      <a class="btn text-white btn-floating m-1" style="background-color: #0082ca;" href="#!" role="button"><i
+          class="fab fa-linkedin-in"></i></a>
+      <!-- Github -->
+      <a class="btn text-white btn-floating m-1" style="background-color: #333333;" href="#!" role="button"><i
+          class="fab fa-github"></i></a>
+    </section>
+    <!-- Section: Social media -->
+  </div>
+  <!-- Grid container -->
+  <div class="link">
+    <div class="row m-0 no-gutters footer_div">
+      <a href="#"> Privacy Policy</a> |
+      <a href="#"> About Us</a> |
+      <a href="#"> Terms & Conditions </a> |
+      <a href="#"> Gambling can be addictive, Please play responsibly</a> |
+
+    </div>
+  </div>
+  <div class="payment_infor">
+    <p>Accept, process & disburse digital payments for your business.</p>
+    <img style="width: 91%;" src="https://gamerswar.com/assets/images/social-icons/footer-logo.png"
+      alt="Please waiting...">
+  </div>
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2022 Copyright:
+    <a class="text-white" href="#">paisaexch.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+
+<!-- footerEnd -->
+          
+        </ng-container>
+
+        <ng-container *ngIf="dataLength==0">
+            <div class="text-warning text-center" style="margin-top:25vh;">No match</div>
+        </ng-container>
+
+    </div>
+  
+</div>

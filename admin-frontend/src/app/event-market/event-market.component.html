@@ -1,0 +1,164 @@
+<app-header></app-header>
+<div class="container-fluid px-0">
+  <div style="background-color: #2c3e50; border-radius: 0px !important" class="card">
+    <div class="row">
+      <div class="col-10">
+        <h4 class="card-header mb-0 text-white">Market Events</h4>
+      </div>
+      <!-- <div class="col-2">
+                <div class="input-group mt-1">
+                    <div class="form-outline" style="width:87% !important">
+                      <input type="search" id="form1" class="form-control" placeholder="Search"/>
+                    </div>
+                    <button type="button" class="btn btn-primary">
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </div>
+                </div> -->
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-1">
+      <div class="breadcrumb" (click)="goToBack()" style="float: left">
+        <a class="btn btn-secondary back-btn"><i class="fa fa-arrow-left"></i>Back</a>
+      </div>
+    </div>
+    <div class="col-11">
+      <div class="breadcrumb" style="float: right">
+        <a class="btn btn-secondary back-btn">+ Market</a>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <!-- Tabs navs -->
+    <ul class="nav nav-tabs nav-fill mb-3" id="ex1" role="tablist">
+      <li class="nav-item" role="presentation" (click)="this.type = 'ALL'">
+        <a class="nav-link" [ngClass]="{ active: type === 'ALL' }" id="ex2-tab-1" data-mdb-toggle="tab" role="tab"
+          aria-controls="ex2-tabs-1" aria-selected="true">ALL</a>
+      </li>
+      <li class="nav-item" role="presentation" (click)="this.type = 'FANCY'">
+        <a class="nav-link" [ngClass]="{ active: type === 'FANCY' }" id="ex2-tab-2" data-mdb-toggle="tab" role="tab"
+          aria-controls="ex2-tabs-2" aria-selected="false">FANCY</a>
+      </li>
+      <li class="nav-item" role="presentation" (click)="this.type = 'DREAM'">
+        <a class="nav-link" [ngClass]="{ active: type === 'DREAM' }" id="ex2-tab-3" data-mdb-toggle="tab" role="tab"
+          aria-controls="ex2-tabs-3" aria-selected="false">DREAM</a>
+      </li>
+    </ul>
+    <!-- Tabs navs -->
+  </div>
+
+  <!-- all_filter -->
+  <ng-container *ngIf="type === 'ALL'">
+    <table>
+      <tr>
+        <th>SNo.</th>
+        <th>Market Name</th>
+        <th>Action</th>
+      </tr>
+      <!-- matchodds -->
+      <tr *ngIf="matchodds?.length > 0">
+        <td>1</td>
+        <td style="cursor: pointer" [routerLink]="['/bet-declare/', matchodds[0]?.marketId]">{{
+          matchodds[0]?.marketName}}</td>
+        <td><label class="switch">
+            <input type="checkbox" id="togBtn" [checked]="matchodds[0]?.visible == true" (change)="
+              matchOdds_toggle(matchodds[0], $event.target.checked)
+            " />
+            <div class="slider round"></div>
+          </label>
+        </td>
+      </tr>
+      <!-- fancy/Bookmaker -->
+      <tr *ngFor="let x of Data; let i = index">
+        <td><span *ngIf="matchodds?.length > 0 else temCount">{{i+2}}</span><ng-template #temCount>{{i+1}}</ng-template>
+        </td>
+        <td style="cursor:pointer;" [routerLink]="['/bet-declare/', x?.marketId]">{{ x?.marketName }}</td>
+        <td>
+          <label class="switch">
+            <input type="checkbox" id="togBtn" [checked]="x.visible == true" (change)="market_toggle(x)" />
+            <div class="slider round"></div>
+          </label>
+          &nbsp;&nbsp;
+          <i (click)="openModalMsg(message)" style="font-size: 18px;color: rgb(0, 172, 0);cursor: pointer;"
+            class="fa fa-comment" aria-hidden="true"></i>
+        </td>
+      </tr>
+      <ng-container *ngIf="Data?.length == 0 && matchodds?.length == 0">
+        <td colspan="3" class="no_data_found">No data found !</td>
+      </ng-container>
+    </table>
+
+
+  </ng-container>
+
+  <!-- fancy_filter -->
+  <ng-container *ngIf="type === 'FANCY'">
+    <table>
+      <tr>
+        <th>SNo.</th>
+        <th>Market Name</th>
+        <th>Action</th>
+      </tr>
+
+      <!-- fancy/Bookmaker -->
+      <tr *ngFor="let x of fancyData; let i = index">
+        <td>{{i+1}}</td>
+        <td style="cursor:pointer;" [routerLink]="['/bet-declare/', x?.marketId]">{{ x?.marketName }}</td>
+        <td>
+
+          <label class="switch">
+            <input type="checkbox" id="togBtn" [checked]="x.visible == true" (change)="market_toggle(x)" />
+            <div class="slider round"></div>
+          </label>&nbsp;&nbsp;
+          <i (click)="openModalMsg(message)" style="
+          font-size: 18px;
+          color: rgb(0, 172, 0);cursor: pointer;
+        " class="fa fa-comment" aria-hidden="true"></i>
+        </td>
+      </tr>
+      <ng-container *ngIf="fancyData?.length == 0">
+        <td colspan="3" class="no_data_found">No data found !</td>
+      </ng-container>
+    </table>
+
+
+  </ng-container>
+
+  <ng-container *ngIf="type === 'DREAM'">
+    <td colspan="3" class="no_data_found">No data found !</td>
+  </ng-container>
+
+</div>
+
+<!-- Message -->
+<ng-template #message>
+  <form (ngSubmit)="updateMsg()" #message_form="ngForm">
+    <div class="modal-header cutompophrader">
+      <h4 class="modal-title">Set A Message</h4>
+      <a type="button" class="close text-white" data-dismiss="modal" (click)="modalRef.hide()">×</a>
+    </div>
+    <div class="modal-body">
+      <div class="body-inner">
+        <div class="row-sm d-flex text1-row mt-3">
+          <div class="col-sm-4 text1-col-lable">
+            <label for="" class="form-label">Message</label>
+          </div>
+          <div class="col-sm-8 d-flex text1-col-input-box">
+            <textarea id="" rows="5" style="width: 100%" name="remark" [(ngModel)]="msg"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <div class="text-end btn-group">
+        <button type="button" class="btn btn-back btn-dark" data-dismiss="modal" (click)="modalRef.hide()">
+          <i class="fas fa-undo"></i> Cancel</button>&nbsp;&nbsp;
+        <button type="submit" class="btn btn-primary btn-login">
+          OK <i class="fas fa-sign-in-alt"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+</ng-template>

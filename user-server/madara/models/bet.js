@@ -1,0 +1,68 @@
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+var betSchema = new Schema({
+	username: { type: String, required: true, index: true },
+	userId: { type: String, required: true, index: true },
+	eventTypeId: { type: String, index: true },
+	eventTypeName: { type: String },
+	eventId: { type: String, index: true },
+	eventName: String,
+	marketId: { type: String, required: true, index: true },
+	marketName: String,
+	marketType: String,
+	runnerId: String,
+	runnerName:String,
+	orderId: String,
+	roundId: String,
+	selectionName: String,
+	type: { type: String, index: true },
+	rate: Number,
+	serverRate: Number,
+	stake: Number,
+	ratestake: Number,
+	amount: Number,
+	placedTime: { type: Date, index: true },
+	matchedTime: { type: Date, index: true },
+	status: { type: String, index: true },
+	result: { type: String, index: true },
+	managerresult: { type: String, index: true },
+	deleted: { type: Boolean, index: true },
+	image: String,
+	manager: String,
+	master: String,
+	subadmin: String,
+	admin: String,
+	superadmin: String,
+	techadmin: String,
+	managerId: String,		  // name of manager
+	masterId: String,		//manager username
+	subadminId: String,	//manager username
+	adminId: String,
+	superadminId: String,
+	techadminId: String,
+	marketState: Object,
+	runnerArray: Array,
+	parentCommision: Array,
+	runnerRuns: Number,
+	betentertime: Number,
+	managerCommision: Number,
+	masterCommision: Number,
+	subadminCommision: Number,
+	adminCommision: Number,
+	superadminCommision: Number,
+	techadminCommision: Number,
+	createDate: String,
+	gameResultUrl:String,
+	newBalance:String,
+	newExposure:String,
+	ipaddress: String,
+	ParentUser:String,
+	ParentRole:String,
+	ParentId:String,
+	browserdetail: String,
+	deleteRequest: Object
+}, { timestamps: true });
+betSchema.index({ marketId: 1, username: 1, status: 1, result: 1, deleted: -1 });
+betSchema.index({ marketId: 1, deleted: -1, placedTime: -1 });
+mongoose.model('Bet', betSchema);

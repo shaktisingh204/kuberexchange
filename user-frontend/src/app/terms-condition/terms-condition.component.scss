@@ -1,0 +1,56 @@
+//drawer_backgrond_color
+.mat-drawer-content{
+  background-color:var(--bg-color);
+}
+
+.main-content{
+  margin-top: var(--margin-top)!important;
+}
+
+.sio{
+    padding:15px;
+    font-family: system-ui;
+  }
+  .content-terms ul{
+    padding-left: 16px;
+  }
+  .content-terms p{
+    font-size: 14px;
+  
+  }
+  .content-terms ul li{
+    font-size: 14px;
+  }
+  .content-terms h3{
+    font-weight: 500;
+    font-size: 1.1rem;
+    letter-spacing: 0px;
+    padding: 4px;
+    color: #fff !important;
+    background-color: var(--btn-color) !important;
+    margin-bottom: 8px;
+  }
+  .content-terms h4, .content-terms h5{
+    font-weight: bold;
+    font-size: 0.9rem;
+    letter-spacing: 0px;
+    padding: 5px;
+    background-color: var(--theme2-bg) !important;
+    color:var(--heading-color)!important;
+    margin-bottom: 8px;
+  }
+  
+  .termspage  .cornnerButton{background-color: var(--header-bg) !important;}
+  .termspage .content-terms li, .termspage .content-terms h3,  .termspage .content-terms p,  .termspage .content-terms h4,
+  .termspage .content-terms h5,  .termspage .content-terms h2{color:var(--text-color)}
+
+  .main-content{
+    margin-top: 72px;
+}
+.termspage .content-terms ul{padding-left: 0px;margin-bottom: 8px;}
+@media (max-width:557px) {
+
+    .main-content{
+       margin-top: 29px;
+   }
+}

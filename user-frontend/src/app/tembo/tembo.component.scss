@@ -1,0 +1,93 @@
+@import "/src/app/dashboard/dashboard.component.scss";
+
+.card {
+    padding: 10px !important;
+    border: none !important;
+    padding-inline-start: 0px !important;
+}
+
+.card:last-child {
+    padding-right: 0% !important;
+}
+
+.tab-content>.active {
+    display: block;
+}
+
+.casino-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.casino-list-item.rect {
+    width: calc(13.66% - 4px)
+}
+
+.casino-list-item {
+    width: calc(13.66% - 4px);
+    margin: 0 5px 10px 5px;
+    cursor: pointer;
+    position: relative;
+}
+
+.casino-list-item.rect .casino-list-item-banner {
+    padding-top: 5.33%;
+}
+
+.casino-list-item .casino-list-item-banner {
+    padding-top: 100%;
+    background-size: cover;
+    background-position: center center;
+}
+
+img[_ngcontent-serverApp-c315] {
+    width: 203px;
+    margin-right: 5px;
+}
+
+/////////
+.nav-pills .nav-link {
+    background-color: #cccccc;
+    color: #000000;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    border-right: 1px solid var(--bg-secondary);
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    background-color: #2c3e50;
+    color: var(--text-secondary);
+}
+
+.casino_tab_list[_ngcontent-ng-c482833544] ul#casino-sub-tab[_ngcontent-ng-c482833544] {
+    flex-direction: column;
+    width: 100%;
+    background: transparent;
+    border: none;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    // background-color: var(--bg-secondary);
+    color: #fff;
+}
+
+.casino_tab_wrapper[_ngcontent-ng-c482833544] .casino_tab_list[_ngcontent-ng-c482833544] {
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 0px;
+    margin-left: 0px;
+}

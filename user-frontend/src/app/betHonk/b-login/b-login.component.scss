@@ -1,0 +1,374 @@
+@import "/src/app/betHonk/CSS/global.scss";
+.bg_login {
+    background-image: linear-gradient(rgba(255, 184, 12, 0.6), hsla(0, 0%, 100%, 0.6)), url(/assets/images/batHonk/bg.webp) !important;
+    background-position: inherit;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#login-wrapper {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    width: 350px;
+    overflow: hidden;
+    padding: 20px;
+    border-radius: 0;
+    border: none;
+    background: #fff;
+}
+#login-wrapper{
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5803921568627451);
+    border-radius: 5px;
+    border: 3px solid #fff;
+    background: hsla(0, 0%, 100%, 0.7294117647058823);
+    overflow: initial;
+}
+
+.bg_login .login-title {
+    background: #113a17;
+    color: #fc0;
+    margin-top: -40px;
+    text-align: center;
+    height: 55px;
+    margin-bottom: 24px;
+    line-height: 50px;
+    font-size: 20px;
+    font-weight: 600;
+    box-shadow: 0 15px 25px -8px rgb(0 0 0/66%);
+}
+.bg_login #login-wrapper .logo img {
+         margin: 0 auto;
+    display: inherit;
+     
+}
+
+.login_content {
+    width: 100%;
+    float: left;
+}
+.login_content form {
+    margin: 20px 0;
+}
+.linput {
+    width: 100%;
+    float: left;
+    margin-bottom: 15px;
+    position: relative;
+    padding: 0;
+}
+
+.login_content .linput {
+    background: #fff;
+    box-shadow: 0 5px 8px #d0d0d0;
+}
+
+.login_content label {
+    display: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #000;
+    margin-bottom: 0;
+}
+
+.login_content label {
+    display: block;
+    float: left;
+    width: 12%;
+    text-align: center;
+    height: 45px;
+    background: #113a17;
+    color: #fc0;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+.login_content label .fa {
+    font-size: 20px;
+}
+.linput input {
+    width: 100%;
+    padding: 5px 0;
+    color: #000;
+    height: 46px;
+    border-color: transparent;
+    border-bottom: 1px solid #848383;
+    border-radius: 0;
+    box-shadow: inherit;
+}
+.login_content input {
+    float: right;
+    width: 88%;
+    padding: 0 5px 0 10px;
+    height: 45px;
+}
+
+.login_content .form-control {
+    background-color: #fff !important;
+    border: none;
+}
+.login_content .checkbox {
+    width: 40%;
+}
+.login_content .checkbox input {
+    width: auto;
+    float: left;
+    margin-top: 4px;
+    height: auto;
+}
+
+.login_content .checkbox label {
+    color: #000 !important;
+    display: block;
+    text-shadow: none;
+    margin-bottom: 20px;
+}
+
+.login_content .checkbox label {
+    width: auto;
+    float: right;
+    background: none;
+    height: auto;
+}
+.login_content form .submit {
+    background: #113a17;
+    color: #fc4;
+    font-size: 15px;
+    text-transform: uppercase;
+    border: #ffb80c;
+    border-radius: 6px;
+    width: 100%;
+    padding: 10px;font-weight: 700;    cursor: pointer;
+}
+.login_content form .submit:hover {
+    box-shadow: 0 0 12px #696969;
+    transition: color 0.5s;
+}
+
+.country-restricution{
+    color: #000;
+    font-weight: bold;
+}
+
+.animation-container {
+    display: block;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.lightning-container {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    display: flex;
+    transform: translateY(-50%);
+}
+.lightning {
+    position: absolute;
+    display: block;
+    height: 12px;
+    width: 12px;
+    border-radius: 12px;
+    transform-origin: 6px 6px;
+    animation-name: woosh;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    animation-direction: alternate;
+}
+
+.white {
+    border: 2px solid #fff;
+    background-color: #fff;
+}
+
+.red {
+    background-color: #fc7171;
+    box-shadow: 0 50px 50px 0 transparentize(#fc7171, 0.7);
+    animation-delay: 0.2s;
+}
+
+.boom-container {
+    position: absolute;
+    display: flex;
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    align-items: center;
+    transform: translateY(-50%);
+    right: 86px;
+    top: 150px;
+}
+
+
+.shape {
+    display: inline-block;
+    position: relative;
+    opacity: 0;
+    transform-origin: center center;
+}
+.triangle {
+    width: 0;
+    height: 0;
+    transform-origin: 50% 80%;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: infinite;
+    margin-left: -15px;
+    border-color: transparent transparent #42e599;
+    border-style: solid;
+    border-width: 0 2.5px 5px;
+    animation-name: boom-triangle;
+}
+.disc {
+    width: 8px;
+    height: 8px;
+    background-color: #d15ff4;
+    animation-name: boom-disc;
+    animation-timing-function: ease-out;
+    animation-iteration-count: infinite;
+}
+
+
+.big {
+    margin-left: -25px;
+    border-width: 0 5px 10px;
+    border-color: transparent transparent #fade28;
+    animation-name: boom-triangle-big;
+}
+
+.circle, .disc {
+    border-radius: 100%;
+    animation-duration: 1s;
+}
+
+.circle {
+    width: 20px;
+    height: 20px;
+    animation-name: boom-circle;
+    animation-timing-function: ease-out;
+    animation-iteration-count: infinite;
+    margin-left: -30px;
+}
+
+
+.big {
+    width: 40px;
+    height: 40px;
+    margin-left: 0;
+}
+.circle {
+    animation-delay: 0.6s;
+}
+.circle {
+    animation-delay: 2.15s;
+}
+.circle, .circle.big, .disc, .shape .triangle {
+    animation-delay: 0.38s;
+    animation-duration: 3s;
+}
+
+.circle, .circle.big, .disc, .shape .triangle {
+    animation-delay: 1.9s;
+}
+
+.second {
+    left: 400px;
+    top: 155px;
+}
+@keyframes woosh {
+    0% {
+        width: 12px;
+        transform: translate(0) rotate(-35deg);
+    }
+    15% {
+        width: 50px;
+    }
+    30% {
+        width: 12px;
+        transform: translate(214px, -150px) rotate(-35deg);
+    }
+    30.1% {
+        transform: translate(214px, -150px) rotate(46deg);
+    }
+    50% {
+        width: 110px;
+    }
+    70% {
+        width: 12px;
+        transform: translate(500px, 150px) rotate(46deg);
+    }
+    70.1% {
+        transform: translate(500px, 150px) rotate(-37deg);
+    }
+    85% {
+        width: 50px;
+    }
+    to {
+        width: 12px;
+        transform: translate(700px) rotate(-37deg);
+    }
+}
+@keyframes boom-circle {
+    0% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    30% {
+        opacity: 0;
+        transform: scale(3);
+    }
+}
+@keyframes boom-triangle-big {
+    0% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    40% {
+        opacity: 0;
+        transform: scale(2.5) translate(50px, -50px) rotate(1turn);
+    }
+}
+@keyframes boom-triangle {
+    0% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    30% {
+        opacity: 0;
+        transform: scale(3) translate(20px, 40px) rotate(1turn);
+    }
+}
+@keyframes boom-disc {
+    0% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    40% {
+        opacity: 0;
+        transform: scale(2) translate(-70px, -30px);
+    }
+}
+
+@media (max-width: 767px){
+.bg_login #login-wrapper {
+    width: 320px;
+}
+}

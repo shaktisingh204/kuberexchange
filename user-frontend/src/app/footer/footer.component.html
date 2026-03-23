@@ -1,0 +1,118 @@
+<div class="mobile-top-bar">
+    <div class="bottom-menu">
+        <mat-list> 
+            <mat-list-item [routerLink]="['/home/inplay']" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']"> <span>IN-PLAY</span></mat-list-item> <span class="dash_line" style=" margin-top: 3px; color: #ffff;
+            font-size: 1.5rem;font-weight: 100;">|</span>
+            <mat-list-item [routerLink]="['/home']" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']">  <span>SPORTS</span></mat-list-item><span class="dash_line" style=" margin-top: 3px; color: #ffff;
+            font-size: 1.5rem;font-weight: 100;">|</span>
+            <mat-list-item [routerLink]="['/home/casino']" [routerLinkActive]="['active']"> <span>CASINO+SLOT </span> </mat-list-item>
+            <!-- <span class="dash_line" style=" margin-top: 3px; color: #ffff;
+            font-size: 1.5rem;font-weight: 100;">|</span> -->
+            <!-- <mat-list-item  [routerLink]="['/my-bet']" [routerLinkActive]="['active']"> <span>OTHER</span></mat-list-item>  -->
+            <!-- <mat-list-item [routerLink]="['/wallet']" [routerLinkActive]="['active']"> <i class="material-icons">account_balance_wallet</i> <span>Wallet</span></mat-list-item>
+            <mat-list-item (click)="sidenavRight.toggle();" [routerLinkActive]="['active']"> <i class="material-icons">person</i><span>User</span></mat-list-item> -->
+         </mat-list>
+
+        <!-- <ul class="nav nav-tabs game-nav-bar">
+            <li class="nav-item"><a [routerLink]="['/dashboard/inplay']" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" class="type nav-link router-link-exact-active router-link-active active"> In-play </a></li>
+            <li class="nav-item"><a [routerLink]="['/dashboard/']" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" class="type nav-link"> Sports </a></li>
+            <li class="nav-item"><a [routerLink]="['/casino']" [routerLinkActive]="['active']" class="type nav-link"> Casino + Slot </a></li>
+            <li class="nav-item"><a [routerLink]="['/my-bet']" [routerLinkActive]="['active']"class="type nav-link"> Others </a></li>
+        </ul> -->
+
+
+
+    </div>
+</div>
+
+<!-- <mat-sidenav mode="side" #sidenavRight closed position="end" (click)="sidenavRight.toggle();"  class="right-panel"> -->
+    <!-- <div class="sidebar-first-heading">
+        <span><mat-icon>close</mat-icon></span>
+        <button mat-stroked-button color="warn" (click)="logoutUser()">Logout <mat-icon>logout</mat-icon></button>
+    </div> -->
+    <!-- <div class="row user-profile  align-items-center">
+        <div class="col-xs-3">
+            <img src="assets/images/user-circle.svg">
+        </div>
+        <div class="col-xs-3 username">{{userDetails?.details?.username}}
+            <div class="last-login">
+                 <div>Last login</div>
+                <div>{{moment(userDetails?.details?.updatedAt).utcOffset("+05:30").format('lll')}}</div>
+            </div>
+        </div>
+        <div class="sidebar-first-heading">
+            <button *ngIf="logoutButtnStatus" mat-stroked-button color="warn" (click)="logoutUser()"> <mat-icon>logout</mat-icon></button>
+        </div>
+    </div>
+    <div class="row " style="margin:5px 10px;">
+
+        <div class="winning-card">
+            <a style="color:#FFFFFF">
+            <img src="assets/icons/account_balance.png">
+            <div>Balance</div>
+            <h5><b>{{walletBalance | number : '0.0-2'}}</b></h5>
+        </a>
+        </div>
+
+        <div class="winning-card">
+            <a style="color:#FFFFFF">
+                <i class="material-icons">casino</i> -->
+            <!-- <img src="assets/icons/events.png"> -->
+            <!-- <div>Casino</div>
+            <h5><b>{{casinoBal | number : '0.0-2'}}</b></h5>
+        </a>
+        </div>
+        
+        <div class="exposure-card">
+            <img src="assets/icons/exposure.png">
+            <div>Exposure</div>
+            <h5 ><b>{{exposure | number : '0.0-2'}}</b></h5>
+
+        </div>
+        
+    </div> 
+    <div class="report-menu">
+        <h4>Reports</h4>
+        <ul class="menu-list">
+            <li><a class="dropdown-item" [routerLink]="['/dashboard']"><img src="assets/images/icon/home.png"> Home</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/ledger']"><img src="assets/images/icon/open_bet.png"> Ledger</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/casino-wallet']" ><img src="assets/images/wallet.svg"> Casino Wallet</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/referAcc']"><img src="assets/images/wallet.svg"> Refer Account</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/profile']"><img src="assets/images/icon/user.svg"> Profile</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/terms-condition']"><img src="assets/images/icon/report.svg"> Terms & Conditions</a></li>
+            <li><a class="dropdown-item" (click)="openModalResetPwd(changePwd)" ><img src="assets/images/icon/change_stack.png"> Settings</a></li>
+            <li *ngIf="logoutButtnStatus" (click)="logoutUser()" ><a style="color: red !important;"> <mat-icon>logout</mat-icon></a> LogOut</li>
+        </ul>
+    </div>
+    
+</mat-sidenav> -->
+
+<!-- <ng-template #changePwd>
+    <div matDialogTitle>
+        <h4 class="modal-title">Change Password</h4>
+    </div>
+    <form>
+        <mat-dialog-content>
+            <div class="body-inner change-pwd">
+                <div class="form-group">
+                    <label class="form-label">New Password</label>
+                    <input [type]="hide ? 'password':'text'" name="chngePass" class="form-control" [(ngModel)]="chngePass" required>
+                </div>
+                
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input (change)="hide = !hide" type="checkbox" name="checkbox" ><span> show password</span>
+                </label>
+            </div>
+        </mat-dialog-content>
+
+        <mat-dialog-actions align="end">
+            <div class="text-end">
+                <a data-dismiss="modal" (click)="modalRef.hide()" mat-raised-button class="btn btn-danger">Cancel</a> &nbsp;&nbsp;
+                <button (click)="onSubmitChangePassword()" mat-raised-button class="btn btn-success" [disabled]="submitted">Submit</button>
+            </div>
+        </mat-dialog-actions>
+    </form>
+</ng-template> -->
+

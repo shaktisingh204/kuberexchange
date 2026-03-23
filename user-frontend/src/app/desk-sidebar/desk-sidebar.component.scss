@@ -1,0 +1,589 @@
+@import "/src/app/dashboard/dashboard.component.scss";
+
+/********************************/
+/**DESKTOP DESIGN**/
+/********************************/
+.desktopmain-main {
+    display: none;
+}
+
+li {
+    cursor: pointer;
+}
+
+@media (min-width:768px) {
+    .desktopmain-main {
+        display: block;
+    }
+
+    .desktopmain-main .container-fluid-5 {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+
+    .desktopmain-main .row.row5 {
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+
+    .desktopmain-main .sidebar {
+        padding: 0 !important;
+        min-height: calc(100vh - 159px);
+        max-width: 15% !important;
+        background-color: #ccc;
+        color: #000;
+    }
+
+    .desktopmain-main .sidebar-title {
+        cursor: pointer;
+        padding: 4px 6px;
+        margin-bottom: 0;
+        margin-top: 1px;
+        background-color: var(--theme1-bg);
+    }
+
+    .desktopmain-main .sidebar-title h5 {
+        color: #fff;
+        width: 100%;
+        font-size: 18px;
+        margin: 0px;
+    }
+
+    .desktopmain-main .sidebar .sidebar-title :before {
+        font-family: "Font Awesome 5 Free";
+        content: "\f107";
+        padding-right: 3px;
+        font-weight: 900;
+        float: right;
+    }
+
+
+    .desktopmain-main .sidebar .nav-item .nav-link {
+        background: #ccc;
+        color: #000;
+        border-bottom: 1px solid #9e9e9e;
+        font-weight: normal;
+        font-size: 14px;
+        padding: 4.8px 16px;
+    }
+
+    .desktopmain-main .new-launch-text {
+        animation: new-launch 1s linear infinite;
+    }
+
+    @keyframes new-launch {
+        50% {
+            opacity: 0
+        }
+    }
+
+    .desktopmain-main .row.row5>[class*="col-"] {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .desktopmain-main .featured-box {
+        padding-top: 5px;
+        max-width: 85% !important;
+        -ms-flex: 0 0 85% !important;
+        flex: 0 0 85% !important;
+    }
+
+    .desktopmain-main .pb-4,
+    .desktopmain-main .py-4 {
+        padding-bottom: 1.5rem !important;
+    }
+
+    .desktopmain-main .featured-box .nav-tabs {
+        display: block;
+        border-bottom: 0;
+    }
+
+    .desktopmain-main .featured-box .nav-tabs .nav-item {
+        display: table-cell;
+        /* width: 1%; */
+    }
+
+    .desktopmain-main .featured-box .nav-tabs .nav-link {
+        border-radius: 0;
+        color: #000;
+        background-color: #ccc;
+        border-right: 1px solid var(--theme2-bg) !important;
+        border: 0;
+        padding: 0.5rem 1rem;
+        font-size: 16px;
+        font-weight: normal;
+    }
+
+    .desktopmain-main .featured-box .nav-tabs .nav-link:hover,
+    .desktopmain-main .featured-box .nav-tabs .nav-item.show .nav-link,
+    .desktopmain-main .featured-box .nav-tabs .nav-link.active {
+        background-color: var(--theme2-bg);
+        border-color: transparent;
+        color: #fff;
+    }
+
+    .desktopmain-main .featured-box .coupon-card {
+        margin-bottom: 16px;
+        border-radius: 0 0 2px 2px;
+    }
+
+    .desktopmain-main .featured-box .table {
+        margin-bottom: 0 !important;
+    }
+
+    .desktopmain-main .featured-box .table td,
+    .table th {
+        padding: 0.75rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+    }
+
+    .desktopmain-main .featured-box .table thead th {
+        vertical-align: bottom;
+        border-bottom: 2px solid #dee2e6;
+    }
+
+    .desktopmain-main .featured-box .coupon-table thead th {
+        font-size: 12px;
+        font-weight: 700;
+        text-align: center;
+        padding: 6px 0;
+        padding-left: 0px;
+        color: #303030;
+    }
+
+    .desktopmain-main .featured-box .coupon-table thead th:first-child {
+        text-align: left;
+        width: auto;
+        padding-left: 15px;
+        text-indent: 0;
+        padding-right: 15px;
+    }
+
+    .desktopmain-main .featured-box .coupon-table tr td {
+        padding: 0;
+        vertical-align: middle;
+        font-size: 14px;
+        word-wrap: break-word;
+    }
+
+    .desktopmain-main .featured-box .coupon-table tr td:first-child {
+        padding-left: 15px;
+        vertical-align: middle;
+        padding-right: 15px;
+    }
+
+    .desktopmain-main .featured-box .coupon-table .game-name {
+        width: 80%;
+        float: left;
+    }
+
+    .desktopmain-main .featured-box .coupon-table .text-dark {
+        color: #343a40 !important;
+    }
+
+    .desktopmain-main .featured-box .coupon-table .game-icons {
+        float: left;
+        width: 20%;
+        text-align: right;
+    }
+
+    .desktopmain-main .featured-box .coupon-table .game-icon {
+        width: 25px;
+        text-align: center;
+        margin-top: 2px;
+        display: inline-block;
+    }
+
+    .desktopmain-main .featured-box .coupon-table .game-icon .active {
+        display: inline-block !important;
+        float: none !important;
+        vertical-align: middle !important;
+        margin-right: 0 !important;
+    }
+
+    .desktopmain-main .featured-box .coupon-table td:first-child .active {
+        background-color: #28a745;
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+        border: none;
+    }
+
+    .desktopmain-main .lay,
+    .desktopmain-main .lay-color {
+        background-color: #FAA9BA !important;
+    }
+
+    .desktopmain-main .back,
+    .desktopmain-main .back-color {
+        background-color: #72BBEF !important;
+    }
+
+    .desktopmain-main .featured-box .coupon-table .suspended {
+        position: relative;
+    }
+
+    .desktopmain-main .featured-box .coupon-table .suspended:after {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        text-transform: uppercase;
+        font-family: "Font Awesome 5 Free";
+        content: "\f023";
+        font-weight: 900;
+        font-size: 18px;
+        top: 0;
+    }
+
+    .desktopmain-main .featured-box .coupon-table button {
+        width: 100%;
+        min-width: 40px;
+        height: 32px;
+        margin: 0;
+        text-align: center;
+        display: inline-block;
+        padding: 0px;
+        color: #273a47;
+        border: 0;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .desktopmain-main .featured-box .coupon-table .norecords {
+        background-color: #ccc;
+        margin-bottom: 25px;
+        display: table;
+        width: 100%;
+        padding: 4px 15px;
+    }
+
+    .desktopmain-main .featured-box .coupon-table.norecords a {
+        line-height: 24px;
+        color: #000 !important;
+        text-decoration: none;
+    }
+
+    .desktopmain-main .d-inline-block {
+        display: inline-block !important;
+    }
+
+    .desktopmain-main .featured-box .casinoicons {
+        position: relative;
+        box-shadow: 0 25px 8px -8px #007bff;
+        ;
+        border-radius: 4px;
+        margin-bottom: 25px;
+        margin-right: 25px;
+        cursor: pointer;
+    }
+
+    .desktopmain-main .featured-box .casinoicons img {
+        width: 130px;
+        height: auto;
+        margin: 0px;
+    }
+
+    .desktopmain-main .featured-box .casino-name {
+        background-image: linear-gradient(var(--theme1-bg), var(--theme2-bg));
+        color: #fff;
+        padding: 5px;
+        position: absolute;
+        width: 100%;
+        bottom: -15px;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: bold;
+        border-radius: 4px;
+        font-size: 11px;
+    }
+
+    .desktopmain-main .featured-box .new-launch-casino {
+
+        position: absolute;
+        left: -23px;
+        top: -40px;
+        padding: 10px;
+        height: auto;
+        width: 125px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #fff;
+    }
+
+    .desktopmain-main .header-bottom {
+        background-color: var(--theme2-bg);
+        // margin-top: 10px;
+        padding: 9px 0;
+    }
+
+    .desktopmain-main .header-bottom nav {
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-left: 0;
+    }
+
+    .desktopmain-main .navbar-nav {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    .desktopmain-main .header-bottom li a {
+        color: #fff;
+        text-transform: uppercase;
+        padding: 3px 15px;
+        font-size: 14px;
+        display: inline-block;
+        vertical-align: middle;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -moz-osx-font-smoothing: grayscale;
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .desktopmain-main .header-bottom li a b {
+        font-weight: 600;
+    }
+
+    .desktopmain-main .header-bottom li a:before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        left: 50%;
+        right: 50%;
+        bottom: 0;
+        background: #fff;
+        height: 2px;
+        -webkit-transition-property: left, right;
+        transition-property: left, right;
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition-timing-function: ease-out;
+        transition-timing-function: ease-out;
+    }
+
+    .desktopmain-main .header-bottom li a:hover {
+        text-decoration: none;
+        background-color: transparent !important;
+        color: inherit !important;
+    }
+
+    .desktopmain-main .header-bottom li a:hover:before,
+    .desktopmain-main .header-bottom li a:focus:before,
+    .desktopmain-main .header-bottom li a:active:before {
+        left: 0;
+        right: 0;
+    }
+
+    .desktopmain-main .navbar-expand-md .navbar-nav {
+        -ms-flex-direction: row;
+        flex-direction: row;
+
+    }
+}
+
+
+@media (min-width:768px) {
+
+    .sidebar-title {
+        cursor: pointer;
+        padding: 4px 6px;
+        margin-bottom: 0;
+        margin-top: 1px;
+        background-color: var(--theme1-bg);
+    }
+
+    .sidebar-title h5 {
+        color: #fff;
+        width: 100%;
+        font-size: 16px;
+        margin: 0px;
+    }
+
+    .sidebar-title h5:before {
+        font-family: "Font Awesome 5 Free";
+        content: "\f107";
+        padding-right: 3px;
+        font-weight: 900;
+        float: right;
+    }
+
+
+    .sidebarmenus .nav-item .nav-link {
+        background: #bbbbbb;
+        color: #000;
+        border-bottom: 1px solid #9e9e9e;
+        font-weight: normal;
+        font-size: 14px;
+        padding: 0.3rem 1rem;
+    }
+
+    .new-launch-text {
+        animation: new-launch 1s linear infinite;
+    }
+
+    @keyframes new-launch {
+        50% {
+            opacity: 0
+        }
+    }
+
+
+}
+
+.eventsidebar nav {
+    // padding: 12px;
+}
+
+.eventsidebar nav ul li {
+    font-size: 14px;
+    line-height: normal;
+}
+
+.eventsidebar nav ul ul {
+    padding-left: 12px;
+}
+
+.sidebar-title {
+    background-color: #0088cc
+}
+
+.sidebarmenus .nav-item .nav-link {
+    background: #bbbbbb
+}
+
+
+/* Sidebar menu styling */
+.sidebar .nav-item .nav-link {
+    background: var(--sidebar-menu-link-bg, #007bff);
+    color: var(--sidebar-menu-link-color, #fff);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-weight: 400;
+    font-size: 14px;
+    padding: 6px 15px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.sidebar .nav-item .nav-link:hover {
+    background: #0056b3;
+}
+
+/* Dropdown base */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    white-space: nowrap;
+}
+
+/* Right-side popup for racing sports */
+.racing-sport .dropdown-menu {
+    position: absolute;
+    top: 0 !important;
+    left: 100% !important;
+    transform: translateX(0) !important;
+    width: 260px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    z-index: 1001;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Header */
+.racing-sport .dropdown-menu h5 {
+    margin: 0;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+    font-weight: 600;
+    font-size: 18px;
+    background: #f8f9fa;
+    color: #333;
+}
+
+/* Scrollable list */
+.horse-list-box {
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #f8f9fa;
+}
+
+.horse-list-box::-webkit-scrollbar {
+    width: 6px;
+}
+
+.horse-list-box::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+/* Dropdown items */
+.dropdown-item {
+    display: block;
+    color: #333;
+    padding: 6px 15px;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background: #0088cc;
+    color: #fff;
+}
+
+.dropdown-item p {
+    margin: 0;
+}
+
+.dropdown-menu {
+    display: none;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.a-nav-item {
+    color: #000;
+    font-size: 14px;
+    padding: 0.3rem 1rem;
+    border-bottom: 1px solid #9e9e9e;
+    background: #bbbbbb;
+}
+
+// accordio
+.text-dark {
+    border-bottom: 1px solid #9e9e9e;
+    font-weight: normal;
+    font-size: 14px;
+    padding: 0.3rem 1rem;
+}

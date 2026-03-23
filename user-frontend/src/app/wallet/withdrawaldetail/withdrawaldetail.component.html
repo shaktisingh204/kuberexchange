@@ -1,0 +1,320 @@
+<div style="background: black; padding-bottom: 56vh; padding-top: 2vh">
+  <div
+    class="row fixed-top"
+    style="background: #00897b; padding: 11px 0px 8px 13px"
+  >
+    <div
+      class="col-2"
+      [routerLink]="['/wallet-home']"
+      style="padding: 8px 0px 8px 15px"
+    >
+      <i class="fa fa-arrow-left" style="color: white; font-size: 19px"></i>
+    </div>
+    <div class="col-8" style="text-align: center">
+      <h1 style="color: white"></h1>
+    </div>
+    <div class="col-2" style="padding: 8px 0px 0px 19px">
+      <i
+        class="far fa-bell"
+        style="font-size: 20px; color: white"
+        [routerLink]="['/notifications']"
+      ></i>
+    </div>
+  </div>
+
+  <div
+    class="row"
+    style="
+      justify-content: center;
+      margin: 57px 10px 22px 10px;
+      background: #343232;
+      padding: 5px 0px 15px 0px;
+      border-radius: 10px;
+    "
+  >
+    <div
+      class="col-10"
+      style="
+        text-align: center;
+        padding: 17px 0px 0px 0px;
+        background: #616161;
+        border-radius: 10px;
+        margin: 15px 0px 15px 0px;
+      "
+    >
+      <h1 style="color: white">₹{{ amount }}/-</h1>
+    </div>
+    <div
+      class="col-3"
+      *ngFor="let x of all; index as i"
+      id="{{ i }}"
+      style="
+        text-align: center;
+        background: black;
+        color: white;
+        margin: 15px 10px 0px 10px;
+        justify-content: center;
+        padding: 11px 0px 0px 0px;
+        border-radius: 5px;
+      "
+      (click)="select(x); getid(i)"
+    >
+      <img
+        *ngIf="x.type == 'bank'"
+        class="rounded-circle"
+        src="assets/paymentmethods/banknew.jpg"
+        alt=""
+        style="width: 72%; margin: 0px 0px 10px 0px; height: 60%"
+      />
+      <img
+        *ngIf="x.type == 'google_pay'"
+        class="rounded-circle"
+        src="assets/paymentmethods/googlepaynew.jpg"
+        alt=""
+        style="width: 72%; margin: 0px 0px 10px 0px; height: 60%"
+      />
+      <img
+        *ngIf="x.type == 'paytm'"
+        class="rounded-circle"
+        src="assets/paymentmethods/paytmnew.jpg"
+        alt=""
+        style="width: 72%; margin: 0px 0px 10px 0px; height: 60%"
+      />
+      <img
+        *ngIf="x.type == 'phone_pe'"
+        class="rounded-circle"
+        src="assets/paymentmethods/phonepay.jpg"
+        alt=""
+        style="width: 72%; margin: 0px 0px 10px 0px; height: 60%"
+      />
+      <img
+        *ngIf="x.type == 'upi'"
+        class="rounded-circle"
+        src="assets/paymentmethods/allupi.jpg"
+        alt=""
+        style="width: 72%; margin: 0px 0px 10px 0px; height: 60%"
+      />
+      <h5 style="margin: 0px 0px 0px 0px; letter-spacing: 1px; font-size: 14px">
+        {{ x.type }}
+      </h5>
+    </div>
+  </div>
+
+  <div class="row" style="margin: 20px 0px 0px 0px">
+    <div class="col-12">
+      <mat-expansion-panel
+        style="background: #343232; border: 1px solid white"
+        [expanded]="all"
+      >
+        <mat-expansion-panel-header style="background: #343232">
+          <mat-panel-title style="color: white">
+            Withdraw method details
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="row" style="justify-content: center">
+          <div class="col-10" style="text-align: center">
+            <h4 style="color: white" *ngIf="selectedmethod.length < 1">
+              Please select a payment method
+            </h4>
+          </div>
+        </div>
+        <div class="row" *ngFor="let m of selectedmethod">
+          <div
+            class="col-6"
+            style="font-size: 15px; color: white; padding: 5px 5px 5px 16px"
+          >
+            Name
+          </div>
+          <div
+            class="col-6"
+            style="font-size: 15px; color: white; padding: 5px"
+          >
+            {{ m.name }}
+          </div>
+          <div
+            *ngIf="m.type == 'bank'"
+            class="col-6"
+            style="font-size: 15px; color: white; padding: 5px 5px 5px 16px"
+          >
+            Account No.
+          </div>
+          <div
+            *ngIf="m.type == 'bank'"
+            class="col-6"
+            style="font-size: 15px; color: white; padding: 5px"
+          >
+            {{ m.accnumber }}
+          </div>
+
+          <div
+            class="col-6"
+            *ngIf="m.type != 'bank'"
+            style="font-size: 15px; color: white; padding: 5px 5px 5px 16px"
+          >
+            UPI Number
+          </div>
+
+          <div
+            class="col-6"
+            *ngIf="m.type != 'bank'"
+            style="font-size: 15px; color: white; padding: 5px"
+          >
+            {{ m.upi }}
+          </div>
+
+          <div
+            class="col-6"
+            style="font-size: 15px; color: white; padding: 5px 5px 5px 16px"
+          >
+            Type
+          </div>
+
+          <div
+            class="col-6"
+            style="font-size: 15px; color: white; padding: 5px"
+          >
+            {{ m.type }}
+          </div>
+
+          <div
+            *ngIf="m.type == 'bank'"
+            class="col-6"
+            style="font-size: 15px; color: white; padding: 5px 5px 5px 16px"
+          >
+            IFSC
+          </div>
+          <div
+            class="col-6"
+            style="font-size: 15px; color: white; padding: 5px"
+          >
+            {{ m.ifsc }}
+          </div>
+          <div
+            *ngIf="m.type == 'bank'"
+            class="col-6"
+            style="font-size: 15px; color: white; padding: 5px 5px 5px 16px"
+          >
+            Bank Name
+          </div>
+          <div
+            class="col-6"
+            style="font-size: 15px; color: white; padding: 5px"
+          >
+            {{ m.bankName }}
+          </div>
+          <div
+            class="col-12"
+            style="
+              margin: 18px 0px 0px 0px;
+              justify-content: center;
+              display: flex;
+            "
+          >
+            <button
+              class="btn btn-block btn-danger"
+              style="letter-spacing: 1px; font-size: 13px"
+              (click)="deleteWithdrawalMethod(m._id)"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </div>
+  </div>
+
+  <div class="row" style="margin: 20px 0px 0px 0px">
+    <div class="col-12">
+      <mat-expansion-panel style="background: #343232; border: 1px solid white">
+        <mat-expansion-panel-header style="background: #343232">
+          <mat-panel-title style="color: white"> Add New </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-expansion-panel
+          style="background: black; margin: 14px 0px 10px 0px; width: 99%"
+          *ngFor="let x of toAddwithdrawmethods; index as i"
+          id="{{ i }}"
+          [expanded]="expanded === i"
+        >
+          <mat-expansion-panel-header
+            style="background: #39d59b"
+            (click)="expand(i)"
+          >
+            <mat-panel-title style="color: white">
+              {{ x.name }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row" style="padding: 10px">
+            <div class="col-12">
+              <input
+                type="text"
+                [(ngModel)]="Name"
+                placeholder="Name"
+                class="addnewinput"
+              />
+            </div>
+            <div class="col-12" *ngIf="x.type == 'bank'">
+              <select
+                type="text"
+                class="addnewinput"
+                (change)="getBank($event.target.value)"
+              >
+                <option value="" selected disabled>Bank Names</option>
+                <option value="Bank Name" *ngFor="let m of bankName">
+                  {{ m.name }}
+                </option>
+              </select>
+            </div>
+            <div class="col-12" *ngIf="x.type != 'bank'">
+              <input
+                type="text"
+                [(ngModel)]="upiNumber"
+                placeholder="Mobile"
+                class="addnewinput"
+              />
+            </div>
+
+            <div class="col-12" *ngIf="x.type == 'bank'">
+              <input
+                type="text"
+                [(ngModel)]="accnumber"
+                placeholder="Account No."
+                class="addnewinput"
+              />
+            </div>
+            <div class="col-12" *ngIf="x.type == 'bank'">
+              <input
+                type="text"
+                [(ngModel)]="ifsc"
+                placeholder="IFSC"
+                class="addnewinput"
+              />
+            </div>
+            <div class="col-12" style="margin: 10px 0px 0px 0px">
+              <button
+                class="btn btn-block"
+                style="background: rgb(103, 218, 103)"
+                (click)="addNewmethod(x)"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-expansion-panel>
+    </div>
+  </div>
+
+  <div class="row" style="margin: 20px 0px 0px 0px">
+    <div class="col-12">
+      <button
+        class="btn btn-block"
+        style="background: #0eca57; font-size: 14px; letter-spacing: 1px"
+        [disabled]="withdrawn"
+        (click)="withdraw()"
+      >
+        Withdraw
+      </button>
+    </div>
+  </div>
+</div>

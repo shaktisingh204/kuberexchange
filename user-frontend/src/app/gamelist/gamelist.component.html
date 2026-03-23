@@ -1,0 +1,181 @@
+<app-header></app-header>
+<div class="desktopmain-main">
+    <!-- desktop_header -->
+    <app-desk-header></app-desk-header>
+    <!-- desktop_header_end -->
+    <div class="container-fluid container-fluid-5">
+       <div class="row row5">
+        <!--desktop_sidebar_others  -->
+        <div class="sidebar col-md-2">
+          <app-desk-sidebar></app-desk-sidebar>
+           </div>
+         
+          <!--flterTabsGrey_dashboard--> 
+          <div class="col-md-10 featured-box">
+             <div>
+                <!--flterTabsandMatchDetails--> 
+                <div class="pb-4">
+  
+                   <ul role="tablist" id="home-events" class="nav nav-tabs">
+                      <li *ngIf="type==='football'" class="nav-item"><a href="javascript:void(0)" data-toggle="tab" class="nav-link active">Football</a></li>
+                      <li *ngIf="type==='tennis'" class="nav-item"><a href="javascript:void(0)" data-toggle="tab" class="nav-link active">Tennis</a></li>
+                      <li *ngIf="type==='cricket'" class="nav-item"><a href="javascript:void(0)" data-toggle="tab" class="nav-link active">Cricket</a></li>
+                      <li *ngIf="type==='Horse Racing'" class="nav-item"><a href="javascript:void(0)" data-toggle="tab" class="nav-link active">Horse Racing</a></li>
+                   </ul>
+                   <div class="tab-content">
+                      <div class="tab-pane active">
+                         <div class="coupon-card coupon-card-first">
+                            <div class="card-content">
+                               <table class="table coupon-table">
+                                  <thead>
+                                     <tr>
+                                        <th style="width: 63%;"> Game</th>
+                                        <th colspan="2"> 1 </th>
+                                        <th colspan="2"> X </th>
+                                        <th colspan="2"> 2 </th>
+                                     </tr>
+                                  </thead>
+                                  <tbody>
+  
+                                    <!-- Soccer -->
+                                      <ng-container *ngIf="type==='football'" >
+                                        <ng-container *ngIf="soccerData?.length">
+  
+                                      <tr style="cursor:pointer;" *ngFor="let x of soccerData" (click)="matchDetail(x.eventId);">
+                                        <td>
+                                           <div class="game-name"><a class="text-dark">
+                                            {{x?.eventName}} / {{moment(x?.openDate).utcOffset("+05:30").format('MMM D YYYY h:mm:ss A')}}
+                                              </a>
+                                           </div>
+                                           <div *ngIf="currentDate > x.openDate" class="game-icons">
+                                              <span class="game-icon"><span class="active"></span></span> 
+                                           </div>
+                                        </td>
+                                        <!----> 
+                                        <td><button class="back"><span class="odd">{{x?.marketBook?.runners[0]?.availableToBack?.price}}</span></button></td>
+                                        <!----><!----> 
+                                        <td><button class="lay"><span class="odd">{{x?.marketBook?.runners[1]?.availableToLay?.price}}</span></button></td>
+                                        <td><button class="back"><span class="odd">-</span></button></td>
+                                        <td><button class="lay"><span class="odd">-</span></button></td>
+                                        <td><button class="back"><span class="odd">{{x?.marketBook?.runners[1]?.availableToBack?.price}}</span></button></td>
+                                        <!----><!----> 
+                                        <td><button class="lay"><span class="odd">{{x?.marketBook?.runners[1]?.availableToLay?.price}}</span></button></td>
+                                     </tr>
+  
+                                    </ng-container>
+                                      </ng-container>
+                                    
+                                   <!-- Tennis -->
+                                   <ng-container *ngIf="type==='tennis'">
+                                    <ng-container *ngIf="tennisData?.length">
+  
+                                 <tr style="cursor:pointer;" *ngFor="let x of tennisData" (click)="matchDetail(x.eventId);">
+                                    <td>
+                                       <div class="game-name"><a class="text-dark">
+                                        {{x?.eventName}} / {{moment(x?.openDate).utcOffset("+05:30").format('MMM D YYYY h:mm:ss A')}}
+                                          </a>
+                                       </div>
+                                       <div *ngIf="currentDate > x.openDate" class="game-icons">
+                                          <span class="game-icon"><span class="active"></span></span> 
+                                       </div>
+                                    </td>
+                                    <!----> 
+                                    <td><button class="back"><span class="odd">{{x?.marketBook?.runners[0]?.availableToBack?.price}}</span></button></td>
+                                    <!----><!----> 
+                                    <td><button class="lay"><span class="odd">{{x?.marketBook?.runners[1]?.availableToLay?.price}}</span></button></td>
+                                    <td><button class="back"><span class="odd">-</span></button></td>
+                                    <td><button class="lay"><span class="odd">-</span></button></td>
+                                    <td><button class="back"><span class="odd">{{x?.marketBook?.runners[1]?.availableToBack?.price}}</span></button></td>
+                                    <!----><!----> 
+                                    <td><button class="lay"><span class="odd">{{x?.marketBook?.runners[1]?.availableToLay?.price}}</span></button></td>
+                                 </tr>
+  
+                                </ng-container>
+                                   </ng-container>
+  
+                                   <!-- cricket -->
+                               <ng-container *ngIf="type==='cricket'" >
+                                <!-- virtual -->
+                                <ng-container *ngIf="virtualCricketData?.length">
+  
+                                  <tr style="cursor:pointer;" *ngFor="let x of virtualCricketData" (click)="virtualDetial(x.eventId);">
+                                     <td>
+                                        <div class="game-name"><a class="text-dark">
+                                         {{x?.eventName}} / {{moment(x?.openDate).utcOffset("+05:30").format('MMM D YYYY h:mm:ss A')}}
+                                           </a>
+                                        </div>
+                                        <div class="game-icons">
+                                           <span *ngIf="currentDate > x.openDate" class="game-icon"><span class="active"></span></span> 
+                                           <span class="game-icon">
+                                              <!---->
+                                           </span>
+                                           <span class="game-icon">V</span>
+                                        </div>
+                                     </td>
+                                     <!----> 
+                                     <td><button class="back"><span class="odd">{{x?.marketBook?.runners[0]?.availableToBack?.price}}</span></button></td>
+                                     <!----><!----> 
+                                     <td><button class="lay"><span class="odd">{{x?.marketBook?.runners[1]?.availableToLay?.price}}</span></button></td>
+                                     <td><button class="back"><span class="odd">-</span></button></td>
+                                     <td><button class="lay"><span class="odd">-</span></button></td>
+                                     <td><button class="back"><span class="odd">{{x?.marketBook?.runners[1]?.availableToBack?.price}}</span></button></td>
+                                     <!----><!----> 
+                                     <td><button class="lay"><span class="odd">{{x?.marketBook?.runners[1]?.availableToLay?.price}}</span></button></td>
+                                  </tr>
+       
+                                 </ng-container>
+  
+                                <!-- cricket -->
+                                <ng-container *ngIf="cricketData?.length">
+  
+                             <tr style="cursor:pointer;" *ngFor="let x of cricketData" (click)="matchDetail(x.eventId);">
+                                <td>
+                                   <div class="game-name"><a class="text-dark">
+                                    {{x?.eventName}} / {{moment(x?.openDate).utcOffset("+05:30").format('MMM D YYYY h:mm:ss A')}}
+                                      </a>
+                                   </div>
+                                   <div class="game-icons">
+                                      <span *ngIf="currentDate > x.openDate" class="game-icon"><span class="active"></span></span> 
+                                      <span class="game-icon">
+                                         <!---->
+                                      </span>
+                                      <span class="game-icon"><img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/icons/ic_fancy.png" class="fancy-icon"></span> <span class="game-icon"><img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/front/img/icons/ic_bm.png" class="bookmaker-icon"></span>
+                                   </div>
+                                </td>
+                                <!----> 
+                                <td><button class="back"><span class="odd">{{x?.marketBook?.runners[0]?.availableToBack?.price}}</span></button></td>
+                                <!----><!----> 
+                                <td><button class="lay"><span class="odd">{{x?.marketBook?.runners[1]?.availableToLay?.price}}</span></button></td>
+                                <td><button class="back"><span class="odd">-</span></button></td>
+                                <td><button class="lay"><span class="odd">-</span></button></td>
+                                <td><button class="back"><span class="odd">{{x?.marketBook?.runners[1]?.availableToBack?.price}}</span></button></td>
+                                <!----><!----> 
+                                <td><button class="lay"><span class="odd">{{x?.marketBook?.runners[1]?.availableToLay?.price}}</span></button></td>
+                             </tr>
+  
+                            </ng-container>
+                          </ng-container>
+            
+                                  </tbody>
+  
+                               </table>
+  
+                               <ng-container *ngIf="(soccerData?.length==0 && type==='football') ||(tennisData?.length==0 && type==='tennis') || (cricketData?.length==0 && virtualCricketData?.length==0 && type==='cricket')">
+                                <div style="background-color:#CCCCCC;" class="text-dark text-center p-2">No real-time records found</div>
+                              </ng-container>
+                              
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+  
+              
+             </div>
+          </div>
+       </div>
+    </div>
+
+      <!-- deshboard_footer -->
+       <app-desk-footer></app-desk-footer>
+  </div>

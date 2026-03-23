@@ -1,0 +1,713 @@
+<mat-sidenav-container fullscreen>
+  <mat-sidenav-content>
+    <app-header></app-header>
+    <app-footer></app-footer>
+    <div class="main-content mt-2">
+      <!--   <div class="container" style="overflow:scroll;height:80vh;">
+           <div class="row" style="margin-top: 10px; margin-left: -25px;">
+                <div class="col-3" style="margin: 0px;">
+                  <img src="assets/images/Casino/spin.jpg" width="110%" height="55" (click)="spinner();" alt="img">
+                </div>
+                <div class="col-3" style="margin: 0px;">
+                  <img src="assets/images/Casino/evo.png" width="110%" height="55" (click)="openCasino('EVO-holdem')" alt="img">
+                </div>
+                <div class="col-3" style="margin: 0px;">
+                  <img src="assets/images/Casino/ezugi.png" width="110%" height="55" (click)="openCasino('BTV-6poker')" alt="img">
+                </div>
+                <div class="col-3" style="margin: 0px;">
+                  <img src="assets/images/Casino/casinos.png" width="110%" height="55" (click)="openCasino('blank')" alt="img">
+                </div> -->
+      <!-- <span><img src="assets/images/Casino/spin.jpg" class="topImg" (click)="spinner();" alt="img"></span>
+              <span class=""><img src="assets/images/Casino/evo.png" class="topImg" (click)="openCasino('EVO-holdem')" alt="img"></span>
+              <span class=""><img src="assets/images/Casino/ezugi.png" class="topImg" (click)="openCasino('BTV-6poker')" alt="img"></span>
+              <span><img src="assets/images/Casino/casinos.png" class="topImg" (click)="openCasino('blank')" alt="img"></span>             -->
+
+      <!-- </div>  -->
+
+      <!-- <div class="row" style="margin-top: 20px; margin-left: -25px;">
+            <div class="col-4" style="margin: 0px;">
+              <img src="assets/images/Casino/ezu-onedayteenpatti.png"  (click)="openCasino('EZU-cricketwar')" alt="img" width="110%" height="85">
+            </div>
+            <div class="col-4" style="margin: 0px;">
+              <img src="assets/images/Casino/ezu-32cards.png"  (click)="openCasino('EZU-cricketwar')" alt="img" width="110%" height="85">
+            </div>
+            <div class="col-4" style="margin: 0px;">
+              <img src="assets/images/Casino/ezu-andarbaahar-ott.png" (click)="openCasino('BTV-6poker')" alt="img" width="110%" height="85">
+            </div>
+          </div> 
+          <div class="row" style="margin-top: 10px; margin-left: -25px;">
+            <div class="col-4" style="margin: 0px;">
+              <img src="assets/images/Casino/ezu-bet-on-teenpatti.png"  (click)="openCasino('EZU-cricketwar')" alt="img" width="110%" height="85">
+            </div>
+            <div class="col-4" style="margin: 0px;">
+              <img src="assets/images/Casino/ezu-blackjack.png"  (click)="openCasino('EZU-cricketwar')" alt="img" width="110%" height="85">
+            </div>
+            <div class="col-4" style="margin: 0px;">
+              <img src="assets/images/Casino/ezu-betonnumber.png" (click)="openCasino('BTV-6poker')" alt="img" width="110%" height="85">
+            </div>
+          </div> 
+          <div class="row" style="margin-top: 10px; margin-left: -25px;">
+            <div class="col-4" style="margin: 0px;">
+              <img src="assets/images/Casino/ezu-casinoholdem.png"  (click)="openCasino('EZU-cricketwar')" alt="img" width="110%" height="85">
+            </div>
+            <div class="col-4" style="margin: 0px;">
+              <img src="assets/images/Casino/ezu-cricketwar.png"  (click)="openCasino('EZU-cricketwar')" alt="img" width="110%" height="85">
+            </div>
+            <div class="col-4" style="margin: 0px;">
+              <img src="assets/images/Casino/ezu-roulette.png" (click)="openCasino('BTV-6poker')" alt="img" width="110%" height="85">
+            </div>
+          </div> 
+          <div class="row" style="margin-top: 10px; margin-left: -25px;">
+            <div class="col-4" style="margin: 0px;">
+              <img src="assets/images/Casino/ezu-ruletadesol.png"  (click)="openCasino('EZU-cricketwar')" alt="img" width="110%" height="85">
+            </div>
+            <div class="col-4" style="margin: 0px;">
+              <img src="assets/images/Casino/ezu-onedayteenpatti.png"  (click)="openCasino('EZU-cricketwar')" alt="img" width="110%" height="85">
+            </div>
+            <div class="col-4" style="margin: 0px;">
+              <img src="assets/images/Casino/ezu-teenpatti.png" (click)="openCasino('BTV-6poker')" alt="img" width="110%" height="85">
+            </div>
+          </div> 
+          <div class="row" style="margin-top: 10px; margin-left: -25px;">
+            <div class="col-4" style="margin: 0px;">
+              <img src="assets/images/Casino/ezu-dargon-tiger.png"  (click)="openCasino('EZU-cricketwar')" alt="img" width="110%" height="85">
+            </div>
+            <div class="col-4" style="margin: 0px;">
+              <img src="assets/images/Casino/ezu-lucky7.png"  (click)="openCasino('EZU-cricketwar')" alt="img" width="110%" height="85">
+            </div>
+            <div class="col-4" style="margin: 0px;">
+              <img src="assets/images/Casino/ev-casinoholdem.png" (click)="openCasino('BTV-6poker')" alt="img" width="110%" height="85">
+            </div>
+          </div> 
+          <div class="row" style="margin-top: 10px; margin-left: -25px;">
+            <div class="col-4" style="margin: 0px;">
+              <img src="assets/images/Casino/ev-crazytime.png"  (click)="openCasino('EZU-cricketwar')" alt="img" width="110%" height="85">
+            </div>
+            <div class="col-4" style="margin: 0px;">
+              <img src="assets/images/Casino/ev-dealnodeal.png"  (click)="openCasino('EZU-cricketwar')" alt="img" width="110%" height="85">
+            </div>
+            <div class="col-4" style="margin: 0px;">
+              <img src="assets/images/Casino/ev-dreamcatcher.png" (click)="openCasino('BTV-6poker')" alt="img" width="110%" height="85">
+            </div>
+          </div> 
+          <div class="row" style="margin-top: 10px; margin-left: -25px;">
+            <div class="col-4" style="margin: 0px;">
+              <img src="assets/images/Casino/ev-instantroulette.png"  (click)="openCasino('EZU-cricketwar')" alt="img" width="110%" height="85">
+            </div>
+            <div class="col-4" style="margin: 0px;">
+              <img src="assets/images/Casino/ev-megaball.png"  (click)="openCasino('EZU-cricketwar')" alt="img" width="110%" height="85">
+            </div>
+            <div class="col-4" style="margin: 0px;">
+              <img src="assets/images/Casino/6plusspoker.png" (click)="openCasino('BTV-6poker')" alt="img" width="110%" height="85">
+            </div>
+          </div>  -->
+
+      <!-- <div class="row mt-4">
+            <div class="col-12">
+              <div class="d-flex galbot">
+              <span><img src="assets/images/Casino/ezu-onedayteenpatti.png" class="imgs" (click)="openCasino('EZU-cricketwar')" alt="img"></span>
+              <span><img src="assets/images/Casino/ezu-32cards.png" class="imgs" (click)="openCasino('EZU-cricketwar')" alt="img"></span>
+              <span><img src="assets/images/Casino/ezu-andarbaahar-ott.png" class="imgs" (click)="openCasino('BTV-6poker')" alt="img"></span>
+            </div>
+            </div>
+          </div>  -->
+
+      <!-- <div class="row mt-3">
+            <div class="col-12">
+              <div class="d-flex galbot">
+              <span><img src="assets/images/Casino/ezu-bet-on-teenpatti.png" class="imgs" (click)="openCasino('EVO-holdem')" alt="img"></span>
+              <span><img src="assets/images/Casino/ezu-blackjack.png" class="imgs" (click)="openCasino('EZU-cricketwar')" alt="img"></span>
+              <span><img src="assets/images/Casino/ezu-betonnumber.png" class="imgs" (click)="openCasino('BTV-6poker')" alt="img"></span>
+            </div>
+          </div> -->
+      <!-- </div> -->
+      <!-- <div class="row mt-3">
+              <div class="col-12">
+                <div class="d-flex galbot">
+              <span><img src="assets/images/Casino/ezu-casinoholdem.png" class="imgs" (click)="openCasino('EVO-holdem')" alt="img"></span>
+              <span><img src="assets/images/Casino/ezu-cricketwar.png" class="imgs" (click)="openCasino('EZU-cricketwar')" alt="img"></span>
+              <span><img src="assets/images/Casino/ezu-roulette.png" class="imgs" (click)="openCasino('BTV-6poker')" alt="img"></span>
+              </div>
+            </div>
+          </div> -->
+      <!-- <div class="row mt-3">
+              <div class="col-12">
+                <div class="d-flex galbot">
+                <span><img src="assets/images/Casino/ezu-ruletadesol.png" class="imgs" (click)="openCasino('EVO-holdem')" alt="img"></span>
+                <span><img src="assets/images/Casino/ezu-onedayteenpatti.png" class="imgs" (click)="openCasino('EZU-cricketwar')" alt="img"></span>
+                <span><img src="assets/images/Casino/ezu-teenpatti.png" class="imgs" (click)="openCasino('BTV-6poker')" alt="img"></span>
+              </div>
+            </div>
+            </div> -->
+      <!-- <div class="row mt-3">
+              <div class="col-12">
+                <div class="d-flex galbot">
+                <span><img src="assets/images/Casino/ezu-dargon-tiger.png" class="imgs" (click)="openCasino('EVO-holdem')" alt="img"></span>
+                <span><img src="assets/images/Casino/ezu-lucky7.png" class="imgs" (click)="openCasino('EZU-cricketwar')" alt="img"></span>
+                <span><img src="assets/images/Casino/ev-casinoholdem.png" class="imgs" (click)="openCasino('BTV-6poker')" alt="img"></span>
+              </div>
+            </div>
+             </div> -->
+      <!-- <div class="row mt-3">
+              <div class="col-12">
+                <div class="d-flex galbot">
+                <span><img src="assets/images/Casino/ev-crazytime.png" class="imgs" (click)="openCasino('EVO-holdem')" alt="img"></span>
+                <span><img src="assets/images/Casino/ev-dealnodeal.png" class="imgs" (click)="openCasino('EZU-cricketwar')" alt="img"></span>
+                <span><img src="assets/images/Casino/ev-dreamcatcher.png" class="imgs" (click)="openCasino('BTV-6poker')" alt="img"></span>
+              </div>
+            </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-12">
+                <div class="d-flex galbot">
+                <span><img src="assets/images/Casino/ev-instantroulette.png" class="imgs" (click)="openCasino('EVO-holdem')" alt="img"></span>
+                <span><img src="assets/images/Casino/ev-megaball.png" class="imgs" (click)="openCasino('EZU-cricketwar')" alt="img"></span>
+                <span><img src="assets/images/Casino/6plusspoker.png" class="imgs" (click)="openCasino('BTV-6poker')" alt="img"></span>
+              </div>
+            </div>
+          </div> -->
+      <!-- </div>
+        </div> -->
+      <!-- <app-footer></app-footer> -->
+
+      <div class="multi-card">
+        <div class="scroll-card" style="padding: 14px;">
+          <div class="itemsContain">
+
+            <!-- <div class="row">
+            <div class="col-10">
+              <h3 style="font-weight: 600;padding-left: 7px; margin: 0;">OUR CASINO</h3>
+            </div>
+          </div> -->
+            <div class=" d-flex card-group" style="padding: 0px 5px 0px 5px;">
+              <div class="card">
+                <img
+                  src="	https://images.supernowa.net/Document/GameImages/d62966a3bed644e99025dd44913e01d6_Teen-Patti.jpg"
+                  class="card-img-top" (click)="openCasino('EZU-cricketwar')" alt="...">
+                <a href="">
+                  <!-- <div class="casino-name">Super Over</div> -->
+                  <div class="new-launch-casino">New Launch</div>
+                </a>
+                <div class="button"><a (click)="openCasino('EZU-cricketwar')"> Play</a></div>
+              </div>
+
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/ba5f1f0805b14ec4899c53f342cf9d30_Baccarat.jpg"
+                  class="card-img-top" (click)="openCasino('blank')" alt="...">
+                <div class="button"><a (click)="openCasino('blank')"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/ba5f1f0805b14ec4899c53f342cf9d30_Baccarat.jpg"
+                  class="card-img-top" (click)="openCasino('EVO-holdem')" alt="...">
+                <div class="button"><a (click)="openCasino('EVO-holdem')"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/ba5f1f0805b14ec4899c53f342cf9d30_Baccarat.jpg"
+                  class="card-img-top" (click)="openCasino('BTV-6poker')" alt="...">
+                <div class="button"><a (click)="openCasino('BTV-6poker')"> Play</a></div>
+              </div>
+            </div>
+            <div class="d-flex card-group " style="padding: 0px 5px 0px 5px;">
+              <div class="card">
+                <img src="	https://images.supernowa.net/Document/GameImages/96b1fe4fb22f4115a34476f4316c9bf6_Poker.jpg"
+                  class="card-img-top" (click)="openCasino('BTV-6poker')" alt="...">
+                <div class="button"><a (click)="openCasino('BTV-6poker')"> Play</a></div>
+              </div>
+
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/518ebdbcbd7f4b6db0adb26b44997a2a_Classic-Andar-Bahar.jpg"
+                  class="card-img-top" (click)="openCasino('EVO-holdem')" alt="...">
+                <div class="button"><a (click)="openCasino('EVO-holdem')"> Play</a></div>
+              </div>
+
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/518ebdbcbd7f4b6db0adb26b44997a2a_Classic-Andar-Bahar.jpg"
+                  class="card-img-top" alt="..." (click)="openCasino('EZU-cricketwar')">
+                <div class="button"><a (click)="openCasino('EZU-cricketwar')"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/518ebdbcbd7f4b6db0adb26b44997a2a_Classic-Andar-Bahar.jpg"
+                  class="card-img-top" alt="..." (click)="openCasino('blank')">
+                <div class="button"><a (click)="openCasino('blank')"> Play</a></div>
+              </div>
+            </div>
+            <div class="d-flex card-group " style="padding: 0px 5px 0px 5px;">
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/e7531697349b48228ee937e88e73a076_Worli-Matka.jpg"
+                  class="card-img-top" alt="..." (click)="openCasino('BTV-6poker')">
+                <div class="button"><a (click)="openCasino('BTV-6poker')"> Play</a></div>
+              </div>
+
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/14dd2dcfc8f04494b828538da6a19592_Akbar-Romeo-Walter.jpg"
+                  class="card-img-top" alt="..." (click)="openCasino('EVO-holdem')">
+                <div class="button"><a (click)="openCasino('EVO-holdem')"> Play</a></div>
+              </div>
+
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/14dd2dcfc8f04494b828538da6a19592_Akbar-Romeo-Walter.jpg"
+                  class="card-img-top" alt="..." (click)="openCasino('EZU-cricketwar')">
+                <div class="button"><a (click)="openCasino('EZU-cricketwar')"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/14dd2dcfc8f04494b828538da6a19592_Akbar-Romeo-Walter.jpg"
+                  class="card-img-top" alt="..." (click)="openCasino('blank')">
+                <div class="button"><a (click)="openCasino('blank')"> Play</a></div>
+              </div>
+
+            </div>
+            <div class="d-flex card-group " style="padding: 0px 5px 0px 5px;">
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/1dec1ac15c164660b2b260e9b0419b41_Teen-Patti-2020.jpg"
+                  class="card-img-top" alt="..." (click)="openCasino('BTV-6poker')">
+                <div class="button"><a (click)="openCasino('BTV-6poker')"> Play</a></div>
+              </div>
+
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/25aaabeafd7e433dbed110ce8d79eaa0_32-Cards.jpg"
+                  class="card-img-top" alt="..." (click)="openCasino('EVO-holdem')">
+                <div class="button"><a (click)="openCasino('EVO-holdem')"> Play</a></div>
+              </div>
+
+
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/25aaabeafd7e433dbed110ce8d79eaa0_32-Cards.jpg"
+                  class="card-img-top" alt="..." (click)="openCasino('EZU-cricketwar')">
+                <div class="button"><a (click)="openCasino('EZU-cricketwar')"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/25aaabeafd7e433dbed110ce8d79eaa0_32-Cards.jpg"
+                  class="card-img-top" alt="..." (click)="openCasino('blank')">
+                <div class="button"><a (click)="openCasino('blank')"> Play</a></div>
+              </div>
+            </div>
+            <div class="d-flex card-group " style="padding: 0px 5px 0px 5px;">
+              <div class="card">
+                <img src="https://images.supernowa.net/Document/GameImages/a6856cfe0145446c8c1ab2e460db3045_Lucky-7.jpg"
+                  class="card-img-top" alt="..." (click)="openCasino('BTV-6poker')">
+                <div class="button"><a (click)="openCasino('BTV-6poker')"> Play</a></div>
+              </div>
+
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/aafb254d914045be80f4471662c3dc49_3-player-teen-patti.jpg"
+                  class="card-img-top" alt="..." (click)="openCasino('EVO-holdem')">
+                <div class="button"><a (click)="openCasino('EVO-holdem')"> Play</a></div>
+              </div>
+
+
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/aafb254d914045be80f4471662c3dc49_3-player-teen-patti.jpg"
+                  class="card-img-top" alt="..." (click)="openCasino('EZU-cricketwar')">
+                <div class="button"><a (click)="openCasino('EZU-cricketwar')"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/aafb254d914045be80f4471662c3dc49_3-player-teen-patti.jpg"
+                  class="card-img-top" alt="..." (click)="openCasino('blank')">
+                <div class="button"><a (click)="openCasino('blank')"> Play</a></div>
+              </div>
+            </div>
+            <div class="d-flex card-group " style="padding: 0px 5px 0px 5px;">
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/1e5e5bd51c2c4864b3dad914bcb5ac66_king-race.jpg"
+                  class="card-img-top" alt="..." (click)="openCasino('BTV-6poker')">
+                <div class="button"><a (click)="openCasino('BTV-6poker')"> Play</a></div>
+              </div>
+
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/47dd3ab773f14c9eabcd880677b4cad2_Goas-Andar-Bahar.jpg"
+                  class="card-img-top" alt="..." (click)="openCasino('EVO-holdem')">
+                <div class="button"><a (click)="openCasino('EVO-holdem')"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/47dd3ab773f14c9eabcd880677b4cad2_Goas-Andar-Bahar.jpg"
+                  class="card-img-top" alt="..." (click)="openCasino('EZU-cricketwar')">
+                <div class="button"><a (click)="openCasino('EZU-cricketwar')"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/47dd3ab773f14c9eabcd880677b4cad2_Goas-Andar-Bahar.jpg"
+                  class="card-img-top" alt="..." (click)="openCasino('blank')">
+                <div class="button"><a (click)="openCasino('blank')"> Play</a></div>
+              </div>
+            </div>
+            <div class="d-flex card-group " style="padding: 0px 5px 0px 5px;">
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/c79f7182291749caab5ad6482242bdbf_Teen-patti-faceoff.jpg"
+                  class="card-img-top" alt="..." (click)="openCasino('BTV-6poker')">
+                <div class="button"><a (click)="openCasino('BTV-6poker')"> Play</a></div>
+              </div>
+
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/c86ca34ea7eb4ca9a077d39def333847_Roulette.jpg"
+                  class="card-img-top" alt="..." (click)="openCasino('EVO-holdem')">
+                <div class="button"><a (click)="openCasino('EVO-holdem')"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/c86ca34ea7eb4ca9a077d39def333847_Roulette.jpg"
+                  class="card-img-top" alt="..." (click)="openCasino('EZU-cricketwar')">
+                <div class="button"><a (click)="openCasino('EZU-cricketwar')"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/c86ca34ea7eb4ca9a077d39def333847_Roulette.jpg"
+                  class="card-img-top" alt="..." (click)="openCasino('blank')">
+                <div class="button"><a (click)="openCasino('blank')"> Play</a></div>
+              </div>
+
+            </div>
+            <div class="d-flex card-group " style="padding: 0px 5px 0px 5px;">
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/82d4d41493504a9a8bcf69299912fc3f_dragon-tiger.jpg"
+                  class="card-img-top" alt="..." (click)="openCasino('BTV-6poker')">
+                <div class="button"><a (click)="openCasino('BTV-6poker')"> Play</a></div>
+              </div>
+
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/c86ca34ea7eb4ca9a077d39def333847_Roulette.jpg"
+                  class="card-img-top" alt="..." (click)="openCasino('EVO-holdem')">
+                <div class="button"><a (click)="openCasino('EVO-holdem')"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/c86ca34ea7eb4ca9a077d39def333847_Roulette.jpg"
+                  class="card-img-top" alt="..." (click)="openCasino('EZU-cricketwar')">
+                <div class="button"><a (click)="openCasino('EZU-cricketwar')"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/c86ca34ea7eb4ca9a077d39def333847_Roulette.jpg"
+                  class="card-img-top" alt="..." (click)="openCasino('blank')">
+                <div class="button"><a (click)="openCasino('blank')"> Play</a></div>
+              </div>
+            </div>
+            <div class="d-flex card-group " style="padding: 0px 5px 0px 5px;">
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/85246d801fef4d43a325637243661631_neon-thumbnails-18.png"
+                  class="card-img-top" alt="..." (click)="openCasino('BTV-6poker')">
+                <div class="button"><a (click)="openCasino('BTV-6poker')"> Play</a></div>
+              </div>
+
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/912af3fca2144874b7b7ab2de03cf63a_neon-thumbnails-13.png"
+                  class="card-img-top" alt="..." (click)="openCasino('EVO-holdem')">
+                <div class="button"><a (click)="openCasino('EVO-holdem')"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/912af3fca2144874b7b7ab2de03cf63a_neon-thumbnails-13.png"
+                  class="card-img-top" alt="..." (click)="openCasino('EZU-cricketwar')">
+                <div class="button"><a (click)="openCasino('EZU-cricketwar')"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/912af3fca2144874b7b7ab2de03cf63a_neon-thumbnails-13.png"
+                  class="card-img-top" alt="..." (click)="openCasino('blank')">
+                <div class="button"><a (click)="openCasino('blank')"> Play</a></div>
+              </div>
+            </div>
+            <div class="d-flex card-group" style="padding: 0px 5px 0px 5px;">
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/bce4691827854b14a631ba020001e847_neon-thumbnails-03.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/7343dec5ab5b4a36a6f926874f216389_neon-thumbnails-02.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/7343dec5ab5b4a36a6f926874f216389_neon-thumbnails-02.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/7343dec5ab5b4a36a6f926874f216389_neon-thumbnails-02.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+            </div>
+
+            <div class="d-flex card-group " style="padding: 0px 5px 0px 5px;">
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/bce4691827854b14a631ba020001e847_neon-thumbnails-03.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/7343dec5ab5b4a36a6f926874f216389_neon-thumbnails-02.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/7343dec5ab5b4a36a6f926874f216389_neon-thumbnails-02.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/7343dec5ab5b4a36a6f926874f216389_neon-thumbnails-02.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+            </div>
+            <div class="d-flex card-group " style="padding: 0px 5px 0px 5px;">
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/0730f21c63544456a0fa1eb250ae4992_neon-thumbnails-17.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/e910c519f92c41a58a9c59dc09e11250_neon-thumbnails-14.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/e910c519f92c41a58a9c59dc09e11250_neon-thumbnails-14.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/e910c519f92c41a58a9c59dc09e11250_neon-thumbnails-14.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+            </div>
+            <div class="d-flex card-group " style="padding: 0px 5px 0px 5px;">
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/da0706276b4444d491846159bb1bf07a_neon-thumbnails-09.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/1afe8e32eb0d43a496d56979bf5e8b60_neon-thumbnails-10.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/1afe8e32eb0d43a496d56979bf5e8b60_neon-thumbnails-10.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/1afe8e32eb0d43a496d56979bf5e8b60_neon-thumbnails-10.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+            </div>
+            <div class="d-flex card-group " style="padding: 0px 5px 0px 5px;">
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/89685a59c2dc46429b805875c37066a6_neon-thumbnails-16.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/8e0efab978a14ed483a794f9bb71ff96_neon-thumbnails-19.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/8e0efab978a14ed483a794f9bb71ff96_neon-thumbnails-19.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/8e0efab978a14ed483a794f9bb71ff96_neon-thumbnails-19.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+            </div>
+            <div class="d-flex card-group " style="padding: 0px 5px 0px 5px;">
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/d67c61187ab248a58aefdeceff2edd96_neon-thumbnails-06.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/f42e05b9dcee4275b3e2addc2f73c606_neon-thumbnails-08.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/f42e05b9dcee4275b3e2addc2f73c606_neon-thumbnails-08.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/f42e05b9dcee4275b3e2addc2f73c606_neon-thumbnails-08.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+            </div>
+
+            <div class="d-flex card-group " style="padding: 0px 5px 0px 5px;">
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/c33323b773474acf9f3c43b33e31ae91_neon-thumbnails-12.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/6fbb02d51cf044ea856eaa77faa77cd6_neon-thumbnails-15.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/6fbb02d51cf044ea856eaa77faa77cd6_neon-thumbnails-15.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/6fbb02d51cf044ea856eaa77faa77cd6_neon-thumbnails-15.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+            </div>
+            <div class="d-flex card-group " style="padding: 0px 5px 0px 5px;">
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/23bce1903ca24717bfa7e6958f026aee_neon-thumbnails-07.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/2b26c9bd6797460dae6697ee093b0825_neon-thumbnails-05.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/2b26c9bd6797460dae6697ee093b0825_neon-thumbnails-05.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/2b26c9bd6797460dae6697ee093b0825_neon-thumbnails-05.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+            </div>
+            <div class="d-flex card-group " style="padding: 0px 5px 0px 5px;">
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/2594257625a948feaf82aee8447a8cfc_23-RNG-queen.jpg"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/198dec4fe9634a0493825705892cbd1f_neon-thumbnails-11.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/198dec4fe9634a0493825705892cbd1f_neon-thumbnails-11.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/198dec4fe9634a0493825705892cbd1f_neon-thumbnails-11.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+            </div>
+            <div class="d-flex card-group " style="padding: 0px 5px 0px 5px;">
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/c88fc9c1bfc34e97b8e96a80007e34cf_neon-thumbnails-01.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/c88fc9c1bfc34e97b8e96a80007e34cf_neon-thumbnails-01.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/c88fc9c1bfc34e97b8e96a80007e34cf_neon-thumbnails-01.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.supernowa.net/Document/GameImages/c88fc9c1bfc34e97b8e96a80007e34cf_neon-thumbnails-01.png"
+                  class="card-img-top" alt="...">
+                <div class="button"><a href="#"> Play</a></div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

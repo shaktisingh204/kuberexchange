@@ -1,0 +1,207 @@
+	/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 10/05/2020 11:32
+  	*/
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("../../assets/fonts/Flaticon.eot");
+  src: url("../../assets/fonts/Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("../../assets/fonts/Flaticon.woff2") format("woff2"),
+       url("../../assets/fonts/Flaticon.woff") format("woff"),
+       url("../../assets/fonts/Flaticon.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+  font-family: Flaticon;
+        font-size: 20px;
+font-style: normal;
+margin-left: 20px;
+}
+
+.flaticon-bin:before { content: "\f100"; }
+.flaticon-soccer:before { content: "\f101"; }
+.flaticon-equipment:before { content: "\f102"; }
+.flaticon-seo-and-web:before { content: "\f103"; }
+/* .flaticon-gaming:before { content: "\f104"; } */
+.flaticon-sports:before { content: "\f105"; }
+.flaticon-sports-1:before { content: "\f106"; }
+.flaticon-people:before { content: "\f107"; }
+.flaticon-shape:before { content: "\f108"; }
+.flaticon-rugby:before { content: "\f109"; }
+.flaticon-cricket:before { content: "\f10a"; }
+.flaticon-miscellaneous:before { content: "\f10b"; }
+.flaticon-people-1:before { content: "\f10c"; }
+.flaticon-note:before { content: "\f10d"; }
+.flaticon-settings:before { content: "\f10e"; }
+.flaticon-interface:before { content: "\f10f"; }
+.flaticon-black:before { content: "\f110"; }
+.flaticon-sports-2:before { content: "\f111"; }
+.flaticon-greyhound:before { content: "\f112"; }
+.flaticon-sports-3:before { content: "\f113"; }
+.flaticon-ball:before { content: "\f114"; }
+.flaticon-tennis:before { content: "\f115"; }
+.flaticon-avatar:before { content: "\f116"; }
+.flaticon-zoom:before { content: "\f117"; }
+.flaticon-right-arrow:before { content: "\f118"; }
+.flaticon-multimedia-option:before { content: "\f119"; }
+.flaticon-bookmark:before { content: "\f11a"; }
+.flaticon-peopl:before { content: "\f11b"; }
+.flaticon-arrows:before { content: "\f11c"; }
+.flaticon-up:before { content: "\f11d"; }
+.flaticon-information:before { content: "\f11e"; }
+.flaticon-interface-2:before { content: "\f11f"; }
+.flaticon-interface-3:before { content: "\f120"; }
+.flaticon-back:before { content: "\f121"; }
+.flaticon-arrows-1:before { content: "\f122"; }
+.flaticon-orientation:before { content: "\f123"; }
+.flaticon-shapes-and-symbols:before { content: "\f124"; }
+.flaticon-tool:before { content: "\f125"; }
+.flaticon-tool-1:before { content: "\f126"; }
+.flaticon-signs:before { content: "\f127"; }
+.flaticon-signs-1:before { content: "\f128"; }
+.flaticon-signs-2:before { content: "\f129"; }
+.flaticon-signs-3:before { content: "\f12a"; }
+.flaticon-interface-4:before { content: "\f12b"; }
+.flaticon-interface-5:before { content: "\f12c"; }
+.flaticon-arrows-2:before { content: "\f12d"; }
+.flaticon-left:before { content: "\f12e"; }
+.flaticon-player:before { content: "\f12f"; }
+.flaticon-social:before { content: "\f130"; }
+/* .flaticon-winner:before { content: "\f131"; } */
+.flaticon-restricted:before { content: "\f132"; }
+.flaticon-interface-6:before { content: "\f133"; }
+.flaticon-interface-7:before { content: "\f134"; }
+.flaticon-communications:before { content: "\f135"; }
+.flaticon-signaling:before { content: "\f136"; }
+.flaticon-interface-8:before { content: "\f137"; }
+.flaticon-hearts:before { content: "\f138"; }
+.flaticon-tool-2:before { content: "\f139"; }
+.flaticon-circle-vol-1circle:before { content: "\f13a"; }
+.flaticon-draw:before { content: "\f13b"; }
+.flaticon-round:before { content: "\f13c"; }
+.flaticon-interface-9:before { content: "\f13d"; }
+.flaticon-communications-1:before { content: "\f13e"; }
+.flaticon-gestures:before { content: "\f13f"; }
+.flaticon-cup:before { content: "\f140"; }
+.flaticon-material:before { content: "\f141"; }
+.flaticon-men:before { content: "\f142"; }
+.flaticon-persons:before { content: "\f143"; }
+.flaticon-exchanging:before { content: "\f144"; }
+.flaticon-arrows-3:before { content: "\f145"; }
+.flaticon-multimedia:before { content: "\f146"; }
+.flaticon-arrows-4:before { content: "\f147"; }
+
+.glyph-icon [class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after, [class*=" flaticon-"]:after {
+  font-size: 16px;
+  margin-left: 0;
+}
+.chart-icon i::before,
+.chart-icon i::after {
+  font-size: 28px;
+  position: relative;
+  top: -5px;
+}
+.flaticon-crickets:before {
+  background-image: url('/images/icons/cricket.png');
+  display: inline-block;
+  background-repeat: no-repeat; 
+  width: 32px; 
+  height: 12px;
+  content: "";
+}
+.flaticon-soccers:before {
+  background-image: url('/images/icons/soccers.png');
+  display: inline-block;
+  background-repeat: no-repeat; 
+  width: 32px; 
+  height: 12px;
+  content: "";
+}
+.flaticon-tenniss:before {
+  background-image: url('/images/icons/tenniss.png');
+  display: inline-block;
+  background-repeat: no-repeat; 
+  width: 32px; 
+  height: 12px;
+  content: "";
+}
+.flaticon-trophy:before {
+  background-image: url('/images/icons/trophy.png');
+  display: inline-block;
+  background-repeat: no-repeat; 
+  width: 32px; 
+  height: 12px;
+  content: "";
+}
+.flaticon-gaming:before {
+  background-image: url('/images/icons/live-casino2.png');
+  display: inline-block;
+  background-repeat: no-repeat; 
+  width: 32px; 
+  height: 12px;
+  content: "";
+}
+.flaticon-winner:before {
+  /*background-image: url('/images/icons/live-cards.png');
+  display: inline-block;
+  background-repeat: no-repeat; 
+  width: 32px; 
+  height: 12px;
+  content: "";*/
+  content: "\f131";
+}
+.live-cards-desktop-icon:before {
+  background-image: url('/images/icons/live-cards2.png');
+  display: inline-block;
+  background-repeat: no-repeat; 
+  width: 32px; 
+  height: 12px;
+  content: "";
+}
+.flaticon-real:before {
+  background-image: url('/images/icons/real-worli.png');
+  display: inline-block;
+  background-repeat: no-repeat; 
+  width: 32px; 
+  height: 12px;
+  content: "";
+}
+.flaticon-online-games:before {
+  background-image: url('/images/icons/online-games2.png');
+  display: inline-block;
+  background-repeat: no-repeat; 
+  width: 32px; 
+  height: 12px;
+  content: "";
+}
+.flaticon-my-market:before {
+  background-image: url('/images/icons/my-market.png');
+  display: inline-block;
+  background-repeat: no-repeat; 
+  width: 32px; 
+  height: 12px;
+  content: "";
+}
+.flaticon-favorites:before {
+  background-image: url('/images/icons/favorites.png');
+  display: inline-block;
+  background-repeat: no-repeat; 
+  width: 32px; 
+  height: 12px;
+  content: "";
+}
+.flaticon-inplay:before {
+  background-image: url('/images/icons/inplay.png');
+  display: inline-block;
+  background-repeat: no-repeat; 
+  width: 32px; 
+  height: 12px;
+  content: "";
+}
+
+

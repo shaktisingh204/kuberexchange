@@ -1,0 +1,302 @@
+<mat-sidenav-container fullscreen>
+  <mat-sidenav-content>
+    <app-header></app-header>
+    <app-b-header *ngIf="page_type === 'betHonk'"></app-b-header>
+    <!-- desktop_view -->
+    <div *ngIf="deviceInfo && page_type === 'diamond'" class="desktopmain-main">
+      <!-- desktop_header -->
+      <app-desk-header></app-desk-header>
+      <div class="container-fluid container-fluid-5">
+        <div class="row row5">
+          <div class="sidebar col-md-2" style="padding: 0px">
+            <app-desk-sidebar></app-desk-sidebar>
+          </div>
+          <!-- container -->
+          <div class="col-md-10" style="padding-left: 5px; padding-right: 5px; padding-top: 5px">
+            <div class="d-flex" style="background-color: var(--theme2-bg); color: #fff">
+              <span class="ml-2 ptitle" style="padding: 6px; font-weight: 500">Profit Loss</span>
+            </div>
+
+            <div class="row-sm d-flex mt-2 customdatepicker">
+              <div class="col-md-2 pl-0 pr-3" style="width: 50%">
+                <mat-form-field class="example-full-width" appearance="fill" style="width: 100% !important">
+                  <!-- <mat-label>{{startDate}}</mat-label> -->
+                  <input matInput [matDatepicker]="picker" name="startDate" [(ngModel)]="startDate" />
+                  <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="col-md-2 p-0" style="width: 50%">
+                <mat-form-field class="example-full-width" appearance="fill" style="width: 100% !important">
+                  <!-- <mat-label>{{endDate}}</mat-label> -->
+                  <input matInput [matDatepicker]="picker1" name="endDate" [(ngModel)]="endDate" />
+                  <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                  <mat-datepicker [dateClass]="dateClass" #picker1></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="row-sm col-md-2 col_btn">
+                <button class="btn btn-primary" type="submit" (click)="getLedgerSoc()">
+                  Submit
+                </button>
+              </div>
+            </div>
+
+            <!-- table -->
+            <div class="table-div profittable">
+              <div class="table-responsive">
+                <table class="table table-bordered mt-3" *ngIf="ledgerList.length">
+                  <thead>
+                    <tr>
+                      <th scope="col" style="padding-left: 12px">Date</th>
+                      <th scope="col" class="text-center">Event Type</th>
+                      <th scope="col" class="text-center">Event Name</th>
+                      <th scope="col" class="text-right">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let list of ledgerList">
+                      <!-- <th scope="row">1</th> -->
+                      <ng-container *ngIf="
+                          list.eventTypeName != undefined &&
+                          list.eventName != undefined
+                        ">
+                        <td style="white-space: nowrap">
+                          {{ list.time | date : "yyyy-MM-dd H:mm" }}
+                        </td>
+                        <td class="text-center">{{ list.eventTypeName }}</td>
+                        <td class="text-center" (click)="
+                            openModalUserParentList(
+                              list.marketId,
+                              list.action,
+                              userParentList
+                            )
+                          ">
+                          {{ list.eventName }}/{{ list.marketName }}
+                        </td>
+                        <td class="text-right" [ngStyle]="{
+                            color: list.amount > 0 ? 'green' : 'red'
+                          }">
+                          {{ list.amount | number : "0.0-2" }}
+                        </td>
+                      </ng-container>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="font-weight-bold text-center mt-4" *ngIf="ledgerList.length == 0">
+                  <span id="no_data">There is no data to show.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- deshboard_footer -->
+      <app-desk-footer></app-desk-footer>
+    </div>
+
+    <!-- mobile_view -->
+    <ng-container *ngIf="!deviceInfo">
+      <div class="main-content">
+        <div id="main_heading" class="d-flex" style="width: 100%">
+          <span class="ml-2 ptitle" style="padding: 6px; font-weight: 500; color: #fff !important">Profit Loss</span>
+        </div>
+        <div class="row-sm d-flex mt-2 customdatepicker">
+          <div class="col-sm-6" style="width: 50%">
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 100% !important">
+              <!-- <mat-label>{{startDate}}</mat-label> -->
+              <input matInput [matDatepicker]="picker" name="startDate" [(ngModel)]="startDate" />
+              <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-6" style="width: 50%">
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 100% !important">
+              <!-- <mat-label>{{endDate}}</mat-label> -->
+              <input matInput [matDatepicker]="picker1" name="endDate" [(ngModel)]="endDate" />
+              <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker [dateClass]="dateClass" #picker1></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row-sm mt-0">
+          <div class="col-sm-12 col_btn">
+            <button class="btn btn-primary" type="submit" (click)="getLedgerSoc()">
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="table-div profittable">
+        <div class="table-responsive">
+          <table class="table table-bordered mt-3" *ngIf="ledgerList.length">
+            <thead>
+              <tr>
+                <th scope="col" style="padding-left: 12px">Date</th>
+                <th scope="col" class="text-center">Event Type</th>
+                <th scope="col" class="text-center">Event Name</th>
+                <th scope="col" class="text-right">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let list of ledgerList">
+                <!-- <th scope="row">1</th> -->
+                <ng-container *ngIf="
+                    list.eventTypeName != undefined &&
+                    list.eventName != undefined
+                  ">
+                  <td style="white-space: nowrap">
+                    {{ list.time | date : "yyyy-MM-dd H:mm" }}
+                  </td>
+                  <td class="text-center">{{ list.eventTypeName }}</td>
+                  <td class="text-center" (click)="
+                      openModalUserParentList(
+                        list.marketId,
+                        list.action,
+                        userParentList
+                      )
+                    ">
+                    {{ list.eventName }}/{{ list.marketName }}
+                  </td>
+                  <td class="text-right" [ngStyle]="{ color: list.amount > 0 ? 'green' : 'red' }">
+                    {{ list.amount | number : "0.0-2" }}
+                  </td>
+                </ng-container>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="font-weight-bold text-center mt-4" *ngIf="ledgerList.length == 0">
+            <span id="no_data">There is no data to show.</span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <!-- mobile_end -->
+
+    <app-p-footer *ngIf="page_type === 'paisaexch'"></app-p-footer>
+    <app-b-footer *ngIf="page_type === 'betHonk'"></app-b-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<ng-template #userParentList>
+  <div class="modal-body bg-light matchpopbody">
+    <div class="row field-from">
+      <div class="col-md-12 text-center customrediobutton">
+        <!-- <div class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                  <label class="form-check-label" for="exampleRadios1">
+                    All
+                  </label>
+                </div> -->
+
+        <label class="cusradiobtnwrapper">Matched
+          <input type="radio" checked="checked" name="radio" (change)="matched_bet()" />
+          <span class="checkmark"></span>
+        </label>
+        <label class="cusradiobtnwrapper">Deleted
+          <input type="radio" name="radio" (change)="deleted_bet()" />
+          <span class="checkmark"></span>
+        </label>
+
+        <!-- <div class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option1" checked>
+                  <label class="form-check-label" for="exampleRadios2">
+                    Matched
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option2" >
+                  <label class="form-check-label" for="exampleRadios3">
+                    Deleted
+                  </label>
+                </div> -->
+      </div>
+    </div>
+    <div class="datamatcheddele">
+      <div *ngFor="let x of usrBet" class="row field-from tableShadow mb-2"
+        [ngClass]="{ BackCor: x?.type === 'Back', LayCor: x?.type === 'Lay' }">
+        <div class="col-6 datamatchsde">
+          <p><strong>Nation:</strong>&nbsp;{{ x?.marketName }}</p>
+          <p>
+            <strong>Place Date:</strong>&nbsp;{{
+            x?.placedTime | date : "dd/MM/yyyy H:mm"
+            }}
+          </p>
+          <p>
+            <strong>Match Date:</strong>&nbsp;{{
+            x?.matchedTime | date : "dd/MM/yyyy H:mm"
+            }}
+          </p>
+        </div>
+        <div class="col-6 datamatchsdetabel">
+          <table datatable class="table mt-2">
+            <thead>
+              <tr style="font-weight: 600">
+                <th>Rate</th>
+                <th>Amount</th>
+                <th>W&L</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <span *ngIf="x.marketType === 'SESSION'; else elseBl">{{
+                    x?.selectionName
+                    }}</span>
+                  <ng-template #elseBl>
+                    <span>{{ x?.rate }}</span>
+                  </ng-template>
+                </td>
+                <td>{{ x?.stake | number : ".0-2" }}</td>
+                <td>
+                  <ng-container *ngIf="x?.runnerId == 1">
+                    <span *ngIf="x?.result == 'WON' && x?.type == 'Back'"
+                      class="float-right text-success font-weight-bold">+{{ x?.rate * x?.stake | number : ".0-2"
+                      }}</span>
+                    <span *ngIf="x?.result == 'WON' && x?.type == 'Lay'"
+                      class="float-right text-success font-weight-bold">+{{ x?.stake | number : ".0-2" }}</span>
+                    <span *ngIf="x?.result == 'LOST' && x?.type == 'Back'"
+                      class="float-right text-danger font-weight-bold">-{{ x?.stake | number : ".0-2" }}</span>
+                    <span *ngIf="x?.result == 'LOST' && x?.type == 'Lay'"
+                      class="float-right text-danger font-weight-bold">-{{ x?.rate * x?.stake | number : ".0-2"
+                      }}</span>
+                  </ng-container>
+
+                  <ng-container *ngIf="x?.runnerId != 1">
+                    <span *ngIf="x?.result == 'WON' && x?.type == 'Back'"
+                      class="float-right text-success font-weight-bold">+{{ (x?.rate - 1) * x?.stake | number : ".0-2"
+                      }}</span>
+                    <span *ngIf="x?.result == 'WON' && x?.type == 'Lay'"
+                      class="float-right text-success font-weight-bold">+{{ x?.stake | number : ".0-2" }}</span>
+                    <span *ngIf="x?.result == 'LOST' && x?.type == 'Back'"
+                      class="float-right text-danger font-weight-bold">-{{ x?.stake | number : ".0-2" }}</span>
+                    <span *ngIf="x?.result == 'LOST' && x?.type == 'Lay'"
+                      class="c float-right text-danger font-weight-bold">-{{ (x?.rate - 1) * x?.stake | number : ".0-2"
+                      }}</span>
+                  </ng-container>
+
+                  <ng-container *ngIf="x?.marketType === 'Casino'">
+                    <span class="float-right font-weight-bold" [ngClass]="
+                        x.ratestake > 0 ? 'text-success' : 'text-danger'
+                      ">{{ x?.ratestake }}</span>
+                  </ng-container>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer macthpopfoot">
+    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+    <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="modalRef.hide()">
+      Close
+    </button>
+  </div>
+</ng-template>

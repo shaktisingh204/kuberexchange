@@ -1,0 +1,51 @@
+.form-div .form-group-div .text-label {
+    position: absolute;
+    top: -22px !important;
+    left: -2px !important;
+    // background-color: #fff;
+    // z-index: 2;
+    // padding: 0 5px;
+    color: #000;
+    // font-weight: 400;
+    // margin: 0;
+}
+.report-table table thead tr th { 
+    padding: 5px 10px;
+    line-height: 30px !important;
+    color: #1e1e1e !important;
+    font-weight: 600;
+    font-size: 14px;border: none;
+}
+.report-table table thead tr td{ color: #1e1e1e !important ; border: 1px solid #dee2e6;}
+.report-page .form-group  .customselect{
+background-color: #fff;
+border: 1px solid #aaa;
+border-radius: 4px;}
+
+.plbox{
+    padding: 3px;
+    color: #fff;
+    width: 9.55%;
+    margin-right: 0.5%;
+    margin-bottom: 0.5%;
+    float: left;
+    font-size: 12px;
+    line-height: normal;
+}
+.text-success,.text-danger{color: #1e1e1e!important;}
+.customreport-page.report-page .page-title{margin-top: 10px;margin-bottom: 5px;}
+.customreport-page.report-page .report-table table thead tr th{border: none;    border-bottom: 1px solid #111 !important;}
+.nodatats{border-bottom: none;}
+.report-table{    overflow-x: visible;}
+.report-page.customreport-page .report-table{padding-bottom: 0px; margin-bottom: 5px;margin-top: 15px;}
+.customreport-page.report-page .filterDiv {padding-bottom: 0px;}
+.filterDiv form{margin: 0 -15px;}
+.filterDiv form .form-group h3{font-size: 17px;}
+.filterDiv form .row{margin: 0px;}
+.filterDiv  .row .col-md-12,
+.filterDiv form .row .col-md-2,
+.filterDiv form .row .col-md-4,
+.filterDiv form .row .col-md-3{padding: 0 15px;}
+.customreport-page.report-page .report-table table  td.text-end{color: #1e1e1e!important;}
+.customreport-page.report-page .report-table table  td .btn-primary:focus{font-size: 14px!important;}
+.report-table table thead tr th, .report-table table tbody tr td{padding: 3px 4px;}

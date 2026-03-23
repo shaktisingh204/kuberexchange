@@ -1,0 +1,718 @@
+{
+	"AddAgent": [
+		{
+			"fieldName": "name",
+			"rules": [
+				{
+					"type": "requiredValidator",
+					"requiredValidator": {
+						"errorMessage": "Agent Name is required"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "password",
+			"rules": [
+				{
+					"type": "requiredValidator",
+					"requiredValidator": {
+						"errorMessage": "Password is required"
+					}
+				},
+				{
+					"type": "minLengthValidator",
+					"minLengthValidator": {
+						"minLength": 6,
+						"errorMessage": "Password must be at least 6 characters "
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "domain",
+			"rules": [
+				{
+					"type": "requiredValidator",
+					"requiredValidator": {
+						"errorMessage": "Domain Name is required"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "user_name",
+			"rules": [
+				{
+					"type": "requiredValidator",
+					"requiredValidator": {
+						"errorMessage": "Username is required"
+					}
+				},
+				{
+					"type": "cannotContainSpace",
+					"cannotContainSpace": {
+						"errorMessage": "Invalid Username"
+					}
+				},
+				{
+					"type": "minLengthValidator",
+					"minLengthValidator": {
+						"minLength": 3,
+						"errorMessage": "Username should be minimum 3 characters "
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "child_level",
+			"rules": [
+				{
+					"type": "requiredValidator",
+					"requiredValidator": {
+						"errorMessage": "Child Level is required"
+					}
+				},
+				{
+					"type": "restrictPlusandMinuseValidator",
+					"restrictPlusandMinuseValidator": {
+						"errorMessage": "Invalid Child Level"
+					}
+				},
+				{
+					"type": "numericMinValueValidator",
+					"numericMinValueValidator": {
+						"minValue": 2,
+						"inclusive": true,
+						"allowZero": true,
+						"errorMessage": "Child Level should be positive number,min value is 2"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "point",
+			"rules": [
+				{
+					"type": "requiredValidator",
+					"requiredValidator": {
+						"errorMessage": "Point is required"
+					}
+				},
+				{
+					"type": "numberValidator",
+					"numberValidator": {
+						"errorMessage": "Point should be a number"
+					}
+				},
+				{
+					"type": "numericRangeValidator",
+					"numericRangeValidator": {
+						"minValue": 1,
+						"maxValue": 100,
+						"inclusive": true,
+						"allowZero": false,
+						"errorMessage": "Point should be in 1-100 range"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "exposure_limit",
+			"rules": [
+				{
+					"type": "requiredValidator",
+					"requiredValidator": {
+						"errorMessage": "Exposure Limit is required"
+					}
+				},
+				{
+					"type": "numberValidator",
+					"numberValidator": {
+						"errorMessage": "Exposure Limit  should be a number"
+					}
+				},
+				{
+					"type": "numericRangeValidator",
+					"numericRangeValidator": {
+						"minValue": -1,
+						"maxValue": 100000000,
+						"inclusive": true,
+						"allowZero": false,
+						"errorMessage": "Exposure Limit should be in -1 to 10 crore range"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "match_commission",
+			"rules": [
+				{
+					"type": "requiredValidator",
+					"requiredValidator": {
+						"errorMessage": "Market Commission is required"
+					}
+				},
+				{
+					"type": "numericMinValueValidator",
+					"numericMinValueValidator": {
+						"minValue": 0,
+						"inclusive": true,
+						"allowZero": true,
+						"errorMessage": "Market Commission should be positive number,Negative values are not allowed"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "session_commission",
+			"rules": [
+				{
+					"type": "requiredValidator",
+					"requiredValidator": {
+						"errorMessage": "Session Commission is required"
+					}
+				},
+				{
+					"type": "numericMinValueValidator",
+					"numericMinValueValidator": {
+						"minValue": 0,
+						"inclusive": true,
+						"allowZero": true,
+						"errorMessage": "Session Commission should be positive number,Negative values are not allowed"
+					}
+				}
+			]
+		}
+	],
+	"AddUser": [
+		{
+			"fieldName": "client_name",
+			"rules": [
+				{
+					"type": "requiredValidator",
+					"requiredValidator": {
+						"errorMessage": "Client Name is required"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "user_password",
+			"rules": [
+				{
+					"type": "requiredValidator",
+					"requiredValidator": {
+						"errorMessage": "Password is required"
+					}
+				},
+				{
+					"type": "minLengthValidator",
+					"minLengthValidator": {
+						"minLength": 8,
+						"errorMessage": "MUST contain at least 8 characters one uppercase letter, one lowercase letter, one number, one special character (!”#$%&'()*+,-./:;<=>?@[]^_`{|}~ )"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "confirm_password",
+			"rules": [
+				{
+					"type": "requiredValidator",
+					"requiredValidator": {
+						"errorMessage": "Retype Password is required"
+					}
+				},
+				{
+					"type": "minLengthValidator",
+					"minLengthValidator": {
+						"minLength": 6,
+						"errorMessage": "Password must be at least 6 characters "
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "acc_type",
+			"rules": [
+				{
+					"type": "requiredValidator",
+					"requiredValidator": {
+						"errorMessage": "acc_type is required"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "exposure_limit",
+			"rules": [
+				{
+					"type": "requiredValidator",
+					"requiredValidator": {
+						"errorMessage": "Exposure Limit is required"
+					}
+				},
+				{
+					"type": "numberValidator",
+					"numberValidator": {
+						"errorMessage": "Exposure Limit  should be a number"
+					}
+				},
+				{
+					"type": "numericRangeValidator",
+					"numericRangeValidator": {
+						"minValue": -1,
+						"maxValue": 100000000,
+						"inclusive": true,
+						"allowZero": false,
+						"errorMessage": "Exposure Limit should be in -1 to 10 crore range"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "credit_refrence",
+			"rules": [
+				{
+					"type": "requiredValidator",
+					"requiredValidator": {
+						"errorMessage": "Credit Refrence is required"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "cricket_min_bet",
+			"rules": [
+				{
+					"type": "requiredValidator",
+					"requiredValidator": {
+						"errorMessage": "cricket_min_bet is required"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "cricket_max_bet",
+			"rules": [
+				{
+					"type": "requiredValidator",
+					"requiredValidator": {
+						"errorMessage": "cricket_max_bet is required"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "cricket_bet_delay",
+			"rules": [
+				{
+					"type": "requiredValidator",
+					"requiredValidator": {
+						"errorMessage": "cricket_bet_delay is required"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "soccer_min_bet",
+			"rules": [
+				{
+					"type": "requiredValidator",
+					"requiredValidator": {
+						"errorMessage": "soccer_min_bet is required"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "soccer_max_bet",
+			"rules": [
+				{
+					"type": "requiredValidator",
+					"requiredValidator": {
+						"errorMessage": "soccer_max_bet is required"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "soccer_bet_delay",
+			"rules": [
+				{
+					"type": "requiredValidator",
+					"requiredValidator": {
+						"errorMessage": "soccer_bet_delay is required"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "tennis_min_bet",
+			"rules": [
+				{
+					"type": "requiredValidator",
+					"requiredValidator": {
+						"errorMessage": "tennis_min_bet is required"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "tennis_max_bet",
+			"rules": [
+				{
+					"type": "requiredValidator",
+					"requiredValidator": {
+						"errorMessage": "tennis_max_bet is required"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "tennis_bet_delay",
+			"rules": [
+				{
+					"type": "requiredValidator",
+					"requiredValidator": {
+						"errorMessage": "tennis_bet_delay is required"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "trans_pass",
+			"rules": [
+				{
+					"type": "requiredValidator",
+					"requiredValidator": {
+						"errorMessage": "trans_pass is required"
+					}
+				}
+			]
+		},
+		
+
+		{
+			"fieldName": "point",
+			"rules": [
+				{
+					"type": "numberValidator",
+					"numberValidator": {
+						"errorMessage": "Point should be a number"
+					}
+				},
+				{
+					"type": "requiredValidator",
+					"requiredValidator": {
+						"errorMessage": "Point is required"
+					}
+				},
+				{
+					"type": "numericRangeValidator",
+					"numericRangeValidator": {
+						"minValue": 1,
+						"maxValue": 100,
+						"inclusive": true,
+						"allowZero": false,
+						"errorMessage": "Point should be in 1-100 range"
+					}
+				}
+			]
+		},
+		
+		{
+			"fieldName": "match_commission",
+			"rules": [
+				{
+					"type": "requiredValidator",
+					"requiredValidator": {
+						"errorMessage": "Market Commission is required"
+					}
+				},
+				{
+					"type": "numericMinValueValidator",
+					"numericMinValueValidator": {
+						"minValue": 0,
+						"inclusive": true,
+						"allowZero": true,
+						"errorMessage": "Market Commission should be positive number,Negative values are not allowed"
+					}
+				}
+			]
+		}
+	],
+	"sportsSettings": [
+		{
+			"fieldName": "market_max_stack",
+			"rules": [
+				{
+					"type": "numberValidator",
+					"numberValidator": {
+						"errorMessage": "Market Max Stack should be a number"
+					}
+				},
+				{
+					"type": "restrictPlusandMinuseValidator",
+					"restrictPlusandMinuseValidator": {
+						"errorMessage": "Invalid Market Max Stack"
+					}
+				},
+				{
+					"type": "numericMinValueValidator",
+					"numericMinValueValidator": {
+						"minValue": -1,
+						"inclusive": true,
+						"allowZero": true,
+						"errorMessage": "Market Max Stack should be positive number,only -1 is allowed"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "market_max_odds_rate",
+			"rules": [
+				{
+					"type": "numberValidator",
+					"numberValidator": {
+						"errorMessage": "Market Max odds rate should be a number"
+					}
+				},
+				{
+					"type": "restrictPlusandMinuseValidator",
+					"restrictPlusandMinuseValidator": {
+						"errorMessage": "Invalid Market odds rate"
+					}
+				},
+				{
+					"type": "numericMinValueValidator",
+					"numericMinValueValidator": {
+						"minValue": -1,
+						"inclusive": true,
+						"allowZero": true,
+						"errorMessage": "Market Max odds rate should be positive number,only -1 is allowed"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "market_max_loss",
+			"rules": [
+				{
+					"type": "numericMinValueValidator",
+					"numericMinValueValidator": {
+						"minValue": -1,
+						"inclusive": true,
+						"allowZero": true,
+						"errorMessage": "Market Max Loss should be positive number,only -1 is allowed"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "market_max_profit",
+			"rules": [
+				{
+					"type": "numericMinValueValidator",
+					"numericMinValueValidator": {
+						"minValue": -1,
+						"inclusive": true,
+						"allowZero": true,
+						"errorMessage": "Market Max Profit should be positive number,only -1 is allowed"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "market_rate_limit",
+			"rules": [
+				{
+					"type": "numericMinValueValidator",
+					"numericMinValueValidator": {
+						"minValue": -1,
+						"inclusive": true,
+						"allowZero": true,
+						"errorMessage": "Market Rate Limit should be positive number,only -1 is allowed"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "market_rate_limit_point",
+			"rules": [
+				{
+					"type": "numericMinValueValidator",
+					"numericMinValueValidator": {
+						"minValue": -1,
+						"inclusive": true,
+						"allowZero": true,
+						"errorMessage": "Market Rate Limit Point should be positive number,only -1 is allowed"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "point_place_before_in_play",
+			"rules": [
+				{
+					"type": "numericMinValueValidator",
+					"numericMinValueValidator": {
+						"minValue": -1,
+						"inclusive": true,
+						"allowZero": true,
+						"errorMessage": "Point Place Before In-Play should be positive number,only -1 is allowed"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "session_min_stack",
+			"rules": [
+				{
+					"type": "numericMinValueValidator",
+					"numericMinValueValidator": {
+						"minValue": -1,
+						"inclusive": true,
+						"allowZero": true,
+						"errorMessage": "Session Max. Stack should be positive number,only -1 is allowed"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "session_max_loss",
+			"rules": [
+				{
+					"type": "numericMinValueValidator",
+					"numericMinValueValidator": {
+						"minValue": -1,
+						"inclusive": true,
+						"allowZero": true,
+						"errorMessage": "Session Max Loss should be positive number,only -1 is allowed"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "session_max_profit",
+			"rules": [
+				{
+					"type": "numericMinValueValidator",
+					"numericMinValueValidator": {
+						"minValue": -1,
+						"inclusive": true,
+						"allowZero": true,
+						"errorMessage": "Session Max Profit should be positive number,only -1 is allowed"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "session_per_rate_max_stack",
+			"rules": [
+				{
+					"type": "numericMinValueValidator",
+					"numericMinValueValidator": {
+						"minValue": -1,
+						"inclusive": true,
+						"allowZero": true,
+						"errorMessage": "Session Per Rate Max Stack should be positive number,only -1 is allowed"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "session_bet_delay",
+			"rules": [
+				{
+					"type": "numericMinValueValidator",
+					"numericMinValueValidator": {
+						"minValue": -1,
+						"inclusive": true,
+						"allowZero": true,
+						"errorMessage": "Session Fresh Delay should be positive number"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "session_min_stack",
+			"rules": [
+				{
+					"type": "numericMinValueValidator",
+					"numericMinValueValidator": {
+						"minValue": 0,
+						"inclusive": true,
+						"allowZero": true,
+						"errorMessage": "Session Min. Stack should be positive number"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "market_min_stack",
+			"rules": [
+				{
+					"type": "numericMinValueValidator",
+					"numericMinValueValidator": {
+						"minValue": 0,
+						"inclusive": true,
+						"allowZero": true,
+						"errorMessage": "Market Min. Stack should be positive number"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "market_bet_delay",
+			"rules": [
+				{
+					"type": "numericMinValueValidator",
+					"numericMinValueValidator": {
+						"minValue": -1,
+						"inclusive": true,
+						"allowZero": true,
+						"errorMessage": "Market Fresh Delay should be positive number"
+					}
+				}
+			]
+		},
+		{
+			"fieldName": "market_min_odds_rate",
+			"rules": [
+				{
+					"type": "numericMinValueValidator",
+					"numericMinValueValidator": {
+						"minValue": 0,
+						"inclusive": true,
+						"allowZero": true,
+						"errorMessage": "Market Min. odds should be positive number"
+					}
+				}
+			]
+		}
+	],
+	"UserDataDepositWithdrawl": [
+		{
+			"fieldName": "accChips",
+			"rules": [
+				{
+					"type": "numericMinValueValidator",
+					"numericMinValueValidator": {
+						"minValue": 1,
+						"inclusive": true,
+						"allowZero": false,
+						"errorMessage": "Chips should be non-zero positive number"
+					}
+				},
+				{
+					"type": "numberValidator",
+					"numberValidator": {
+						"errorMessage": "Chips should be a number"
+					}
+				}
+			]
+		}
+	]
+}

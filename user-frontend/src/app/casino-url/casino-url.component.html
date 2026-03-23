@@ -1,0 +1,209 @@
+<!-- mobile_view -->
+<ng-container *ngIf="!deviceInfo">
+  <!-- backButton -->
+  <div class="container-fluid">
+    <div class="row header text-light">
+      <div class="col-3 mt-3" style="cursor:pointer;">
+        <mat-icon [routerLink]="['/home/inplay']"><i class="material-icons">arrow_back_ios</i></mat-icon>
+      </div>
+      <!-- <div class="col-9 text-end">
+       <div class="addcard" data-toggle="modal" data-target="#exampleModalCenter" style="float:right ;text-align: center; margin-right: 17px; margin-top: 10px;">
+           <small> <span class="font-weight-bold text-info" style="font-size:15px;">Add Coins:</span> {{casinoBal}}</small>
+      </div>
+  
+    </div> -->
+    </div>
+  </div>
+  <div style="height:90vh">
+    <iframe class="sun" [src]="iframUrl" *ngIf="iframUrl" marginwidth="0" marginheight="0" frameborder="0" width="100%"
+      height="97%;" scrolling="yes" allowfullscreen="allowfullscreen"></iframe>
+  </div>
+</ng-container>
+
+<!-- desktop_view -->
+<div *ngIf="deviceInfo" class="desktopmain-main">
+  <app-header></app-header>
+  <!-- desktop_header -->
+  <app-desk-header></app-desk-header>
+  <!-- desktop_header_end -->
+  <div class="container-fluid container-fluid-5">
+    <div class="row row5">
+      <div class="sidebar col-md-2">
+        <!-- desktop_sidebar_others  -->
+        <app-desk-sidebar></app-desk-sidebar>
+      </div>
+      <!---->
+      <div class="col-md-10 featured-box">
+        <div>
+
+          <div _ngcontent-ng-c482833544="" class="casino_tab_wrapper row">
+            <div _ngcontent-ng-c482833544="" class="col-xl-2 d-none d-xl-flex">
+              <div _ngcontent-ng-c482833544="" class="casino_tab_list">
+                <ul _ngcontent-ng-c482833544="" id="casino-sub-tab" class="nav nav-pills casino-sub-tab">
+                  <li class="nav-item" *ngFor="let tab of casinoTabs" (click)="setActiveTab(tab)">
+                    <a class="nav-link" [ngClass]="{ active: activeTab === tab.name }">
+                      <span>{{ tab.name }}</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Casino Images -->
+            <div class="col-xl-10 col-12">
+              <div class="casino-list">
+                <div class="casino-list-item" *ngFor="let casino of filteredCasinos">
+                  <a>
+                    <div class="casino-list-item-banner" [style.background-image]="
+              'url(' + casino.image + '), url(https://dataobj.ecoassetsservice.com/casino-icons/default.jpg)'
+            "></div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- bet_show_section -->
+          <div *ngIf="false" id="sidebar-right" class="sidebar-right" style="position: relative;">
+            <div class="ps">
+              <div class="sidebar-right-inner">
+                <!---->
+                <div class="card m-b-10 place-bet">
+                  <div class="card-header">
+                    <h6 class="card-title d-inline-block">Place Bet</h6>
+                  </div>
+
+                  <!-- Place_bet_body -->
+
+                  <!--Place_bet_body_end-->
+                </div>
+                <div class="card m-b-10 my-bet">
+                  <div class="card-header">
+                    <h6 class="card-title d-inline-block">My Bet</h6>
+                  </div>
+                  <div class="card-body">
+                    <table class="coupon-table table  table-borderedless">
+                      <thead>
+                        <tr>
+                          <th style="width: 60%;">
+                            Matched Bet
+                          </th>
+                          <th class="text-right">
+                            Odds
+                          </th>
+                          <th class="text-center">
+                            Stake
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody *ngFor="let bet of allBetData;">
+                        <tr [ngClass]="{'lay':(bet?.type)=='Lay','back':(bet?.type)=='Back'}">
+
+                          <!-- matchOdds/bookmaker -->
+                          <ng-container
+                            *ngIf="bet?.marketType === 'MATCH_ODDS' || bet?.marketType === 'Special' else else_session_block">
+                            <td>{{bet?.selectionName}}</td>
+                            <td class="text-right"><span
+                                *ngIf="bet.marketType==='Special' else rate_matchOdds">{{(bet.rate*100)-100
+                                | number : '0.0-2'}}</span>
+                              <ng-template #rate_matchOdds>{{bet?.rate | number : '0.0-2'}}</ng-template>
+                            </td>
+                          </ng-container>
+
+                          <!-- session -->
+                          <ng-template #else_session_block>
+                            <td>{{bet?.marketName}}
+                              <span>
+                                / {{bet?.rate*100 |number:'.0-2'}}
+                              </span>
+                            </td>
+                            <td class="text-right"><span>{{bet?.selectionName}}</span></td>
+                          </ng-template>
+                          <!-- amount -->
+                          <td style="text-align: right;">{{bet?.stake}}</td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+                    <div class="text-warning" style="color:black !important;" *ngIf="allBetDataLength == 0">No Bet
+                      Found</div>
+                  </div>
+                </div>
+                <!---->
+              </div>
+              <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+              </div>
+              <div class="ps__rail-y" style="top: 0px; right: 0px;">
+                <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- desktop_footer -->
+  <app-desk-footer></app-desk-footer>
+</div>
+
+<!-- BalModal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Wallet</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body bg-light">
+        <div class="container">
+          <!-- <div class="row">
+                <div class="col-12">
+                  <h4 style="font-weight:500;">Note: <span>10 coins =  <span>1</span> coins in casino wallet</span></h4>
+                </div>
+              </div> -->
+          <div class="row" style="width:100%;margin-top:20px;">
+            <div class="col-2">
+              <img src="assets/images/walletIcon/main.png" width="30" height="30" alt="">
+            </div>
+            <div class="col-7" style="padding-top:6px;"><span>Main Balance</span></div>
+            <div class="col-3" style="padding-top:6px;"><span>{{walletBalance | number : '0.0-2'}}</span></div>
+          </div>
+          <div class="row" style="width: 100%; margin-top: 20px;">
+            <div class="col-2">
+              <img src="assets/images/walletIcon/casino.png" width="35" height="34" alt="">
+            </div>
+            <div class="col-7" style="padding-top:10px;"><span> Casino Balance </span></div>
+            <div class="col-3" style="padding-top:10px;"><span>{{casinoBal | number : '0.0-2'}}</span></div>
+          </div>
+          <div class="row" style="margin-top: 20px;">
+            <div class="col-6" style="text-align:center ;">
+              <button class="btn-outline-success border border-success rounded" (click)="action(1,'Deposit');"
+                mat-stroked-button>DEPOSIT</button>
+            </div>
+            <div class="col-6" style="text-align:center ;">
+              <button class="btn-outline-danger border border-danger rounded" (click)="action(2,'Withdraw');"
+                mat-stroked-button>WITHDRAW</button>
+            </div>
+          </div>
+
+          <div *ngIf="depWith" class="row mt-4">
+            <div class="col-12">
+              <p for="deposit_withdrow_label_id">{{depWith}}</p>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Amount</mat-label>
+                <input type="number" [(ngModel)]="amount" matInput>
+              </mat-form-field>
+              <button class="btn-outline-success border border-success rounded ml-3" [disabled]="loader"
+                (click)="onSubmit();" mat-stroked-button>Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

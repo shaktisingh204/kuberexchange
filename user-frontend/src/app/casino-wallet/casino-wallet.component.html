@@ -1,0 +1,150 @@
+<mat-sidenav-container fullscreen class="casinowalletpage">
+    <mat-sidenav-content>
+        <app-header></app-header>
+      	<div class="main-content">
+           <div class="container-fluid">
+                <div class="row">
+                        <div class="d-flex" style="background-color: var(--theme2-bg); color: #fff; width: 100%;"> <span class="ml-2 ptitle" style="padding: 6px;
+                          font-weight: 500;">Casino Results</span>
+                         </div>
+
+                         <div class="col-md-12">
+                          <form>
+                              <div class="row form-field form-div mt-2">
+                                  <div class="col-md-3 col-6">
+                                      <div class="col-inner">
+                                          <div class="form-group form-group-div  dateTimePicker">
+                                              <label for="" class="form-label text-label">From</label>
+                                              <input type="date" class="form-control" placeholder="{{startdateTime | date:'yyyy-MM-dd  '}}" name="myDate" placement="bottom" value="{{startdateTime | date:'yyyy-MM-dd  '}}" [(ngModel)]="myDate" (change)="somethingChanged1($event.target.value)">
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-3 col-6">
+                                      <div class="col-inner">
+                                          <div class="form-group form-group-div dateTimePicker">
+                                              <label for="" class="form-label text-label">To</label>
+                                              <input type="date" class="form-control" placeholder="{{enddateTime | date:'yyyy-MM-dd  '}}" placement="bottom" name="myDateto" value="{{enddateTime | date:'yyyy-MM-dd  '}}" [(ngModel)]="myDateto" (change)="somethingChanged2($event.target.value)">
+                                          </div>
+                                      </div>
+                                  </div>
+                                  
+                                  <div class="col-md-3 col-12">
+                                      <div class="col-inner">
+                                          <div class="form-group form-group-div mb-0">
+                                              <label for="" class="form-label text-label"> Game Type</label>
+                                              <select class="form-select text-select custom-select"
+                                                  aria-label="Default select example">
+                                                  <option selected disabled>Live Casino</option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                      
+                                  </div>
+                                 
+                                  <div class="col-md-3 col-12">
+                                      <div class="col-inner ">
+                                          <div class="btn-list">
+                                              
+                                              <button type="button" class="btn btn-primary "
+                                                  style=" margin-top:12px !important;"
+                                                  (click)="profitLossData()">Submit</button>
+                                              
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </form>
+                      </div>
+
+                    
+                        <div class="filtertop filed-from w-100">
+                        <div class="row d-flex m-0">
+                            <div class="col-md-6 col-6 text-start">
+                                <div class="report-bottom-paginate">
+                                    <div class="col-inner item-perpage-select">
+                                        <label>Show</label>
+            
+                                        <select name="betType" class="form-select" [(ngModel)]="itemsPerPage"
+                                            [ngModelOptions]="{standalone: true}" aria-label="Default select example"
+                                            (ngModelChange)="pageChange()">
+                                            <option selected disabled></option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                            <option value="150">150</option>
+                                            <option value="200">200</option>
+                                        </select>
+                                        <small>entries</small>
+                                    </div>
+                                   
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6  col-6 text-end">
+                                <div class="search-col mt-2">
+                                    <label for="" >search: </label>
+                                    <input type="search" name="" id="" placeholder="Type to search">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="customtabelne">
+                    <div class="table-responsive">
+                        <table datatable class="table" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>User_Name</th>
+                                    <th>Casino_Type</th>
+                                    <th>Game_Name</th>
+                                    <th>Transaction_Id</th>
+                                    <th>Transaction_Type</th>
+                                    <th>Game_Id</th>
+                                    <th>Amount</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container
+                                    *ngFor="let list of profitData| paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems };let i = index;">
+                                    <tr>
+                                        <td>{{list.username}}</td>
+                                        <td>{{list.category}}</td>
+                                        <td>{{list.gameId}}</td>
+                                        <td>{{list.txnId}}</td>
+                                        <td>{{list.txntype}}</td>
+                                        <td>{{list.roundId}}</td>
+                                        <td>{{list.amount}}</td>
+                                        <td><span class="date">{{list.createdAt| date :'dd-MM-yyyy H:mm'}}</span></td>
+                                    </tr>
+                                </ng-container>
+                                
+                            </tbody>
+      
+                        </table>
+                        
+                        <div class="row" *ngIf="profitData?.length == 0">
+                            <div class="col-md-12 p-0 text-center">
+                                <div class="nodatats">
+                               <span> No data avalible </span> 
+                               </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                    <div class="row-sm d-flex mt-1 w-100">
+                        <div class="col-md-6">
+                            <span>Showing <span> 0</span> to <span>0</span> of <span>0</span> entries</span>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <pagination-controls (pageChange)="pageChange($event)" class="user-list-pagination"></pagination-controls>  
+                             
+                        </div>
+                    </div>
+                 
+                </div>
+          </div>
+        </div>
+       
+    </mat-sidenav-content>
+</mat-sidenav-container>
+

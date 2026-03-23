@@ -1,0 +1,554 @@
+<app-header></app-header>
+<!-- <app-sidebar></app-sidebar> -->
+<main>
+  <div class="full-wrap">
+    <div class="report-page customreport-page acuntpagewrap">
+      <div class="closed-user inner-content">
+        <div class="page-title" style="margin-bottom: 7px; background-color: #f9f9f9 !important">
+          <h3 class="pagetitleheading" style="color: #000 !important">
+            Account Statement
+          </h3>
+          <!-- <div class="breadcrumb">
+                        <a (click)="goToBack()" class="btn btn-secondary back-btn"><i
+                                class="fa fa-arrow-left"></i>Back</a>
+                    </div> -->
+        </div>
+
+        <div class="filterDiv" style="
+            margin-top: 0;
+            color: #000;
+            background-color: #f9f9f9 !important;
+            padding: 0;
+          ">
+          <div class="row">
+            <div class="col-md-12">
+              <form>
+                <!--  <div class="filter-btn text-start">
+                                    <div class="form-check"
+                                        *ngFor="let type of statementType| keyvalue; let i = index;">
+                                        <input name="{{type.value}}" [value]='type.key' id='{{type.value}}'
+                                            [(ngModel)]="radioSelect" type="radio"
+                                            (ngModelChange)="onSelectionChange(type.key)"
+                                            (change)="onSelectionChange(type.key)">
+                                        <label class="form-check-label" for="{{type.value}}"
+                                            (keyup.space)="radioSelected=type.key">{{type.value}} </label>
+                                    </div>
+
+                                </div> -->
+                <div class="row form-field form-div">
+                  <div class="col-md-2">
+                    <div class="col-inner">
+                      <div class="form-group form-group-div">
+                        <label for="" class="form-label text-label">Account Type</label>
+                        <!-- <input type="text" class="form-control" placeholder="Search by user"> -->
+                        <select class="form-select" aria-label="Default select example"
+                          (change)="acc_type_value($event.target.value)">
+                          <option value="all" selected>All</option>
+                          <option value="balance_report">Balance Report</option>
+                          <option value="games_report">Game Report</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="col-inner">
+                      <div class="form-group form-group-div">
+                        <label for="" class="form-label text-label">Game Name</label>
+                        <select class="form-select" name="reportType" aria-label="Default select example"
+                          [(ngModel)]="reportType">
+                          <option value="0" class="option" selected>All</option>
+                          <option value="4" class="option">Cricket</option>
+                          <option value="2" class="option">Tennis</option>
+                          <option value="1" class="option">Soccer</option>
+                          <!-- <option value="4321" class="option">Wheel</option> -->
+                          <option value="c9" class="option">Casino</option>
+                          <option value="c1" class="option">live Casino</option>
+                          <option value="v9" class="option">Virtual</option>
+                          <!-- <option value="3" class="option">All Deposit/Withdraw</option>
+                                                    <option value="7" class="option">Deposit</option>
+                                                    <option value="6" class="option">Withdraw</option>
+                                                    <option value="5" class="option">All Game report</option> -->
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="col-inner">
+                      <div class="form-group form-group-div">
+                        <label for="" class="form-label text-label">Search By Client Name
+                        </label>
+                        <input type="text" name="ser" (keyup)="searchUser($event.target.value)"
+                          [(ngModel)]="userSearch" />
+                        <div *ngIf="filter_user_arr?.length > 0" class="search-box-container">
+                          <ul>
+                            <li *ngFor="let user of filter_user_arr" (click)="
+                                userSearch = user.username;userSearchId=user._id; filter_user_arr = []
+                              ">
+                              {{ user.username }}
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="col-inner">
+                      <div class="form-group dateTimePicker form-group-div">
+                        <!-- <input class="form-control" [max]="min" name="startDate"
+                                                    (monthSelected)="chosenMonthHandler($event, dt1)"
+                                                    [(ngModel)]="openStartDate" datetime="HH:mm:ss" [owlDateTime]="dt1"
+                                                    [owlDateTimeTrigger]="dt1" placeholder=" Start Date Time">
+                                                <owl-date-time #dt1 hour12Timer="true" showSecondsTimer="true">
+                                                </owl-date-time> -->
+                        <label for="" class="form-label text-label">From
+                        </label>
+                        <input type="text" class="form-control" placeholder="{{ startdateDefault }}"
+                          [popover]="popTemplate" placement="bottom" [outsideClick]="true" #startpopoverRef="bs-popover"
+                          value="{{ myDate | date : 'yyyy-MM-dd ' }}" (click)="showDate()" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="col-inner">
+                      <div class="form-group dateTimePicker form-group-div form-group-div">
+                        <label for="" class="form-label text-label">To</label>
+                        <input type="text" class="form-control" placeholder="{{ enddateDefault }}"
+                          [popover]="popTemplate1" placement="bottom" [outsideClick]="true" #endpopoverRef="bs-popover"
+                          value="{{ myDateto | date : 'yyyy-MM-dd ' }}" (click)="showDate()" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="col-inner">
+                      <div class="btn-list">
+                        <button type="button" class="btn btn-primary" style="margin-top: 21px !important"
+                          (click)="this.currentPage = 1; onLoad()">
+                          Load
+                        </button>
+                        <!-- <button type="button" class="btn btn-danger" (click)="onClickClear()">Clear</button> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="report-table">
+          <div class="filtertop">
+            <div class="row-sm d-flex">
+              <div class="col-md-6 text-start">
+                <div class="report-bottom-paginate">
+                  <div class="col-inner item-perpage-select">
+                    <label>Show</label>
+
+                    <select name="betType" class="form-select" [(ngModel)]="itemsPerPage"
+                      [ngModelOptions]="{ standalone: true }" aria-label="Default select example"
+                      (ngModelChange)="item_pr_pageChange($event)">
+                      <option [ngValue]="5">5</option>
+                      <option [ngValue]="20">20</option>
+                      <option [ngValue]="50">50</option>
+                      <option [ngValue]="100">100</option>
+                      <option [ngValue]="150">150</option>
+                      <option [ngValue]="200">200</option>
+                    </select>
+                    <span class="mt-1">entries</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 text-end">
+                <div class="search-col mt-2">
+                  <label for="">search: </label>
+                  <input type="search" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <table datatable class="table" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+            <thead>
+              <tr>
+                <th style="width: 10%">Date</th>
+                <th style="width: 10%">Credit</th>
+                <th style="width: 10%">Debit</th>
+                <th style="width: 10%">closing</th>
+                <th style="width: 50%">Description</th>
+                <th width="15%" style="width: 213px; display: block">Fromto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="
+                  let list of statementList
+                    | paginate
+                      : {
+                          itemsPerPage: itemsPerPage,
+                          currentPage: currentPage,
+                          totalItems: totalItems
+                        };
+                  let i = index
+                ">
+                <tr>
+                  <td style="white-space: nowrap">
+                    <span class="date">{{
+                      list.createdAt | date : "yyyy-MM-dd H:mm" : "UTC +5:30"
+                      }}</span>
+                  </td>
+
+                  <td hidden></td>
+                  <!-- <td>{{itemsPerPage *(currentPage-1)+i+1}}</td> -->
+                  <!-- <td (click)="openModalUserParentList(list,userParentList)">{{list.user_name}}</td> -->
+                  <td class="text-right">
+                    <small>
+                      <span *ngIf="list.amount == 0 || list.amount == ''">0.00</span>
+                      <span *ngIf="list.amount > 0">{{
+                        list.amount | number : "0.2"
+                        }}</span>
+                      <!-- <span *ngIf="list.subAction=='BALANCE_DEPOSIT'">{{list.amount|number:'0.2'}}</span>
+                        
+                        
+                                        <span *ngIf="list.subAction=='AMOUNT_WON' && list.eventTypeId" >{{list.amount|number:'0.2'}}</span>
+                        
+                                        <span *ngIf="list.subAction=='AMOUNT_WON' && !list.eventTypeId"
+                                         >{{list.amount|number:'0.2'}}</span> -->
+                    </small>
+                  </td>
+                  <td class="text-right">
+                    <small>
+                      <span *ngIf="list.amount == 0 || list.amount == ''">0.00</span>
+                      <!-- <span *ngIf="list.subAction=='BALANCE_WITHDRAWL'">{{list.amount|number:'0.2'}}</span>
+                                        <span *ngIf="list.subAction=='AMOUNT_LOST'">
+                                          <span *ngIf="list.amount>0"> {{list.amount|number:'0.2'}}</span> -->
+                      <span *ngIf="list.amount < 0">
+                        {{ list.amount | number : "0.2" }}
+                      </span>
+
+                      <!-- <span *ngIf="list.amount==0"> {{list.amount|number:'0.2'}}</span> -->
+                    </small>
+                  </td>
+                  <!-- <td class="green">{{list.subAction=='BALANCE_DEPOSIT' ? (list.amount | number : '0.0-2')
+                                        : '0'}}</td>
+                                    <td class="red">{{list.subAction=='BALANCE_WITHDRAWL' ? (list.amount | number : '0.0-2' )
+                                            : '0' }}</td> -->
+                  <td class="closing text-right">
+                    {{ list.newLimit | number : "0.2" }}
+                  </td>
+                  <!-- Description -->
+                  <td *ngIf="
+                      list.subAction == 'BALANCE_DEPOSIT' ||
+                        list.subAction == 'BALANCE_WITHDRAWL' ||
+                        list.subAction === 'BONUS_WITHDRAWL' ||
+                        list.subAction === 'BONUS_DEPOSIT';
+                      else elseBlock
+                    " class="dec-cell" (click)="
+                      openModalUserParentList(
+                        list.marketId,
+                        list.action,
+                        userParentList,
+                        list?.totalamount,
+                        list?.marketType,
+                        list?.amount
+                      )
+                    ">
+                    {{ list.remark }}
+                  </td>
+                  <ng-template #elseBlock>
+                    <td class="dec-cell">
+                      <span class="bgdarkss" (click)="
+                          openModalUserParentList(
+                            list.marketId,
+                            list.action,
+                            userParentList,
+                            list?.totalamount,
+                            list?.marketType,
+                            list?.amount
+                          )
+                        "><ng-container *ngIf="
+                            list.subAction === 'COMMISSION_WON' ||
+                              list.subAction === 'COMMISSION_LOST';
+                            else elseCommision
+                          ">{{ list.eventTypeName }}/{{ list.eventName }}/{{
+                          list.marketName
+                          }}/Commison</ng-container>
+                        <ng-template #elseCommision>{{ list.eventTypeName }}/{{ list.eventName }}/{{
+                          list.marketName
+                          }}/{{ list.result
+                          }}<span *ngIf="list.remark"><span style="color: white !important">/</span><span style="
+                                background: yellow;
+                                padding: 2px;
+                                border-radius: 4px;
+                              ">{{ list.remark }}</span></span></ng-template>
+                      </span>
+                    </td>
+                  </ng-template>
+                  <!-- <td [ngClass]="{'red':list.balance < 0 ,'green':list.balance >= 0}"
+                                        *ngIf="(selections == 1 || selections == 4 || selections == 0) && update_user_Type_id == 1">{{list.balance | number : '0.0-2'}}
+                                    </td> -->
+                  <!-- <td [ngClass]="{'red':list.balance < 0 ,'green':list.balance >= 0}"
+                                        *ngIf="(selections == 1 || selections == 4) && update_user_Type_id != 1">{{list.balance | number : '0.0-2'}}
+                                    </td> -->
+                  <!-- <td *ngIf="selections == 1 || selections == 4">{{list.remark}}</td> -->
+                  <td class="fromto">
+                    <span *ngIf="
+                        list?.subAction === 'BALANCE_DEPOSIT' ||
+                        list?.subAction === 'BALANCE_WITHDRAWL' ||
+                        list.subAction === 'BONUS_WITHDRAWL'
+                      ">{{ list.from }}/{{ list.to }}</span>
+                  </td>
+                  <!-- <td (click)="openModalUserParentList(userParentList)">{{"user_name"}}</td> -->
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+          <div class="row" *ngIf="statementList.length == 0">
+            <div class="col-md-12 p-0 text-center">
+              <div class="nodatats">
+                <span> No data avalible </span>
+              </div>
+            </div>
+          </div>
+          <!-- <pagination-controls (pageChange)="pageChange($event)" class="user-list-pagination">
+                    </pagination-controls> -->
+          <!-- <div class="report-bottom-paginate">
+                        <div class="col-inner item-perpage-select">
+                            <label>Items per page:</label>
+
+                            <select name="betType" class="form-select" [(ngModel)]="itemsPerPage"
+                                [ngModelOptions]="{standalone: true}" aria-label="Default select example"
+                                (ngModelChange)="pageChange()">
+                                <option selected disabled></option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                                <option value="150">150</option>
+                                <option value="200">200</option>
+                            </select>
+                        </div> -->
+
+          <!-- </div> -->
+        </div>
+        <div class="row-sm d-flex">
+          <div class="col-md-6">
+            <span>Showing
+              <span>{{ itemsPerPage * (currentPage - 1) + 1 }}</span> to
+              <span *ngIf="
+                  currentPage == math.ceil(totalItems / itemsPerPage) ||
+                    (totalItems / itemsPerPage | number : '1.0-0') == 0;
+                  else toPage
+                ">{{ totalItems }}</span><ng-template #toPage>{{
+                itemsPerPage * currentPage
+                }}</ng-template>
+              of <span>{{ totalItems }}</span> entries</span>
+          </div>
+          <div class="col-md-6">
+            <pagination-controls (pageChange)="pageChange($event)" class="user-list-pagination"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Date Time Picker -->
+<ng-template #popTemplate>
+  <datepicker [hidden]="!isDateVisible" [(ngModel)]="date" [minDate]="minDate" [maxDate]="todayDateTime"
+    [showWeeks]="false" (ngModelChange)="updateDate()" (selectionDone)="dateSelectionDone()">
+  </datepicker>
+  <timepicker [hidden]="!isDateVisible" [(ngModel)]="time" (ngModelChange)="updateTime()" [showMeridian]="isMeridian"
+    showSeconds="true">
+  </timepicker>
+
+  <div style="padding: 5px">
+    <span class="btn-group pull-left" style="margin-right: 10px">
+      <button type="button" class="btn btn-sm btn-info" [hidden]="!isDateVisible" (click)="today()">
+        Today
+      </button>
+      <button type="button" class="btn btn-sm btn-danger" (click)="clear()">
+        Clear
+      </button>
+    </span>
+    <span class="btn-group pull-right">
+      <!-- <button type=button class="btn btn-sm btn-light" [hidden]="isDateVisible" 
+            (click)="showDate()">Date
+            </button>
+            <button type=button class="btn btn-sm btn-light" [hidden]="!isDateVisible" 
+            (click)="showTime()">Time
+            </button> -->
+      <button type="button" class="btn btn-sm btn-success" (click)="close()">
+        Close
+      </button>
+    </span>
+    <span class="clearfix"></span>
+  </div>
+</ng-template>
+<ng-template #popTemplate1>
+  <datepicker [hidden]="!isDateVisible" [(ngModel)]="endDate" [minDate]="date" [maxDate]="todayDateTime"
+    [showWeeks]="false" (ngModelChange)="updateEndDate()" (selectionDone)="dateSelectionDone()">
+  </datepicker>
+  <timepicker [hidden]="!isDateVisible" [(ngModel)]="endDate" (ngModelChange)="updateEndTime()"
+    [showMeridian]="isMeridian" showSeconds="true">
+  </timepicker>
+
+  <div style="padding: 5px">
+    <span class="btn-group pull-left" style="margin-right: 10px">
+      <button type="button" class="btn btn-sm btn-info" [hidden]="!isDateVisible" (click)="today()">
+        Today
+      </button>
+      <button type="button" class="btn btn-sm btn-danger" (click)="clear()">
+        Clear
+      </button>
+    </span>
+    <span class="btn-group pull-right">
+      <!-- <button type=button class="btn btn-sm btn-light" [hidden]="isDateVisible" 
+            (click)="showDate()">Date
+            </button>
+            <button type=button class="btn btn-sm btn-light" [hidden]="!isDateVisible" 
+            (click)="showTime()">Time
+            </button> -->
+      <button type="button" class="btn btn-sm btn-success" (click)="closeEndDatepicker()">
+        Close
+      </button>
+    </span>
+    <span class="clearfix"></span>
+  </div>
+</ng-template>
+
+<ng-template #userParentList>
+  <div class="modal-header cutompophrader">
+    <h4 class="modal-title">
+      Client Ledger (Total Win Loss: {{ total_win_loss | number : "0.0-2" }})
+      (Total Count: {{ total_usrBet_count }})(Total Soda: {{ usrBet?.length }})
+    </h4>
+    <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()">×</a>
+  </div>
+  <div class="modal-body cutompopbody">
+    <div class="row field-from">
+      <div class="col-md-12 p-0">
+        <div class="form-check-wrap">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="all"
+              (change)="getBetType($event.target.value)" checked />
+            <label class="form-check-label" for="exampleRadios1"> All </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="false"
+              (change)="getBetType($event.target.value)" />
+            <label class="form-check-label" for="exampleRadios2">
+              Matched
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="true"
+              (change)="getBetType($event.target.value)" />
+            <label class="form-check-label" for="exampleRadios3">
+              Deleted
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <table datatable class="table popuptable" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+      <thead>
+        <tr style="font-weight: 600">
+          <th>Uplevel</th>
+          <th>UserName</th>
+          <th>Nation</th>
+          <th>Userrate</th>
+          <th>Amount</th>
+          <th>winloss</th>
+          <th>PlaceDate</th>
+          <th>MatchDate</th>
+          <th>IP</th>
+          <th>browserdetail</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let x of usrBet" [ngClass]="{
+            skyblueClass: x?.type === 'Back',
+            pinkClass: x?.type === 'Lay'
+          }">
+          <td>{{ x?.ParentUser }}</td>
+          <td>{{ x?.username }}</td>
+          <!-- nation -->
+          <td>
+            <span *ngIf="x.marketType === 'SESSION'; else nationBlock">
+              {{ x.marketName }} / {{ x.rate * 100 | number : "0.0-2" }}
+            </span>
+            <ng-template #nationBlock>
+              {{ x.selectionName }}
+            </ng-template>
+          </td>
+          <!-- userrate -->
+          <td>
+            <span *ngIf="x.marketType === 'SESSION'; else match_odd_rate">
+              {{ x?.selectionName }}
+            </span>
+            <ng-template #match_odd_rate>
+              {{ x.rate }}
+            </ng-template>
+          </td>
+          <!-- amount -->
+          <td>{{ x?.stake }}</td>
+          <!-- session_winLoss -->
+          <td>
+            <span *ngIf="x.marketType === 'SESSION'; else matchOddsBookmaker">
+              <span *ngIf="x?.type === 'Back' && x?.result === 'WON'" style="color: green">
+                {{ x?.stake * x?.rate | number : "0.0-2" }}
+              </span>
+              <span *ngIf="x?.type === 'Back' && x?.result === 'LOST'" style="color: red">
+                -{{ x?.stake }}
+              </span>
+
+              <span *ngIf="x?.type === 'Lay' && x?.result === 'LOST'" style="color: red">
+                -{{ x?.stake * x?.rate | number : "0.0-2" }}
+              </span>
+              <span *ngIf="x?.type === 'Lay' && x?.result === 'WON'" style="color: green">
+                {{ x?.stake }}
+              </span>
+            </span>
+
+            <!-- matchodds_bookmaker_win_loss/casino -->
+            <ng-template #matchOddsBookmaker>
+              <ng-container *ngIf="x.marketType === 'Casino'; else elseMB">
+                <!-- Won -->
+                <span *ngIf="x?.type === 'Back' && x?.result === 'WON'" style="color: green">
+                  {{ x?.ratestake | number : "0.0-2" }}
+                </span>
+
+                <!-- Lost -->
+                <span *ngIf="x?.type === 'Back' && x?.result === 'LOST'" style="color: red">
+                  -{{ x?.ratestake | number : "0.0-2" }}
+                </span>
+              </ng-container>
+              <ng-template #elseMB>
+                <!-- Won -->
+                <span *ngIf="x?.type === 'Back' && x?.result === 'WON'" style="color: green">
+                  {{ x?.stake * (x?.rate - 1) | number : "0.0-2" }}
+                </span>
+
+                <!-- Lost -->
+                <span *ngIf="x?.type === 'Back' && x?.result === 'LOST'" style="color: red">
+                  -{{ x?.stake }}
+                </span>
+              </ng-template>
+
+              <!-- lay -->
+              <span *ngIf="x?.type === 'Lay' && x?.result === 'LOST'" style="color: red">
+                -{{ x?.stake * (x?.rate - 1) | number : "0.0-2" }}
+              </span>
+              <span *ngIf="x?.type === 'Lay' && x?.result === 'WON'" style="color: green">
+                {{ x?.stake }}
+              </span>
+            </ng-template>
+          </td>
+          <td>{{ x?.placedTime | date : "yyyy-MM-dd H:mm" }}</td>
+          <td>{{ x?.matchedTime | date : "yyyy-MM-dd H:mm" }}</td>
+          <td>{{ x?.ipaddress }}</td>
+          <td>
+            <a style="color: #6d7b86" title="{{ x?.browserdetail }}">
+              Detail
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>

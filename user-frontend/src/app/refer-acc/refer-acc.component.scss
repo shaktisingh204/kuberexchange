@@ -1,0 +1,22 @@
+.balanceShow{
+    background-color:transparent;
+      color: #fff;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .user-detail{
+      margin-top: 17px;
+      margin-bottom: 20px;
+      display: grid;
+      justify-items: center;
+      align-items: center;
+  }
+  .table-div-content-show{border: none;}
+  .table-div-content-show  th{font-weight: normal;}
+  .table-div-content-show   .table tbody{
+    background: #2e3439;
+    color: #c7c7c7;
+}
+.table-div-content-show   .table  thead,  .table-div-content-show   .table  tr,  .table-div-content-show   .table td,  .table-div-content-show   .table th{border:none}

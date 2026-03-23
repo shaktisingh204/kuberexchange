@@ -1,0 +1,43 @@
+.form-field .col-inner .form-group {
+    padding-right: 10px;
+    margin-bottom: 5px;
+}
+.btn-list {
+    .btn-success {
+        margin-right: 10px;
+    }
+}
+.filter-btn{
+    padding-bottom: 10px;
+}
+.report-page .filterDiv .form-control{
+    border: 1px solid #666768 !important;
+    border-radius: 4px;
+    background-color: transparent;
+    color: #000 !important;
+}
+.report-page .filterDiv .text-select{
+    // background-color: #0000002e !important;
+    // background-image: none !important;
+    color: #323232 !important;
+}
+.report-table table thead tr th {
+    color: #000000 !important;
+}
+.form-group-div .text-label {
+    position: absolute;
+    top: -22px !important;
+    left: -2px !important;
+    // background-color: #fff;
+    // z-index: 2;
+    // padding: 0 5px;
+    color: #000;
+    // font-weight: 400;
+    // margin: 0;
+}
+
+.customreport-page.report-page .filterDiv .form-control::placeholder{ color: #495057!important;font-size:14px;}
+.customreport-page.report-page  button{font-size: 14px;}
+.customreport-page.report-page .choosetype .form-group{margin-bottom: 0px;}
+  .page-title{margin-top: 10px;margin-bottom: 5px;}
+  .customreport-page.report-page .report-table table thead tr th{  border: none;  border-bottom: 2px solid #111 !important;}

@@ -1,0 +1,27 @@
+@import "/src/app/betHonk/CSS/global.scss";
+.pagetitle {    background: #113a17 !important;padding:7px 5px!important;}
+.pagetitle h2{font-weight: bold;    font-size: 13px;color: #fff;margin: 0px;line-height: 24px;}
+table.jambo_table {
+    border: 1px solid rgba(221, 221, 221, 0.78);
+    background: #fff;
+    margin-top: 0;
+}
+.table-striped.table>tbody>tr>th {
+    padding: 3px;
+    border: 2px solid rgba(0,0,0,.58);
+    font-weight: 700;font-size: 12px;
+}
+table.jambo_table tbody tr td {
+    border: 1px solid rgba(0,0,0,.58);
+    font-weight: 600;
+    white-space: nowrap;font-size: 12px;
+}
+.table-responsive>.table>tbody>tr>td, .table-responsive>.table>tbody>tr>th, .table-responsive>.table>tfoot>tr>td, .table-responsive>.table>tfoot>tr>th, .table-responsive>.table>thead>tr>td, .table-responsive>.table>thead>tr>th {
+    white-space: nowrap;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 4px;
+}
+.table-striped tbody:nth-child(odd) tr {
+    background-color: #fff;
+}

@@ -1,0 +1,113 @@
+<app-header></app-header>
+<div class="desktopmain-main">
+  <!-- desktop_header -->
+  <app-desk-header></app-desk-header>
+  <!-- desktop_header_end -->
+  <div class="container-fluid container-fluid-5">
+    <div class="row row5">
+      <!--desktop_sidebar_others  -->
+      <div class="sidebar col-md-2">
+        <app-desk-sidebar></app-desk-sidebar>
+      </div>
+
+      <!--flterTabsGrey_dashboard-->
+      <div class="col-md-10 featured-box">
+        <div>
+          <!--flterTabsandMatchDetails-->
+          <div class="">
+
+            <div *ngIf="rout==='/livecasino'" class="d-flex" style="background-color: #2c3e50; color: #fff;">
+              <span class="ml-2 ptitle" style="padding: 6px;
+                     font-weight: 500;">LIVE CASINO</span>
+            </div>
+
+            <ul *ngIf="rout==='/slotgame'" role="tablist" id="home-events" class="nav nav-tabs">
+              <li class="nav-item" (click)="casino_games('SLOT');"><a href="javascript:void(0)" data-toggle="tab"
+                  class="nav-link active" [ngClass]="{'active': casino_type === 'SLOT'}">SLOTS</a></li>
+              <li class="nav-item" (click)="casino_games('TABLEGAME');"><a href="javascript:void(0)" data-toggle="tab"
+                  class="nav-link" [ngClass]="{'active': casino_type === 'TABLEGAME'}">TABLE GAMES</a></li>
+              <li class="nav-item" (click)="casino_games('SHOOTING');"><a href="javascript:void(0)" data-toggle="tab"
+                  class="nav-link" [ngClass]="{'active': casino_type === 'SHOOTING'}">SHOOTING GAMES</a></li>
+              <li class="nav-item" (click)="casino_games('INSTANTWIN');"><a href="javascript:void(0)" data-toggle="tab"
+                  class="nav-link" [ngClass]="{'active': casino_type === 'INSTANTWIN'}">INSTANT WIN</a></li>
+              <li class="nav-item" (click)="casino_games('SCRATCHCARD');"><a href="javascript:void(0)" data-toggle="tab"
+                  class="nav-link" [ngClass]="{'active': casino_type === 'SCRATCHCARD'}">SCRATCH CARD</a></li>
+              <li class="nav-item" (click)="casino_games('VIRTUAL_SPORTS');"><a href="javascript:void(0)"
+                  data-toggle="tab" class="nav-link" [ngClass]="{'active': casino_type === 'VIRTUAL_SPORTS'}">VIRTUAL
+                  SPORTS</a></li>
+            </ul>
+
+            <!-- live_casino -->
+            <ng-container *ngIf="rout==='/livecasino'">
+              <div class="container-fluid mt-1">
+                <!-- <div class="row">
+                  <div class="card col-4" (click)="openCasino('BTL-betonteenpatti','')">
+                    <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/img/livecasino/livecasinogaming.jpg"
+                      class="card-img-top" alt="...">
+                    <div class="button"><a>Pragmatic Play</a></div>
+                  </div>
+                  <div class="card  col-4" (click)="openCasino('EZU-cricketwar','')">
+                    <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/img/livecasino/euzgi_casino.png"
+                      class="card-img-top" alt="...">
+                    <div class="button"><a>Euzgi Casino</a></div>
+                  </div>
+                  <div class="card  col-4" (click)="openCasino('EVO-blackjack','')">
+                    <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/img/livecasino/evolution_casino.png"
+                      class="card-img-top" alt="...">
+                    <div class="button"><a>Evolution Casino</a></div>
+                  </div>
+
+                </div> -->
+              </div>
+            </ng-container>
+
+            <!-- slotgame -->
+            <ng-container *ngIf="rout==='/slotgame'">
+              <div class="container-fluid mt-1">
+                <div class="row">
+                  <div class="card col-1" *ngFor="let x of casino_data" (click)="openCasino(x.id,'')">
+                    <img [src]="x.images[0].url" class="card-img-top" alt="...">
+                    <!-- <div class="button"><a>Pragmatic Play</a></div> -->
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+
+          </div>
+          <div _ngcontent-ng-c482833544="" class="casino_tab_wrapper row">
+            <div _ngcontent-ng-c482833544="" class="col-xl-2 d-none d-xl-flex">
+              <div _ngcontent-ng-c482833544="" class="casino_tab_list">
+                <ul _ngcontent-ng-c482833544="" id="casino-sub-tab" class="nav nav-pills casino-sub-tab">
+                  <li class="nav-item" *ngFor="let tab of casinoTabs">
+                    <a class="nav-link" [class.active]="activeTab === tab.name" (click)="setActiveTab(tab)">
+                      <span>{{ tab.name }}</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Casino List Section -->
+            <div class="col-xl-10 col-12">
+              <div class="casino-list mt-2 mt-lg-0">
+                <div class="casino-list-item rect rect2" *ngFor="let casino of filteredCasinos">
+                  <div class="casino-list-item-banner" [style.background-image]="'url(' + casino.image + ')'">
+                    <div class="fancy-play">
+                      <i class="fas fa-play"></i>
+                      <i class="fas fa-info-circle fancy-info"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- deshboard_footer -->
+  <app-desk-footer></app-desk-footer>
+</div>

@@ -1,0 +1,231 @@
+<app-header></app-header>
+<div class="container-fluid px-0">
+  <div style="background-color: #2c3e50; border-radius: 0px !important" class="card">
+    <div class="row">
+      <div class="col-2">
+        <h4 class="card-header mb-0 text-white">{{heading_value}}</h4>
+      </div>
+      <!-- <div *ngIf="breadcrumb.length > 0" class="col-11 mt-1" style="float: left">
+        <nav style="float: left" aria-label="breadcrumb">
+          <ol class="breadcrumb" *ngFor="let x of breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">{{ x }}</a>
+            </li>
+
+          </ol>
+        </nav>
+      </div> -->
+      <!-- <div class="col-2">
+                <div class="input-group mt-1">
+                    <div class="form-outline" style="width:87% !important">
+                      <input type="search" id="form1" class="form-control" placeholder="Search"/>
+                    </div>
+                    <button type="button" class="btn btn-primary">
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </div>
+                </div> -->
+    </div>
+  </div>
+  <div class="row" *ngIf="types != 'events'">
+    <div class="col-1">
+      <div class="breadcrumb" (click)="goToBack()" style="float: left">
+        <a class="btn btn-secondary back-btn"><i class="fa fa-arrow-left"></i>Back</a>
+      </div>
+    </div>
+    <div class="col-2"
+      *ngIf="types=='events_competition' || types=='cricket_match' || types=='soccer_match' || types=='tennis_match'">
+      <div class="form-group form-group-div mt-1">
+        <!-- <label for="" class="form-label text-label">Type</label> -->
+        <select class="form-select" aria-label="Default select example" (change)="getMatchType($event.target.value)">
+          <option value="cricket_match" [selected]="type_selected==='cricket_match'">Cricket</option>
+          <option value="soccer_match" [selected]="type_selected==='soccer_match'">Soccer</option>
+          <option value="tennis_match" [selected]="type_selected==='tennis_match'">Tennis</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-9">
+      <div class="breadcrumb" style="float: right">
+        <a class="btn btn-secondary back-btn">Action</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-1">
+    <div class="col-12 market_event_list">
+      <ul>
+        <!-- events -->
+        <ng-container *ngIf="types === 'events'">
+          <table>
+            <tr>
+              <th>SNo.</th>
+              <th>Sport Name</th>
+              <th>Action</th>
+            </tr>
+            <tr *ngFor="let x of eventlist;let i=index;">
+              <td>{{i+1}}</td>
+              <td style="cursor:pointer;">{{x?.eventType?.name}}</td>
+              <ng-container *ngIf="adminDetails.role==='siteadmin' else elseStatus">
+                <td><label class="switch">
+                    <input type="checkbox" id="togBtn1" (change)="sports_toggle(x,x?.siteadminstatus)"
+                      [checked]="x?.siteadminstatus == true" />
+                    <div class="slider round"></div>
+                  </label></td>
+              </ng-container>
+              <ng-template #elseStatus>
+                <td><label class="switch">
+                    <input type="checkbox" id="togBtn1" (change)="sports_toggle(x,x?.siteadminstatus)"
+                      [checked]="x?.techadminstatus == true" />
+                    <div class="slider round"></div>
+                  </label></td>
+              </ng-template>
+
+            </tr>
+            <!-- <tr>
+              <td>2</td>
+              <td [routerLink]="['/events/tennis']" style="cursor:pointer;">Tennis</td>
+              <td><label class="switch">
+                  <input type="checkbox" id="togBtn2" (change)="sports_toggle('Tennis',$event.target.checked)" />
+                  <div class="slider round"></div>
+                </label></td>
+            </tr> -->
+
+
+          </table>
+
+        </ng-container>
+
+        <!-- events_competition -->
+        <!-- cricket/tennis/soccer -->
+        <ng-container *ngIf="types === 'events_competition'">
+          <table>
+            <tr>
+              <th>SNo.</th>
+              <th>Series Name</th>
+              <th>Action</th>
+            </tr>
+            <tr *ngFor="let x of Data; let i = index">
+              <td>{{i+1}}</td>
+              <td style="cursor:pointer;" (click)="
+              pushBreadcrumbs(x?.competition?.id, x?.competition?.name)
+            ">{{ x?.competition?.name }}</td>
+              <td><label class="switch">
+                  <input type="checkbox" id="togBtn" [checked]="checked_status[i]"
+                    (change)="series_toggle(x,$event.target.checked,i)" />
+                  <div class="slider round"></div>
+                </label></td>
+            </tr>
+            <ng-container *ngIf="Data?.length == 0">
+              <td colspan="3" class="no_data_found">No data found !</td>
+            </ng-container>
+          </table>
+
+
+        </ng-container>
+
+        <ng-container *ngIf="types === 'events_competition_n'">
+
+          <table>
+            <tr>
+              <th>SNo.</th>
+              <th>Series Name</th>
+              <th>Action</th>
+            </tr>
+            <tr *ngFor="let x of Data; let i = index">
+              <td>{{i+1}}</td>
+              <td style="cursor:pointer;" [routerLink]="['/event-market/', x?.event?.id]">{{ x?.event?.name
+                }}&nbsp;&nbsp;<span class="font-weight-bold">[
+                  {{
+                  x?.event?.openDate | date : "yyyy-MM-dd H:mm" : "UTC +5:30"
+                  }}
+                  ]</span></td>
+              <td><label class="switch">
+                  <input type="checkbox" id="togBtn" checked />
+                  <div class="slider round"></div>
+                </label></td>
+            </tr>
+            <ng-container *ngIf="Data?.length == 0">
+              <td colspan="3" class="no_data_found">No data found !</td>
+            </ng-container>
+          </table>
+
+        </ng-container>
+
+        <!-- cricket_match_settings -->
+        <ng-container *ngIf="types === 'cricket_match'">
+          <table>
+            <tr>
+              <th>SNo.</th>
+              <th>Match Name</th>
+              <th>Action</th>
+            </tr>
+            <tr *ngFor="let x of cricketData; let i = index">
+              <td>{{i+1}}</td>
+              <td style="cursor:pointer;" [routerLink]="['/event-market/', x?.event?.id]">{{ x?.eventName }}</td>
+              <td><label class="switch">
+                  <input type="checkbox" id="togBtn" [checked]="checked_status[i]"
+                    (change)="series_toggle(x,$event.target.checked,i)" />
+                  <div class="slider round"></div>
+                </label></td>
+            </tr>
+            <ng-container *ngIf="cricketData?.length == 0">
+              <td colspan="3" class="no_data_found">No data found !</td>
+            </ng-container>
+          </table>
+
+
+        </ng-container>
+
+        <!-- soccer_match_settings -->
+        <ng-container *ngIf="types === 'soccer_match'">
+          <table>
+            <tr>
+              <th>SNo.</th>
+              <th>Match Name</th>
+              <th>Action</th>
+            </tr>
+            <tr *ngFor="let x of soccerData; let i = index">
+              <td>{{i+1}}</td>
+              <td style="cursor:pointer;" [routerLink]="['/event-market/', x?.event?.id]">{{ x?.eventName }}</td>
+              <td><label class="switch">
+                  <input type="checkbox" id="togBtn" [checked]="checked_status[i]"
+                    (change)="series_toggle(x,$event.target.checked,i)" />
+                  <div class="slider round"></div>
+                </label></td>
+            </tr>
+            <ng-container *ngIf="cricketData?.length == 0">
+              <td colspan="3" class="no_data_found">No data found !</td>
+            </ng-container>
+          </table>
+
+
+        </ng-container>
+
+        <!-- tennis_match_settings -->
+        <ng-container *ngIf="types === 'tennis_match'">
+          <table>
+            <tr>
+              <th>SNo.</th>
+              <th>Match Name</th>
+              <th>Action</th>
+            </tr>
+            <tr *ngFor="let x of tennisData; let i = index">
+              <td>{{i+1}}</td>
+              <td style="cursor:pointer;" [routerLink]="['/event-market/', x?.event?.id]">{{ x?.eventName }}</td>
+              <td><label class="switch">
+                  <input type="checkbox" id="togBtn" [checked]="checked_status[i]"
+                    (change)="series_toggle(x,$event.target.checked,i)" />
+                  <div class="slider round"></div>
+                </label></td>
+            </tr>
+            <ng-container *ngIf="cricketData?.length == 0">
+              <td colspan="3" class="no_data_found">No data found !</td>
+            </ng-container>
+          </table>
+
+
+        </ng-container>
+      </ul>
+    </div>
+  </div>
+</div>

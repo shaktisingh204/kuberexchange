@@ -1,0 +1,35 @@
+ 
+.form-div .form-group-div .text-label {
+    position: absolute;
+    top: -22px !important;
+    left: -2px !important;
+    // background-color: #fff;
+    // z-index: 2;
+    // padding: 0 5px;
+    color: #000;
+    // font-weight: 400;
+    // margin: 0;
+}
+.report-bottom-paginate{
+    justify-content: left !important;
+}
+
+.customreport-page.report-page .filterDiv .form-control::placeholder{ color: #495057!important;font-size:14px;}
+.customreport-page.report-page  button{font-size: 14px;}
+.customreport-page.report-page .choosetype .form-group{margin-bottom: 0px;}
+
+.customreport-page.report-page .page-title{margin-top: 10px;margin-bottom: 5px;}
+.customreport-page.report-page .report-table table thead tr th{border: none;    border-bottom: 1px solid #111 !important;}
+.nodatats{border-bottom: none;}
+.report-table{    overflow-x: visible;}
+.report-page.customreport-page .report-table{padding-bottom: 0px; margin-bottom: 5px;}
+.customreport-page.report-page .filterDiv {padding-bottom: 0px;}
+.filterDiv form .row{margin: 0 -15px;}
+.filterDiv  .row .col-md-12,
+.filterDiv form .row .col-2,
+.filterDiv form .row .col-md-4,
+.filterDiv form .row .col-md-6{padding: 0 15px;}
+.report-bottom-paginate{margin-top: 4px;}
+.filtertop {
+    padding-bottom: 10px; 
+}

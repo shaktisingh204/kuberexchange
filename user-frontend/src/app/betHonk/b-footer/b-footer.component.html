@@ -1,0 +1,103 @@
+<footer class="mainfooter">
+    <div class="footerinner">
+        <ul id="nav">
+            <li class="ac" [routerLink]="['/home']" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']"  class="navbar-itemss"><a ><i class="fa fa-home" ></i><br><span >Home</span></a></li>
+            <li class="ac" [routerLink]="['/home/inplay']"  class="navbar-itemss" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" ><a ><i class="fa fa-clock" ></i><br><span >InPlay</span></a></li>
+            <li class="ac"  class="navbar-itemss" data-toggle="modal" data-target="#chipsetting"><a><i class="material-icons">currency_rupee</i><br><span >Stake</span></a></li>
+            <li class="ac" [routerLink]="['/home/casino']" class="navbar-itemss"><a ><i class="fa fa-cubes" ></i><br><span >Casino</span></a></li>
+            <li class="ac" [routerLink]="['/ledger']"  class="navbar-itemss"><a ><i class="fa fa-user" ></i><br><span >Account</span></a></li>
+        </ul>
+    </div>
+</footer>
+
+<div class="modal chipsetting fade" id="chipsetting" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document"> 
+        <div class="modal-content">
+           <div class="modal-header" style="background-color: #113a17 !important;">
+               <h2>Chip Setting </h2>  <button type="button" #myModalClose class="close" data-dismiss="modal">×</button>
+            </div>
+                <div class="modal-body" style="padding:0;background-color:white !important">
+                    <form class="" id="stockzadd">
+                
+                        <div class="fullrow row">         
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="pwd">Chip Value 1:</label><br>
+                                        <input type="number" class="form-control" name="price1" [(ngModel)]="price_label_form.price1">
+                                </div>
+                            </div>
+           
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="pwd">Chip Value 2:</label><br>
+                                    <input type="number" class="form-control" name="price2" [(ngModel)]="price_label_form.price2">
+                                </div>
+                            </div>
+          
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="pwd">Chip Value 3:</label><br>
+                                    <input type="number" class="form-control" name="price3" [(ngModel)]="price_label_form.price3">
+                                </div>
+                            </div>
+           
+                            <div class="col-6">
+                              <div class="form-group">
+                                <label for="pwd">Chip Value 4:</label><br>
+                                <input type="number" class="form-control" name="price4" [(ngModel)]="price_label_form.price4">
+                              </div>
+                            </div>
+           
+                            <div class="col-6">
+                              <div class="form-group">
+                                <label for="pwd">Chip Value 5:</label><br>
+                                <input type="number" class="form-control" name="price5" [(ngModel)]="price_label_form.price5">
+                              </div>
+                            </div>
+           
+                            <div class="col-6">
+                              <div class="form-group">
+                                <label for="pwd">Chip Value 6:</label><br>
+                                <input type="number" class="form-control" name="price6" [(ngModel)]="price_label_form.price6">
+                              </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="pwd">Chip Value 7:</label><br>
+                                    <input type="number" class="form-control" name="price7" [(ngModel)]="price_label_form.price7">
+                                </div>
+                            </div>
+           
+                            <div class="col-6">
+                              <div class="form-group">
+                                <label for="pwd">Chip Value 8:</label><br>
+                                <input type="number" class="form-control" name="price8" [(ngModel)]="price_label_form.price8">
+                              </div>
+                            </div>
+           
+                            <div class="col-6">
+                              <div class="form-group">
+                                <label for="pwd">Chip Value 9:</label><br>
+                                <input type="number" class="form-control" name="price9" [(ngModel)]="price_label_form.price9">
+                              </div>
+                            </div>
+           
+                            <div class="col-6">
+                              <div class="form-group">
+                                <label for="pwd">Chip Value 10:</label><br>
+                                <input type="number" class="form-control" name="price10" [(ngModel)]="price_label_form.price10">
+                              </div>
+                            </div>
+           
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="text-center" id="">
+                        <button type="button" class="btn btn-success" (click)="update_value();modal_close();">Update Chip Setting</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>

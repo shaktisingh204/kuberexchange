@@ -1,0 +1,54 @@
+<mat-sidenav-container fullscreen>
+    <mat-sidenav-content>
+        <app-header></app-header>
+      	<div class="main-content container mt-3">
+            <div class="row">
+                      <div class="col-12 text-center">
+                        <h4 class="mt-2 font-weight-bold" style="color:#fff;">
+                          Refer Account</h4>
+                      </div>
+                      <div class="balanceShow col-12" style=" color: #fff;">
+                        <div class="user-detail">
+                          <div class="user-img-div" >
+                            <img src="assets/images/referAcc/usr.png" style="width: 54px; background-color: aquamarine; border-radius: 54px;"  alt="">
+                          </div>
+                          <div  class="user-name-div">
+                            <h4 style="letter-spacing: 1px;">{{userDetails?.details?.username}}</h4>
+                          </div>
+                          <div class="total-bance-show" style="text-align: center;">
+                                 <span >{{totalAmount|number:'.0-2'}}</span>
+                            <h4 style="letter-spacing: 1px;">Total</h4>
+                          </div>
+                          <button class="btn bg-theme" mat-raised-button   (click)="transfer()" [disabled]="loader">Balance Transfer</button>
+                        </div>
+                      </div>
+                    
+                    <div class="table-div-content-show col-12" style="margin-top:20px;max-height:47vh;overflow:scroll;">
+                      <table class="table" style="text-align:center;" >
+                        <thead style="background-color:#3c444b ;color:#fff; font-size: 1rem;" >
+                          <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">Event</th>
+                            <th scope="col">Remark</th>
+                            <th scope="col">Amount</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let l of logsettlemnt">
+                            <th scope="row">{{l.time|date:'medium'}}</th>
+                            <td>{{l.eventName}}</td>
+                            <td>{{l.remark}}</td>
+                            <td>{{l.amount}}</td>
+                          </tr>
+                          <td *ngIf="logsettlemnt?.length <= 0" colspan="4" rowspan="4">No data found</td>
+                        </tbody>
+                      </table>
+                  
+                    </div>
+                  
+                <!-- end -->
+              </div>
+        </div>
+        <app-footer></app-footer>
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,141 @@
+<div class="headermain">
+  <div class="top-bar">
+    <div class="navbaricon">
+      <span style="font-size: 30px; cursor: pointer" (click)="openNav()"
+        ><i class="fa fa-bars"></i>
+      </span>
+    </div>
+    <!-- header_left_side -->
+    <div class="logowrap">
+      <a href="/"><h4>BETHONK</h4></a>
+    </div>
+    <!-- header_right_side -->
+    <div class="usermenu">
+      <div class="nav navbar-nav navbar-right hidden-lg">
+        <ul>
+          <li>
+            <a
+              data-toggle="dropdown"
+              aria-expanded="false"
+              class="user-profile dropdown-toggle"
+              ><span><i class="fa fa-user"></i></span>&nbsp;&nbsp;{{
+                userName | uppercase
+              }}<span class="fa fa-angle-down"></span
+            ></a>
+            <!---->
+            <ul class="dropdown-menu dropdown-usermenu pull-right">
+              <li>
+                <a [routerLink]="['/Button-Value/2']"
+                  ><i aria-hidden="true" class="fa fa-key"></i> Change Password
+                </a>
+              </li>
+              <li>
+                <a class="" (click)="logoutUser()"
+                  ><i class="fa fa-sign-out"></i> Log Out</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="lefttSidenav" class="left_col sidenav">
+    <div class="navheader" style="background: #d4e735">
+      <div class="userpic">
+        <img src="/assets/images/betHonk/user-avtar.png" />
+      </div>
+      <div class="user-detail">
+        <h4>{{ userName | lowercase }}</h4>
+        <!-- <h6>c75838</h6> -->
+      </div>
+      <div class="closenav">
+        <a
+          href="javascript:void(0)"
+          class="closebtn righttogalhide"
+          style="color: #000"
+          (click)="closeNav()"
+          >×</a
+        >
+      </div>
+    </div>
+
+    <div class="left_col scroll-view">
+      <div class="clearfix"></div>
+      <nav id="cssmenu">
+        <!--<div class="button"></div>-->
+        <ul class="nav">
+          <li>
+            <a class="" [routerLink]="['/home']"> Dashboard</a>
+          </li>
+          <li><a class="" [routerLink]="['/home/inplay']">In-Play</a></li>
+
+          <li><a [routerLink]="['/my-bet']">Running Market Analysis</a></li>
+          <li class="has-sub">
+            <span class="submenu-button"></span>
+            <span class="submenu-button"></span>
+            <!-- <a href="#">Report</a> -->
+            <ul>
+              <li><a [routerLink]="['/ledger']">Account Statement1 </a></li>
+              <li>
+                <a [routerLink]="['/profit&history']">Profit &amp; Loss</a>
+              </li>
+              <li><a [routerLink]="['/profile']">Bet History</a></li>
+              <li>
+                <a class="dropdown-item" [routerLink]="['/profile/1']">
+                  Unsetteled Bet</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" [routerLink]="['/Button-Value/2']">
+                  Change Password</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" [routerLink]="['/terms-condition']"
+                  >Rule</a
+                >
+              </li>
+            </ul>
+          </li>
+          <!-- <li class="hidden-lg" (click)="closeNav()"><a data-toggle="modal" data-target="#chipsetting" data-backdrop="static" data-keyboard="false"><i class="fa fa-pencil-square-o"></i> Edit Stake</a></li> -->
+        </ul>
+      </nav>
+    </div>
+    <!--sidebar menu -->
+  </div>
+
+  <div class="mob_balance">
+    <a id="Wallet" class="green"
+      ><img src="/assets/images/betHonk/wallet-icons.png" alt="" /> Main:
+      <span class="mWallet green" id="mbalance"
+        >{{ walletBalance | number : "0.0-2" }}&nbsp;</span
+      >
+    </a>
+    <a id="UserLiability" class="red"
+      >Expo. :
+      <span class="liability red" id="mlib">{{
+        exposure | number : "0.0-2"
+      }}</span>
+    </a>
+  </div>
+
+  <div class="marquee mobile-marque" style="background: #fc0">
+    <a href="#"
+      ><marquee
+        id="marqmessage1"
+        scrollamount="2"
+        style="
+          font-weight: 500;
+          font-size: 12px;
+          width: 100%;
+          color: #033515;
+          font-weight: bold;
+        "
+        ><span *ngIf="mar_msg; else mrqmsg">{{ mar_msg }}</span
+        ><ng-template #mrqmsg>..</ng-template></marquee
+      ></a
+    >
+  </div>
+</div>

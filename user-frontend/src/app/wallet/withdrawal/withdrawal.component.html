@@ -1,0 +1,79 @@
+<!-- 
+  <div class="container">
+    <div class="row" style="background: var(--theme1-bg);">
+      <div class="col-2" style="text-align: center;padding: 11px 0px 0px 0px;color: white;"><mat-icon [routerLink]="['/wallet-home']">
+          arrow_back_ios</mat-icon></div>
+      <div class="col-8" style="text-align: center;padding: 8px 0px 0px 0px;">
+          <h2 style="color:white;letter-spacing: 1.4px;">Withdraw</h2>
+      </div>
+  </div>
+  <div class="row" style="margin: 34px 0px 0px 0px;border: 0px;border-radius: 8px;padding: 17px 0px 17px 0px;background: #ffd000;">
+    <div class="col-12" style="text-align: center;border-bottom: 1px solid white;"><h4 style="color: balck;"><b style="letter-spacing: 2px;"> WALLET &nbsp;BALANCE</b></h4></div>
+  
+    <div class="col-12" style="text-align: center;padding: 17px 0px 0px 0px;"><h4 style="color:#008d00"><i class="fas fa-wallet" style="font-size: 20px"></i>&nbsp;<b style="font-size: 21px">10000</b></h4></div>
+  
+  </div>
+  <div class="row" style="margin: 70px 0px 0px 0px;">
+    <div class="col-12" style="justify-content: center;display: flex;">
+      <input type="number" placeholder="Enter amount" style="width: 100%;padding: 20px 5px 20px 5px;border: 0;border-bottom: 1px solid;outline: 0px;text-align: center;font-size: 17px;">
+    </div>
+  </div>
+  <div class="row" style="margin: 89px 0px 0px 0px;">
+    <div class="col-12"><button class="btn-block" style="padding: 8px 0px 8px 0px;background: #ffd000;border: 0px;border-radius: 4px;color: black;" ><b style="font-size: 15px;letter-spacing: 2px;font-weight: 550;">WITHDRAW &nbsp;<i class="fas fa-download"></i></b></button></div>
+  </div>
+  </div>
+   
+  
+     -->
+     <div style="background: black;padding-bottom: 77vh;">
+     <div class="row" style="background: #00897B;padding: 14px 5px 14px 22px;">
+      <div class="col-2" [routerLink]="['/wallet-home']" style="padding: 8px 0px 8px 15px;">
+        <i class="fa fa-arrow-left" style="color: white;font-size: 19px;"></i>
+      </div>
+      <div class="col-8" style="text-align: center;">
+        <h1 style="color: white;">Withdraw</h1>
+      </div>
+      <div class="col-2">
+          <i class="far fa-bell" style="font-size: 20px;color: white;" [routerLink]="['/notifications']"></i>
+      </div>
+      <div class="col-1"></div>
+     <div class="col-12" style="padding: 45px 0px 45px 0px;">
+     </div>
+      </div>
+      <div class="container">
+      <div class="row" style="justify-content: center;display: flex;margin: -48px 0px 0px 0px;">
+        <div class="col-9" style="background: #1e1d1d;text-align: center;padding: 20px 0px 20px 0px;border-radius: 10px;color: white;">
+      <h3>Wallet Balance</h3><i class="fa fa-wallet" style="font-size: 20px;">&nbsp;{{walletBalance | number : '0.0-2'}}</i>
+        </div>
+      </div>
+      <div class="row" style="margin: 50px 0px -10px -8px;color:white;justify-content: center;">
+    <div class="col-10">
+    <h5>*Withdraw Coins</h5>
+    </div>
+      </div>
+      <div class="row" style="justify-content: center;"><div class="col-10" style="justify-content: center;display: flex;">
+    <input type="text" style="
+    padding: 15px 0px 15px 0px;
+    width: 100%;
+    background: #1e1d1d;
+    color: white;
+    border: 1px solid;
+    border-radius: 10px;
+    outline: 0;
+    text-align: center;
+    font-size: 18px;"
+    [(ngModel)]="WAmount">
+    </div>
+    
+    </div>
+    <div class="row" style="margin: 5px 0px 0px -8px;color:white;justify-content: center;">
+      <div class="col-10">
+      <h5>*Minimum withdraw amount is 500</h5>
+      </div>
+        </div>
+        <div class="row"  style="justify-content: center;display: flex;margin: 30px 0px 0px 0px;">
+          <div class="col-8">
+            <button class="btn btn-block btn-success" (click)="Withdraw()">Withdraw</button>
+          </div>
+        </div>
+      </div>

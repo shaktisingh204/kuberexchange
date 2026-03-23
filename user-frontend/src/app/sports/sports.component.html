@@ -1,0 +1,464 @@
+
+
+<mat-sidenav-container fullscreen>
+    <mat-sidenav-content>
+      <app-header></app-header>
+      <app-footer></app-footer>
+      
+      <div class="main-content">
+  
+        <div class="tab-content">
+          <div id="home" class="tab-pane sports active">
+            <ul class="nav nav-tabs game-nav-bar">
+                <li class="nav-item text-center">
+                    <a data-toggle="tab" (click)="cricket_fun()" class="sports nav-link active">
+                      <div><span class="material-symbols-outlined">
+                          sports_cricket
+                        </span></div>
+                      <div>
+                        Cricket
+                      </div>
+                    </a>
+                  </li>
+              <li class="nav-item text-center">
+                <a data-toggle="tab" (click)="football_fun()" class="sports nav-link">
+                  <div><span class="material-symbols-outlined">
+                      sports_football
+                    </span></div>
+                  <div>
+                    Football
+                  </div>
+                </a>
+              </li>
+              <li class="nav-item text-center">
+                <a data-toggle="tab" (click)="tennis_fun()" class="sports nav-link">
+                  <div><span class="material-symbols-outlined">
+                      sports_tennis
+                    </span></div>
+                  <div>
+                    Tennis
+                  </div>
+                </a>
+              </li>
+              
+              <li class="nav-item text-center">
+                <a data-toggle="tab" href="#game6" class="sports nav-link">
+                  <div><span class="material-symbols-outlined">
+                      sports_hockey
+                    </span></div>
+                  <div>
+                    Ice Hockey
+                  </div>
+                </a>
+              </li>
+              <li class="nav-item text-center">
+                <a data-toggle="tab" href="#game6" class="sports nav-link">
+                  <div><span class="material-symbols-outlined">
+                      sports_volleyball
+                    </span></div>
+                  <div>
+                    Volleyball
+                  </div>
+                </a>
+              </li>
+              <li class="nav-item text-center">
+                <a data-toggle="tab" href="#game6" class="sports nav-link">
+                  <div><span class="material-symbols-outlined">
+                      sports_basketball
+                    </span></div>
+                  <div>
+                    BasketBall
+                  </div>
+                </a>
+              </li>
+              <li class="nav-item text-center">
+                <a data-toggle="tab" href="#game6" class="sports nav-link">
+                  <div><img src="https://11starexch.com/storage/mobile/img/gameImg/70.png" alt=""></div>
+                  <div>
+                    Table Tennis
+                  </div>
+                </a>
+              </li>
+              <li class="nav-item text-center">
+                <a data-toggle="tab" href="#game6" class="sports nav-link">
+                  <div><span class="material-symbols-outlined">
+                      crisis_alert
+                    </span></div>
+                  <div>
+                    Darts
+                  </div>
+                </a>
+              </li>
+              <li class="nav-item text-center">
+                <a data-toggle="tab" href="#game6" class="sports nav-link">
+                  <div><img src="https://11starexch.com/storage/mobile/img/gameImg/71.png" alt=""></div>
+                  <div>
+                    Badminton
+                  </div>
+                </a>
+              </li>
+              <li class="nav-item text-center">
+                <a data-toggle="tab" href="#game6" class="sports nav-link">
+                  <div><span class="material-symbols-outlined">
+                      sports_kabaddi
+                    </span></div>
+                  <div>
+                    Kabaddi
+                  </div>
+                </a>
+              </li>
+              <li class="nav-item text-center">
+                <a data-toggle="tab" href="#game6" class="sports nav-link">
+                  <div><span class="material-symbols-outlined">
+                      sports_mma
+                    </span></div>
+                  <div>
+                    Boxing
+                  </div>
+                </a>
+              </li>
+              <li class="nav-item text-center">
+                <a data-toggle="tab" href="#game6" class="sports nav-link">
+                  <div><span class="material-symbols-outlined">
+                      sports_martial_arts
+                    </span></div>
+                  <div>
+                    Mixed Martial Arts
+                  </div>
+                </a>
+              </li>
+              <li class="nav-item text-center">
+                <a data-toggle="tab" href="#game6" class="sports nav-link">
+                  <div><span class="material-symbols-outlined">
+                      sports_score
+                    </span></div>
+                  <div>
+                    Motor Sport
+                  </div>
+                </a>
+              </li>
+            </ul>
+  
+          </div>
+        </div>
+        <!-- <div *ngIf="marquetext" class="marquee-text">
+                  <mat-icon> rss_feed</mat-icon>
+                  <marquee width="100%" direction="left">{{marquetext}}</marquee>
+              </div> -->
+  
+  
+        <!-- <div id="demo" class="carousel slide my-2" data-ride="carousel"> -->
+        <!-- Indicators -->
+        <!-- <ul class="carousel-indicators">
+                    <li data-target="#demo" data-slide-to="0" class="active"></li>
+                    <li data-target="#demo" data-slide-to="1"></li>
+                    <li data-target="#demo" data-slide-to="2"></li>
+                    <li data-target="#demo" data-slide-to="3"></li>
+                    <li data-target="#demo" data-slide-to="4"></li>
+                    <li data-target="#demo" data-slide-to="5"></li>
+                  </ul> -->
+  
+        <!-- The slideshow -->
+        <!-- <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="https://kushubmedia.com/build/new-osg-app/slider/1.png" alt="Los Angeles" height="180">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="https://kushubmedia.com/build/new-osg-app/slider/2.png" alt="Chicago" height="180">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="https://kushubmedia.com/build/new-osg-app/slider/3.png" alt="New York" height="180">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="https://kushubmedia.com/build/new-osg-app/slider/4.png" alt="Los Angeles" height="180">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="https://kushubmedia.com/build/new-osg-app/slider/5.png" alt="Chicago" height="180">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="https://kushubmedia.com/build/new-osg-app/slider/6.png" alt="New York" height="180">
+                    </div>
+                  </div> -->
+  
+        <!-- Left and right controls -->
+        <!-- <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                  </a>
+                  <a class="carousel-control-next" href="#demo" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                  </a>
+                </div> -->
+  
+        <div class="dashboard-page" >
+          <!-- virtualCricketData -->
+
+          <!-- <ng-container *ngIf="virtualCricketData?.length"> -->
+            <!-- <div class="game-list-card"> -->
+              <!-- <div class="game-list-header">
+                <img src="assets/icons/cricket.png">Virtual Cricket ({{virtualCricketData?.length}})
+              </div> -->
+              <!-- <mat-card *ngFor="let x of virtualCricketData" class="match-event-list m-1"
+                (click)="virtualDetial(x.eventId);"> -->
+  
+                <!-- <mat-divider inset></mat-divider> -->
+                <!-- <div class="match-name" fxLayout="row" fxLayoutAlign="start space-arround" fxLayoutGap="5px">
+                  <div class="col-8"> -->
+                    <!-- <div class="odd-content "> -->
+                    <!-- <div class="odd-title" style="margin-bottom: 5px;word-spacing: 3px;">
+                      <span style="line-height: 23px;font-size: 1rem;font-weight: 600;
+                        display: block;">{{x?.eventName}}</span>
+                    </div>
+                    <div class="date_time">
+                      <span>{{"Sep 28, 2022 7:30 pm"}}</span>
+                    </div>
+                  </div>
+                  <div class="col-3" style="text-align: end;">
+                    <span class="green_point"><img src="../../assets/icons/Green-Circle.png" width="10"
+                        height="10"></span>
+                    <span class="tv_icon"><span class="material-symbols-outlined">
+                        tv
+                      </span></span>
+                    <span class="bw_word"><b><i>BM</i></b></span>
+                  </div>
+                </div>
+                <div class="row" style="flex-wrap: nowrap !important;">
+                  <div class="col-sm-4 text-center">
+                    <span style="margin-left: 31px;">1</span>
+                  </div>
+                  <div class="col-sm-4 text-center">
+                    <span>x</span>
+                  </div>
+                  <div class="col-sm-4 text-center">
+                    <span style="margin-right: 31px;">2</span>
+                  </div>
+  
+                </div>
+  
+                <div class="event-odds" fxLayout="row" fxLayoutAlign="start space-arround" fxLayoutGap="5px">
+  
+                  <div class="match-rate">
+                    <div class="odd-list back-rate back-1">{{x?.marketBook?.runners[0]?.availableToBack?.price}}</div>
+                    <div class="odd-list lay-rate lay-1">{{x?.marketBook?.runners[0]?.availableToLay?.price}}</div>
+                    <div class="odd-list back-rate back-2">--</div>
+                    <div class="odd-list lay-rate lay-2">--</div>
+                    <div class="odd-list back-rate back-3">
+                      {{x?.marketBook?.runners[1]?.availableToBack?.price}}</div>
+                    <div class="odd-list lay-rate lay-3">
+                      {{x?.marketBook?.runners[1]?.availableToLay?.price}}</div>
+                  </div>
+                </div>
+              </mat-card>
+            </div>
+          </ng-container> -->
+  
+          <!-- Cricket -->
+
+          <ng-container *ngIf="var_cricket">
+          <ng-container *ngIf="cricketData?.length">
+            <div class="game-list-card">
+              <!-- <div class="game-list-header">
+                <img src="assets/icons/cricket.png">Cricket ({{cricketData?.length}})
+              </div> -->
+              <mat-card *ngFor="let x of cricketData" class="match-event-list m-1" (click)="matchDetail(x.eventId);">
+  
+                <div class="match-name" fxLayout="row" fxLayoutAlign="start space-arround" fxLayoutGap="5px">
+                  <div class="col-8">
+                    <!-- <div class="odd-content "> -->
+                    <div class="odd-title" style="margin-bottom: 5px;word-spacing: 3px;">
+                      <span style="line-height: 23px;font-size: 1rem;font-weight: 600;
+                        display: block;">{{x?.eventName}}</span>
+                    </div>
+                    <div class="date_time">
+                      <span>{{"Sep 28, 2022 7:30 pm"}}</span>
+                    </div>
+                  </div>
+                  <div class="col-3" style="text-align: end;">
+                    <span class="green_point"><img src="../../assets/icons/Green-Circle.png" width="10"
+                        height="10"></span>
+                    <span class="tv_icon"><span class="material-symbols-outlined">
+                        tv
+                      </span></span>
+                    <span class="bw_word"><b><i>BM</i></b></span>
+                  </div>
+                </div>
+                <div class="row" style="flex-wrap: nowrap !important;">
+                  <div class="col-sm-4 text-center">
+                    <span style="margin-left: 31px;">1</span>
+                  </div>
+                  <div class="col-sm-4 text-center">
+                    <span>x</span>
+                  </div>
+                  <div class="col-sm-4 text-center">
+                    <span style="margin-right: 31px;">2</span>
+                  </div>
+  
+                </div>
+                <div class="event-odds" fxLayout="row" fxLayoutAlign="start space-arround" fxLayoutGap="5px">
+                  <div class="match-rate">
+                    <div class="odd-list back-rate back-1">{{x?.marketBook?.runners[0]?.availableToBack?.price}}</div>
+                    <div class="odd-list lay-rate lay-1">{{x?.marketBook?.runners[0]?.availableToLay?.price}}</div>
+                    <div class="odd-list back-rate back-2">--</div>
+                    <div class="odd-list lay-rate lay-2">--</div>
+                    <div class="odd-list back-rate back-3">
+                      {{x?.marketBook?.runners[1]?.availableToBack?.price}}</div>
+                    <div class="odd-list lay-rate lay-3">
+                      {{x?.marketBook?.runners[1]?.availableToLay?.price}}</div>
+                  </div>
+                </div>
+              </mat-card>
+            </div>
+          </ng-container>
+          </ng-container>
+  
+          <!-- Soccer -->
+          <ng-container *ngIf="var_football">
+
+         
+          <ng-container *ngIf="soccerData?.length">
+            <div class="game-list-card">
+              <!-- <div class="game-list-header">
+                <img src="assets/icons/Soccer.png">Soccer ({{soccerData?.length}})
+              </div> -->
+              <mat-card *ngFor="let x of soccerData" class="match-event-list m-1" (click)="matchDetail(x.eventId);">
+  
+                <!-- <mat-divider inset></mat-divider> -->
+                <div class="match-name" fxLayout="row" fxLayoutAlign="start space-arround" fxLayoutGap="5px">
+                  <div class="col-8">
+                    <!-- <div class="odd-content "> -->
+                    <div class="odd-title" style="margin-bottom: 5px;word-spacing: 3px;">
+                      <span style="line-height: 23px;font-size: 1rem;font-weight: 600;
+                        display: block;">{{x?.eventName}}</span>
+                    </div>
+                    <div class="date_time">
+                      <span>{{"Sep 28, 2022 7:30 pm"}}</span>
+                    </div>
+                  </div>
+                  <div class="col-3" style="text-align: end;">
+                    <span class="green_point"><img src="../../assets/icons/Green-Circle.png" width="10"
+                        height="10"></span>
+                    <span class="tv_icon"><span class="material-symbols-outlined">
+                        tv
+                      </span></span>
+                    <span class="bw_word"><b><i>BM</i></b></span>
+                  </div>
+                </div>
+                <div class="row" style="flex-wrap: nowrap !important;">
+                  <div class="col-sm-4 text-center">
+                    <span style="margin-left: 31px;">1</span>
+                  </div>
+                  <div class="col-sm-4 text-center">
+                    <span>x</span>
+                  </div>
+                  <div class="col-sm-4 text-center">
+                    <span style="margin-right: 31px;">2</span>
+                  </div>
+  
+                </div>
+                <div class="event-odds" fxLayout="row" fxLayoutAlign="start space-arround" fxLayoutGap="5px">
+                  <div class="match-rate">
+                    <div class="odd-list back-rate back-1">{{x?.marketBook?.runners[0]?.availableToBack?.price}}</div>
+                    <div class="odd-list lay-rate lay-1">{{x?.marketBook?.runners[0]?.availableToLay?.price}}</div>
+                    <div class="odd-list back-rate back-2">--</div>
+                    <div class="odd-list lay-rate lay-2">--</div>
+                    <div class="odd-list back-rate back-3">
+                      {{x?.marketBook?.runners[1]?.availableToBack?.price}}</div>
+                    <div class="odd-list lay-rate lay-3">
+                      {{x?.marketBook?.runners[1]?.availableToLay?.price}}</div>
+                  </div>
+                  <!-- Suspend Box -->
+                  <!-- <div class="suspend" *ngIf="homeMatch?.status == 'SUSPENDED'">
+                                      <div class="suspend-status">Suspended</div>
+                                  </div> -->
+                  <!-- <div class="suspend"
+                                      *ngIf="homeMatch?.status != 'SUSPENDED' && homeMatch?.is_lock == true">
+                                      <div class="suspend-status">LOCK</div>
+                                  </div> -->
+                </div>
+                <!-- <div fxLayout="row" fxLayoutAlign="space-between center">
+                              <button mat-flat-button>{{homeMatch?.series_name}}</button>
+                          </div> -->
+              </mat-card>
+            </div>
+          </ng-container>
+          </ng-container>
+          <!-- Tennis -->
+          <ng-container *ngIf="var_tennis">
+          <ng-container *ngIf="tennisData?.length">
+            <div class="game-list-card">
+              <!-- <div class="game-list-header">
+                <img src="assets/icons/Tennis.png">Tennis ({{tennisData?.length}})
+              </div> -->
+              <mat-card *ngFor="let x of tennisData" class="match-event-list m-1" (click)="matchDetail(x.eventId);">
+  
+                <!-- <mat-divider inset></mat-divider> -->
+                <div class="match-name" fxLayout="row" fxLayoutAlign="start space-arround" fxLayoutGap="5px">
+                  <div class="col-8">
+                    <!-- <div class="odd-content "> -->
+                    <div class="odd-title" style="margin-bottom: 5px;word-spacing: 3px;">
+                      <span style="line-height: 23px;font-size: 1rem;font-weight: 600;
+                      display: block;">{{x?.eventName}}</span>
+                    </div>
+                    <div class="date_time">
+                      <span>{{"Sep 28, 2022 7:30 pm"}}</span>
+                    </div>
+                  </div>
+                  <div class="col-3" style="text-align: end;">
+                    <span class="green_point"><img src="../../assets/icons/Green-Circle.png" width="10"
+                        height="10"></span>
+                    <span class="tv_icon"><span class="material-symbols-outlined">
+                        tv
+                      </span></span>
+                    <span class="bw_word"><b><i>BM</i></b></span>
+                  </div>
+                </div>
+                <div class="row" style="flex-wrap: nowrap !important;">
+                  <div class="col-sm-4 text-center">
+                    <span style="margin-left: 31px;">1</span>
+                  </div>
+                  <div class="col-sm-4 text-center">
+                    <span>x</span>
+                  </div>
+                  <div class="col-sm-4 text-center">
+                    <span style="margin-right: 31px;">2</span>
+                  </div>
+  
+                </div>
+                <div class="event-odds" fxLayout="row" fxLayoutAlign="start space-arround" fxLayoutGap="5px">
+                  <div class="match-rate">
+                    <div class="odd-list back-rate back-1">{{x?.marketBook?.runners[0]?.availableToBack?.price}}</div>
+                    <div class="odd-list lay-rate lay-1">{{x?.marketBook?.runners[0]?.availableToLay?.price}}</div>
+                    <div class="odd-list back-rate back-2">--</div>
+                    <div class="odd-list lay-rate lay-2">--</div>
+                    <div class="odd-list back-rate back-3">
+                      {{x?.marketBook?.runners[1]?.availableToBack?.price}}</div>
+                    <div class="odd-list lay-rate lay-3">
+                      {{x?.marketBook?.runners[1]?.availableToLay?.price}}</div>
+                  </div>
+                  <!-- Suspend Box -->
+                  <!-- <div class="suspend" *ngIf="homeMatch?.status == 'SUSPENDED'">
+                                      <div class="suspend-status">Suspended</div>
+                                  </div> -->
+                  <!-- <div class="suspend"
+                                      *ngIf="homeMatch?.status != 'SUSPENDED' && homeMatch?.is_lock == true">
+                                      <div class="suspend-status">LOCK</div>
+                                  </div> -->
+                </div>
+                <!-- <div fxLayout="row" fxLayoutAlign="space-between center">
+                              <button mat-flat-button>{{homeMatch?.series_name}}</button>
+                          </div> -->
+              </mat-card>
+            </div>
+          </ng-container>
+          </ng-container>
+  
+        </div> 
+<ng-container *ngIf="dataLength==0">
+    <div class="text-warning text-center  " style="margin-top:25vh; color: black;">No match</div>
+  </ng-container>
+
+  </div>
+
+
+
+</mat-sidenav-content>
+</mat-sidenav-container>

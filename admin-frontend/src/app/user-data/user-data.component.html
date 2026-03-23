@@ -1,0 +1,1660 @@
+<app-header [walletBalance]="walletBalance"></app-header>
+
+<main>
+  <div class="full-wrap" id="contentToConvert" #contentToConvert>
+    <!-- accordian row Start-->
+    <div class="row" *ngIf="down_icon_visible">
+      <div class="master-balance">
+        <div class="accordion" id="accordionExample">
+          <div class="accordion-item" style="border: none; background-color: var(--theme2-bg) !important">
+            <div class="text-center accordion-header" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+              aria-expanded="false" aria-controls="collapseOne" id="headingOne" style="background-color: #2c3e50"
+              (click)="getBalanceReport()">
+              <span><i class="fa fa-regular fa-arrow-circle-down text-light" aria-hidden="true"
+                  style="font-size: 1.5rem"></i>
+              </span>
+            </div>
+            <!-- <button class="accordion-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> -->
+            <!-- </button> -->
+            <div id="collapseOne" class="accordion-collapse collapse text-light" aria-labelledby="headingOne"
+              data-bs-parent="#accordionExample" style="background-color: #2c3e50">
+              <div class="accordion-body pb-0">
+                <div class="tohideshow">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <span>Upper Level Credit Referance:</span>
+                    </div>
+                    <div class="col-md-2 text-center">
+                      <span>{{
+                        get_balance_report?.UpperlevelCreditRef
+                        | number : "0.0-2"
+                        }}</span>
+                    </div>
+                    <div class="col-md-2">
+                      <span>Down Level Occupy Balance:</span>
+                    </div>
+                    <div class="col-md-2 text-center">
+                      <span>{{
+                        get_balance_report?.DownLevelOccupyBal
+                        | number : "0.0-2"
+                        }}</span>
+                    </div>
+                    <div class="col-md-2">
+                      <span>Down Level Credit Referance:</span>
+                    </div>
+                    <div class="col-md-2 text-center">
+                      <span>{{
+                        get_balance_report?.DownLevelCreditRef
+                        | number : "0.0-2"
+                        }}</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2">
+                      <span>Total Master Balance:</span>
+                    </div>
+                    <div class="col-md-2 text-center">
+                      <span>{{
+                        get_balance_report?.TotalMasterBal | number : "0.0-2"
+                        }}</span>
+                    </div>
+                    <div class="col-md-2"><span>Upper Level:</span></div>
+                    <div class="col-md-2 text-center">
+                      <span>{{
+                        get_balance_report?.UpperLevel | number : "0.0-2"
+                        }}</span>
+                    </div>
+                    <div class="col-md-2">
+                      <span>Down Level Profit/Loss:</span>
+                    </div>
+                    <div class="col-md-2 text-center">
+                      <span>{{
+                        get_balance_report?.DownLevelPL | number : "0.0-2"
+                        }}</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2"><span>Available Balance</span></div>
+                    <div class="col-md-2 text-center">
+                      <span>{{
+                        get_balance_report?.AvailableBalance | number : "0.0-2"
+                        }}</span>
+                    </div>
+                    <div class="col-md-2">
+                      <span>Available Balance With Profit/Loss:</span>
+                    </div>
+                    <div class="col-md-2 text-center">
+                      <span>{{
+                        get_balance_report?.AvailableBalWPL | number : "0.0-2"
+                        }}</span>
+                    </div>
+                    <div class="col-md-2"><span>My Profit/Loss:</span></div>
+                    <div class="col-md-2 text-center">
+                      <span>{{
+                        get_balance_report?.MyPL | number : "0.0-2"
+                        }}</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2 text-center">
+                      <!-- <p>1000000</p> -->
+                      <!-- <p>3402</p> -->
+                      <!-- <p>0</p> -->
+                    </div>
+                    <div class="col-md-2">
+                      <!-- <p>Down Level Occupy Balance:</p> -->
+                      <!-- <p>Upper Level:</p> -->
+                      <!-- <p>Available Balance With Profit/Loss:</p> -->
+                    </div>
+                    <div class="col-md-2 text-center">
+                      <!-- <p>0</p> -->
+                      <!-- <p>1000000</p> -->
+                      <!-- <p>3402</p> -->
+                    </div>
+                    <div class="col-md-2">
+                      <!-- <p>Down Level Credit Referance:</p> -->
+                      <!-- <p>Down Level Profit/Loss:</p> -->
+                      <!-- <p>My Profit/Loss:</p> -->
+                    </div>
+                    <div class="col-md-2 text-center">
+                      <!-- <p>40000</p> -->
+                      <!-- <p>40000</p> -->
+                      <!-- <p>3402</p> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- accordian row End -->
+    <div class="report-page">
+      <div class="user-list inner-content">
+        <div class="filterDiv">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="page-title">
+                <h3>User List</h3>
+                <!-- <div class="nav-list">
+                                    <div class="hierarchy">
+                                        <ul>
+                                            <li *ngFor='let value of hierarchy;let k=index'><a (click)='onUserNameClicked(value.userId,value.user_type_id,k+1,value.page)'>{{value.user_name}}</a></li> 
+                                        </ul>
+                                    </div>
+                                </div> -->
+              </div>
+              <div class="filter-toggle text-start">
+                <div class="link-btn-group">
+                  <button *ngIf="userListBackup?.length != 0" type="button" class="btn buttons-back mr-1"
+                    (click)="goToBack()">
+                    <i class="fa fa-angle-double-left"></i> Back
+                  </button>
+                  <button type="button" class="btn buttons-pdf btn-danger mr-1" (click)="downloadPDF()">
+                    <i class="fa fa-file-pdf-o"></i> PDF
+                  </button>
+                  <button type="button" class="btn buttons-excel btn-success" (click)="downloadCsv()"><i
+                      class="fa fa-file-excel-o"></i> Excel</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="text-right">
+                <button type="button" class="btn btn-info btn-diamond" (click)="addUser(addUserId, addUserTypeId)">
+                  Add Account
+                </button>
+                <!-- <button type="button" class="btn btn-info" (click)='addAgent(addUserId,addUserTypeId)'
+                                            *ngIf="loggedInUser?.user_type_id != '2'">
+                                            <i class="fa fa-user"></i> Add Account</button> -->
+              </div>
+              <form>
+                <div class="filter-input text-right">
+                  <div class="form-group">
+                    <!-- <select class="form-select" style="min-width: 70px !important;"
+                                        (change)="setSelectedOption($event.target.value)">
+                                        <option value="10" selected>10</option>
+                                        <option value="20">20</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                        
+                                    </select> -->
+                  </div>
+                  <div class="form-group">
+                    <label>Search</label>
+                    <input type="text" class="form-control" [(ngModel)]="searchQuery" (ngModelChange)="searchFilter()"
+                      [ngModelOptions]="{ standalone: true }" placeholder="Search UserName" />
+                  </div>
+                  <div class="form-group" *ngIf="loggedInUser?.user_type_id == 0">
+                    <ng-select style="width: 170px" [items]="searchedwebsiteList" bindLabel="host_name" bindValue="_id"
+                      (change)="searchFilter()" [ngModelOptions]="{ standalone: true }" placeholder="Search by Domain"
+                      [(ngModel)]="searchdomainId">
+                    </ng-select>
+                  </div>
+
+                  <!-- <div class="form-group">
+                                    <select class="form-select " placeholder="Select Child Level"
+                                        style="min-width: 70px !important;" [(ngModel)]="searchlevelId"
+                                        (ngModelChange)="searchFilter()" [ngModelOptions]="{standalone: true}">
+                                        <option class="select-option" value='all' selected="selected">Level </option>
+                                        <option class="select-option" *ngFor="let childlevel of childLevelFilterValues"
+                                            [value]="childlevel">{{childlevel}}</option>
+                                    </select>
+                                </div>
+                                <button type="button" class="btn btn-light" (click)="reset()">Reset</button> -->
+                </div>
+                <!-- <div class="filter-btn text-center">
+                                <ul>
+                                    <li><button type="button" class="btn btn-success">Allow</button></li>
+                                    <li><button type="button" class="btn btn-danger">Block</button></li>
+                                    
+                                    <li><button type="button" class="btn btn-light" (click)="reset()">Reset</button>
+                                    </li>
+                                </ul>
+                            </div> -->
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="report-table">
+          <table class="w-100">
+            <thead>
+              <tr>
+                <!-- <th>S.No.</th>
+                                <th *ngIf="loggedInUser?.user_type_id == 0">Domain Name</th> -->
+                <th class="frst">
+                  UserName
+                  <i class="fa fa-sort-amount-asc" aria-hidden="true" [class.hide]="assendingUsername"
+                    (click)="filterList('username', 'asc')"></i>
+                  <i class="fa fa-sort -amount-desc" aria-hidden="true" [class.hide]="!assendingUsername"
+                    (click)="filterList('username', 'desc')"></i>
+                  <!-- <i class="fa fa-sort-amount-asc" aria-hidden="true" [class.hide]="assendingUsername"
+                                        (click)="filterList('user_name','asc')"></i>
+                                    <i class="fa fa-sort-amount-desc" aria-hidden="true"
+                                        [class.hide]="!assendingUsername" (click)="filterList('user_name','desc')"></i> -->
+                </th>
+                <th class="scnd">
+                  Credit Referance
+                  <i class="fa fa-sort-amount-asc" aria-hidden="true" [class.hide]="assendingUsername"
+                    (click)="filterList('username', 'asc')"></i>
+                  <i class="fa fa-sort -amount-desc" aria-hidden="true" [class.hide]="!assendingUsername"
+                    (click)="filterList('username', 'desc')"></i>
+                  <!-- <i class="fa fa-sort-amount-asc" aria-hidden="true" [class.hide]="assendingusername"
+                                        (click)="filterList('username','asc')"></i>
+                                    <i class="fa fa-sort-amount-desc" aria-hidden="true"
+                                        [class.hide]="!assendingusername" (click)="filterList('username','desc')"></i> -->
+                </th>
+                <th class="trd">
+                  Balance
+                  <i class="fa fa-sort-amount-asc" aria-hidden="true" [class.hide]="assendingUsername"
+                    (click)="filterList('username', 'asc')"></i>
+                  <i class="fa fa-sort -amount-desc" aria-hidden="true" [class.hide]="!assendingUsername"
+                    (click)="filterList('username', 'desc')"></i>
+                  <!-- <i class="fa fa-sort-amount-asc" aria-hidden="true" [class.hide]="assendingusername"
+                                        (click)="filterList('username','asc')"></i>
+                                    <i class="fa fa-sort-amount-desc" aria-hidden="true"
+                                        [class.hide]="!assendingusername" (click)="filterList('username','desc')"></i> -->
+                </th>
+                <th class="forth">
+                  Client (P/L)
+                  <i class="fa fa-sort-amount-asc" aria-hidden="true" [class.hide]="assendingUsername"
+                    (click)="filterList('username', 'asc')"></i>
+                  <i class="fa fa-sort -amount-desc" aria-hidden="true" [class.hide]="!assendingUsername"
+                    (click)="filterList('username', 'desc')"></i>
+                </th>
+
+                <th class="fifth">
+                  Exposure
+                  <i class="fa fa-sort-amount-asc" aria-hidden="true" [class.hide]="assendingUsername"
+                    (click)="filterList('username', 'asc')"></i>
+                  <i class="fa fa-sort -amount-desc" aria-hidden="true" [class.hide]="!assendingUsername"
+                    (click)="filterList('username', 'desc')"></i>
+                </th>
+                <th class="sixth">
+                  Available Balance
+                  <i class="fa fa-sort-amount-asc" aria-hidden="true" [class.hide]="assendingUsername"
+                    (click)="filterList('username', 'asc')"></i>
+                  <i class="fa fa-sort -amount-desc" aria-hidden="true" [class.hide]="!assendingUsername"
+                    (click)="filterList('username', 'desc')"></i>
+                </th>
+                <th class="svent">
+                  U St<i class="fa fa-sort-amount-asc" aria-hidden="true" [class.hide]="assendingUsername"
+                    (click)="filterList('username', 'asc')"></i>
+                  <i class="fa fa-sort -amount-desc" aria-hidden="true" [class.hide]="!assendingUsername"
+                    (click)="filterList('username', 'desc')"></i>
+                </th>
+                <th class="eight">
+                  B St<i class="fa fa-sort-amount-asc" aria-hidden="true" [class.hide]="assendingUsername"
+                    (click)="filterList('username', 'asc')"></i>
+                  <i class="fa fa-sort -amount-desc" aria-hidden="true" [class.hide]="!assendingUsername"
+                    (click)="filterList('username', 'desc')"></i>
+                </th>
+                <th class="ninrth">
+                  Exposure Limit
+                  <i class="fa fa-sort-amount-asc" aria-hidden="true" [class.hide]="assendingUsername"
+                    (click)="filterList('username', 'asc')"></i>
+                  <i class="fa fa-sort -amount-desc" aria-hidden="true" [class.hide]="!assendingUsername"
+                    (click)="filterList('username', 'desc')"></i>
+                </th>
+                <th class="tenth">
+                  Defalut %
+                  <i class="fa fa-sort-amount-asc" aria-hidden="true" [class.hide]="assendingUsername"
+                    (click)="filterList('username', 'asc')"></i>
+                  <i class="fa fa-sort -amount-desc" aria-hidden="true" [class.hide]="!assendingUsername"
+                    (click)="filterList('username', 'desc')"></i>
+                </th>
+                <th class="eleven">
+                  Account Type
+                  <i class="fa fa-sort-amount-asc" aria-hidden="true" [class.hide]="assendingUsername"
+                    (click)="filterList('username', 'asc')"></i>
+                  <i class="fa fa-sort -amount-desc" aria-hidden="true" [class.hide]="!assendingUsername"
+                    (click)="filterList('username', 'desc')"></i>
+                </th>
+                <th class="tewle">
+                  Casino Total
+                  <i class="fa fa-sort-amount-asc" aria-hidden="true" [class.hide]="assendingUsername"
+                    (click)="filterList('username', 'asc')"></i>
+                  <i class="fa fa-sort-amount-desc" aria-hidden="true" [class.hide]="!assendingUsername"
+                    (click)="filterList('username', 'desc')"></i>
+                  <!-- <i class="fa fa-sort-amount-asc" aria-hidden="true" [class.hide]="assendingpoint"
+                                        (click)="filterList('point','asc')"></i>
+                                    <i class="fa fa-sort-amount-desc" aria-hidden="true" [class.hide]="!assendingpoint"
+                                        (click)="filterList('point','desc')"></i> -->
+                </th>
+                <th class="thrteem">Action</th>
+
+                <!-- <th>C | L
+                                    <i class="fa fa-sort-amount-asc" aria-hidden="true" [class.hide]="assendingCL"
+                                        (click)="filterList('user_type_id','asc')"></i>
+                                    <i class="fa fa-sort-amount-desc" aria-hidden="true" [class.hide]="!assendingCL"
+                                        (click)="filterList('user_type_id','desc')"></i>
+                                   
+                                </th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td class="text-right font-weight-bold">
+                  {{ get_list_top_bal?.DownLevelCreditRef | number : "0.0-2" }}
+                </td>
+                <td class="text-right font-weight-bold">
+                  {{ get_list_top_bal?.DownLevelOccupyBal | number : "0.0-2" }}
+                </td>
+                <td class="text-right font-weight-bold">
+                  {{ get_list_top_bal?.DownLevelPL | number : "0.0-2" }}
+                </td>
+                <td class="text-right font-weight-bold">
+                  {{ get_list_top_bal?.UsersExposure * -1 | number : "0.0-2" }}
+                </td>
+                <td class="text-right font-weight-bold">
+                  {{ get_list_top_bal?.UsersAvailBalance | number : "0.0-2" }}
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr *ngFor="
+                  let user of usrList
+                    | paginate
+                      : {
+                          itemsPerPage: itemsPerPage,
+                          currentPage: currentPage,
+                          totalItems: total_items
+                        };
+                  let i = index
+                ">
+                <!-- <td style="cursor: pointer;" title="{{user._id}}">{{currentPage != 1
+                                    ?(currentPage-1)*itemsPerPage+i+1 : i+1}}</td> -->
+
+                <!-- username/fullname -->
+                <td>
+                  <a class="td-btn btn-success btn-soft-success no-radius" (click)="
+                      userNameClickList(user?.username, user?.role, user?._id)
+                    ">{{ user?.username }}<br /><span style="font-size: 12px; font-weight: 500">[&nbsp;{{
+                      user?.fullname }}&nbsp;]</span></a>
+                </td>
+
+                <td class="text-right">{{ user?.creditrefrence }}</td>
+                <!-- balance -->
+                <td class="text-right">
+                  {{ user?.totalbalance | number : "0.0-2" }}
+                </td>
+                <!-- client P/L -->
+                <td class="text-right">
+                  {{
+                  user?.totalbalance - user?.creditrefrence | number : "0.0-2"
+                  }}
+                </td>
+                <!-- exposure -->
+                <td class="text-right">
+                  <span *ngIf="user?.totalexposure; else elseExpo">{{
+                    user?.totalexposure * -1 | number : "0.0-2"
+                    }}</span><ng-template #elseExpo>0</ng-template>
+                </td>
+                <!-- available_bal -->
+                <td class="text-right">
+                  {{ user?.balance | number : "0.0-2" }}
+                </td>
+                <td>
+                  <label class="customcheck">
+                    <input type="checkbox" name="" id="" [checked]="user?.status == 'active'" disabled />
+                    <span class="checkmark"></span>
+                  </label>
+                </td>
+                <td>
+                  <label class="customcheck">
+                    <input type="checkbox" name="" id="" [checked]="user?.betStatus === true" disabled />
+                    <span class="checkmark"></span>
+                  </label>
+                </td>
+                <td class="text-right">{{ user?.exposurelimit }}</td>
+
+                <td class="text-right">
+                  <span>
+                    {{ user?.partnershipsetting[0]?.partnership }}
+                  </span>
+                </td>
+                <td>
+                  <span *ngIf="user?.role == 'techadmin'"> Tech Admin </span>
+
+                  <span *ngIf="user?.role == 'superadmin'"> Super Admin </span>
+
+                  <span *ngIf="user?.role == 'admin'"> Admin </span>
+
+                  <span *ngIf="user?.role == 'subadmin'"> Super Master </span>
+
+                  <span *ngIf="user?.role == 'master'"> Master </span>
+
+                  <span *ngIf="user?.role == 'manager'"> Agent </span>
+
+                  <span *ngIf="user?.role == 'user'"> User </span>
+                </td>
+                <!-- casino_bal -->
+                <td class="text-right">
+                  <a style="text-decoration: underline; color: #1371fc" (click)="casino_iframe(user._id)">{{
+                    user?.casinobalance }}</a>
+                </td>
+                <!-- <td
+                                    (click)='user?.user_type_id == 1 ? "" :onUserNameClicked(user._id,user.user_type_id,"onclickusername")'>
+                                    <span class="userLabel">
+                                        <span *ngIf="user?.user_type_id != 1"> A </span>
+                                        <span *ngIf="user?.user_type_id == 1"> C </span>
+                                    </span>
+                                    <a> &nbsp;{{user?.user_name}} [{{user?.name}}]</a>
+                                    <span *ngIf="user?.self_lock_betting==1 || user?.parent_lock_betting == 1"><img
+                                            class="user-name-Icon" src="assets/icon/betlock.png"></span>
+                                    <span *ngIf="user?.self_lock_fancy_bet==1 || user?.parent_lock_fancy_bet"><img
+                                            class="user-name-Icon" src="assets/icon/facebook-logo.png"></span>
+                                    <span *ngIf="user?.self_lock_user==1 || user?.parent_lock_user == 1"><img
+                                            class="user-name-Icon" src="assets/icon/user-lock.png"></span>
+                                </td> -->
+                <!-- <td><a class="td-btn btn-danger btn-soft-danger">{{user?.liability | number : '0.0-2'}}</a></td> -->
+                <!-- <td><a class="td-btn "
+                                        [ngClass]="{'btn-danger btn-soft-danger':user.liability < 0 ,'btn-success btn-soft-success':user.liability >= 0}"
+                                        (click)="openModalExposure(user?._id,exposure)">{{user?.liability | number :
+                                        '0.0-2'}}</a></td> -->
+                <!-- <td><a class="td-btn"
+                                        [ngClass]="{'btn-danger btn-soft-danger':user.profit_loss < 0 ,'btn-success btn-soft-success':user.profit_loss >= 0}">{{user?.profit_loss
+                                        | number : '0.0-2'}}</a></td> -->
+                <!-- <td> <a class="td-btn btn-success btn-soft-success">{{user?.balance | number :
+                                        '0.0-2'}}</a></td> -->
+
+                <td>
+                  <div class="btn-list">
+                    <span clickOutside (clickOutside)="closeUserPasswordDiv(i)">
+                      <a class="td-btn btn-warning" ngbTooltip="Show Password" (blur)="closeUserPasswordDiv(i)"
+                        *ngIf="loggedInUser?.user_type_id == 0" (click)="openModalRawPwd(rawPwd, user._id, i)">
+                        <i class="fa fa-eye"></i>
+                      </a>
+                      <div class="UserPasswordDiv" [ngClass]="
+                          displayPasswordBox[i] ? 'displayBlock' : 'displayNone'
+                        ">
+                        <table class="table tblPermission">
+                          <thead>
+                            <tr>
+                              <th colspan="2">
+                                Password
+                                <span class="close-btn-Round bg-danger pull-right" style="cursor: pointer"
+                                  (click)="closeUserPasswordDiv(i)">
+                                  <i class="fa fa-close"></i>
+                                </span>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td colspan="2">
+                                <span>Your password is
+                                  <b style="cursor: pointer" ngxClipboard [cbContent]="'Content to be copied.'"
+                                    (cbOnSuccess)="contentCopied($event)" (click)="copyContent(rawPassword)">{{
+                                    rawPassword }}
+                                    <div class="box" *ngIf="displayTooltip == true">
+                                      <h5>Copied</h5>
+                                    </div>
+                                  </b>
+                                </span>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </span>
+                    <a class="td-btn btn-warning" (click)="
+                        openModalSharing(deposite, user);
+                        remain_manager_bal = 0;
+                        remain_usr_bal = 0;
+                        deposite_form.amount = '';
+                        deposite_form.remark = '';
+                        transcation_password = ''
+                      " ngbTooltip="Deposit">D</a>
+                    <a class="td-btn balance-sheet btn-info" ngbTooltip="Withdraw" (click)="
+                        openModalSportSetting(sportSetting, user);
+                        remain_manager_bal = 0;
+                        remain_usr_bal = 0;
+                        withdrawl_form.amount = '';
+                        withdrawl_form.remark = '';
+                        transcation_password = ''
+                      ">W</a>
+
+                    <!-- <span clickOutside (clickOutside)="closeUserPermissionDiv(i)">
+                                            <a class="td-btn btn-secondary" ngbTooltip="Permission"
+                                                (click)="userPermissionSetting(i)">P</a>
+                                            <div class="UserPermissionDiv"
+                                                [ngClass]="displayPermissionBox[i] ? 'displayBlock' : 'displayNone'">
+                                                <table class="table tblPermission">
+                                                    <thead>
+                                                        <tr>
+                                                            <th colspan="2">
+                                                                <span>{{user?.user_name}}</span>
+                                                                <span class="close-btn-Round bg-danger pull-right"
+                                                                    (click)="closeUserPermissionDiv(i)">
+                                                                    <i class="fa fa-close"></i>
+                                                                </span>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <!-- <tr>
+                                                            <td>Active</td>
+                                                            <td>
+                                                                <label class="switch"> 
+                                                                    <input type="checkbox" value="appIsApproved" name="Active" class="chkPermission" checked>
+                                                                    <span class="slider round"></span> 
+                                                                </label>
+                                                            </td>
+                                                        </tr> -->
+                    <!-- <tr *ngIf="loggedInUser?.user_type_id == 0">
+                                                            <td>Allow MultiLogin</td>
+                                                            <td>
+                                                                <label class="switch">
+                                                                    <input type="checkbox" value="true"
+                                                                        (change)="allowAndNotAllowAgentsMultiLogin(user._id)"
+                                                                        name="Active" class="chkPermission"
+                                                                        [checked]="user.is_multi_login_allow==1?true:false">
+                                                                    <span class="slider round"></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr> -->
+                    <!-- <tr>
+                                                            <td>Bet Allow</td>
+                                                            <td>
+                                                                <label class="switch">
+                                                                    <input type="checkbox" value="true"  
+                                                                    [disabled]="user?.parent_lock_betting == 1"
+                                                                        (change)='checkedBetAllow($event,user._id,user.parent_id)'
+                                                                        name="Active" class="chkPermission"
+                                                                        [checked]="user.self_lock_betting == 0 && user?.parent_lock_betting == 0 ? true : false">
+                                                                    <span class="slider round"></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr> -->
+                    <!-- <tr>
+                                                            <td>Fancy Bet Allow</td>
+                                                            <td>
+                                                                <label class="switch">
+                                                                    <input type="checkbox" value="true"
+                                                                    [disabled]="user?.parent_lock_fancy_bet == 1"
+                                                                        (change)='checkedFancyBetAllow($event,user._id,user.parent_id,user.self_lock_fancy_bet)'
+                                                                        name="Active" class="chkPermission"
+                                                                        [checked]="user.self_lock_fancy_bet==0 && user?.parent_lock_fancy_bet == 0?true:false">
+                                                                    <span class="slider round"></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr> -->
+                    <!-- <tr>
+                                                            <td>Lock User</td>
+                                                            <td>
+                                                                <label class="switch">
+                                                                    <input type="checkbox" value="true"
+                                                                        (change)="lockAccountOfUserAndTheirChilds(user._id, user.self_lock_user)"
+                                                                        name="Active" class="chkPermission"
+                                                                        [checked]="user.self_lock_user == 1 || user.parent_lock_user == 1 ? true :  false">
+                                                                    <span class="slider round"></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr> -->
+                    <!-- <tr>
+                                                            <td>Close User Account</td>
+                                                            <td>
+                                                                <label class="switch">
+                                                                    <input type="checkbox" value="true"
+                                                                        (change)="closeAccountOfUserAndTheirChilds(user._id, user.self_close_account,user.balance,user.liability,user.profit_loss)"
+                                                                        name="Active" class="chkPermission"
+                                                                        [checked]="user.self_close_account==1?true:false"
+                                                                        [disabled]="user.self_close_account==1">
+                                                                    <span class="slider round"></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr> -->
+
+                    <!-- <tr>
+                                                            <td>Sports Settings</td>
+                                                            <td>
+                                                                <label class="switch">
+                                                                    <input type="checkbox" value="true"
+                                                                        (change)="parentValidationToggle(user,i)"
+                                                                        name="Active" class="chkPermission"
+                                                                        [checked]="user.check_event_limit">
+                                                                    <span class="slider round"></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr> -->
+
+                    <!-- <tr>
+                                                            <td colspan="2">Third Party Game</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>SuperNova</td>
+                                                            <td>
+                                                                <label class="switch"> 
+                                                                    <input type="checkbox" value="appIsApproved" name="Active" class="chkPermission">
+                                                                    <span class="slider round"></span> 
+                                                                </label>
+                                                            </td>
+                                                        </tr> -->
+                    <!-- </tbody>
+                                                </table>
+                                            </div>
+                                        </span>  -->
+                    <a class="td-btn balance-sheet btn-info" ngbTooltip="Exposure Limit" (click)="
+                        openModalUserParentList(user, userParentList);
+                        exposure_limit_form.exposure = '';
+                        transcation_password = ''
+                      ">
+                      L
+                    </a>
+                    <!-- <a class="td-btn btn-info" ngbTooltip="Child Block Market"
+                                            (click)="blockMaster(user)">L</a> -->
+                    <!-- <a class="td-btn balance-sheet btn-info" ngbTooltip="Report"
+                                            (click)="downlineList(user)">C</a> -->
+                    <a class="td-btn balance-sheet btn-info" ngbTooltip="Credit" (click)="
+                        openModalComissionSetting(comissionSetting, user);
+                        credit_limit_form.credit = '';
+                        transcation_password = ''
+                      ">
+                      C</a>
+                    <a class="td-btn balance-sheet btn-info" ngbTooltip="Change Password" (click)="
+                        openModalUserPwd(userPwd, user?._id, user?.role);
+                        change_password_form.password = '';
+                        change_password_form.confirm_password = '';
+                        transcation_password = ''
+                      ">
+                      P
+                    </a>
+                    <br />
+                    <a *ngIf="
+                        user?.ParentUser === loggedInUser?.details?.username
+                      " class="td-btn balance-sheet btn-info" ngbTooltip="Change Status" (click)="
+                        openModalPermissionSetting(
+                          permissionSetting,
+                          user?.username,
+                          user?.status,
+                          user?.role,
+                          user?.betStatus,
+                          user?._id
+                        );
+                        transcation_password = ''
+                      ">
+                      S
+                    </a>
+                    <a *ngIf="
+                        user?.ParentUser === loggedInUser?.details?.username
+                      " class="td-btn balance-sheet btn-info" ngbTooltip="More" (click)="
+                        openModalMoreSetting(
+                          sportsSetting,
+                          user?._id,
+                          user?.status,
+                          user?.role,
+                          user?.ParentUser
+                        );
+                        transcation_password = ''
+                      ">
+                      More
+                    </a>
+                    &nbsp;<i *ngIf="user?.role === 'user'" style="cursor: pointer" (click)="refreshBal(user.username)"
+                      class="fa fa-refresh mt-1" aria-hidden="true"></i>
+                    <!-- <a class="td-btn btn-warning" ngbTooltip="Add Child"
+                                            (click)="redirectToAddChild(user._id,user?.user_type_id,user)"
+                                            *ngIf="user?.user_type_id != '1' && user?.self_lock_user != 1 && user?.parent_lock_user != 1">+</a>  -->
+                  </div>
+                </td>
+              </tr>
+              <tr *ngIf="usrList?.length == 0">
+                <td colspan="13">No user data found</td>
+              </tr>
+              <!-- <tr *ngIf="usrList?.length != 0">
+                                <td></td>
+                                <td></td>
+                                <td>Total</td>
+                                <td> <a class="td-btn" [ngClass]="{'btn-danger btn-soft-danger':expoTotal < 0 ,'btn-success btn-soft-success':expoTotal >= 0}">{{expoTotal | number : '0.0-2'}}</a></td>
+                                <td> <a class="td-btn" [ngClass]="{'btn-danger btn-soft-danger':plTotal < 0 ,'btn-success btn-soft-success':plTotal >= 0}">{{plTotal | number : '0.0-2'}}</a></td>
+                                <td> <a class="td-btn" [ngClass]="{'btn-danger btn-soft-danger':balTotal < 0 ,'btn-success btn-soft-success':balTotal >= 0}">{{balTotal | number : '0.0-2'}}</a></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+								<td></td>
+                                <td></td>
+                                <td></td>
+                            </tr> -->
+            </tbody>
+          </table>
+
+          <!-- mobile view Not Working Start-->
+          <table *ngIf="false" class="table hide-on-up">
+            <thead>
+              <tr>
+                <!-- <th *ngIf="loggedInUser?.user_type_id == 0">Domain Name</th> -->
+                <th>
+                  UserName |
+                  <span *ngIf="loggedInUser?.user_type_id == 0">Domain Name
+                  </span>
+                  <i class="fa fa-sort-amount-asc" aria-hidden="true" [class.hide]="assendingUsername"
+                    (click)="filterList('user_name', 'asc')"></i>
+                  <i class="fa fa-sort-amount-desc" aria-hidden="true" [class.hide]="!assendingUsername"
+                    (click)="filterList('user_name', 'desc')"></i>
+                </th>
+                <th>
+                  Exposure
+                  <i class="fa fa-sort-amount-asc" aria-hidden="true" [class.hide]="assendingUsername"></i>
+                  <i class="fa fa-sort-amount-desc" aria-hidden="true" [class.hide]="!assendingUsername"></i>
+                </th>
+                <th>
+                  P | L
+                  <i class="fa fa-sort-amount-asc" aria-hidden="true" [class.hide]="assendingUsername"></i>
+                  <i class="fa fa-sort -amount-desc" aria-hidden="true" [class.hide]="!assendingUsername"></i>
+                </th>
+                <th>
+                  Balance
+                  <i class="fa fa-sort-amount-asc" aria-hidden="true" [class.hide]="assendingbalance"
+                    (click)="filterList('balance', 'asc')"></i>
+                  <i class="fa fa-sort-amount-desc" aria-hidden="true" [class.hide]="!assendingbalance"
+                    (click)="filterList('balance', 'desc')"></i>
+                </th>
+                <th>
+                  Point
+                  <i class="fa fa-sort-amount-asc" aria-hidden="true" [class.hide]="assendingpoint"
+                    (click)="filterList('point', 'asc')"></i>
+                  <i class="fa fa-sort-amount-desc" aria-hidden="true" [class.hide]="!assendingpoint"
+                    (click)="filterList('point', 'desc')"></i>
+                </th>
+                <th>Action</th>
+                <!-- <th>C | L
+                                    <i class="fa fa-sort-amount-asc" aria-hidden="true" [class.hide]="assendingCL"
+                                        (click)="filterList('user_type_id','asc')"></i>
+                                    <i class="fa fa-sort-amount-desc" aria-hidden="true" [class.hide]="!assendingCL"
+                                        (click)="filterList('user_type_id','desc')"></i>
+                                </th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="
+                  let user of userList
+                    | paginate
+                      : {
+                          itemsPerPage: itemsPerPage,
+                          currentPage: currentPage,
+                          total_items: total_items
+                        };
+                  let i = index
+                ">
+                <!-- <td style="cursor: pointer;" title="{{user._id}}">{{currentPage != 1
+                                    ?(currentPage-1)*itemsPerPage+i+1 : i+1}}</td> -->
+                <!-- <td *ngIf="loggedInUser?.user_type_id == 0"><span>{{user?.domain?.site_title}}</span>
+                                </td> -->
+                <td (click)="
+                    user?.user_type_id == 1
+                      ? ''
+                      : onUserNameClicked(
+                          user._id,
+                          user.user_type_id,
+                          'onclickusername'
+                        )
+                  ">
+                  <span class="userLabel">
+                    <span *ngIf="user?.user_type_id != 1"> A </span>
+                    <span *ngIf="user?.user_type_id == 1"> C </span>
+                  </span>
+                  <a> &nbsp;{{ user?.user_name }} [{{ user?.name }}]</a>
+                  <span *ngIf="
+                      user?.self_lock_betting == 1 ||
+                      user?.parent_lock_betting == 1
+                    "><img class="user-name-Icon" src="assets/icon/betlock.png" /></span>
+                  <span *ngIf="
+                      user?.self_lock_fancy_bet == 1 ||
+                      user?.parent_lock_fancy_bet
+                    "><img class="user-name-Icon" src="assets/icon/facebook-logo.png" /></span>
+                  <span *ngIf="
+                      user?.self_lock_user == 1 || user?.parent_lock_user == 1
+                    "><img class="user-name-Icon" src="assets/icon/user-lock.png" /></span>
+                  <br />
+
+                  <span *ngIf="loggedInUser?.user_type_id == 0" class="domain-cell"><i class="fa fa-globe"></i>
+                    {{ user?.domain?.site_title }}</span>
+                </td>
+                <!-- <td><a class="td-btn btn-danger btn-soft-danger">{{user?.liability | number : '0.0-2'}}</a></td> -->
+                <td>
+                  <a class="td-btn" [ngClass]="{
+                      'btn-danger btn-soft-danger': user.liability < 0,
+                      'btn-success btn-soft-success': user.liability >= 0
+                    }" (click)="openModalExposure(user?._id, exposure)">{{ user?.liability | number : "0.0-2" }}</a>
+                </td>
+                <td>
+                  <a class="td-btn" [ngClass]="{
+                      'btn-danger btn-soft-danger': user.profit_loss < 0,
+                      'btn-success btn-soft-success': user.profit_loss >= 0
+                    }">{{ user?.profit_loss | number : "0.0-2" }}</a>
+                </td>
+                <td>
+                  <a class="td-btn btn-success btn-soft-success">{{
+                    user?.balance | number : "0.0-2"
+                    }}</a>
+                </td>
+
+                <td>{{ user?.point }}</td>
+                <td>
+                  <div class="dropdown action-menu">
+                    <a class="td-btn btn-secondary" data-toggle="dropdown" (click)="openActionList(user)"><i
+                        class="fa fa-ellipsis-h"></i></a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <div class="actionListDiv">
+                        <div class="btn-list">
+                          <a class="td-btn btn-success btn-soft-success no-radius text-center" style="
+                              font-size: 15px;
+                              border-bottom: 1px solid rgb(109, 105, 105);
+                            "><b>{{ user?.user_name }}</b></a>
+                          <!-- <a class="td-btn btn-success btn-soft-success no-radius" (click)="openModalDeposit(deposite);getUserAndParentDetails(user._id)"><i
+                                        class="fa fa-usd"></i> Chips Deposit</a> -->
+                          <a class="td-btn btn-danger btn-soft-danger no-radius" (click)="
+                              openModalWithdraw(withdraw);
+                              getUserAndParentDetails(user._id)
+                            "><i class="fa fa-usd"></i> Chips Withdrawl</a>
+                          <span clickOutside (clickOutside)="closeUserPasswordDiv(i)">
+                            <a class="td-btn btn-warning" (blur)="closeUserPasswordDiv(i)"
+                              *ngIf="loggedInUser?.user_type_id == 0" (click)="openModalRawPwd(rawPwd, user._id, i)">
+                              <i class="fa fa-eye"></i> Show Password
+                            </a>
+                            <div class="UserPasswordDiv" [ngClass]="
+                                displayPasswordBox[i]
+                                  ? 'displayBlock'
+                                  : 'displayNone'
+                              ">
+                              <table class="table tblPermission">
+                                <thead>
+                                  <tr>
+                                    <th colspan="2">
+                                      Password
+                                      <span class="close-btn-Round bg-success" style="cursor: pointer" (click)="
+                                          copyTextToClipboard(rawPassword)
+                                        "><i class="fa fa-copy"></i></span>
+                                      <span class="close-btn-Round bg-danger pull-right" style="cursor: pointer"
+                                        (click)="closeUserPasswordDiv(i)">
+                                        <i class="fa fa-close"></i>
+                                      </span>
+                                    </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td colspan="2">
+                                      <span>Your password is
+                                        <b style="cursor: pointer" ngxClipboard [cbContent]="'Content to be copied.'"
+                                          (cbOnSuccess)="contentCopied($event)" (click)="copyContent(rawPassword)">{{
+                                          rawPassword }}
+                                          <div class="box" *ngIf="displayTooltip == true">
+                                            <h5>Copied</h5>
+                                          </div>
+                                        </b>
+                                      </span>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </span>
+                          <!-- <a class="td-btn btn-warning"
+                                                (click)="openModalSharing(sharing) ; getPartnershipListByUserIdforPopUp(user._id ,user?.user_name)"
+                                                ngbTooltip="Partnership Sharing"
+                                                *ngIf="user?.user_type_id != 1"><i
+                                                class="fa fa-share-alt"></i> Sharing</a> -->
+                          <a class="td-btn btn-secondary" (click)="
+                              openModalUserPwd(userPwd);
+                              getUserAndParentDetails(user._id)
+                            "><i class="fa fa-key"></i> Change Password</a>
+                          <span clickOutside (clickOutside)="closeMobilsUserPermissionDiv(i)">
+                            <a class="td-btn btn-secondary" (click)="userMobilePermissionSetting(i)"><i
+                                class="fa fa-cog"></i> Permission</a>
+                            <div class="UserPermissionDiv" style="left: -125% !important" [ngClass]="
+                                mobileDisplayPermissionBox[i]
+                                  ? 'displayBlock'
+                                  : 'displayNone'
+                              ">
+                              <table class="table tblPermission">
+                                <thead>
+                                  <tr>
+                                    <th colspan="2">
+                                      <span>{{ user?.user_name }}</span>
+                                      <span class="close-btn-Round bg-danger pull-right" (click)="
+                                          closeMobilsUserPermissionDiv(i)
+                                        ">
+                                        <i class="fa fa-close"></i>
+                                      </span>
+                                    </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <!-- <tr>
+                                                                <td>Active</td>
+                                                                <td>
+                                                                    <label class="switch"> 
+                                                                        <input type="checkbox" value="appIsApproved" name="Active" class="chkPermission" checked>
+                                                                        <span class="slider round"></span> 
+                                                                    </label>
+                                                                </td>
+                                                            </tr> -->
+                                  <tr *ngIf="loggedInUser?.user_type_id == 0">
+                                    <td>Allow MultiLogin</td>
+                                    <td>
+                                      <label class="switch">
+                                        <input type="checkbox" value="true" (change)="
+                                            allowAndNotAllowAgentsMultiLogin(
+                                              user._id
+                                            )
+                                          " name="Active" class="chkPermission" [checked]="
+                                            user.is_multi_login_allow == 1
+                                              ? true
+                                              : false
+                                          " />
+                                        <span class="slider round"></span>
+                                      </label>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Bet Allow</td>
+                                    <td>
+                                      <label class="switch">
+                                        <input type="checkbox" value="true" [disabled]="
+                                            user?.parent_lock_betting == 1
+                                          " (change)="
+                                            checkedBetAllow(
+                                              $event,
+                                              user._id,
+                                              user.parent_id
+                                            )
+                                          " name="Active" class="chkPermission" [checked]="
+                                            user.self_lock_betting == 0 &&
+                                            user?.parent_lock_betting == 0
+                                              ? true
+                                              : false
+                                          " />
+                                        <span class="slider round"></span>
+                                      </label>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Fancy Bet Allow</td>
+                                    <td>
+                                      <label class="switch">
+                                        <input type="checkbox" value="true" [disabled]="
+                                            user?.parent_lock_fancy_bet == 1
+                                          " (change)="
+                                            checkedFancyBetAllow(
+                                              $event,
+                                              user._id,
+                                              user.parent_id,
+                                              user.self_lock_fancy_bet
+                                            )
+                                          " name="Active" class="chkPermission" [checked]="
+                                            user.self_lock_fancy_bet == 0 &&
+                                            user?.parent_lock_fancy_bet == 0
+                                              ? true
+                                              : false
+                                          " />
+                                        <span class="slider round"></span>
+                                      </label>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Lock User</td>
+                                    <td>
+                                      <label class="switch">
+                                        <input type="checkbox" value="true" (change)="
+                                            lockAccountOfUserAndTheirChilds(
+                                              user._id,
+                                              user.self_lock_user
+                                            )
+                                          " name="Active" class="chkPermission" [checked]="
+                                            user.self_lock_user == 1 ||
+                                            user.parent_lock_user == 1
+                                              ? true
+                                              : false
+                                          " />
+                                        <span class="slider round"></span>
+                                      </label>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Close User Account</td>
+                                    <td>
+                                      <label class="switch">
+                                        <input type="checkbox" value="true" (change)="
+                                            closeAccountOfUserAndTheirChilds(
+                                              user._id,
+                                              user.self_close_account,
+                                              user.balance,
+                                              user.liability,
+                                              user.profit_loss
+                                            )
+                                          " name="Active" class="chkPermission" [checked]="
+                                            user.self_close_account == 1
+                                              ? true
+                                              : false
+                                          " [disabled]="
+                                            user.self_close_account == 1
+                                          " />
+                                        <span class="slider round"></span>
+                                      </label>
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>Sports Settings</td>
+                                    <td>
+                                      <label class="switch">
+                                        <input type="checkbox" value="true" (change)="
+                                            parentValidationToggle(user, i)
+                                          " name="Active" class="chkPermission" [checked]="user.check_event_limit" />
+                                        <span class="slider round"></span>
+                                      </label>
+                                    </td>
+                                  </tr>
+
+                                  <!-- <tr>
+                                                                <td colspan="2">Third Party Game</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>SuperNova</td>
+                                                                <td>
+                                                                    <label class="switch"> 
+                                                                        <input type="checkbox" value="appIsApproved" name="Active" class="chkPermission">
+                                                                        <span class="slider round"></span> 
+                                                                    </label>
+                                                                </td>
+                                                            </tr> -->
+                                </tbody>
+                              </table>
+                            </div>
+                          </span>
+                          <a class="td-btn btn-info" (click)="blockMaster(user)"><i class="fa fa-ban"></i> Child Block
+                            Market</a>
+                          <a class="td-btn balance-sheet btn-info" (click)="downlineList(user)"><i
+                              class="fa fa-file-text"></i> Report</a>
+                          <!-- <a class="td-btn balance-sheet btn-info" (click)="openModalSportSetting(sportSetting,user);"><i
+                                                    class="fa fa-cog"></i> Market Limit</a> -->
+                          <a class="td-btn balance-sheet btn-info" (click)="
+                              openModalPermissionSetting(permissionSetting)
+                            " *ngIf="loggedInUser?.user_type_id == 0"><i class="fa fa-cog"></i> Permission Setting</a>
+                          <a class="td-btn balance-sheet btn-info" (click)="
+                              openModalComissionSetting(comissionSetting, user)
+                            "><i class="fa fa-cog"></i> Comission Setting</a>
+                          <!-- <a class="td-btn balance-sheet btn-info" (click)="openModalUserParentList(user,userParentList)"><i
+                                                class="fa fa-list"></i> Parent List</a> -->
+                          <a class="td-btn btn-warning" (click)="
+                              redirectToAddChild(
+                                user._id,
+                                user?.user_type_id,
+                                user
+                              )
+                            " *ngIf="
+                              user?.user_type_id != '1' &&
+                              user?.self_lock_user != 1 &&
+                              user?.parent_lock_user != 1
+                            "><i class="fa fa-plus"></i> Add Child</a>
+                          <a class="td-btn btn-secondary" *ngIf="user?.user_type_id != '1'"><i
+                              class="fa fa-level-up"></i> Child Level:
+                            {{ user?.user_type_id }}</a>
+                          <a class="td-btn btn-secondary" *ngIf="user?.user_type_id == '1'"><i
+                              class="fa fa-level-up"></i> Child Level: -</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <!-- <td>
+                                    <a class="td-btn btn-secondary" *ngIf="user?.user_type_id != '1'"
+                                        ngbTooltip="Child-level">{{user?.user_type_id}}</a>
+                                    <a class="td-btn btn-secondary" *ngIf="user?.user_type_id == '1'">-</a>
+                                </td> -->
+              </tr>
+              <tr *ngIf="userList.length == 0">
+                <td colspan="12">No user data found</td>
+              </tr>
+              <tr *ngIf="userList.length != 0">
+                <td>Total</td>
+                <td>
+                  <a class="td-btn" [ngClass]="{
+                      'btn-danger btn-soft-danger': expoTotal < 0,
+                      'btn-success btn-soft-success': expoTotal >= 0
+                    }">{{ expoTotal | number : "0.0-2" }}</a>
+                </td>
+                <td>
+                  <a class="td-btn" [ngClass]="{
+                      'btn-danger btn-soft-danger': plTotal < 0,
+                      'btn-success btn-soft-success': plTotal >= 0
+                    }">{{ plTotal | number : "0.0-2" }}</a>
+                </td>
+                <td>
+                  <a class="td-btn" [ngClass]="{
+                      'btn-danger btn-soft-danger': balTotal < 0,
+                      'btn-success btn-soft-success': balTotal >= 0
+                    }">{{ balTotal | number : "0.0-2" }}</a>
+                </td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- mobile view Not Working End-->
+        </div>
+
+        <!-- pagination -->
+        <div class="col-md-6">
+          <span>Showing <span>{{ itemsPerPage * (currentPage - 1) + 1 }}</span> to
+            <span *ngIf="
+                currentPage == math.ceil(total_items / itemsPerPage) ||
+                  (total_items / itemsPerPage | number : '1.0-0') == 0;
+                else toPage
+              ">{{ total_items }}</span><ng-template #toPage>{{ itemsPerPage * currentPage }}</ng-template>
+            of <span>{{ total_items }}</span> entries</span>
+        </div>
+
+        <div class="report-bottom-paginate">
+          <pagination-controls (pageChange)="pageChange($event)" class="user-list-pagination">
+          </pagination-controls>
+        </div>
+
+        <!-- <div class="report-bottom-paginate">
+                    <button type="button" class="btn btn-primary mr-2" (click)="prePage();" [disabled]="currentPage==1">Previous</button>
+                    <button type="button" class="btn btn-primary" (click)="nextPage();">Next</button>
+                </div> -->
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Deposite -->
+<ng-template #deposite>
+  <form (ngSubmit)="updateBal(sharing)" #dePosite_form="ngForm">
+    <div class="modal-header cutompophrader">
+      <h4 class="modal-title">Deposit</h4>
+      <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()">×</a>
+    </div>
+    <div class="modal-body">
+      <div class="body-inner">
+        <div class="row-sm d-flex text1-row">
+          <div class="col-sm-4 text1-col-lable">
+            <label for="" class="form-label">{{ parent_user }}</label>
+          </div>
+          <div class="col-sm-8 d-flex text1-col-input-box">
+            <div style="padding: 0px 3px 0px 0px !important; width: 100%">
+              <input type="text" class="text-right form-control" placeholder="{{ manager_bal | number : '0.0-2' }}"
+                disabled />
+            </div>
+            <div style="padding: 0px 0px 0px 3px !important">
+              <input type="text" class="form-control" placeholder="{{ remain_manager_bal | number : '0.0-2' }}"
+                disabled />
+            </div>
+          </div>
+        </div>
+        <div class="row-sm d-flex text1-row mt-3">
+          <div class="col-sm-4 text1-col-lable">
+            <label for="" class="form-label">{{ user_name }}</label>
+          </div>
+          <div class="col-sm-8 d-flex text1-col-input-box">
+            <div style="padding: 0px 3px 0px 0px !important; width: 100%">
+              <input type="text" class="text-right form-control" placeholder="{{ user_bal | number : '0.0-2' }}"
+                disabled />
+            </div>
+            <div style="padding: 0px 0px 0px 3px !important">
+              <input type="text" class="form-control" placeholder="{{ remain_usr_bal | number : '0.0-2' }}" disabled />
+            </div>
+          </div>
+        </div>
+        <div class="row-sm d-flex text1-row mt-3">
+          <div class="col-sm-4 text1-col-lable">
+            <label for="" class="form-label">Amount</label>
+          </div>
+          <div class="col-sm-8 d-flex text1-col-input-box">
+            <input id="amount" type="number" class="text-right form-control" style="width: 100%"
+              (keyup)="calAmt($event, 'deposite')" name="amount" [(ngModel)]="deposite_form.amount" required />
+          </div>
+        </div>
+        <div class="row-sm d-flex text1-row mt-3">
+          <div class="col-sm-4 text1-col-lable">
+            <label for="" class="form-label">Remark</label>
+          </div>
+          <div class="col-sm-8 d-flex text1-col-input-box">
+            <textarea id="" rows="5" style="width: 100%" name="remark" [(ngModel)]="deposite_form.remark"></textarea>
+          </div>
+        </div>
+        <div class="row-sm d-flex text1-row mt-3">
+          <div class="col-sm-4 text1-col-lable">
+            <label for="" class="form-label">Transaction Password</label>
+          </div>
+          <div class="col-sm-8 d-flex text1-col-input-box">
+            <input type="password" class="text-right form-control" style="width: 100%" name="transcation_password"
+              [(ngModel)]="transcation_password" required />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <div class="text-end btn-group">
+        <button type="button" class="btn btn-back" data-dismiss="modal" (click)="modalRef.hide()">
+          <i class="fas fa-undo"></i> Back
+        </button>
+        <button type="submit" class="btn btn-login" [disabled]="!dePosite_form.form.valid">
+          Submit <i class="fas fa-sign-in-alt"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<!-- Withdraw -->
+<ng-template #sportSetting>
+  <form (ngSubmit)="Withdraw(sharing)" #withDraw_form="ngForm">
+    <div class="modal-header">
+      <h4 class="modal-title">Withdraw</h4>
+      <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()">×</a>
+    </div>
+    <div class="modal-body">
+      <div class="body-inner">
+        <div class="row-sm d-flex text1-row m-b-20">
+          <div class="col-sm-4 text1-col-lable">
+            <label for="" class="form-label">{{ parent_user }}</label>
+          </div>
+          <div class="col-sm-8 d-flex text1-col-input-box">
+            <div style="padding: 0px 3px 0px 0px !important; width: 100%">
+              <input type="text" class="text-right form-control" placeholder="{{ manager_bal | number : '0.0-2' }}"
+                disabled />
+            </div>
+            <div style="padding: 0px 0px 0px 3px !important; width: 100%">
+              <input type="text" class="form-control" placeholder="{{ remain_manager_bal | number : '0.0-2' }}"
+                disabled />
+            </div>
+          </div>
+        </div>
+        <div class="row-sm d-flex text1-row m-b-20">
+          <div class="col-sm-4 text1-col-lable">
+            <label for="" class="form-label">{{ user_name }}</label>
+          </div>
+          <div class="col-sm-8 d-flex text1-col-input-box">
+            <div style="padding: 0px 3px 0px 0px !important; width: 100%">
+              <input type="text" class="text-right form-control" placeholder="{{ user_bal | number : '0.0-2' }}"
+                disabled />
+            </div>
+            <div style="padding: 0px 0px 0px 3px !important; width: 100%">
+              <input type="text" class="form-control" placeholder="{{ remain_usr_bal | number : '0.0-2' }}" disabled />
+            </div>
+          </div>
+        </div>
+        <div class="row-sm d-flex text1-row m-b-20">
+          <div class="col-sm-4 text1-col-lable">
+            <label for="" class="form-label">Amount</label>
+          </div>
+          <div class="col-sm-8 d-flex text1-col-input-box">
+            <input type="text" class="text-right form-control" style="width: 100%" name="amount"
+              (keyup)="calAmt($event, 'withdraw')" [(ngModel)]="withdrawl_form.amount" required />
+          </div>
+        </div>
+        <div class="row-sm d-flex text1-row m-b-20">
+          <div class="col-sm-4 text1-col-lable">
+            <label for="" class="form-label">Remark</label>
+          </div>
+          <div class="col-sm-8 d-flex text1-col-input-box">
+            <textarea name="" id="" rows="5" style="width: 100%" name="remark"
+              [(ngModel)]="withdrawl_form.remark"></textarea>
+          </div>
+        </div>
+        <div class="row-sm d-flex text1-row m-b-20">
+          <div class="col-sm-4 text1-col-lable">
+            <label for="" class="form-label">Transaction Password</label>
+          </div>
+          <div class="col-sm-8 d-flex text1-col-input-box">
+            <input type="password" class="text-right form-control" style="width: 100%" name="transcation_password"
+              [(ngModel)]="transcation_password" required />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <div class="text-end btn-group">
+        <button type="button" class="btn btn-back" data-dismiss="modal" (click)="modalRef.hide()">
+          <i class="fas fa-undo"></i> Back
+        </button>
+        <button type="submit" class="btn btn-login" [disabled]="!withDraw_form.form.valid">
+          Submit <i class="fas fa-sign-in-alt"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<!-- exposureLimit Model-->
+<ng-template #userParentList>
+  <form (ngSubmit)="update_Exposure()" #exposureLimit="ngForm">
+    <div class="modal-header">
+      <h4 class="modal-title">Exposure Limit</h4>
+      <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()">×</a>
+    </div>
+    <div class="modal-body">
+      <div class="body-inner">
+        <div class="row-sm d-flex text1-row m-b-20">
+          <div class="col-sm-4 text1-col-lable">
+            <label for="" class="form-label">Old Limit</label>
+          </div>
+          <div class="col-sm-8 d-flex text1-col-input-box">
+            <input type="text" class="text-right form-control" style="width: 100%"
+              placeholder="{{ old_exp_limit | number : '0.0-2' }}" disabled />
+          </div>
+        </div>
+        <div class="row-sm d-flex text1-row m-b-20">
+          <div class="col-sm-4 text1-col-lable">
+            <label for="" class="form-label">New Limit</label>
+          </div>
+          <div class="col-sm-8 d-flex text1-col-input-box">
+            <input type="text" class="text-right form-control" style="width: 100%" name="exposure"
+              [(ngModel)]="exposure_limit_form.exposure" required />
+          </div>
+        </div>
+
+        <div class="row-sm d-flex text1-row m-b-20">
+          <div class="col-sm-4 text1-col-lable">
+            <label for="" class="form-label">Transaction Password</label>
+          </div>
+          <div class="col-sm-8 d-flex text1-col-input-box">
+            <input type="password" class="text-right form-control" style="width: 100%" name="transcation_password"
+              [(ngModel)]="transcation_password" required />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <div class="text-end btn-group">
+        <button type="button" class="btn btn-back" data-dismiss="modal" (click)="modalRef.hide()">
+          <i class="fas fa-undo"></i> Back
+        </button>
+        <button type="submit" class="btn btn-login" [disabled]="!exposureLimit.form.valid">
+          Submit <i class="fas fa-sign-in-alt"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<!-- creditLimit -->
+<ng-template #comissionSetting>
+  <form (ngSubmit)="update_Credit()" #creditLimit="ngForm">
+    <div class="modal-header">
+      <h4 class="modal-title">Credit</h4>
+      <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()">×</a>
+    </div>
+    <div class="modal-body">
+      <div class="body-inner">
+        <div class="row-sm d-flex text1-row m-b-20">
+          <div class="col-sm-4 text1-col-lable">
+            <label for="" class="form-label">Old Credit</label>
+          </div>
+          <div class="col-sm-8 d-flex text1-col-input-box">
+            <input type="text" class="text-right form-control" name="oldcredit" style="width: 100%"
+              placeholder="{{ credit_old_limit | number : '0.0-2' }}" [(ngModel)]="credit_limit_form.oldcredit"
+              disabled />
+          </div>
+        </div>
+        <div class="row-sm d-flex text1-row m-b-20">
+          <div class="col-sm-4 text1-col-lable">
+            <label for="" class="form-label">New Credit</label>
+          </div>
+          <div class="col-sm-8 d-flex text1-col-input-box">
+            <input type="text" class="text-right form-control" name="credit" style="width: 100%"
+              [(ngModel)]="credit_limit_form.credit" required />
+          </div>
+        </div>
+
+        <div class="row-sm d-flex text1-row m-b-20">
+          <div class="col-sm-4 text1-col-lable">
+            <label for="" class="form-label">Transaction Password</label>
+          </div>
+          <div class="col-sm-8 d-flex text1-col-input-box">
+            <input type="password" class="text-right form-control" name="transcation_password" style="width: 100%"
+              [(ngModel)]="transcation_password" required />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <div class="text-end btn-group">
+        <button type="button" class="btn btn-back" data-dismiss="modal" (click)="modalRef.hide()">
+          <i class="fas fa-undo"></i> Back
+        </button>
+        <button type="submit" class="btn btn-login" [disabled]="!creditLimit.form.valid">
+          Submit <i class="fas fa-sign-in-alt"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<!-- chnagePassword -->
+<ng-template #userPwd>
+  <form (ngSubmit)="updatePasswd()" #chnagePassword="ngForm">
+    <div class="modal-header">
+      <h4 class="modal-title">Password</h4>
+      <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()">×</a>
+    </div>
+    <div class="modal-body">
+      <div class="body-inner">
+        <div class="row-sm d-flex text1-row m-b-20">
+          <div class="col-sm-4 text1-col-lable">
+            <label for="" class="form-label">New Password</label>
+          </div>
+          <div class="col-sm-8 text1-col-input-box">
+            <input type="password" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$" class="text-right form-control"
+              name="password" style="width: 100%" [(ngModel)]="change_password_form.password" required
+              #password="ngModel" />
+
+            <p *ngIf="password.invalid && password.errors.pattern" class="text-danger">
+              *Password should be atleast 8 characters long and should contain 1
+              number,1 character and 1 special character
+            </p>
+          </div>
+        </div>
+        <div class="row-sm d-flex text1-row m-b-20">
+          <div class="col-sm-4 text1-col-lable">
+            <label for="" class="form-label">Confirm Password</label>
+          </div>
+          <div class="col-sm-8 text1-col-input-box">
+            <input type="password" class="text-right form-control" name="Cpassword" style="width: 100%"
+              [(ngModel)]="change_password_form.confirm_password" required #confirmpassword="ngModel" />
+            <p *ngIf="
+                confirmpassword.valid && password.value != confirmpassword.value
+              " class="text-danger small">
+              *New Password and Confirm password does not match
+            </p>
+          </div>
+        </div>
+
+        <div class="row-sm d-flex text1-row m-b-20">
+          <div class="col-sm-4 text1-col-lable">
+            <label for="" class="form-label">Transaction Password</label>
+          </div>
+          <div class="col-sm-8 d-flex text1-col-input-box">
+            <input type="password" class="text-right form-control" name="transcation_password" style="width: 100%"
+              [(ngModel)]="transcation_password" required />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <div class="text-end btn-group">
+        <button type="button" class="btn btn-back" data-dismiss="modal" (click)="modalRef.hide()">
+          <i class="fas fa-undo"></i> Back
+        </button>
+        <button type="submit" class="btn btn-login" [disabled]="!chnagePassword.form.valid">
+          Submit <i class="fas fa-sign-in-alt"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<!-- userStatusChange -->
+<ng-template #permissionSetting>
+  <form (ngSubmit)="changeUsrStatus()" #userStatusChange="ngForm">
+    <div class="modal-header">
+      <h4 class="modal-title">Change Status</h4>
+      <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()">×</a>
+    </div>
+    <div class="modal-body no-scroll-body">
+      <div class="body-inner">
+        <div class="row-sm d-flex m-t-20">
+          <div class="col-md-6 p-0 text-start unames">
+            <span>{{ user_name }}</span>
+          </div>
+          <div class="col-md-6 p-0 text-end status">
+            <span [ngClass]="
+                usr_status == 'active' ? 'text-success' : 'text-danger'
+              ">{{ usr_status }}</span>
+          </div>
+        </div>
+        <div class="row-sm d-flex m-t-20 togglebtnsa">
+          <div class="col-md-6 p-0 text-center">
+            <h5>User Active</h5>
+            <label class="switch">
+              <input type="checkbox" id="togBtn" (change)="usr_status_toggle($event.target.checked)"
+                [checked]="usr_status === 'active'" />
+              <div class="slider round"></div>
+            </label>
+          </div>
+          <div class="col-md-6 p-0 text-center">
+            <h5>Bet Active</h5>
+            <label class="switch">
+              <input type="checkbox" id="togBtn" (change)="usr_bet_toggle($event.target.checked)"
+                [checked]="bet_status === true" />
+              <div class="slider round"></div>
+            </label>
+          </div>
+        </div>
+        <div class="tpassword">
+          <div class="row-sm d-flex text1-row m-t-20">
+            <div class="col-sm-4 text-center text1-col-lable">
+              <label for="" class="form-label">Transaction Password</label>
+            </div>
+            <div class="col-sm-8 d-flex text1-col-input-box">
+              <input type="password" class="text-right form-control" name="transcation_password" style="width: 100%"
+                [(ngModel)]="transcation_password" required />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer pt-0">
+      <div class="text-end btn-group">
+        <button type="button" class="btn btn-back" data-dismiss="modal" (click)="modalRef.hide()">
+          <i class="fas fa-undo"></i> Back
+        </button>
+        <button type="submit" class="btn btn-login" [disabled]="!userStatusChange.form.valid">
+          Submit <i class="fas fa-sign-in-alt"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<!-- moreSetting-->
+<ng-template #sportsSetting>
+  <form (ngSubmit)="Sports_settings()" #sportsSetting_form="ngForm">
+    <div class="modal-header">
+      <h4 class="modal-title">Sports Settings</h4>
+      <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()">×</a>
+    </div>
+    <div class="modal-body no-scroll-body">
+      <div class="body-inner">
+        <!-- Cricket -->
+        <div *ngIf="cricket_option" class="row-sm d-flex m-t-20 togglebtnsa">
+          <div class="col-md-6 p-0 text-center font-weight-bold">Cricket</div>
+          <div class="col-md-6 p-0 text-center">
+            <label class="switch">
+              <input type="checkbox" id="togBtn" (change)="sport_toggle($event.target.checked, '4')"
+                [checked]="this.sports_settings_form.cricket === '4'" />
+              <div class="slider round"></div>
+            </label>
+          </div>
+        </div>
+        <!-- Soccer -->
+        <div *ngIf="soccer_option" class="row-sm d-flex m-t-20 togglebtnsa">
+          <div class="col-md-6 p-0 text-center font-weight-bold">Soccer</div>
+          <div class="col-md-6 p-0 text-center">
+            <label class="switch">
+              <input type="checkbox" id="togBtn" (change)="sport_toggle($event.target.checked, '1')"
+                [checked]="this.sports_settings_form.soccer === '1'" />
+              <div class="slider round"></div>
+            </label>
+          </div>
+        </div>
+        <!-- Tennis -->
+        <div *ngIf="tennis_option" class="row-sm d-flex m-t-20 togglebtnsa">
+          <div class="col-md-6 p-0 text-center font-weight-bold">Tennis</div>
+          <div class="col-md-6 p-0 text-center">
+            <label class="switch">
+              <input type="checkbox" id="togBtn" (change)="sport_toggle($event.target.checked, '2')"
+                [checked]="this.sports_settings_form.tennis === '2'" />
+              <div class="slider round"></div>
+            </label>
+          </div>
+        </div>
+        <!-- Casino -->
+        <div *ngIf="live_casino_option" class="row-sm d-flex m-t-20 togglebtnsa">
+          <div class="col-md-6 p-0 text-center font-weight-bold">Casino</div>
+          <div class="col-md-6 p-0 text-center">
+            <label class="switch">
+              <input type="checkbox" id="togBtn" (change)="sport_toggle($event.target.checked, 'c1')"
+                [checked]="this.sports_settings_form.live_casino === 'c1'" />
+              <div class="slider round"></div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Live_casino -->
+        <div *ngIf="casino_option" class="row-sm d-flex m-t-20 togglebtnsa">
+          <div class="col-md-6 p-0 text-center font-weight-bold">
+            Live Casino
+          </div>
+          <div class="col-md-6 p-0 text-center">
+            <label class="switch">
+              <input type="checkbox" id="togBtn" (change)="sport_toggle($event.target.checked, 'c9')"
+                [checked]="this.sports_settings_form.casino === 'c9'" />
+              <div class="slider round"></div>
+            </label>
+          </div>
+        </div>
+
+        <div class="tpassword">
+          <div class="row-sm d-flex text1-row m-t-20">
+            <div class="col-sm-4 text-center text1-col-lable">
+              <label for="" class="form-label">Transaction Password</label>
+            </div>
+            <div class="col-sm-8 d-flex text1-col-input-box">
+              <input type="password" class="text-right form-control" name="transcation_password" style="width: 100%"
+                [(ngModel)]="transcation_password" required />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer pt-0">
+      <div class="text-end btn-group">
+        <button type="button" class="btn btn-back" data-dismiss="modal" (click)="modalRef.hide()">
+          <i class="fas fa-undo"></i> Back
+        </button>
+        <button type="submit" class="btn btn-login" [disabled]="!sportsSetting_form.form.valid">
+          Submit <i class="fas fa-sign-in-alt"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+</ng-template>

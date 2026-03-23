@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title id="appTitle"></title>
+  <base href="/">
+  <!-- live /staging -->
+  <!-- <base href="/admin/"> -->
+  <!-- mobile_view -->
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <link rel="icon" id="appIcon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+  <style>
+    .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Style the toggle link */
+.dropdown-toggle {
+  cursor: pointer;
+  padding: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+
+/* Hide dropdown menu by default */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  min-width: 160px;
+  z-index: 1;
+}
+
+/* Show dropdown on hover of dropdown or toggle */
+.dropdown:hover .dropdown-menu,
+.dropdown-toggle:hover + .dropdown-menu {
+  display: block;
+}
+
+/* Style for each dropdown item */
+.dropdown-item {
+  padding: 8px 16px;
+  color: #333;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+  </style>
+</head>
+<body class="mat-typography">
+  <app-root></app-root>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

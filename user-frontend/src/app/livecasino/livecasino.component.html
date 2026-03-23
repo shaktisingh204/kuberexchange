@@ -1,0 +1,587 @@
+<app-header></app-header>
+<div class="desktopmain-main">
+  <!-- desktop_header -->
+  <app-desk-header></app-desk-header>
+  <!-- desktop_header_end -->
+  <div class="container-fluid container-fluid-5">
+    <div class="row row5">
+      <!--desktop_sidebar_others  -->
+      <div class="sidebar col-md-2">
+        <app-desk-sidebar></app-desk-sidebar>
+      </div>
+
+      <!--flterTabsGrey_dashboard-->
+      <div class="col-md-10 featured-box">
+        <div>
+          <!--flterTabsandMatchDetails-->
+          <div class="pb-4">
+
+
+            <!-- <div *ngIf="rout==='/livecasino'" class="d-flex" style="background-color: #2c3e50; color: #fff;">
+              <span class="ml-2 ptitle" style="padding: 6px;
+                     font-weight: 500;">LIVE CASINO</span>
+            </div>
+
+            <ul *ngIf="rout==='/slotgame'" role="tablist" id="home-events" class="nav nav-tabs">
+              <li class="nav-item" (click)="casino_games('SLOT');"><a href="javascript:void(0)" data-toggle="tab"
+                  class="nav-link active" [ngClass]="{'active': casino_type === 'SLOT'}">SLOTS</a></li>
+              <li class="nav-item" (click)="casino_games('TABLEGAME');"><a href="javascript:void(0)" data-toggle="tab"
+                  class="nav-link" [ngClass]="{'active': casino_type === 'TABLEGAME'}">TABLE GAMES</a></li>
+              <li class="nav-item" (click)="casino_games('SHOOTING');"><a href="javascript:void(0)" data-toggle="tab"
+                  class="nav-link" [ngClass]="{'active': casino_type === 'SHOOTING'}">SHOOTING GAMES</a></li>
+              <li class="nav-item" (click)="casino_games('INSTANTWIN');"><a href="javascript:void(0)" data-toggle="tab"
+                  class="nav-link" [ngClass]="{'active': casino_type === 'INSTANTWIN'}">INSTANT WIN</a></li>
+              <li class="nav-item" (click)="casino_games('SCRATCHCARD');"><a href="javascript:void(0)" data-toggle="tab"
+                  class="nav-link" [ngClass]="{'active': casino_type === 'SCRATCHCARD'}">SCRATCH CARD</a></li>
+              <li class="nav-item" (click)="casino_games('VIRTUAL_SPORTS');"><a href="javascript:void(0)"
+                  data-toggle="tab" class="nav-link" [ngClass]="{'active': casino_type === 'VIRTUAL_SPORTS'}">VIRTUAL
+                  SPORTS</a></li>
+            </ul> -->
+
+            <!-- live_casino -->
+            <ng-container *ngIf="rout==='/livecasino'">
+              <div class="container-fluid mt-1">
+                <!-- <div class="row">
+                  <div class="card col-4" (click)="openCasino('BTL-betonteenpatti','')">
+                    <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/img/livecasino/livecasinogaming.jpg"
+                      class="card-img-top" alt="...">
+                    <div class="button"><a>Pragmatic Play</a></div>
+                  </div>
+                  <div class="card  col-4" (click)="openCasino('EZU-cricketwar','')">
+                    <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/img/livecasino/euzgi_casino.png"
+                      class="card-img-top" alt="...">
+                    <div class="button"><a>Euzgi Casino</a></div>
+                  </div>
+                  <div class="card  col-4" (click)="openCasino('EVO-blackjack','')">
+                    <img src="https://dzm0kbaskt4pv.cloudfront.net/v11/static/img/livecasino/evolution_casino.png"
+                      class="card-img-top" alt="...">
+                    <div class="button"><a>Evolution Casino</a></div>
+                  </div>
+
+                </div> -->
+              </div>
+            </ng-container>
+            <div class="casino-list" *ngIf="rout==='/livecasino'">
+              <div class="casino-list-item rect">
+                <div class="casino-list-item-banner">
+                  <img src="https://diamondnew.xigxa.com/assets/images/casino/livecasino.webp" alt="">
+                </div>
+                <div class="text-center game-title-main">AvatarUX</div>
+              </div>
+
+              <div class="casino-list-item rect">
+                <div class="casino-list-item-banner">
+                  <img src="https://diamondnew.xigxa.com/assets/images/casino/livecasino.webp" alt="">
+                </div>
+                <div class="text-center game-title-main">Belatra Games</div>
+              </div>
+
+              <div class="casino-list-item rect">
+                <div class="casino-list-item-banner">
+                  <img src="https://diamondnew.xigxa.com/assets/images/casino/livecasino.webp" alt="">
+                </div>
+                <div class="text-center game-title-main">ConceptGaming</div>
+              </div>
+
+              <div class="casino-list-item rect">
+                <div class="casino-list-item-banner">
+                  <img src="https://diamondnew.xigxa.com/assets/images/casino/livecasino.webp" alt="">
+                </div>
+                <div class="text-center game-title-main">Elbet</div>
+              </div>
+
+              <div class="casino-list-item rect">
+                <div class="casino-list-item-banner">
+                  <img src="https://diamondnew.xigxa.com/assets/images/casino/livecasino.webp" alt="">
+                </div>
+                <div class="text-center game-title-main">Wazdan</div>
+              </div>
+
+              <div class="casino-list-item rect">
+                <div class="casino-list-item-banner">
+                  <img src="https://diamondnew.xigxa.com/assets/images/casino/livecasino.webp" alt="">
+                </div>
+                <div class="text-center game-title-main">Igrosoft</div>
+              </div>
+
+              <div class="casino-list-item rect">
+                <div class="casino-list-item-banner">
+                  <img src="https://diamondnew.xigxa.com/assets/images/casino/livecasino.webp" alt="">
+                </div>
+                <div class="text-center game-title-main">KAGaming</div>
+              </div>
+
+              <div class="casino-list-item rect">
+                <div class="casino-list-item-banner">
+                  <img src="https://diamondnew.xigxa.com/assets/images/casino/livecasino.webp" alt="">
+                </div>
+                <div class="text-center game-title-main">Mascot</div>
+              </div>
+
+              <div class="casino-list-item rect">
+                <div class="casino-list-item-banner">
+                  <img src="https://diamondnew.xigxa.com/assets/images/casino/livecasino.webp" alt="">
+                </div>
+                <div class="text-center game-title-main">Nucleus</div>
+              </div>
+
+              <div class="casino-list-item rect">
+                <div class="casino-list-item-banner">
+                  <img src="https://diamondnew.xigxa.com/assets/images/casino/livecasino.webp" alt="">
+                </div>
+                <div class="text-center game-title-main">SmartSoft</div>
+              </div>
+
+              <div class="casino-list-item rect">
+                <div class="casino-list-item-banner">
+                  <img src="https://diamondnew.xigxa.com/assets/images/casino/livecasino.webp" alt="">
+                </div>
+                <div class="text-center game-title-main">BGaming</div>
+              </div>
+
+              <div class="casino-list-item rect">
+                <div class="casino-list-item-banner">
+                  <img src="https://diamondnew.xigxa.com/assets/images/casino/livecasino.webp" alt="">
+                </div>
+                <div class="text-center game-title-main">Spadegaming</div>
+              </div>
+
+              <div class="casino-list-item rect">
+                <div class="casino-list-item-banner">
+                  <img src="https://diamondnew.xigxa.com/assets/images/casino/livecasino.webp" alt="">
+                </div>
+                <div class="text-center game-title-main">TripleProfitsGames</div>
+              </div>
+
+              <div class="casino-list-item rect">
+                <div class="casino-list-item-banner">
+                  <img src="https://diamondnew.xigxa.com/assets/images/casino/livecasino.webp" alt="">
+                </div>
+                <div class="text-center game-title-main">Endorphina</div>
+              </div>
+
+              <div class="casino-list-item rect">
+                <div class="casino-list-item-banner">
+                  <img src="https://diamondnew.xigxa.com/assets/images/casino/livecasino.webp" alt="">
+                </div>
+                <div class="text-center game-title-main">Betsoft</div>
+              </div>
+            </div>
+            <!-- <div class="casino-list" *ngIf="rout==='/slotgame'">
+              <div class="casino-list-item rect">
+                <div class="casino-list-item-banner">
+                  <img src="https://diamondnew.xigxa.com/assets/images/casino/livecasino.webp" alt="">
+                </div>
+                <div class="text-center game-title-main">AvatarUX</div>
+              </div>
+
+            </div> -->
+            <div _ngcontent-ng-c482833544="" class="casino_tab_wrapper row" *ngIf="rout==='/slotgame'">
+              <div _ngcontent-ng-c482833544="" class="col-xl-2 d-none d-xl-flex">
+                <div _ngcontent-ng-c482833544="" class="casino_tab_list">
+                  <ul _ngcontent-ng-c482833544="" id="casino-sub-tab" class="nav nav-pills casino-sub-tab">
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="active nav-link"><span _ngcontent-ng-c482833544="">EGT</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">Amigo</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">Turbo Games</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">Jili</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">Red Tiger</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">1X2 Gaming</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">BB Games</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">Booongo</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">Blueprint Gaming</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">Dragoon Soft</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">Pocket Game</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">Elk Studios</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">Evoplay</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">Fantasma Games</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">Habanero</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">Hacksaw Gaming</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">Iron Dog Studio</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">Kalamba Games</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">Lady Luck</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">Nolimit city</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">OMI Gaming</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">OneTouch</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">PlayPearls</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">Push Gaming</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">Quickspin</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">Relax Gaming</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">RTG Slots</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">Spearhead Studios</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">Slotmill</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">Splitrock Gaming</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">Thunderkick</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">Woohoo Games</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">Yggdrasil</span></a></li>
+                    <li _ngcontent-ng-c482833544="" class="nav-item"><a _ngcontent-ng-c482833544=""
+                        class="nav-link"><span _ngcontent-ng-c482833544="">Virtual Games</span></a></li>
+                  </ul>
+                </div>
+              </div>
+              <!-- <div class="casino-sub-tab-list">
+                <ul class="nav nav-pills casino-sub-tab" id="slot-sub-tab">
+                  <li class="nav-item"><a class="nav-link active" href="/slot-list/66/178"><span>All Games</span></a>
+                  </li>
+                </ul>
+              </div> -->
+              <div _ngcontent-ng-c482833544="" class="col-xl-10 col-12">
+                <div _ngcontent-ng-c482833544="" class="casino-list">
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/ABSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/TSHSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/FSHSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/BHSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/FHSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/SCSlot.gif&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/FSCSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/VNSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/FBHSlot.gif&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/FHESlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/BHBLSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/RORSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/FDHSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/TSHBLSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/FSHBLSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/VNBLSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/FHBLSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/SCBLSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/FHEBLSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/FDHBLSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/FBHBLSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/FSCBLSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/VGSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/DRHCSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/LHSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/FMCSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/FCHJSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/THSFSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/TBHSlot.gif&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/RSSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div><!---->
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/EPSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/EDSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/PCHCSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/LTHCSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/TBSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/TCWSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/OSHSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/OLHSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/TWGSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/BORSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/TDHSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/FBHRSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/TBHRSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/MDSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/FLKSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/OBHSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/ZWSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/FHBSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/STSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/TSDSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/TCHJSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/BCSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/TSPCSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/FBHSSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/UHSlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/RORSASlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/BHSASlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/TSHSASlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/FSHSASlot.gif&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                  <div _ngcontent-ng-c482833544="" class="casino-list-item"><a _ngcontent-ng-c482833544="">
+                      <div _ngcontent-ng-c482833544="" class="casino-list-item-banner"
+                        style="background-image: url(&quot;https://sitethemedata.com/casino_icons/slot/egt/VGSASlot.jpg&quot;), url(&quot;https://ik.imagekit.io/bmaxmbpyx/https://diamondnew.xigxa.com/assets/images/casino-icons/default.jpg&quot;);">
+                      </div>
+                    </a></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- slotgame -->
+            <!-- <ng-container *ngIf="rout==='/slotgame'">
+              <div class="container-fluid mt-1">
+                <div class="row">
+                  <div class="card col-1" *ngFor="let x of casino_data" (click)="openCasino(x.id,'')">
+                    <img [src]="x.images[0].url" class="card-img-top" alt="...">
+                  </div>
+                </div>
+              </div>
+            </ng-container> -->
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- deshboard_footer -->
+  <app-desk-footer></app-desk-footer>
+</div>

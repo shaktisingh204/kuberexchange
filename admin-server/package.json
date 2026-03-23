@@ -1,0 +1,44 @@
+{
+  "name": "akatsuki",
+  "version": "1.0.0",
+  "description": "Re-writing July.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node admin-server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@ffprobe-installer/darwin-arm64": "^5.0.1",
+    "@ffprobe-installer/ffprobe": "^2.1.2",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "dotenv": "^16.0.3",
+    "express": "^4.16.3",
+    "express-device": "^0.4.2",
+    "firebase-admin": "^9.0.0",
+    "get-video-duration": "^4.1.0",
+    "handlebars": "^4.7.7",
+    "https": "^1.0.0",
+    "ioredis": "^5.3.0",
+    "jsonwebtoken": "^8.5.1",
+    "log4js": "^3.0.1",
+    "moment": "^2.29.4",
+    "moment-timezone": "^0.5.38",
+    "mongoose": "^5.2.4",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.8.0",
+    "path": "^0.12.7",
+    "phantom": "^6.0.3",
+    "phantom-pool": "^1.2.2",
+    "redis": "^4.5.1",
+    "shoutout-sdk": "^3.0.4",
+    "socket.io": "^2.5.1",
+    "socket.io-client": "^4.8.0"
+  },
+  "devDependencies": {
+    "ws": "3.3.2"
+  }
+}

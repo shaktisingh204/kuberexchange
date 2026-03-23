@@ -1,0 +1,231 @@
+<app-header></app-header>
+<main>
+    <div class="full-wrap">
+        <div class="report-page">
+            <div class="website-setting inner-content">
+                <div class="page-title">
+                    <h3>Global Settings</h3>
+                    <div class="breadcrumb">
+                        <a (click)="goToBack()" class="btn btn-secondary back-btn"><i
+                                class="fa fa-arrow-left"></i>Back</a>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-2">
+                    </div>
+                    <div class="col-8">
+                        <table>
+                            <tr>
+                                <th>Name</th>
+                                <th>Action</th>
+                            </tr>
+                            <tr>
+                                <td>Remove_market</td>
+                                <td style="cursor:pointer;" (click)="rm_market_modal(rm_market)"><i
+                                        class="material-icons"
+                                        style="color:red;font-size:27px !important;">highlight_remove</i></td>
+
+                            </tr>
+                            <tr>
+                                <td>Message</td>
+                                <td style="cursor:pointer;" (click)="msg_model(marque_msg);transcation_password='';"><i
+                                        class="material-icons"
+                                        style="color:#2196F3;font-size:27px !important;">message</i></td>
+                            </tr>
+                            <tr>
+                                <td>Maintenance_page</td>
+                                <td>
+                                    <label class="switch">
+                                        <input type="checkbox" (change)="maintenance_toggle($event.target.checked)"
+                                            [checked]="maintenance_status == 'true'" />
+                                        <span class="slider"></span>
+                                    </label>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                        <div class="col-inner">
+                            <div class="col-title">
+                                <h4 class="pl-1 mt-2 mb-0">Min_Max Bet </h4>
+                            </div>
+                            <div class="field-list">
+                                <div class="form-group">
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col">Matchodds</th>
+                                                <th scope="col">Bookmaker</th>
+                                                <th scope="col">Fancy</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+
+                                                <td class="text-center" scope="row" rowspan="2" style="padding: 27px;">
+                                                    Min Bet</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 30%;">
+                                                    <input type="number" [(ngModel)]="web_setting.oddsMinLimit">
+                                                </td>
+                                                <td>
+                                                    <input type="number" [(ngModel)]="web_setting.bookmakerMinLimit">
+                                                </td>
+                                                <td><input type="number" [(ngModel)]="web_setting.fancyMinLimit"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" scope="row" rowspan="2" style="padding: 27px;">
+                                                    Max Bet</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td style="width: 30%;"><input type="number"
+                                                        [(ngModel)]="web_setting.oddsMaxLimit"></td>
+                                                <td><input type="number" [(ngModel)]="web_setting.bookmakerMaxLimit">
+                                                </td>
+                                                <td><input type="number" [(ngModel)]="web_setting.fancyMaxLimit"></td>
+                                            </tr>
+
+                                            <!-- <h4 class="my-1 pl-1">Bet Delay</h4> -->
+
+                                            <tr>
+                                                <td class="text-center" scope="row" rowspan="2" style="padding: 27px;">
+                                                    Bet Delay</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 30%;"><input type="number"
+                                                        [(ngModel)]="web_setting.oddsBetDelay"></td>
+                                                <td><input type="number" [(ngModel)]="web_setting.bookmakerBetDelay">
+                                                </td>
+                                                <td><input type="number" [(ngModel)]="web_setting.fancyBetDelay"></td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td class="text-center">Razorpay</td>
+                                                <td colspan="3">
+                                                    <label class="switch">
+                                                        <input type="checkbox"
+                                                            (change)="razorpay_toggle($event.target.checked)"
+                                                            [checked]="web_setting.razorpaystatus==='true'">
+                                                        <span class="slider"></span>
+                                                    </label>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+
+                                    </table>
+
+                                    <div class="text-right">
+                                        <button type="submit" class="btn btn-primary"
+                                            (click)="settings_modal(update_settings);">Update</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-2">
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</main>
+
+<!-- rm_market -->
+<ng-template #rm_market>
+    <div class="modal-header bg-danger">
+        <h4 class="modal-title text-white">Confirmation</h4>
+        <a type="button" class="close text-white" data-dismiss="modal" (click)="modalRef.hide();">×</a>
+    </div>
+    <div class="modal-body no-scroll-body">
+        <div class="body-inner text-danger">
+            <h3>Are you sure you want to remove market ?</h3>
+        </div>
+    </div>
+
+    <div class="modal-footer pt-0">
+        <div class="text-end btn-group">
+            <button type="button" class="btn btn-back" data-dismiss="modal" (click)="modalRef.hide();"><i
+                    class="fas fa-undo"></i> Back</button>
+            <button type="submit" class="btn btn-login ml-3 bg-danger" style="margin-right:-7px;"
+                [disabled]="rm_market_status" (click)="rem_market();"> Remove<i class="fas fa-trash"></i></button>
+        </div>
+    </div>
+</ng-template>
+
+<!-- confirm_update_settings -->
+<ng-template #update_settings>
+    <div class="modal-header bg-danger">
+        <h4 class="modal-title text-white">Confirmation</h4>
+        <a type="button" class="close text-white" data-dismiss="modal" (click)="modalRef.hide();">×</a>
+    </div>
+    <div class="modal-body no-scroll-body">
+        <div class="body-inner text-danger">
+            <h3>Are you sure you want to update settings ?</h3>
+        </div>
+    </div>
+
+    <div class="modal-footer pt-0">
+        <div class="text-end btn-group">
+            <button type="button" class="btn btn-back" data-dismiss="modal" (click)="modalRef.hide();"><i
+                    class="fas fa-undo"></i> Back</button>
+            <button type="submit" class="btn btn-login ml-3 bg-danger" style="margin-right:-7px;"
+                [disabled]="rm_market_status" (click)="update_fun();"> Update<i class="fas fa-sign-in-alt"></i></button>
+        </div>
+    </div>
+</ng-template>
+
+<!-- create/update marque msg -->
+<ng-template #marque_msg>
+    <form (ngSubmit)="msg_submit()" #marque_msg_form="ngForm">
+        <div class="modal-header">
+            <h4 class="modal-title text-white">Message</h4>
+            <a type="button" class="close text-white" data-dismiss="modal" (click)="modalRef.hide();">×</a>
+        </div>
+        <div class="modal-body no-scroll-body">
+            <div class="body-inner">
+                <div class="row-sm d-flex m-t-20 togglebtnsa">
+                    <div class="col-md-4 p-0 text-center text1-col-lable">
+                        Message
+                    </div>
+                    <div class="col-md-8 d-flex text1-col-input-box">
+                        <textarea style="width:100%;" class="form-control" rows="5" cols="33" name="marque_msg_var"
+                            [(ngModel)]="marque_msg_var"></textarea>
+                    </div>
+                </div>
+
+                <div class="tpassword">
+                    <div class="row-sm d-flex text1-row m-t-20">
+                        <div class="col-sm-4  text-center text1-col-lable">
+                            <label for="" class="form-label">Transaction Password</label>
+                        </div>
+                        <div class="col-sm-8 d-flex text1-col-input-box">
+                            <input type="password" class="text-right form-control" name="transcation_password"
+                                style="width: 100%;" [(ngModel)]="transcation_password" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer pt-0">
+            <div class="text-end btn-group">
+                <button type="button" class="btn btn-back" data-dismiss="modal" (click)="modalRef.hide();"><i
+                        class="fas fa-undo"></i> Back</button>
+                <button type="submit" class="btn btn-primary ml-3" style="margin-right:-7px;"
+                    [disabled]="!marque_msg_form.form.valid"> Submit <i class="fas fa-sign-in-alt"></i></button>
+            </div>
+        </div>
+    </form>
+</ng-template>

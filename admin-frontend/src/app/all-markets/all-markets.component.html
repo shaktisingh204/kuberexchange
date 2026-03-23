@@ -1,0 +1,230 @@
+<app-header></app-header>
+<main>
+    <div class="full-wrap">
+        <div class="report-page">
+            <div class="website-setting inner-content">
+                <div class="page-title">
+                    <h3>
+                      <span *ngIf="incomplete_market_visible">Incomplete markets</span>
+                      <span *ngIf="open_market_visible">Open markets</span>
+                      <span *ngIf="closed_market_visible">Closed markets</span>
+                      <span *ngIf="other_market_visible">Other markets</span>
+                      <span *ngIf="log_diff_visible">Log difference</span>
+                      <span *ngIf="open_bets_visible">Open Bets</span>
+                    </h3>
+                    <div class="breadcrumb">
+                        <a (click)="goToBack()" class="btn btn-secondary back-btn"><i
+                                class="fa fa-arrow-left"></i>Back</a>
+                    </div>
+                </div>
+           <div class="row">
+                <div class="mt-2 mx-2" style="width:15%;">
+                  <label for="" class="form-label text-label">Market Type</label>
+                  <select class="form-select" aria-label="Default select example" (change)="market_type($event.target.value)">
+                      <option value="incomplete_markets" selected>incomplete_markets</option>
+                      <option value="closed_markets">closed_markets</option>
+                      <option value="open_markets">open_markets</option>
+                      <option value="other_markets">other_markets</option>
+                      <option value="Log_difference">Log_difference</option>
+                      <option value="open_bets">Open Bets</option>
+                    </select>
+              </div>
+
+              <div  *ngIf="closed_market_visible" class="mt-2 mx-2" style="width:15%;">
+                <label for="" class="form-label text-label">Filter Type</label>
+                <select class="form-select" aria-label="Default select example" (change)="filter_type($event.target.value)">
+                    <option value="all_market" selected>All</option>
+                    <option value="matchodds_markets">MatchOdds</option>
+                    <option value="bookmaker_markets">Bookmaker</option>
+                    <option value="fancy_markets">Fancy</option>
+                  </select>
+            </div>
+            </div>
+
+                <div class="row mt-4">
+                  <!--incomplete_market-->
+                    <div *ngIf="incomplete_market_visible" class="col-12">
+                        <table>
+                            <tr>
+                              <th>Market Name</th>
+                              <th>Market Type</th>
+                              <th>User log</th>
+                              <th>Manager log</th>
+                              <th>Master log</th>
+                              <th>Subadmin log</th>
+                              <th>Admin log</th>
+                              <th>Action</th>
+                            </tr>
+                            <tr *ngFor="let x of incomplete_market">
+                              <td>{{x.eventName}}</td>
+                              <td>{{x.marketType}}</td>
+                              <td>
+                                <label class="customcheck">
+                                    <input type="checkbox" name="" id="" [checked]="x.userlog==1" disabled>
+                                    <span class="checkmark"></span>
+                                </label>
+                              </td>
+                              <td>
+                                <label class="customcheck">
+                                    <input type="checkbox" name="" id="" [checked]="x.managerlog==1" disabled>
+                                    <span class="checkmark"></span>
+                                </label>
+                              </td>
+                              <td>
+                                <label class="customcheck">
+                                    <input type="checkbox" name="" id="" [checked]="x.masterlog==1" disabled>
+                                    <span class="checkmark"></span>
+                                </label>
+                              </td>
+                              <td>
+                                <label class="customcheck">
+                                    <input type="checkbox" name="" id="" [checked]="x.subadminlog==1" disabled>
+                                    <span class="checkmark"></span>
+                                </label>
+                              </td>
+                              <td>
+                                <label class="customcheck">
+                                    <input type="checkbox" name="" id="" [checked]="x.adminlog==1" disabled>
+                                    <span class="checkmark"></span>
+                                </label>
+                              </td>
+                              <td>
+                                <a class="td-btn balance-sheet btn-dark text-light" ngbTooltip="More">Clear</a>
+                              </td>
+                            </tr>
+                            <tr *ngIf="Incomplete_market?.length===0" ><td colspan="8" class="text-center">No data found</td></tr>
+                            
+                          </table>
+                    </div>
+                    <!--open_market-->
+                    <div *ngIf="open_market_visible" class="col-12">
+                      <table>
+                          <tr>
+                            <th>Market Name</th>
+                            <th>Market Type</th>
+                            <th>Action</th>
+                          </tr>
+                          <tr *ngFor="let x of open_market">
+                            <td>{{x.eventName}}</td>
+                            <td>{{x.marketType}}</td>
+                            <td>
+                              <a class="td-btn balance-sheet btn-dark text-light" ngbTooltip="More">Clear</a>
+                            </td>
+                          </tr>
+                          <tr *ngIf="open_market?.length===0" ><td colspan="8" class="text-center">No data found</td></tr>
+                          
+                        </table>
+                  </div>
+                  <!--closed_market-->
+                  <div *ngIf="closed_market_visible" class="col-12">
+                    <table>
+                        <tr>
+                          <th>Date</th>
+                          <th>Event Name</th>
+                          <th>Market Name</th>
+                          <th>Market Id</th>
+                          <th>Market Type</th>
+                          <th>Action</th>
+                        </tr>
+                        <tr *ngFor="let x of closed_market">
+                          <td>{{x.updatedAt |date:'MMM d, y  H:mm a'}}</td>
+                          <td>{{x.eventName}}</td>
+                            <td>{{x.marketName}}</td>
+                          <td>{{x.marketId}}</td>
+                          <td>{{x.marketType}}</td>
+                          <td>
+                            <a *ngIf="x.marketType==='Special' && x.rollbackstatus==0" class="td-btn balance-sheet btn-dark text-light" (click)="set_marketId(un_declare_market,x.marketId,'bookmaker')" ngbTooltip="unset_bookmaker_market">Unset Bookmaker Market</a>
+                            <a *ngIf="x.marketType==='SESSION' && x.rollbackstatus==0" class="td-btn balance-sheet btn-dark text-light" (click)="set_marketId(un_declare_market,x.marketId,'fancy')" ngbTooltip="unset_fancy_market">Unset Fancy Market</a>
+                          </td>
+                        </tr>
+                        <tr *ngIf="closed_market?.length===0" ><td colspan="8" class="text-center">No data found</td></tr>
+                        
+                      </table>
+                </div>
+                <!--other_market-->
+                <div *ngIf="other_market_visible" class="col-12">
+                  <table>
+                      <tr>
+                        <th>Market Name</th>
+                        <th>Market Type</th>
+                        <th>Action</th>
+                      </tr>
+                      <tr *ngFor="let x of other_market">
+                        <td>{{x.eventName}}</td>
+                        <td>{{x.marketType}}</td>
+                        <td>
+                          <a class="td-btn balance-sheet btn-dark text-light" ngbTooltip="More">Clear</a>
+                        </td>
+                      </tr>
+                      <tr *ngIf="other_market?.length===0" ><td colspan="8" class="text-center">No data found</td></tr>
+                      
+                    </table>
+                </div>
+
+                <!--log_diff-->
+                <div *ngIf="log_diff_visible" class="col-12">
+                  <table>
+                      <tr>
+                        <th>Username</th>
+                        <th>Role</th>
+                        <th>User Bal</th>
+                        <th>Log Bal</th>
+                        <th>diff Bal</th>
+                      </tr>
+                      <tr *ngFor="let x of log_diff | keyvalue">
+                        <td>{{x.key}}</td>
+                        <td>{{x.value.UserRole}}</td>
+                        <td>{{x.value.UserBalance | number : '0.0-2'}}</td>
+                        <td>{{x.value.NewBalance | number : '0.0-2'}}</td>
+                        <td>{{x.value.lastBalance | number : '0.0-2'}}</td>
+                      </tr>
+                      <tr *ngIf="log_diff?.length===0" ><td colspan="8" class="text-center">No data found</td></tr>
+                      
+                    </table>
+                </div>
+
+                <!--open_bets-->
+                <div *ngIf="open_bets_visible" class="col-12">
+                  <table>
+                      <tr>
+                        <th>Market Id</th>
+                        <th>Action</th>
+                      </tr>
+                      <tr *ngFor="let x of openBetList">
+                        <td>{{x}}</td>
+                        <td (click)="setBet_result(x);"> <a class="td-btn balance-sheet btn-dark text-light" ngbTooltip="setBetResult">Set Result</a></td>
+                      </tr>
+                      <tr *ngIf="openBetList?.length===0" ><td colspan="8" class="text-center">No Bets found</td></tr>
+                      
+                    </table>
+                </div>
+                      
+                </div>
+ 
+            </div>
+
+            
+        </div>
+    </div>
+</main>
+
+<!-- un_declare_market -->
+<ng-template #un_declare_market>
+  <div class="modal-header bg-danger">
+      <h4 class="modal-title text-white">Confirmation</h4>
+      <a type="button" class="close text-white" data-dismiss="modal" (click)="modalRef.hide();">×</a>
+  </div>
+  <div class="modal-body no-scroll-body">
+      <div class="body-inner text-danger">
+          <h3>Are you sure you want to Unset Fancy Market ?</h3>
+      </div>
+  </div>
+  
+  <div class="modal-footer pt-0" >
+      <div class="text-end btn-group">
+          <button type="button" class="btn btn-back" data-dismiss="modal" (click)="modalRef.hide();"  ><i class="fas fa-undo"></i> Back</button>
+          <button type="submit" class="btn btn-login ml-3 bg-danger" style="margin-right:-7px;" [disabled]="unset_market_status" (click)="unset_market();"> Unset</button>
+      </div>
+  </div>
+</ng-template>
+

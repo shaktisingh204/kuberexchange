@@ -1,0 +1,109 @@
+<div
+  class="loginPage"
+  style="
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url(/assets/background/sports.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  "
+>
+  <div class="login-main">
+    <div class="login-inner">
+      <div class="logo text-center">
+        <img src="assets/logo/{{ logo_img }}.png" alt="img" />
+      </div>
+      <div class="form">
+        <!-- alert -->
+        <div *ngIf="res_error" class="alert alert-danger" role="alert">
+          {{ res_error }}
+        </div>
+        <form
+          class="login-form"
+          [formGroup]="loginForm"
+          (ngSubmit)="onSignInClick()"
+        >
+          <!-- <div class="login-title">LOGIN</div> -->
+          <div class="form-group" appearance="fill">
+            <label class="form-label">Username/Mobile No.</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="username"
+            />
+            <mat-icon matSuffix>person_outline</mat-icon>
+          </div>
+
+          <div class="form-group" appearance="fill">
+            <label class="form-label">Password</label>
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              class="form-control"
+              formControlName="password"
+            />
+            <mat-icon
+              style="cursor: pointer"
+              matSuffix
+              [class.hide]="showPassword"
+              (click)="showPassword = !showPassword"
+              >visibility</mat-icon
+            >
+            <mat-icon
+              style="cursor: pointer"
+              matSuffix
+              [class.hide]="!showPassword"
+              (click)="showPassword = !showPassword"
+              >visibility_off</mat-icon
+            >
+          </div>
+
+          <!-- <mat-checkbox class="checkbox-div">Remember me!</mat-checkbox> -->
+          <div class="submit-btn">
+            <button
+              mat-raised-button
+              color="primary"
+              [disabled]="loginButtonDisable"
+            >
+              LOGIN NOW <mat-icon>login</mat-icon>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div
+      *ngIf="false"
+      class="text-warning font-weight-bold"
+      style="text-decoration: underline; cursor: pointer"
+    >
+      <span style="padding-left: 37px" [routerLink]="['/login-otp']"
+        >Login With OTP</span
+      ><span
+        *ngIf="regButon"
+        class="text-warning font-weight-bold"
+        style="float: right; padding-right: 37px; text-decoration: underline"
+        >Register</span
+      >
+    </div>
+  </div>
+  <div
+    *ngIf="false"
+    style="display: table-row; vertical-align: bottom"
+    class="download-apk-btn text-center"
+  >
+    <button
+      (click)="downloadApk()"
+      mat-raised-button
+      style="background-color: #ffc701"
+    >
+      <mat-icon class="android">android</mat-icon> Get ANDROID APP
+      <mat-icon class="arrow">arrow_forward</mat-icon>
+    </button>
+  </div>
+  <div
+    class="text-center text-warning font-weight-bold mb-4"
+    style="display: table-row; vertical-align: bottom"
+  >
+    Powered by OSG
+  </div>
+</div>

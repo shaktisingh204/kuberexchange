@@ -1,0 +1,100 @@
+<div class="maincontainer">
+  <!-- banner -->
+<div id="demo" class="carousel slide my-2" data-ride="carousel">
+    <!-- Indicators -->
+    <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+    <li data-target="#demo" data-slide-to="3"></li>
+    <li data-target="#demo" data-slide-to="4"></li>
+    <li data-target="#demo" data-slide-to="5"></li>
+    </ul>
+    
+    <!-- The slideshow -->
+    <div class="carousel-inner">
+    <!-- <div class="carousel-item" [ngClass]="{'active': i == 0}" *ngFor="let x of banner_img;let i = index">
+    <img src='{{ "http://138.68.129.236:3006/uploads/" + wonder.id + ".jpg" }}' [src]="http://138.68.129.236:3006/uploads/{{x?.name}}" alt="{{x?.name}}" height="180">
+    </div> -->
+    <div class="carousel-item active">
+    <img src="https://kushubmedia.com/build/new-osg-app/slider/1.png" alt="Chicago" height="180">
+    </div>
+    <div class="carousel-item">
+    <img src="https://kushubmedia.com/build/new-osg-app/slider/2.png" alt="Chicago" height="180">
+    </div>
+    <div class="carousel-item">
+    <img src="https://kushubmedia.com/build/new-osg-app/slider/3.png" alt="New York" height="180">
+    </div>
+    <div class="carousel-item">
+    <img src="https://kushubmedia.com/build/new-osg-app/slider/4.png" alt="Los Angeles" height="180">
+    </div>
+    <div class="carousel-item">
+    <img src="https://kushubmedia.com/build/new-osg-app/slider/5.png" alt="Chicago" height="180">
+    </div>
+    <div class="carousel-item">
+    <img src="https://kushubmedia.com/build/new-osg-app/slider/6.png" alt="New York" height="180">
+    </div>
+    </div>
+    
+    <!-- Left and right controls -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+    </a>
+    </div>
+    <!-- bannerEnd -->
+    <section class="mactchtabs">
+    
+        <ul class="nav mactch-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link active" id="cricket-tab" data-toggle="tab" data-target="#cricket" type="button" role="tab" aria-controls="cricket" aria-selected="true">Cricket <span class="badge" id="cricketCount">{{cricketData?.length}}</span></a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" id="soccer-tab" data-toggle="tab" data-target="#soccer" type="button" role="tab" aria-controls="soccer" aria-selected="false"> Soccer <span class="badge" id="soccerCount">{{soccerData?.length}}</span></a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" id="tennis-tab" data-toggle="tab" data-target="#tennis" type="button" role="tab" aria-controls="tennis" aria-selected="false">Tennis <span class="badge" id="tennisCount">{{tennisData?.length}}</span></a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a  class="nav-link">Casino <span class="badge"  id="csinocount">15</span></a>
+              </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="cricket" role="tabpanel" aria-labelledby="cricket-tab">
+                <div class="tabs-inner">
+                    <div class="sport_row" *ngFor="let x of cricketData" (click)="matchDetail(x.eventId);">
+                        <div class="srname"><h4>{{x.competitionName}}</h4></div>
+                        <div class="row m-0">
+                        <div class="col-8" style="padding:0">
+                            <div class="sport_name"><img class="mobileimagenew mobileplayer" style="width:4%" src="/assets/images/betHonk/player.png"><span class="mobile_time_match">{{moment(x?.openDate).utcOffset("+05:30").format('YYYY-MM-D')}} {{moment(x?.openDate).utcOffset("+05:30").format('hh:mm a')}}</span> <a ><i class="str fa fa-star"></i> {{x?.eventName}}</a></div><div class="match_status"><span class="inplay_txt blinking-inplay" *ngIf="currentDate > x.openDate">In-play </span></div></div><div style="padding:0" class="col-4 match_odds_front"><span class="back-cell" id="">{{x?.marketBook?.runners[0]?.availableToBack?.price}}</span><span class="lay-cell" id="">{{x?.marketBook?.runners[0]?.availableToLay?.price}}</span></div></div>
+                    </div>
+    
+                </div>
+    
+    
+    
+            </div>
+            <div class="tab-pane fade" id="soccer" role="tabpanel" aria-labelledby="soccer-tab"> <div class="tabs-inner">
+                <div *ngFor="let x of soccerData" class="sport_row" (click)="matchDetail(x.eventId);">
+                    <div class="srname"><h4>{{x.competitionName}}</h4></div>
+                    <div class="row m-0">
+                    <div class="col-8" style="padding:0">
+                        <div class="sport_name"><img class="mobileimagenew mobileplayer" style="width:4%" src="/assets/images/betHonk/player.png"><span class="mobile_time_match">{{moment(x?.openDate).utcOffset("+05:30").format('YYYY-MM-D')}} {{moment(x?.openDate).utcOffset("+05:30").format('hh:mm a')}}</span> <a ><i class="str fa fa-star"></i> {{x?.eventName}}</a></div><div class="match_status"><span *ngIf="currentDate > x.openDate" class="inplay_txt blinking-inplay">In-play </span></div></div><div style="padding:0" class="col-4 match_odds_front"><span class="back-cell" id="">{{x?.marketBook?.runners[0]?.availableToBack?.price}}</span><span class="lay-cell" id="">{{x?.marketBook?.runners[0]?.availableToLay?.price}}</span></div></div>
+                    </div>
+        
+            </div></div>
+            <div class="tab-pane fade" id="tennis" role="tabpanel" aria-labelledby="tennis-tab"> <div class="tabs-inner">
+                <div *ngFor="let x of tennisData" class="sport_row" (click)="matchDetail(x.eventId);">
+                    <div class="srname"><h4>{{x.competitionName}}</h4></div>
+                    <div class="row m-0">
+                    <div class="col-8" style="padding:0">
+                        <div class="sport_name"><img class="mobileimagenew mobileplayer" style="width:4%" src="/assets/images/betHonk/player.png"><span class="mobile_time_match">{{moment(x?.openDate).utcOffset("+05:30").format('YYYY-MM-D')}} {{moment(x?.openDate).utcOffset("+05:30").format('hh:mm a')}}</span> <a ><i class="str fa fa-star"></i> {{x?.eventName}}</a></div><div class="match_status"><span *ngIf="currentDate > x.openDate" class="inplay_txt blinking-inplay">In-play </span></div></div><div style="padding:0" class="col-4 match_odds_front"><span class="back-cell" id="">{{x?.marketBook?.runners[0]?.availableToBack?.price}}</span><span class="lay-cell" id="">{{x?.marketBook?.runners[0]?.availableToLay?.price}}</span></div></div>
+                    </div>
+        
+            </div></div>
+          </div>
+    </section>
+    
+    </div>

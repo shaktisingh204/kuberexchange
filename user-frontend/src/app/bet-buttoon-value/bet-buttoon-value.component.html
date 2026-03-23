@@ -1,0 +1,624 @@
+<mat-sidenav-container fullscreen>
+  <mat-sidenav-content>
+    <app-header></app-header>
+    <app-b-header *ngIf="page_type === 'betHonk'"></app-b-header>
+    <!-- desktop_view -->
+    <div *ngIf="deviceInfo && page_type === 'diamond'" class="desktopmain-main">
+      <!-- desktop_header -->
+      <app-desk-header></app-desk-header>
+      <div class="container-fluid container-fluid-5">
+        <div class="row row5">
+          <div class="sidebar col-md-2" style="padding: 0px">
+            <app-desk-sidebar></app-desk-sidebar>
+          </div>
+          <div
+            class="col-md-10"
+            style="padding-left: 5px; padding-right: 5px; padding-top: 5px"
+          >
+            <!-- change_button_value -->
+            <ng-container *ngIf="route_Id == true">
+              <!-- button -->
+              <div
+                class="d-flex"
+                style="background-color: var(--theme2-bg); color: #fff"
+              >
+                <span class="ml-2 ptitle" style="padding: 6px; font-weight: 500"
+                  >Change Button Values</span
+                >
+              </div>
+
+              <!-- table_stack_button -->
+              <div class="valuetable col-md-6 pl-0">
+                <table class="tbldsk table">
+                  <thead>
+                    <tr>
+                      <th style="width: 50%">Price Label</th>
+                      <th style="width: 50%">Price Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <input
+                          type="number"
+                          name="label1"
+                          [(ngModel)]="price_label_form.label1"
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          name="price1"
+                          [(ngModel)]="price_label_form.price1"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <input
+                          type="number"
+                          name="label2"
+                          [(ngModel)]="price_label_form.label2"
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          name="price2"
+                          [(ngModel)]="price_label_form.price2"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <input
+                          type="number"
+                          name="label3"
+                          [(ngModel)]="price_label_form.label3"
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          name="price3"
+                          [(ngModel)]="price_label_form.price3"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <input
+                          type="number"
+                          name="label4"
+                          [(ngModel)]="price_label_form.label4"
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          name="price4"
+                          [(ngModel)]="price_label_form.price4"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <input
+                          type="number"
+                          name="label5"
+                          [(ngModel)]="price_label_form.label5"
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          name="price5"
+                          [(ngModel)]="price_label_form.price5"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <input
+                          type="number"
+                          name="label6"
+                          [(ngModel)]="price_label_form.label6"
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          name="price6"
+                          [(ngModel)]="price_label_form.price6"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <input
+                          type="number"
+                          name="label7"
+                          [(ngModel)]="price_label_form.label7"
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          name="price7"
+                          [(ngModel)]="price_label_form.price7"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <input
+                          type="number"
+                          name="label8"
+                          [(ngModel)]="price_label_form.label8"
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          name="price8"
+                          [(ngModel)]="price_label_form.price8"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <input
+                          type="number"
+                          name="label9"
+                          [(ngModel)]="price_label_form.label9"
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          name="price9"
+                          [(ngModel)]="price_label_form.price9"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <input
+                          type="number"
+                          name="label10"
+                          [(ngModel)]="price_label_form.label10"
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          name="price10"
+                          [(ngModel)]="price_label_form.price10"
+                        />
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td colspan="2">
+                        <button
+                          class="btn mt-1 btn-block btn-primary"
+                          type="button"
+                          (click)="update_value()"
+                        >
+                          Update
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </ng-container>
+
+            <!-- change_password -->
+            <ng-container *ngIf="route_Id == false">
+              <!-- button -->
+              <div
+                class="d-flex"
+                style="background-color: var(--theme2-bg); color: #fff"
+              >
+                <span class="ml-2 ptitle" style="padding: 6px; font-weight: 500"
+                  >Change Password</span
+                >
+              </div>
+
+              <!-- table_change_password -->
+              <div class="form_div mt-3 changepwddiv col-md-6 pl-0">
+                <form
+                  [formGroup]="changePasswordForm"
+                  (ngSubmit)="onSubmitChangePassword()"
+                >
+                  <mat-dialog-content>
+                    <div class="body-inner change-pwd">
+                      <div class="form-group">
+                        <label class="form-label ml-1">current Password</label>
+                        <input
+                          type="password"
+                          class="form-control"
+                          formControlName="current_password"
+                          style="width: 97%; margin-left: 5px"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">New Password</label>
+                        <input
+                          type="password"
+                          class="form-control"
+                          formControlName="new_password"
+                          style="width: 97%; margin-left: 5px"
+                        />
+                        <ng-container
+                          *ngIf="
+                            changePasswordForm.get('new_password').touched &&
+                            changePasswordForm.get('new_password').invalid
+                          "
+                        >
+                          <span
+                            class="text-danger small"
+                            *ngIf="
+                              changePasswordForm.controls.new_password.errors
+                            "
+                            >*The password must contain at least: 1 uppercase
+                            letter, 1 lowercase letter, 1 number and 8
+                            characters needed</span
+                          >
+                        </ng-container>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">Confirm Password</label>
+                        <input
+                          type="password"
+                          class="form-control"
+                          formControlName="confirm_password"
+                          style="width: 97%; margin-left: 5px"
+                        />
+                        <ng-container
+                          *ngIf="
+                            changePasswordForm.get('confirm_password')
+                              .touched &&
+                            changePasswordForm.get('confirm_password').invalid
+                          "
+                        >
+                          <span
+                            class="text-danger small"
+                            *ngIf="
+                              changePasswordForm.controls.confirm_password
+                                .errors.passwordValidity
+                            "
+                            >*Password dose'nt match</span
+                          >
+                        </ng-container>
+                      </div>
+                    </div>
+                  </mat-dialog-content>
+
+                  <!-- <mat-dialog-actions align="end"> -->
+                  <div class="row btn-row mt-2">
+                    <div class="col-sm-12 btn-col">
+                      <button
+                        type="submit"
+                        mat-raised-button
+                        class="btn"
+                        [disabled]="submitted"
+                      >
+                        Change Password
+                      </button>
+                    </div>
+                    <!-- <a data-dismiss="modal" (click)="modalRef.hide()" mat-raised-button class="btn btn-danger">Cancel</a> &nbsp;&nbsp; -->
+                  </div>
+                  <!-- </mat-dialog-actions> -->
+                </form>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <!-- deshboard_footer -->
+      <app-desk-footer></app-desk-footer>
+    </div>
+
+    <ng-container *ngIf="!deviceInfo">
+      <!-- mobile_change_stake_button -->
+      <ng-container *ngIf="route_Id == true">
+        <div class="main-content">
+          <div class="d-flex main_heading" style="width: 100%">
+            <span
+              class="ml-2 ptitle"
+              style="padding: 6px; font-weight: 500; color: #fff !important"
+              >Change Button Values</span
+            >
+          </div>
+
+          <div class="valuetable">
+            <table class="tbldsk table">
+              <thead>
+                <tr>
+                  <th style="width: 50%">Price Label</th>
+                  <th style="width: 50%">Price Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <input
+                      type="number"
+                      name="label1"
+                      [(ngModel)]="price_label_form.label1"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      name="price1"
+                      [(ngModel)]="price_label_form.price1"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input
+                      type="number"
+                      name="label2"
+                      [(ngModel)]="price_label_form.label2"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      name="price2"
+                      [(ngModel)]="price_label_form.price2"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input
+                      type="number"
+                      name="label3"
+                      [(ngModel)]="price_label_form.label3"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      name="price3"
+                      [(ngModel)]="price_label_form.price3"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input
+                      type="number"
+                      name="label4"
+                      [(ngModel)]="price_label_form.label4"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      name="price4"
+                      [(ngModel)]="price_label_form.price4"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input
+                      type="number"
+                      name="label5"
+                      [(ngModel)]="price_label_form.label5"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      name="price5"
+                      [(ngModel)]="price_label_form.price5"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input
+                      type="number"
+                      name="label6"
+                      [(ngModel)]="price_label_form.label6"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      name="price6"
+                      [(ngModel)]="price_label_form.price6"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input
+                      type="number"
+                      name="label7"
+                      [(ngModel)]="price_label_form.label7"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      name="price7"
+                      [(ngModel)]="price_label_form.price7"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input
+                      type="number"
+                      name="label8"
+                      [(ngModel)]="price_label_form.label8"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      name="price8"
+                      [(ngModel)]="price_label_form.price8"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input
+                      type="number"
+                      name="label9"
+                      [(ngModel)]="price_label_form.label9"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      name="price9"
+                      [(ngModel)]="price_label_form.price9"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input
+                      type="number"
+                      name="label10"
+                      [(ngModel)]="price_label_form.label10"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      name="price10"
+                      [(ngModel)]="price_label_form.price10"
+                    />
+                  </td>
+                </tr>
+
+                <tr>
+                  <td colspan="2">
+                    <button
+                      class="btn mt-1 btn-block btn-primary"
+                      type="button"
+                      (click)="update_value()"
+                    >
+                      Update
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- mobile_change_pass -->
+      <ng-container *ngIf="route_Id == false">
+        <div class="main-content">
+          <div class="d-flex main_heading" style="width: 100%">
+            <span
+              class="ml-2 ptitle"
+              style="padding: 6px; font-weight: 500; color: #fff !important"
+              >Change Password</span
+            >
+          </div>
+          <div class="form_div mt-3 changepwddiv">
+            <form
+              [formGroup]="changePasswordForm"
+              (ngSubmit)="onSubmitChangePassword()"
+            >
+              <mat-dialog-content>
+                <div class="body-inner change-pwd">
+                  <div class="form-group">
+                    <label class="form-label ml-1">current Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      formControlName="current_password"
+                      style="width: 97%; margin-left: 5px"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">New Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      formControlName="new_password"
+                      style="width: 97%; margin-left: 5px"
+                    />
+                    <ng-container
+                      *ngIf="
+                        changePasswordForm.get('new_password').touched &&
+                        changePasswordForm.get('new_password').invalid
+                      "
+                    >
+                      <span
+                        class="text-danger small"
+                        *ngIf="changePasswordForm.controls.new_password.errors"
+                        >*The password must contain at least: 1 uppercase
+                        letter, 1 lowercase letter, 1 number and 8 characters
+                        needed</span
+                      >
+                    </ng-container>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Confirm Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      formControlName="confirm_password"
+                      style="width: 97%; margin-left: 5px"
+                    />
+                    <ng-container
+                      *ngIf="
+                        changePasswordForm.get('confirm_password').touched &&
+                        changePasswordForm.get('confirm_password').invalid
+                      "
+                    >
+                      <span
+                        class="text-danger small"
+                        *ngIf="
+                          changePasswordForm.controls.confirm_password.errors
+                            .passwordValidity
+                        "
+                        >*Password dose'nt match</span
+                      >
+                    </ng-container>
+                  </div>
+                </div>
+              </mat-dialog-content>
+
+              <!-- <mat-dialog-actions align="end"> -->
+              <div class="row btn-row mt-2">
+                <div class="col-sm-12 btn-col">
+                  <button
+                    type="submit"
+                    mat-raised-button
+                    class="btn"
+                    [disabled]="submitted"
+                  >
+                    Change Password
+                  </button>
+                </div>
+                <!-- <a data-dismiss="modal" (click)="modalRef.hide()" mat-raised-button class="btn btn-danger">Cancel</a> &nbsp;&nbsp; -->
+              </div>
+              <!-- </mat-dialog-actions> -->
+            </form>
+          </div>
+          <!-- </ng-template>  -->
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <app-p-footer *ngIf="page_type === 'paisaexch'"></app-p-footer>
+    <app-b-footer *ngIf="page_type === 'betHonk'"></app-b-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

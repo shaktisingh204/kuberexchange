@@ -1,0 +1,56 @@
+<div class="bg_login">
+    <div class="animation-container">
+        <div class="lightning-container">
+            <div class="lightning white"></div>
+            <div class="lightning red"></div>
+        </div>
+        <div class="boom-container">
+            <div class="shape circle big white"></div>
+            <div class="shape circle white"></div>
+            <div class="shape triangle big yellow"></div>
+            <div class="shape disc white"></div>
+            <div class="shape triangle blue"></div>
+        </div>
+        <div class="boom-container second">
+            <div class="shape circle big white"></div>
+            <div class="shape circle white"></div>
+            <div class="shape disc white"></div>
+            <div class="shape triangle blue"></div>
+        </div>
+    </div>
+    <div id="login-wrapper">
+        <div class="login-title">Sign in</div>
+        <div class="logo"><img src="/assets/images/betHonk/logo_black.png" alt="" ></div>
+        <div id="login" class="form">
+            <section class="login_content">
+                
+                <form [formGroup]= 'loginForm' (ngSubmit) ='onSignInClick()'>
+                    <div>
+                        <div class="linput">
+                            <label><i aria-hidden="true" class="fa fa-user"></i></label>
+                            <input type="text" required="1" placeholder="Username" autofocus="" class="form-control" formControlName='username'>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="linput">
+                            <label><i aria-hidden="true" class="fa fa-unlock-alt"></i></label>
+                            <input type="password" placeholder="Password" required="1" autocomplete="off" class="form-control" formControlName='password'>
+                        </div>
+                    </div>
+                    <div class="checkbox">
+                    <input type="checkbox" name="remember" id="remember">
+                    <label> Remember me</label></div>
+                    <div>
+                        
+                        <button type="submit" class="btn btn-default submit" [disabled]="loginButtonDisable">Log in</button>
+                        
+                        <h6 class="country-restricution">Note - This Website is not for Indian Territory.</h6>
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+            </section>
+        </div>
+    </div>
+  
+
+</div>

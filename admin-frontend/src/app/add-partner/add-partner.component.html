@@ -1,0 +1,321 @@
+<app-header></app-header>
+    <div class="full-wrap">
+        <div class="report-page">
+            <div class="addUser inner-content">
+                <div class="page-title ml-3 mt-2">
+                    <h1 class="m-0">Add Account</h1>
+                </div>
+                <div class="form-div user-form">
+                    <form [formGroup]="addUserFrom" (ngSubmit)="addUser()">
+                        <div class="row">
+                            <div class="col-md-6 col-12 col pl-0" style="padding:0 !important;">
+                                <div class="col-inner">
+                                    <div class="col-title">
+                                        <h4>Personal Details</h4>
+                                    </div>
+                                    <div class="field-list row">
+                                        <div class="col-md-6 col-12 col">
+                                            <div class="form-group">
+                                                <label class="form-label">Client Name: <span *ngIf="message" style="color:red">{{message}}</span></label>
+                                                <input type="text" placeholder="Client Name"
+                                                    class="form-control red-tooltip"
+                                                    ngbTooltip="{{addUserFrom.controls.client_name.errors  |DisplayErrorMessage}}"
+                                                    #clientName="ngbTooltip" triggers="manual" [autoClose]="true" (focusout)="checkUser($event)"
+                                                    (key)="clientName.open()"
+                                                    (blur)="clientName.open()"
+                                                    formControlName="client_name" />
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12 col">
+                                            <div class="form-group">
+                                                <label class="form-label">User Password:</label>
+                                                <input type="password" placeholder="User Password"
+                                                    class="form-control red-tooltip"
+                                                    ngbTooltip="{{addUserFrom.controls.user_password.errors  |DisplayErrorMessage}}"
+                                                    #userPassword="ngbTooltip" triggers="manual" [autoClose]="true"
+                                                    (key)="userPassword.open()"
+                                                    (blur)="userPassword.open()"
+                                                    formControlName="user_password" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12 col">
+                                            <div class="form-group">
+                                                <label class="form-label">Retype Password:</label>
+                                                <input type="password" placeholder="Retype Password" class="form-control"
+                                                    ngbTooltip="{{addUserFrom.controls.confirm_password.errors |DisplayErrorMessage}}"
+                                                    formControlName="confirm_password" #confirmPassword="ngbTooltip"
+                                                    triggers="manual" [autoClose]="true"
+                                                    
+                                                    (key)="confirmPassword.open()" (blur)="confirmPassword.open()">
+                                                <!-- <p *ngIf="isUserNameExist" class="red-alert-message"> user name already exist </p> -->
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12 col" style="display: none;">
+                                            <div class="form-group inner-addon right-addon">
+                                                <label class="form-label">Full Name:</label>
+                                                <div class="input-group">
+                                                    <input type="text" placeholder="Full Name" class="form-control"
+                                                    ngbTooltip="{{addUserFrom.controls.full_name.errors |DisplayErrorMessage}}"
+                                                    formControlName="full_name" #fullName="ngbTooltip"
+                                                    triggers="manual" [autoClose]="true"
+                                                    (key)="fullName.open()" (blur)="fullName.open()" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-12 col" style="display: none;">
+                                            <div class="form-group">
+                                                <label class="form-label">City:</label>
+                                                <input type="text" placeholder="City"
+                                                    class="form-control red-tooltip"
+                                                    ngbTooltip="{{addUserFrom.controls.city.errors  |DisplayErrorMessage}}"
+                                                    #cityTooltip="ngbTooltip" triggers="manual" [autoClose]="true"
+                                                     (key)="cityTooltip.open()"
+                                                    (blur)="cityTooltip.open()"
+                                                    formControlName="city">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12 col" style="display: none;">
+                                            <div class="form-group">
+                                                <label class="form-label">Phone:</label>
+                                                <input type="number" *ngIf="userDetail?.user_type_id != 0"
+                                                    placeholder="Phone" class="form-control" formControlName="phone"
+                                                    #phoneTooltip="ngbTooltip" triggers="manual" [autoClose]="true"
+                                                 (key)="phoneTooltip.open()"
+                                                    (blur)="phoneTooltip.open()"
+                                                    ngbTooltip="{{addUserFrom.controls.phone.errors |DisplayErrorMessage}}">
+                                                
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 col-12 col pl-0" style="padding:0 !important;" style="display: none;">
+                                <div class="col-inner">
+                                    <div class="col-title">
+                                        <h4>Account Details</h4>
+                                    </div>
+                                    <div class="field-list row">
+                                        <div class="col-md-6 col-12 col">
+                                            <div class="form-group">
+                                                <label class="form-label">Account Type:</label>
+                                                <select class="form-select" aria-label="Default select example" (change)="changeAccType($event.target.value)">
+                                                    <option selected>-Select Your A/c. Type-</option>
+                                                    <!-- <option *ngIf="acc_type_selct=='admin'" value="subadmin">Subadmin</option>
+                                                    <option *ngIf="acc_type_selct=='subadmin'" value="master">Master</option>
+                                                    <option *ngIf="acc_type_selct=='master'" value="manager">Manager</option>
+                                                    <option *ngIf="acc_type_selct=='manager'" value="user">User</option> -->
+
+                                                    <!--new_build_testing -->
+                                                    <option *ngIf="acc_type_selct=='admin'" value="subadmin">Super Master</option>
+                                                    <option *ngIf="acc_type_selct=='admin' || acc_type_selct=='subadmin'" value="master">Master</option>
+                                                    <option *ngIf="acc_type_selct==='admin' || acc_type_selct==='subadmin' ||acc_type_selct==='master'" value="manager">Agent</option>
+                                                    <option value="user">User</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12 col">
+                                            <div class="form-group">
+                                                <label class="form-label">Credit Reference:</label>
+                                                <input type="number" placeholder="Credit Reference" class="form-control"
+                                                ngbTooltip="{{addUserFrom.controls.credit_refrence.errors |DisplayErrorMessage}}"
+                                                    formControlName="credit_refrence" #creditRefrence="ngbTooltip"
+                                                    triggers="manual"
+                                                    (key)="creditRefrence.open()" (blur)="creditRefrence.open()">
+                                            </div>
+                                        </div>
+                                                                   
+                                        <div *ngIf="addUserFrom.controls['acc_type'].value==='user' || addUserFrom.controls['acc_type'].value===''"  class="col-md-6 col-12 col">
+                                            <div class="form-group">
+                                                <label class="form-label">Exposure Limit:</label>
+                                                <input type="number" placeholder="Exposure Limit" [autoClose]="true"
+                                                    class="form-control"
+                                                    ngbTooltip="{{addUserFrom.controls.exposure_limit.errors |DisplayErrorMessage}}"
+                                                    formControlName="exposure_limit" #exposureTooltip="ngbTooltip"
+                                                    triggers="manual"
+                                                    (key)="exposureTooltip.open()" (blur)="exposureTooltip.open()" />
+                                                <!-- <span>[ Note: Point (If no limit then enter -1) ]</span><br> -->
+                                                <!-- <span *ngIf="addUserFrom.controls.exposure_limit.errors  && addUserFrom.get('exposure_limit').touched" class="red-alert-message">
+                                                        {{addUserFrom.controls.exposure_limit.errors |DisplayErrorMessage}}
+                                                    </span> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <div style="display: none;" class="row">
+                            <div class="col-md-12 col-12 col" style="padding: 0;">
+                                <div class="col-inner">
+                                    <div class="col-title">
+                                        <h4>Commission Setting</h4>
+                                    </div>
+                                    <div class="field-list">
+                                        <div class="form-group">
+                                            <table class="table table-striped table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col"></th>
+                                                        <th scope="col">Cricket</th>
+                                                        <th scope="col">Football</th>
+                                                        <th scope="col">Tennis</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td scope="row">Upline</td>
+                                                        <td>{{userDetail?.details?.commissionsetting[0]?.commission}}</td>
+                                                        <td>{{userDetail?.details?.commissionsetting[1]?.commission}}</td>
+                                                        <td>{{userDetail?.details?.commissionsetting[2]?.commission}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td scope="row">Downline</td>
+                                                        <td><input type="number" formControlName="cricket_commission" (keyup)="check_commision_setting($event.target.value,'cricket');"></td>
+                                                        <td><input type="number" formControlName="soccer_commission" (keyup)="check_commision_setting($event.target.value,'soccer');"></td>
+                                                        <td><input type="number" formControlName="tennis_commission" (keyup)="check_commision_setting($event.target.value,'tennis');"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td scope="row">Our</td>
+                                                        <td>{{cal_commision_setting.cricket}}</td>
+                                                        <td>{{cal_commision_setting.soccer}}</td>
+                                                        <td>{{cal_commision_setting.tennis}}</td>
+                                                    </tr>
+                                                </tbody>
+
+                                            </table>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                              
+                                <div class="col-inner">
+                                    <div class="col-title">
+                                        <h4>Partnership</h4>
+                                    </div>
+                                    <div class="field-list">
+                                        <div class="form-group">
+                                            <table class="table table-striped table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col"></th>
+                                                        <th scope="col">Cricket</th>
+                                                        <th scope="col">Football</th>
+                                                        <th scope="col">Tennis</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td scope="row">Upline</td>
+                                                        <td>{{userDetail?.details?.partnershipsetting[0]?.partnership}}</td>
+                                                        <td>{{userDetail?.details?.partnershipsetting[1]?.partnership}}</td>
+                                                        <td>{{userDetail?.details?.partnershipsetting[2]?.partnership}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td scope="row">Downline</td>
+                                                        <td><input type="number" formControlName="cricket_partnership" (keyup)="check_partner_setting($event.target.value,'cricket');"></td>
+                                                        <td><input type="number" formControlName="soccer_partnership" (keyup)="check_partner_setting($event.target.value,'soccer');"></td>
+                                                        <td><input type="number" formControlName="tennis_partnership" (keyup)="check_partner_setting($event.target.value,'tennis');"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td scope="row">Our</td>
+                                                        <td>{{cal_partnerShip_setting.cricket}}</td>
+                                                        <td>{{cal_partnerShip_setting.soccer}}</td>
+                                                        <td>{{cal_partnerShip_setting.tennis}}</td>
+                                                    </tr>
+                                                </tbody>
+
+                                            </table>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-inner">
+                                    <div class="col-title">
+                                        <h4>Min Max Bet </h4>
+                                    </div>
+                                    <div class="field-list">
+                                        <div class="form-group">
+                                            <table class="table table-striped table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col"></th>
+                                                        <th scope="col">Cricket</th>
+                                                        <th scope="col">Football</th>
+                                                        <th scope="col">Tennis</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+
+                                                        <td scope="row" rowspan="2" style="padding: 27px;">Min Bet</td>
+                                                        <td style="width: 30%;">100</td>
+                                                        <td>100</td>
+                                                        <td>100</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 30%;"><input type="number" formControlName="cricket_min_bet"></td>
+                                                        <td><input type="number" formControlName="soccer_min_bet"></td>
+                                                        <td><input type="number" formControlName="tennis_min_bet"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td scope="row" rowspan="2" style="padding: 27px;">Max Bet</td>
+                                                        <td style="width: 30%;">5000000</td>
+                                                        <td>2500000</td>
+                                                        <td>1000000</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 30%;"><input type="number" formControlName="cricket_max_bet"></td>
+                                                        <td><input type="number" formControlName="soccer_max_bet"></td>
+                                                        <td><input type="number" formControlName="tennis_max_bet"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td scope="row" rowspan="2" style="padding: 27px;">Delay</td>
+                                                        <td style="width: 30%;">5.00</td>
+                                                        <td>5.00</td>
+                                                        <td>5.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 30%;"><input type="number" formControlName="cricket_bet_delay"></td>
+                                                        <td><input type="number" formControlName="soccer_bet_delay"></td>
+                                                        <td><input type="number" formControlName="tennis_bet_delay"></td>
+                                                    </tr>
+                                                </tbody>
+
+                                            </table>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div  class="row bg-light">
+                            <div class="col-md-9">
+
+                            </div>
+                            <div class="col-md-3">
+                                <div class="btn-col">
+                                    <div class="input-box">
+                                        <label class="form-label"> Transaction Password</label>
+                                        </div>
+                                        <input type="password" placeholder="Transaction Password" class="form-control" formControlName="trans_pass"
+                                        #trans_pass="ngbTooltip" triggers="manual" [autoClose]="true"
+                                        (key)="trans_pass.open()"
+                                        (blur)="trans_pass.open()"
+                                        ngbTooltip="{{addUserFrom.controls.trans_pass.errors |DisplayErrorMessage}}">
+                                        <br>
+                                        <div class="text-right">
+                                          <button type="submit" class="btn btn-primary">Create Account</button>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

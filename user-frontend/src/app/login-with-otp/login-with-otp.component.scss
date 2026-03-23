@@ -1,0 +1,164 @@
+.loginPage {
+    display: table;
+    margin: 0 auto;
+    width: 100%;
+    height: 100vh;
+    // background-color:  rgb(6 103 207 / 27%);
+    background:  50% 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    .login-main{
+        display: table-cell;
+        vertical-align: middle;
+        .logo{
+            text-align: center;
+            background-color:transparent;
+            padding: 20px;
+            border-radius: 4px 4px 0 0;
+            img{
+                max-width: 180px;
+            }
+        }
+        .form-row{
+            padding: 20px;
+        }
+        .login-inner {
+            max-width: calc(100% - 30px);
+            margin: 0 auto;
+            background-color:transparent;
+            padding: 0;
+            border-radius: 3px;
+            box-shadow:none;
+            .login-title {
+                color: #195991;
+            }
+
+            
+            .form-div{
+                display: table;
+                width: 100%;
+                height: 100%;
+                form{
+                    display: table-cell;
+                   // vertical-align: middle;
+                    .login-title{
+                        font-size: 30px;
+                        line-height: 37px;
+                        margin-bottom: 15px;
+                        font-weight: 500;
+                    }
+                    .form-group.password:before{
+                        //content: '\f084';
+                    }
+                    .form-group{
+                        margin-bottom: 15px;
+                        position: relative;
+                        &:before {
+                           // content: '\f003';
+                            font-family: 'fontawesome';
+                            position: absolute;
+                            line-height: 40px;
+                            width: 30px;
+                            text-align: right;
+                            color: #474747;
+                            .form-label{
+                                color: #003060;
+                            }
+                        }
+                        .input-icons i {
+                            padding: 10px 10px;
+                            position: absolute;
+                            left:90%;
+                        }
+                        .form-control {
+                            // background: var(--white-bg) 0% 0% no-repeat padding-box;
+                            // box-shadow: 0px 3px 16px #00000029;
+                            // border-radius: 50px;
+                            // border: none;
+                            // height: 40px;
+                            // padding-left: 40px;
+                            // font-size: 13px;
+                            // color: #474747;
+                        }
+                    }
+                    .btn-list {
+                        width: 100%;
+                        display: inline-block;
+                        //text-align: right;
+                        //vertical-align: middle;
+                        
+                        .btn{
+                            border-radius: 5px;
+                            padding:0 30px;
+                            box-shadow: none;
+                            background: var(--theme1-bg)!important;
+                           // background:none;
+                           font-weight: 300;
+                           &:hover{
+                               color: #fff;
+                               box-shadow: 0 2px 4px #ccc;
+                                background-color: var(--blue-text);
+                           }
+                        }
+                        .downloadapk{
+                            color:#003060;
+                            float:right;
+                            span{
+                                font-size: 8px;
+                                color: #003060;
+                            }
+                        }
+                    }
+                    .checkbox {
+                        width: 50%;
+                        display: inline-block;
+                        label {
+                            font-size: 12px;
+                            line-height: 12px;
+                        }
+                        input{
+                            vertical-align: middle;
+                            margin-top: -3px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.form{
+    padding: 20px;
+}
+
+/*show password related CSS */
+.right-addon .fa, .right-addon .fas { right: 0px; }
+.right-addon input { padding-right: 30px; }
+.hide {
+    display: none;
+  }
+  .inner-addon { 
+    position: relative; 
+}
+.inner-addon .fa, .inner-addon .fas {
+  position: absolute;
+  padding: 10px 10px;
+  z-index: 100;
+  cursor: pointer;
+}
+.submit-btn .mat-button-base{width: 100%;background: var(--theme1-bg);
+    font-weight: normal;
+    font-size: 14px;
+    height: 45px;
+    padding:10px 15px 5px;
+    line-height: normal;}
+    .login-form input{height: 45px;;}
+    .loginPage{position: relative;}
+    .loginPage:after{background: rgba($color: #000000, $alpha: 0.5);content: '';position: absolute;top: 0;left: 0px; width: 100%;height: 100%;}
+    .login-main {
+        position: relative;
+        z-index: 99;
+    }
+    .login-form .form-group .mat-icon { 
+        // color: #888c;
+        color: var(--theme1-bg);
+    }

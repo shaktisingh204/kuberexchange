@@ -1,0 +1,176 @@
+// desktop_sidebar_height
+.desktopmain-main .sidebar {
+  // padding: 0 !important;
+  min-height: calc(100vh - 123px);
+  // max-width: 15% !important;
+  background-color: #ccc;
+  color: #000;
+}
+
+#main_heading{
+  background-color:var(--hedear-bg);
+}
+
+//drawer_backgrond_color
+.mat-drawer-content{
+  background-color:var(--bg-color);
+}
+
+.main-content{
+  margin-top: var(--margin-top)!important;
+}
+// .main-content{
+//     margin-top: 72px; 
+// }
+@media (max-width: 575px) {
+    .main-content{
+        margin-top: 29px; 
+    }
+}
+
+.row-sm{
+    width: 100%;
+    .col-sm-6, .col-sm-12{
+        padding-right: 10px !important;
+        padding-left: 6px !important;
+    
+    }
+
+
+    button.example-custom-date-class {
+        background: var(--theme1-bg);
+        border-radius: 100%;
+      }
+    .col_btn{
+        button{
+            width: 100%;
+            background-color: var(--btn-color);
+            font-weight: normal;
+            padding: 10px!important;
+            border-radius: 4px!important;
+            line-height: normal;
+            height: auto;
+             
+        }
+    }
+
+}
+.table-div{
+    .table{
+        thead th{
+            color: #fff;
+            font-size:14px;
+            background-color: var(--theme2-bg);
+            border-color: #73787c !important;
+            padding-right: 10px !important;
+            font-weight: 600;
+            padding: 3px 4px;
+            font-family: 'Roboto Condensed', sans-serif!important;
+            white-space: nowrap;
+        }
+    }
+}
+
+.table ,.table  tr,.table  tr th,.table  tr td {border-collapse: collapse; border:1px solid #bababa;font-size:14px;}
+.table-div{padding: 0 7px;}
+
+.table td{ 
+  color:var(--text-color);
+}
+
+#no_data{
+  color:var(--text-color);
+}
+
+// repeatCss sameAs ledger Model
+
+.BackCor{
+    background-color: #a7d8fd;
+   }
+   .LayCor{
+    background-color: #f8c9d4;
+   }
+
+   .datamatcheddele {
+    padding: 6px;
+    max-height: 55vh;
+}
+
+.cusradiobtnwrapper {
+    display: inline-block;
+    position: relative;
+    padding-left: 32px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin-right: 12px;
+  }
+  
+  /* Hide the browser's default radio button */
+  .cusradiobtnwrapper input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  /* Create a custom radio button */
+  .cusradiobtnwrapper .checkmark {
+    position: absolute;
+    top:-3px;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .cusradiobtnwrapper:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the radio button is checked, add a blue background */
+  .cusradiobtnwrapper input:checked ~ .checkmark {
+    background-color: var(--theme1-bg);
+  }
+  
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .cusradiobtnwrapper .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the indicator (dot/circle) when checked */
+  .cusradiobtnwrapper input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the indicator (dot/circle) */
+  .cusradiobtnwrapper .checkmark:after {
+    top: 8px;
+    left: 8px;
+    width: 10px;
+    height: 10px;
+      border-radius: 50%;
+      background: white;
+  }
+
+.matchpopbody{height: auto!important;}
+.macthpopfoot button.btn-danger{background:#dc3546;border-color:#dc3546;border-radius: 0px;}
+.datamatcheddele p strong{font-size: 14px;}
+.datamatcheddele p{font-size: 14px; margin: 0 0 5px;}
+.datamatcheddele .datamatchsdetabel table { margin: 0px!important;}
+.datamatcheddele .datamatchsdetabel table ,
+.datamatcheddele .datamatchsdetabel table tr,
+.datamatcheddele .datamatchsdetabel table tr th,
+.datamatcheddele .datamatchsdetabel table tr td{border:none!important;font-size: 14px;text-align: right;}
+// .datamatcheddele .datamatchsdetabel table tr td.green{color: #28a745;}
+// .datamatcheddele .datamatchsdetabel table tr td.red{color: #ff0000}
+.datamatcheddele .datamatchsdetabel table tr th{font-weight: 600;}
+.profittable table tr t{white-space: nowrap;}
+.profittable{margin-right: 5px}

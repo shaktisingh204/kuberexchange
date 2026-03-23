@@ -1,0 +1,1065 @@
+<mat-sidenav-container fullscreen>
+  <mat-sidenav-content>
+    <app-header></app-header>
+    <div *ngIf="lodTimer" id="overlay" style="
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      ">
+      <div style="font-size: 7rem" class="font-weight-bold text-warning">
+        {{ lodTimer }}
+      </div>
+    </div>
+
+    <!-- mainClass -->
+    <div class="main-card">
+      <!-- internetDisscont -->
+      <div *ngIf="!internetConn" class="col-12" style="margin-top: 38vh">
+        <h4 class="font-weight-bold text-center text-warning">
+          Please check your internet connection and try again
+        </h4>
+      </div>
+
+      <!-- content -->
+      <mat-card *ngIf="internetConn" fxLayout="column" class="detail-card">
+        <mat-tab-group class="tab-body" class="sport-details-tab">
+          <!-- 1st tab -->
+          <mat-tab label="ODDS">
+            <div fxLayout="row" fxLayoutAlign="start center" class="detail-header">
+              <!-- <span class="sport-icon" fxFlex="28px"><img src="assets/icons/4.png"></span> -->
+              <label fxFlex="50%" style="text-align: start">
+                <span class="match-title">{{ matchName }}</span>
+              </label>
+              <label fxFlex="50%" style="text-align: end">
+                <span class="date-time">{{
+                  matchDate | date : "dd-MM-yy H:mm"
+                  }}</span>
+              </label>
+            </div>
+            <!-- score board and tv -->
+            <mat-card *ngIf="graphicTvUrl" style="height: 190px; background-color: black"
+              [ngClass]="liveScoreStatus ? 'liveTV-block' : 'liveTV-none'">
+              <mat-tab-group>
+                <mat-tab label="Live Score">
+                  <!-- <mat-icon class="text-warning" [ngClass]="liveScoreStatus ? 'liveTV-block' : 'liveTV-none'" (click)="openScoreDiv()">close</mat-icon> -->
+                  <iframe id="fp_embed_player" [src]="graphicTvUrl" marginwidth="0" marginheight="0" frameborder="0"
+                    width="100%" height="190px" scrolling="yes" allowfullscreen="allowfullscreen"></iframe>
+                </mat-tab>
+              </mat-tab-group>
+            </mat-card>
+            <mat-card style="height: 240px" [ngClass]="liveTVStatus ? 'liveTV-block' : 'liveTV-none'">
+              <mat-tab-group>
+                <mat-tab label="Live TV">
+                  <!-- virtual_video -->
+                  <iframe id="fp_embed_player" [src]="virturalUrl" marginwidth="0" marginheight="0" frameborder="0"
+                    width="100%" height="240px" scrolling="no" allowfullscreen="allowfullscreen"></iframe>
+                </mat-tab>
+              </mat-tab-group>
+            </mat-card>
+
+            <div *ngIf="team.Team1name" class="container-fluid mb-2">
+              <div class="row scoreColor pt-2" style="background-color: hsl(1 50% 51% / 1)">
+                <div class="col-4">
+                  <div class="row">
+                    <div class="col-3 mt-2">
+                      <div [ngClass]="{
+                          australia: team.Team1id == 1,
+                          england: team.Team1id == 2,
+                          india: team.Team1id == 3,
+                          newzealand: team.Team1id == 4,
+                          pakistan: team.Team1id == 5,
+                          southafrica: team.Team1id == 6,
+                          sriLanka: team.Team1id == 7,
+                          westindies: team.Team1id == 8
+                        }"></div>
+                    </div>
+                    <div class="col-9">
+                      <p class="mb-0">{{ team.Team1name }}</p>
+                      <p>{{ team.Team1run }}/{{ team.Team1wicket }}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4 text-center font-weight-bold mt-3">
+                  <span *ngIf="mTimer">{{ mTimer }}</span>
+                </div>
+                <div class="col-4">
+                  <div class="row">
+                    <div class="col-3 mt-2">
+                      <div [ngClass]="{
+                          australia: team.Team2id == 1,
+                          england: team.Team2id == 2,
+                          india: team.Team2id == 3,
+                          newzealand: team.Team2id == 4,
+                          pakistan: team.Team2id == 5,
+                          southafrica: team.Team2id == 6,
+                          sriLanka: team.Team2id == 7,
+                          westindies: team.Team2id == 8
+                        }"></div>
+                    </div>
+                    <div class="col-9">
+                      <p class="mb-0">{{ team.Team2name }}</p>
+                      <p>{{ team.Team2run }}/{{ team.Team2wicket }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- matchodds -->
+            <mat-accordion *ngIf="matchoddMarket?.length > 0 && manualMatchStatus" class="tab-body odd-detail" multi>
+              <mat-expansion-panel [expanded]="true" hideToggle style="margin-top: 10px" *ngFor="
+                  let matchOddsData of matchoddMarket;
+                  trackBy: itemTrackBy;
+                  let mDTIndex = index
+                ">
+                <mat-panel-title fxLayout="row" fxLayoutAlign="space-between center" class="panel-title">
+                  <div fxLayout="row">
+                    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
+                      <span class="market-title">
+                        <!-- <mat-icon *ngIf="!panelOpenState1">expand_less</mat-icon>
+                                            <mat-icon *ngIf="panelOpenState1">expand_more</mat-icon> -->
+                        <span class="text-white">Virtual</span>
+                        <!-- <img src="assets/images/transparent.gif"> -->
+                      </span>
+                      <div class="minMax-limit" data-toggle="tooltip" data-html="true" title="Infomation">
+                        <i class="fas fa-info-circle whiteicon"></i>
+                      </div>
+                    </div>
+                  </div>
+                </mat-panel-title>
+
+                <div class="row headersec text_lay_back" style="flex-flow: row">
+                  <div class="col-8" style="text-align: left">
+                    <div *ngIf="
+                        matchodds_max_limit_check === true;
+                        else matchodds_max_check
+                      " class="text-start" style="padding: 2px 0; margin-left: 5px">
+                      <span>Min:{{ matchodds_min_limit | shortNumber }} Max:{{
+                        matchodds_max_limit | shortNumber
+                        }}</span>
+                    </div>
+                    <ng-template #matchodds_max_check>
+                      <div class="text-start" style="padding: 2px 0">
+                        <span *ngIf="matchOddsData?.eventTypeId === '4'">Min:{{
+                          userDetails?.setting[0]?.min_bet | shortNumber
+                          }}
+                          Max:{{
+                          userDetails?.setting[0]?.max_bet | shortNumber
+                          }}</span>
+                        <span *ngIf="matchOddsData?.eventTypeId === '2'">Min:{{
+                          userDetails?.setting[2]?.min_bet | shortNumber
+                          }}
+                          Max:{{
+                          userDetails?.setting[2]?.max_bet | shortNumber
+                          }}</span>
+                        <span *ngIf="matchOddsData?.eventTypeId === '1'">Min:{{
+                          userDetails?.setting[1]?.min_bet | shortNumber
+                          }}
+                          Max:{{
+                          userDetails?.setting[1]?.max_bet | shortNumber
+                          }}</span>
+                      </div>
+                    </ng-template>
+                  </div>
+
+                  <div class="col-2">
+                    <div class="text-center" style="
+                        background: #a7d8fd;
+                        width: 100%;
+                        padding: 3px 2px 3px;
+                        border-left: 1px solid #aaa;
+                      ">
+                      <span style="font-size: 14px">BACK</span>
+                    </div>
+                  </div>
+                  <div class="col-2">
+                    <div class="text-center" style="
+                        background: #f9c9d4;
+                        width: 100%;
+                        padding: 3px 2px 3px;
+                        border-left: 1px solid #aaa;
+                        border-right: 1px solid #aaa;
+                      ">
+                      <span style="font-size: 14px">LAY</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bottom-border" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1%" *ngFor="
+                    let runner of matchOddsData.marketBook.runners;
+                    let i = index
+                  ">
+                  <label fxLayoutAlign="start left" fxFlex="60%" style="padding-left: 10px">
+                    <span>{{
+                      searchRunner(matchOddsData?.runners, runner?.selectionId)
+                      }}</span>
+
+                    <span class="text-bold font-weight-bold" [ngClass]="{
+                        red:
+                          calProLoss(
+                            matchOddsData.runners,
+                            matchOddsData.marketBook,
+                            i,
+                            matchOddsData
+                          ) < 0,
+                        green:
+                          calProLoss(
+                            matchOddsData.runners,
+                            matchOddsData.marketBook,
+                            i,
+                            matchOddsData
+                          ) >= 0
+                      }">
+                      {{
+                      calProLoss(
+                      matchOddsData?.runners,
+                      matchOddsData?.marketBook,
+                      i,
+                      matchOddsData
+                      ) | number : "1.0-0"
+                      }}
+                    </span>
+                  </label>
+
+                  <button fxLayout="column" fxLayoutAlign="center center" class="back-button" fxFlex="20%"
+                    *ngIf="runner?.availableToBack" (click)="
+                      getOddsValue(
+                        runner?.availableToBack?.price,
+                        runner?.selectionId,
+                        matchOddsData?.marketId,
+                        matchOddsData?.marketName,
+                        matchOddsData?.eventName,
+                        1,
+                        searchRunner(
+                          matchOddsData?.runners,
+                          runner?.selectionId
+                        ),
+                        matchOddsData?.marketType,
+                        betPlace
+                      )
+                    ">
+                    <span class="odds-value">{{
+                      runner?.availableToBack != undefined
+                      ? runner?.availableToBack?.price
+                      : ""
+                      }}</span>
+                    <span class="odds-small-value">{{
+                      (runner?.availableToBack != undefined
+                      ? runner?.availableToBack?.size
+                      : ""
+                      ) | shortNumber
+                      }}</span>
+                  </button>
+                  <button fxLayout="column" fxLayoutAlign="center center" class="back-button" fxFlex="20%"
+                    *ngIf="!runner?.availableToBack">
+                    <span class="odds-value">-</span>
+                    <span class="odds-small-value">-</span>
+                  </button>
+                  <button fxLayout="column" fxLayoutAlign="center center" class="lay-button" fxFlex="20%"
+                    *ngIf="runner?.availableToLay" (click)="
+                      getOddsValue(
+                        runner?.availableToLay?.price,
+                        runner?.selectionId,
+                        matchOddsData?.marketId,
+                        matchOddsData?.marketName,
+                        matchOddsData?.eventName,
+                        0,
+                        searchRunner(
+                          matchOddsData?.runners,
+                          runner?.selectionId
+                        ),
+                        matchOddsData?.marketType,
+                        betPlace
+                      )
+                    ">
+                    <span class="odds-value">{{
+                      runner?.availableToLay != undefined
+                      ? runner?.availableToLay?.price
+                      : ""
+                      }}</span>
+                    <span class="odds-small-value">{{
+                      (runner?.availableToLay != undefined
+                      ? runner?.availableToLay?.size
+                      : ""
+                      ) | shortNumber
+                      }}</span>
+                  </button>
+                  <button fxLayout="column" fxLayoutAlign="center center" class="lay-button" fxFlex="20%"
+                    *ngIf="!runner?.availableToLay">
+                    <span class="odds-value">-</span>
+                    <span class="odds-small-value">-</span>
+                  </button>
+
+                  <div *ngIf="checkMatchOddStatus(matchOddsData)" class="suspend">
+                    <div class="suspend-status">SUSPENDED</div>
+                  </div>
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
+
+            <!-- TowinToss -->
+            <mat-accordion *ngIf="toWinTossMarket?.length > 0" class="tab-body odd-detail" multi>
+              <mat-expansion-panel [expanded]="true" hideToggle style="margin-top: 10px" *ngFor="
+                  let matchOddsData of toWinTossMarket;
+                  trackBy: itemTrackBy;
+                  let mDTIndex = index
+                " (opened)="panelOpenState1 = true" (closed)="panelOpenState1 = false">
+                <!-- <mat-expansion-panel-header> -->
+                <mat-panel-title fxLayout="row" fxLayoutAlign="space-between center" class="panel-title">
+                  <div fxLayout="row">
+                    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
+                      <span class="market-title">
+                        <!-- <mat-icon *ngIf="!panelOpenState1">expand_less</mat-icon>
+                                                <mat-icon *ngIf="panelOpenState1">expand_more</mat-icon> -->
+                        <span class="text-white">{{
+                          matchOddsData?.marketName
+                          }}</span>
+                        <!-- <img src="assets/images/transparent.gif"> -->
+                      </span>
+                      <div class="minMax-limit" data-toggle="tooltip" data-html="true" title="Infomation">
+                        <img style="margin-right: 7px" src="../../assets/images/icon/white_info-16.png" alt="" />
+                        <!-- <span class="material-symbols-outlined">
+                                                    info
+                                                </span> -->
+                      </div>
+                      <!-- <div class="minMax-limit"><span>Max Bet: {{matchOddsData?.maxlimit}}</span></div> -->
+                    </div>
+                  </div>
+                  <!-- <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+                                            <label class="back">BACK</label>
+                                            <label class="lay">LAY</label>
+                                        </div> -->
+                </mat-panel-title>
+                <div class="row text_lay_back" style="flex-flow: row">
+                  <div class="col-sm-7" style="text-align: left">
+                    <div class="text-start" style="margin-left: 7px; margin-left: 5px">
+                      <span>Max Bet: {{ matchOddsData?.maxlimit }}</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-5">
+                    <div class="text-center" style="background: #72bbef; width: 42%">
+                      <span>BACK</span>
+                    </div>
+                    <div class="text-center" style="background: #faa9ba; width: 42%">
+                      <span>LAY</span>
+                    </div>
+                  </div>
+                </div>
+                <ng-container *ngIf="matchoddMarket?.message">
+                  <span class="text-danger text-center font-weight-bold">{{
+                    matchOddsData?.message
+                    }}</span>
+                </ng-container>
+
+                <!-- </mat-expansion-panel-header> -->
+                <div class="bottom-border" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1%" *ngFor="
+                    let runner of matchOddsData.marketBook.runners;
+                    let i = index
+                  ">
+                  <label fxLayoutAlign="start left" fxFlex="70%" style="padding-left: 10px">
+                    <span>{{
+                      searchRunner(matchOddsData?.runners, runner?.selectionId)
+                      }}</span>
+                    <!-- <span class="text-bold"
+                                            [ngClass]="{'red':(runner.win_loss+ this.matchModel.calculateProfitLossSelection(runner.selectionId,matchOddsData.market_id))<0,'green':(runner.win_loss+ this.matchModel.calculateProfitLossSelection(runner.selectionId,matchOddsData.market_id))>0}">
+                                            {{(runner.win_loss+this.matchModel.calculateProfitLossSelection(runner.selectionId,matchOddsData.market_id))| number : '0.0-2'}}
+                                        </span> -->
+                    <span class="text-bold" [ngClass]="{
+                        red:
+                          calProLoss(
+                            matchOddsData.runners,
+                            matchOddsData.marketBook,
+                            i,
+                            matchOddsData
+                          ) < 0,
+                        green:
+                          calProLoss(
+                            matchOddsData.runners,
+                            matchOddsData.marketBook,
+                            i,
+                            matchOddsData
+                          ) >= 0
+                      }">
+                      {{
+                      calProLoss(
+                      matchOddsData?.runners,
+                      matchOddsData?.marketBook,
+                      i,
+                      matchOddsData
+                      ) | number : "0.0-2"
+                      }}
+                    </span>
+                  </label>
+                  <button fxLayout="column" fxLayoutAlign="center center" class="back-button" fxFlex="17%"
+                    *ngIf="runner?.availableToBack" (click)="
+                      getOddsValue(
+                        runner?.availableToBack?.price,
+                        runner?.selectionId,
+                        matchOddsData?.marketId,
+                        matchOddsData?.marketName,
+                        matchOddsData?.eventName,
+                        1,
+                        searchRunner(
+                          matchOddsData?.runners,
+                          runner?.selectionId
+                        )
+                      )
+                    ">
+                    <span class="odds-value">{{
+                      runner?.availableToBack != undefined
+                      ? runner?.availableToBack?.price
+                      : ""
+                      }}</span>
+                    <span class="odds-small-value">{{
+                      runner?.availableToBack != undefined
+                      ? runner?.availableToBack?.size
+                      : ""
+                      }}</span>
+                  </button>
+                  <button fxLayout="column" fxLayoutAlign="center center" class="back-button" fxFlex="17%"
+                    *ngIf="!runner?.availableToBack">
+                    <span class="odds-value">-</span>
+                    <span class="odds-small-value">-</span>
+                  </button>
+                  <button fxLayout="column" fxLayoutAlign="center center" class="lay-button" fxFlex="17%"
+                    *ngIf="runner?.availableToLay" (click)="
+                      getOddsValue(
+                        runner?.availableToLay?.price,
+                        runner?.selectionId,
+                        matchOddsData?.marketId,
+                        matchOddsData?.marketName,
+                        matchOddsData?.eventName,
+                        0,
+                        searchRunner(
+                          matchOddsData?.runners,
+                          runner?.selectionId
+                        )
+                      )
+                    ">
+                    <span class="odds-value">{{
+                      runner?.availableToLay != undefined
+                      ? runner?.availableToLay?.price
+                      : ""
+                      }}</span>
+                    <span class="odds-small-value">{{
+                      runner?.availableToLay != undefined
+                      ? runner?.availableToLay?.size
+                      : ""
+                      }}</span>
+                  </button>
+                  <button fxLayout="column" fxLayoutAlign="center center" class="lay-button" fxFlex="17%"
+                    *ngIf="!runner?.availableToLay">
+                    <span class="odds-value">-</span>
+                    <span class="odds-small-value">-</span>
+                  </button>
+
+                  <div *ngIf="checkWinTossStatus(matchOddsData)" class="suspend">
+                    <div class="suspend-status">SUSPENDED</div>
+                  </div>
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
+
+            <!-- bookmaker -->
+            <mat-accordion *ngIf="bookmakerMarket?.length > 0" class="tab-body odd-detail" multi>
+              <mat-expansion-panel [expanded]="true" hideToggle style="margin-top: 10px" *ngFor="
+                  let matchOddsData of bookmakerMarket;
+                  trackBy: itemTrackBy;
+                  let mDTIndex = index
+                " (opened)="panelOpenState1 = true" (closed)="panelOpenState1 = false">
+                <!-- <mat-expansion-panel-header> -->
+                <mat-panel-title fxLayout="row" fxLayoutAlign="space-between center" class="panel-title">
+                  <div fxLayout="row">
+                    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
+                      <span class="market-title">
+                        <!-- <mat-icon *ngIf="!panelOpenState1">expand_less</mat-icon>
+                                                <mat-icon *ngIf="panelOpenState1">expand_more</mat-icon> -->
+                        <span class="text-white">{{
+                          matchOddsData?.marketName
+                          }}</span>
+                        <!-- <img src="assets/images/transparent.gif"> -->
+                      </span>
+                      <div class="minMax-limit" data-toggle="tooltip" data-html="true" title="Infomation">
+                        <img style="margin-right: 7px" src="../../assets/images/icon/white_info-16.png" alt="" />
+                        <!-- <span class="material-symbols-outlined">
+                                                    info
+                                                </span> -->
+                      </div>
+                      <!-- <div class="minMax-limit"><span>Max Bet: {{matchOddsData?.maxlimit}}</span></div> -->
+                    </div>
+                  </div>
+                </mat-panel-title>
+                <div class="row text_lay_back" style="flex-flow: row">
+                  <div class="col-sm-7" style="text-align: left">
+                    <div class="text-start" style="margin-left: 7px; margin-left: 5px">
+                      <span>Max Bet: {{ matchOddsData?.maxlimit }}</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-5">
+                    <div class="text-center" style="background: #72bbef; width: 42%">
+                      <span>BACK</span>
+                    </div>
+                    <div class="text-center" style="background: #faa9ba; width: 42%">
+                      <span>LAY</span>
+                    </div>
+                  </div>
+                </div>
+                <ng-container *ngIf="matchoddMarket?.message">
+                  <span class="text-danger text-center font-weight-bold">{{
+                    matchOddsData?.message
+                    }}</span>
+                </ng-container>
+
+                <!-- </mat-expansion-panel-header> -->
+                <div class="bottom-border" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1%" *ngFor="
+                    let runner of matchOddsData.marketBook.runners;
+                    let i = index
+                  ">
+                  <label fxLayoutAlign="start left" fxFlex="70%" style="padding-left: 10px">
+                    <span>{{
+                      searchRunner(matchOddsData?.runners, runner?.selectionId)
+                      }}</span>
+                    <span class="text-bold" [ngClass]="{
+                        red:
+                          calProLoss(
+                            matchOddsData?.runners,
+                            matchOddsData?.marketBook,
+                            i,
+                            matchOddsData
+                          ) < 0,
+                        green:
+                          calProLoss(
+                            matchOddsData?.runners,
+                            matchOddsData?.marketBook,
+                            i,
+                            matchOddsData
+                          ) >= 0
+                      }">
+                      {{
+                      calProLoss(
+                      matchOddsData?.runners,
+                      matchOddsData?.marketBook,
+                      i,
+                      matchOddsData
+                      ) | number : "0.0-2"
+                      }}
+                    </span>
+                  </label>
+                  <button fxLayout="column" fxLayoutAlign="center center" class="back-button" fxFlex="17%"
+                    *ngIf="runner?.availableToBack" (click)="
+                      getOddsValue(
+                        runner?.availableToBack?.price,
+                        runner?.selectionId,
+                        matchOddsData?.marketId,
+                        matchOddsData?.marketName,
+                        matchOddsData?.eventName,
+                        1,
+                        searchRunner(
+                          matchOddsData?.runners,
+                          runner?.selectionId
+                        )
+                      )
+                    ">
+                    <span class="odds-value">{{
+                      runner?.availableToBack != undefined
+                      ? runner?.availableToBack?.price
+                      : ""
+                      }}</span>
+                    <span class="odds-small-value">{{
+                      runner?.availableToBack != undefined
+                      ? runner?.availableToBack?.size
+                      : ""
+                      }}</span>
+                  </button>
+                  <button fxLayout="column" fxLayoutAlign="center center" class="back-button" fxFlex="17%"
+                    *ngIf="!runner?.availableToBack">
+                    <span class="odds-value">-</span>
+                    <span class="odds-small-value">-</span>
+                  </button>
+                  <button fxLayout="column" fxLayoutAlign="center center" class="lay-button" fxFlex="17%"
+                    *ngIf="runner?.availableToLay" (click)="
+                      getOddsValue(
+                        runner?.availableToLay?.price,
+                        runner?.selectionId,
+                        matchOddsData?.marketId,
+                        matchOddsData?.marketName,
+                        matchOddsData?.eventName,
+                        0,
+                        searchRunner(
+                          matchOddsData?.runners,
+                          runner?.selectionId
+                        )
+                      )
+                    ">
+                    <span class="odds-value">{{
+                      runner?.availableToLay != undefined
+                      ? runner?.availableToLay?.price
+                      : ""
+                      }}</span>
+                    <span class="odds-small-value">{{
+                      runner?.availableToLay != undefined
+                      ? runner?.availableToLay?.size
+                      : ""
+                      }}</span>
+                  </button>
+                  <button fxLayout="column" fxLayoutAlign="center center" class="lay-button" fxFlex="17%"
+                    *ngIf="!runner?.availableToLay">
+                    <span class="odds-value">-</span>
+                    <span class="odds-small-value">-</span>
+                  </button>
+
+                  <div class="suspend" *ngIf="checkBookmakerStatus(matchOddsData, runner)">
+                    <div class="suspend-status">SUSPENDED</div>
+                  </div>
+                </div>
+                <!-- <div class="suspend" *ngIf="matchOddsData?.runners?.status == 'SUSPENDED' || matchOddsData?.runners?.status == 'CLOSED' || matchOddsData?.runners?.status == 'closed' || matchOddsData?.runners?.status == 'Closed'">
+                                    <div class="suspend-cont"> SUSPENDED</div>
+                                </div> -->
+                <!-- <div class="suspend" *ngIf="matchOddsData.status != 'SUSPENDED' && matchOddsData.is_lock == true">
+                                    <div class="suspend-cont"> LOCK</div>
+                                </div> -->
+              </mat-expansion-panel>
+
+              <!-- <mat-expansion-panel (opened)="panelOpenState2 = true" (closed)="panelOpenState2 = false"
+                                [expanded]="true" hideToggle>
+                                <mat-expansion-panel-header>
+
+                                    <mat-panel-title fxLayout="row" fxLayoutAlign="space-between center">
+                                        <div fxLayout="row" fxFlex="75%" >
+                                            <mat-icon *ngIf="!panelOpenState2">expand_less</mat-icon>
+                                            <mat-icon *ngIf="panelOpenState2">expand_more</mat-icon>
+                                            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                                                <span>Bookmaker Market</span>
+                                                <span style="background-color: #F1F1F1;padding: 5px;font-size:12px;">Min: 100 | 10k
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+                                            <label class="back">BACK</label>
+                                            <label class="lay">LAY</label>
+                                        </div>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <mat-divider></mat-divider>
+                                <div class="bottom-border" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1%"
+                                    *ngFor="let option of [1,2,3] ">
+                                    <label fxLayoutAlign="start center" fxFlex="70%" style="padding-left: 10px;">Welsh
+                                        Fire Women</label>
+                                    <button fxLayout="column" fxLayoutAlign="center center" class="back-button" fxFlex="15%"
+                                        (click)="openBetSlipBottomSheet()">
+                                        <span>1.47</span>
+                                        <span>4.98</span>
+                                    </button>
+                                    <button fxLayout="column" fxLayoutAlign="center center" class="lay-button" fxFlex="15%"
+                                        (click)="openBetSlipBottomSheet()">
+                                        <span>1.47</span>
+                                        <span>4.98</span>
+                                    </button>
+                                </div>
+                            </mat-expansion-panel> -->
+            </mat-accordion>
+
+            <!-- session -->
+            <mat-accordion *ngIf="sessionMarket?.length > 0" class="tab-body odd-detail" multi>
+              <mat-expansion-panel [expanded]="true" hideToggle style="margin-top: 10px"
+                (opened)="panelOpenState1 = true" (closed)="panelOpenState1 = false">
+                <!-- <mat-expansion-panel-header> -->
+                <mat-panel-title fxLayout="row" fxLayoutAlign="space-between center" class="panel-title">
+                  <div fxLayout="row">
+                    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
+                      <span class="market-title">
+                        <!-- <mat-icon *ngIf="!panelOpenState1">expand_less</mat-icon>
+                                                <mat-icon *ngIf="panelOpenState1">expand_more</mat-icon> -->
+                        <span class="text-white">Session</span>
+                        <!-- <img src="assets/images/transparent.gif"> -->
+                      </span>
+                      <div fxLayout="row">
+                        <div class="minMax-limit" data-toggle="tooltip" data-html="true" title="Infomation">
+                          <img style="margin-right: 7px" src="../../assets/images/icon/white_info-16.png" alt="" />
+                          <!-- <span class="material-symbols-outlined">
+                                                    info
+                                                    </span> -->
+                        </div>
+                        <!-- <div class="minMax-limit"><span>Max : 100000</span></div> -->
+                      </div>
+                    </div>
+                  </div>
+                </mat-panel-title>
+                <div class="row text_lay_back" style="flex-flow: row">
+                  <div class="col-sm-7" style="text-align: left">
+                    <div class="text-start" style="margin-left: 7px">
+                      <span>Max Bet: 100000</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-5">
+                    <div class="text-center" style="background: #faa9ba; width: 42%">
+                      <span>LAY</span>
+                    </div>
+                    <div class="text-center" style="background: #72bbef; width: 42%">
+                      <span>BACK</span>
+                    </div>
+                  </div>
+                </div>
+                <!-- </mat-expansion-panel-header> -->
+
+                <div *ngFor="
+                    let runner of sessionMarket;
+                    trackBy: itemTrackBy;
+                    let mDTIndex = index
+                  " class="bottom-border" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1%">
+                  <label fxLayoutAlign="start left" fxFlex="70%" style="padding-left: 10px">
+                    <span>{{ runner?.marketName }}</span>
+                    <!-- <span class="text-bold"
+                                            [ngClass]="{'red':(runner.win_loss+ this.matchModel.calculateProfitLossSelection(runner.selectionId,matchOddsData.market_id))<0,'green':(runner.win_loss+ this.matchModel.calculateProfitLossSelection(runner.selectionId,matchOddsData.market_id))>0}">
+                                            {{(runner.win_loss+this.matchModel.calculateProfitLossSelection(runner.selectionId,matchOddsData.market_id))| number : '0.0-2'}}
+                                        </span> -->
+                    <span>0</span>
+                  </label>
+                  <div data-toggle="tooltip" data-html="true" title="Infomation">
+                    <img src="../../assets/images/icon/info-16.png" alt="" />
+                    <!-- <span class="material-symbols-outlined" style="font-size:17px !important;">
+                                        info
+                                        </span> -->
+                  </div>
+                  <button fxLayout="column" fxLayoutAlign="center center" class="lay-button" fxFlex="17%" (click)="
+                      setSessionValue(
+                        runner?.marketBook?.availableToLay?.price,
+                        runner?.marketId,
+                        runner?.marketName,
+                        runner?.eventName,
+                        0,
+                        runner?.marketBook?.availableToLay?.size
+                      )
+                    ">
+                    <span class="odds-value">{{
+                      runner?.marketBook?.availableToLay != undefined
+                      ? runner?.marketBook?.availableToLay?.price
+                      : ""
+                      }}</span>
+                    <span class="odds-small-value">{{
+                      runner?.marketBook?.availableToLay != undefined
+                      ? runner?.marketBook?.availableToLay?.size
+                      : ""
+                      }}</span>
+                  </button>
+                  <button fxLayout="column" fxLayoutAlign="center center" class="back-button" fxFlex="17%"
+                    *ngIf="runner?.marketBook?.availableToLay?.length == 0">
+                    <span>-</span>
+                    <span>-</span>
+                  </button>
+                  <button fxLayout="column" fxLayoutAlign="center center" class="back-button" fxFlex="17%" (click)="
+                      setSessionValue(
+                        runner?.marketBook?.availableToBack?.price,
+                        runner?.marketId,
+                        runner?.marketName,
+                        runner?.eventName,
+                        1,
+                        runner?.marketBook?.availableToBack?.size
+                      )
+                    ">
+                    <span class="odds-value">{{
+                      runner?.marketBook?.availableToBack != undefined
+                      ? runner?.marketBook?.availableToBack?.price
+                      : ""
+                      }}</span>
+                    <span class="odds-small-value">{{
+                      runner?.marketBook?.availableToBack != undefined
+                      ? runner?.marketBook?.availableToBack?.size
+                      : ""
+                      }}</span>
+                  </button>
+                  <button fxLayout="column" fxLayoutAlign="center center" class="lay-button" fxFlex="17%"
+                    *ngIf="runner?.marketBook?.availableToBack?.length == 0">
+                    <span>-</span>
+                    <span>-</span>
+                  </button>
+
+                  <div class="suspend" *ngIf="runner?.marketBook?.statusLabel == 'Ball Running'">
+                    <div class="suspend-status">Ball runnig</div>
+                  </div>
+                  <div class="suspend" *ngIf="runner?.marketBook?.statusLabel == 'SUSPENDED'">
+                    <div class="suspend-status">SUSPENDED</div>
+                  </div>
+                </div>
+
+                <!-- <div class="suspend" *ngIf="true">
+                                    <div class="suspend-cont"> SUSPENDED</div>
+                                </div> -->
+                <!-- <div class="suspend" *ngIf="matchOddsData.status != 'SUSPENDED' && matchOddsData.is_lock == true">
+                                    <div class="suspend-cont"> LOCK</div>
+                                </div> -->
+              </mat-expansion-panel>
+
+              <!-- <mat-expansion-panel (opened)="panelOpenState2 = true" (closed)="panelOpenState2 = false"
+                                [expanded]="true" hideToggle>
+                                <mat-expansion-panel-header>
+
+                                    <mat-panel-title fxLayout="row" fxLayoutAlign="space-between center">
+                                        <div fxLayout="row" fxFlex="75%" >
+                                            <mat-icon *ngIf="!panelOpenState2">expand_less</mat-icon>
+                                            <mat-icon *ngIf="panelOpenState2">expand_more</mat-icon>
+                                            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                                                <span>Bookmaker Market</span>
+                                                <span style="background-color: #F1F1F1;padding: 5px;font-size:12px;">Min: 100 | 10k
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+                                            <label class="back">BACK</label>
+                                            <label class="lay">LAY</label>
+                                        </div>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <mat-divider></mat-divider>
+                                <div class="bottom-border" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1%"
+                                    *ngFor="let option of [1,2,3] ">
+                                    <label fxLayoutAlign="start center" fxFlex="70%" style="padding-left: 10px;">Welsh
+                                        Fire Women</label>
+                                    <button fxLayout="column" fxLayoutAlign="center center" class="back-button" fxFlex="15%"
+                                        (click)="openBetSlipBottomSheet()">
+                                        <span>1.47</span>
+                                        <span>4.98</span>
+                                    </button>
+                                    <button fxLayout="column" fxLayoutAlign="center center" class="lay-button" fxFlex="15%"
+                                        (click)="openBetSlipBottomSheet()">
+                                        <span>1.47</span>
+                                        <span>4.98</span>
+                                    </button>
+                                </div>
+                            </mat-expansion-panel> -->
+            </mat-accordion>
+          </mat-tab>
+          <!-- 2nd tab -->
+          <mat-tab label="MATCHED BET ({{
+              allBetDataLength == '0' ? '0' : allBetDataLength
+            }})">
+            <div class="betList" *ngIf="allBetDataLength != 0">
+              <ng-container *ngFor="let bet of allBetData; let i = index">
+                <div style="margin: 1px" class="list" fxLayout="column" fxLayoutAlign="center space-around " [ngClass]="{
+                    'lay-rate': bet?.type == 'Lay',
+                    'back-rate': bet?.type == 'Back'
+                  }">
+                  <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <span>Selection Name :{{ bet?.selectionName }}</span>
+                    <span>Odds: {{ bet?.marketName }}</span>
+                  </div>
+                  <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <span *ngIf="bet?.type == 'Lay'" [ngClass]="{
+                        pink: bet?.type == 'Lay',
+                        blue: bet?.type == 'Back'
+                      }">Lay</span>
+                    <span *ngIf="bet?.type == 'Back'" [ngClass]="{
+                        pink: bet?.type == 'Lay',
+                        blue: bet?.type == 'Back'
+                      }">Back</span>
+                    <span>Stack: {{ bet?.stake }}</span>
+                  </div>
+                  <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <span>{{
+                      moment(bet?.placedTime)
+                      .utcOffset("+05:30")
+                      .format("YYYY-MM-DD hh:mm a")
+                      }}</span>
+                    <span>P&L: <a>{{ bet?.rate | number : "0.0-2" }}</a></span>
+                  </div>
+                  <!-- <div fxLayout="row" fxLayoutAlign="space-between center">
+                                <span>{{bet?.marketName}}</span>
+                                <span *ngIf="bet.delete_status =='2'">Status: <a><button class="btn btn-danger">Void</button></a></span>
+                            </div> -->
+                </div>
+              </ng-container>
+            </div>
+            <div class="text-warning" style="color: black !important" *ngIf="allBetDataLength == 0">
+              No Bet Found
+            </div>
+          </mat-tab>
+          <!-- 2ndtab end -->
+        </mat-tab-group>
+
+        <!-- virtual_result -->
+        <div *ngIf="matchoddMarket?.length > 0 && resultA" class="container-fluid" style="background-color: var(--theme1-bg)">
+          <div class="row" style="background-color: var(--theme2-bg)">
+            <div class="col-12 text-center text-white font-weight-bold mt-2">
+              <p style="font-size: 17px">Last Result</p>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div *ngFor="let x of resultA" class="col-4 text-center text-white">
+              <p>
+                {{ x.Result }}
+                <span class="text-warning font-weight-bold">>></span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <!-- <app-footer></app-footer> -->
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!-- bet_place_model -->
+<ng-template #betPlace>
+  <div class="modal-content custom-modal-main">
+    <div class="newmatchpopup" [ngClass]="arrayObj.is_back == 1 ? 'back' : 'lay'">
+      <div fxLayout="row" fxLayoutAlign="space-between center" class="bet-slip-header">
+        <span class="bet-slip-title">Placebet</span>
+        <div class="close-btn" style="color: black" data-dismiss="modal" (click)="modalRef.hide()">
+          <mat-icon>close</mat-icon>
+        </div>
+      </div>
+      <div fxlayout="column" fxlayoutgap="5px" fxlayoutalign="start" class="bet-slip-body" ng-reflect-fx-layout="column"
+        ng-reflect-fx-layout-align="start" ng-reflect-fx-layout-gap="5px" style="
+          flex-direction: column;
+          box-sizing: border-box;
+          display: flex;
+          place-content: stretch flex-start;
+          align-items: stretch;
+        ">
+        <div class="row title-second" style="
+            background-color: transparent;
+            color: rgb(33, 37, 41);
+            margin-bottom: 5px;
+            flex-wrap: inherit;
+          ">
+          <div class="col-7 p-0 text-left">
+            <span class="text-center"><span *ngIf="arrayObj.is_fancy == 0; else fancy_name">{{
+                odds_bookmaker_db.bet.selectionName
+                }}</span><ng-template #fancy_name>{{
+                session_db.bet.marketName
+                }}</ng-template></span>
+          </div>
+          <div class="col-5 p-0 text-center">
+            <div class="input-group">
+              <div class="numbers">
+                <span class="minus">-</span>
+                <input type="text" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" min="0" step="0.01" id="ShowBetPrice"
+                  name="quant[2]" readonly="" class="calProfitLoss odds-input form-control CommanBtn"
+                  [(ngModel)]="arrayObj.odds" />
+                <span class="plus">+</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div fxlayout="row" fxlayoutgap="10px" ng-reflect-fx-layout="row" ng-reflect-fx-layout-gap="10px" style="
+            margin-bottom: 5px;
+            flex-direction: row;
+            box-sizing: border-box;
+            display: flex;
+          ">
+          <div class="col-4 p-0" style="margin-right: 10px">
+            <input type="number" min="0" id="stakeValue" pattern="[0-9]*" step="1" placeholder="0"
+              class="form-control calProfitLoss stake-input f0orm-control CommanBtn" ng-reflect-pattern="[0-9]*"
+              ng-reflect-model="0" (input)="
+                calculateP_lOnStackOnInput(
+                  arrayObj.stake,
+                  arrayObj.stake,
+                  arrayObj.is_back,
+                  arrayObj
+                )
+              " [ngModel]="arrayObj.stake < 0 ? '0' : arrayObj.stake" (ngModelChange)="arrayObj.stake < 0 ? '0' : arrayObj.stake = $event" />
+          </div>
+          <div class="col-4 p-0" style="flex-direction: row; box-sizing: border-box; display: flex">
+            <div fxflex="100%" fxlayout="column" style="
+                display: flex;
+                flex-direction: column;
+                box-sizing: border-box;
+                flex: 1 1 100%;
+                max-width: 100%;
+              " ng-reflect-fx-layout="column" ng-reflect-fx-flex="100%">
+              <button type="button" class="btn btn-outline-primary btn-primary btnblue btn-sm rounded"
+                style="height: 29px" [disabled]="arrayObj.stake === 0 || betloder" (click)="saveFancyBet(arrayObj)"
+                *ngIf="arrayObj.is_fancy == 1">
+                Place Bet
+              </button>
+              <button type="button" class="btn btn-outline-primary btn-primary btnblue btn-sm rounded"
+                style="height: 29px" [disabled]="arrayObj.stake === 0 || betloder" (click)="saveBet(arrayObj)"
+                *ngIf="arrayObj.is_fancy == 0">
+                Place Bet
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- stake_value -->
+        <div class="betslip-button text-center" style="margin-bottom: 5px">
+          <div style="display: flex; width: 100%; vertical-align: middle">
+            <div class="scrollmenu">
+              <div class="tab-btn-card" *ngFor="let stake of userMatchStack; let i = index" (click)="
+                  calculateP_lOnStack(
+                    arrayObj.odds * arrayObj.stake - arrayObj.stake,
+                    stake.price,
+                    arrayObj.is_back,
+                    arrayObj
+                  )
+                ">
+                {{ stake.label }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- matchodds_bookmaker_profit_loss -->
+        <div *ngIf="arrayObj.is_session_fancy == 'N'" fxlayout="row" fxlayoutalign="space-between center"
+          fxlayoutgap="10px" class="form-list" ng-reflect-fx-layout="row"
+          ng-reflect-fx-layout-align="space-between center" ng-reflect-fx-layout-gap="10px" style="
+            flex-direction: row;
+            box-sizing: border-box;
+            display: flex;
+            place-content: center space-between;
+            align-items: center;
+            margin-bottom: 5px;
+          ">
+          <div class="stack_input_field" style="margin-right: 10px">
+            <label class="form-label">Profit</label>
+            <span id="profitData" class="profit" style="color: green">{{
+              arrayObj.stake <= "0" ? "0" : arrayObj.is_back==0 ? arrayObj.stake : arrayObj.odds * arrayObj.stake -
+                arrayObj.stake=="NaN" ? 0 : (arrayObj.odds * arrayObj.stake - arrayObj.stake).toFixed(2) }}</span>
+          </div>
+          <div class="stack_input_field">
+            <label class="form-label">Loss</label>
+            <span id="profitData" class="profit" style="color: red">-{{
+              arrayObj.stake <= "0" ? "0" : arrayObj.is_back==0 ? arrayObj.odds * arrayObj.stake - arrayObj.stake=="NaN"
+                ? 0 : (arrayObj.odds * arrayObj.stake - arrayObj.stake).toFixed( 2 ) : arrayObj.stake }}</span>
+          </div>
+        </div>
+        <!-- fancy_profit_loss -->
+        <div *ngIf="arrayObj.is_session_fancy == 'Y'" fxlayout="row" fxlayoutalign="space-between center"
+          fxlayoutgap="10px" class="form-list" ng-reflect-fx-layout="row"
+          ng-reflect-fx-layout-align="space-between center" ng-reflect-fx-layout-gap="10px" style="
+            flex-direction: row;
+            box-sizing: border-box;
+            display: flex;
+            place-content: center space-between;
+            align-items: center;
+            margin-bottom: 5px;
+          ">
+          <div class="stack_input_field" style="margin-right: 10px">
+            <label class="form-label">Profit</label>
+            <span id="profitData" class="profit" style="color: green">{{
+              arrayObj.is_back == 0
+              ? arrayObj.stake
+              : ((arrayObj.size * arrayObj.stake) / 100).toFixed(2)
+              }}</span>
+          </div>
+          <div class="stack_input_field">
+            <label class="form-label">Loss</label>
+            <span id="profitData" class="profit" style="color: red">{{
+              arrayObj.is_back == 0
+              ? ((arrayObj.size * arrayObj.stake) / 100).toFixed(2)
+              : arrayObj.stake
+              }}</span>
+          </div>
+        </div>
+        <div fxlayout="row" fxlayoutalign="space-around center" fxlayoutgap="10px" ng-reflect-fx-layout="row"
+          ng-reflect-fx-layout-align="space-around center" ng-reflect-fx-layout-gap="10px" style="
+            flex-direction: row;
+            box-sizing: border-box;
+            display: flex;
+            place-content: center space-around;
+            align-items: center;
+          "></div>
+      </div>
+    </div>
+  </div>
+</ng-template>

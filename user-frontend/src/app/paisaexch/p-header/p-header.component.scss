@@ -1,0 +1,143 @@
+header {
+    //background-image: url('../../assets/images/header-bg.png');
+    position: fixed;
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    z-index: 2;
+    box-shadow: 0 0px 3px -1px rgb(0 0 0 / 20%), 0 1px 5px 0 rgb(0 0 0 / 14%), 0 0px 9px 0 rgb(0 0 0 / 12%);
+}
+
+.header{
+    position: relative;
+}
+header .mat-toolbar {
+    background: #000;
+    color: #fff;
+    padding: 0 0px;
+}
+.div-spacer{
+    flex: 1 1 auto;
+}
+.left-col {
+    .material-icons{
+        color: #fff;
+    }
+    .logo{
+        max-width: 100px;
+    }
+}
+.left-col span {
+    margin-left: 5px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.right-col {
+        .balance:nth-child(2) {
+            margin-left: 10px;
+        }
+        .exposure{
+            display: inline-flex;
+            height: auto;
+            vertical-align: middle;
+            width: auto;
+            color:#EA4045;
+            line-height: 16px;
+            font-size: 12px;
+            border: 1px solid #EA4045;
+            // background-color: #EA40450D;
+            background-color: #fff;
+            font-weight: 500;
+            margin: 0 0 0 10px;
+            padding:5px 5px;
+            text-transform: uppercase;
+            span{
+                font-weight: 600;
+                font-size: 12px;
+                display: block;
+                line-height: 12px;
+            }
+            mat-icon{
+                font-size: 15px;
+                width: auto;
+                height: auto;
+                // margin-right: 5px;
+            }
+        }
+        .balance{
+            display: inline-block;
+            height: auto;
+            vertical-align: middle;
+            width: auto;
+            color:#ffc11c;
+            line-height: 16px;
+            font-size: 12px;
+            border: none;
+            box-shadow: none;
+            // background-color: #4A75FF0D;
+            background-color: transparent;
+            font-weight: bold;
+            padding:0px;
+            span{
+                font-weight: normal;
+                font-size: 12px;
+                display: block;
+                line-height: 12px;
+            }
+            mat-icon{
+                font-size: 15px;
+                width: auto;
+                height: auto;
+                //margin-right: 5px;
+            }
+        }
+    
+}
+
+
+// sidepanel css
+
+.header-card{
+    background-color: #003060;
+    color:#fff;
+    margin: 10px;
+    padding: 5px;
+    vertical-align: middle;
+    mat-card-subtitle{
+margin-bottom: 0;
+color:#fff;
+    }
+    .user-header-image {
+        // background-image: url('../../assets/images/icon/user.svg');
+        background-size: cover;
+        
+      }
+     
+}
+
+
+.mobile-nav-overly.mobile-nav-block {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgb(204 204 204 / 80%);
+    z-index: 3;
+}
+
+
+::-webkit-scrollbar-thumb {
+   background: var(--light-border);
+}
+
+.red-text{
+    color: rgba(255, 0, 0, 0.945);
+}
+
+.mat-stroked-button:not([class*=mat-elevation-z]), .mat-flat-button:not([class*=mat-elevation-z]){box-shadow: none;}
+.mat-toolbar-row, .mat-toolbar-single-row {justify-content: space-between;}
+.mat-toolbar .right-col button {padding: 0 4px;}
+.mat-toolbar .right-col button br{display: none;}
+.mat-toolbar .right-col button span{display: inline-flex;align-items: center;}
+.mat-toolbar .right-col button  mat-icon{font-size: 27px;width: auto;height: auto;}
