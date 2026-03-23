@@ -1,2 +1,1 @@
-declare var $: any;
-declare var jQuery: any;
+// jQuery typings are provided by @types/jquery

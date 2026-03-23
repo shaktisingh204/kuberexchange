@@ -22,7 +22,7 @@
           "options": {
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/assets/shared/SCSS"
+                "src/assets/shared/scss"
               ]
             },
             "outputPath": "dist/mobile-view-user",
@@ -90,7 +90,7 @@
           },
           "stylePreprocessorOptions": {
             "includePaths": [
-              "src/assets/shared/SCSS"
+              "src/assets/shared/scss"
             ]
           },
           "configurations": {
