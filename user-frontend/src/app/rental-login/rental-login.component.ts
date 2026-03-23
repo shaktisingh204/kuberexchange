@@ -50,11 +50,9 @@ export class RentalLoginComponent implements OnInit {
       this.device_alert = true;
     }
     epicV.browserdetail = deviceInfo.userAgent;
-    this.http.get<{ ip: string }>("https://jsonip.com").subscribe((data) => {
-      epicV.ipaddress = data.ip;
-      sessionStorage.setItem("address_info", JSON.stringify(epicV));
-    });
+    sessionStorage.setItem("address_info", JSON.stringify(epicV));
   }
+
 
   async findHostName() {
     return window.location.hostname;
