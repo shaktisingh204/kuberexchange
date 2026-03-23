@@ -37,8 +37,9 @@ export const environment = {
   // transactionPasswordEncryptKey: "confidentialApplication",
 
   // kuberexchange.com live
-  adminServerUrl: "https://api.kuberexchange.com/api/",
+  adminServerUrl: "https://api.kuberexchange.com/adminapi/",
   SOCKET_ENDPOINT: "https://api.kuberexchange.com/",
+  SOCKET_PATH: "/adminsocket.io/",
   Wallet_manager: "https://api.kuberexchange.com/wallet_manager/login/",
   casino_operatorId: "9468",
   transactionPasswordEncryptKey: "confidentialApplication",

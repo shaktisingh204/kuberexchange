@@ -83,9 +83,11 @@ import { CompleteMarketsComponent } from './complete-markets/complete-markets.co
 import { EventDetailsComponent } from './event-details/event-details.component';
 
 const Socket_Url = environment['SOCKET_ENDPOINT'];
+const Socket_Path = environment['SOCKET_PATH'] || '/adminsocket.io/';
 
 // const config: SocketIoConfig = { url: Socket_Url, options: { transports: ['websocket'], path: '/Dcd7pwimDyfKiPvTadgGH/socket.io' } };
-const config: SocketIoConfig = { url: Socket_Url, options: {} };
+const config: SocketIoConfig = { url: Socket_Url, options: { path: Socket_Path } };
+
 
 export const MY_CUSTOM_FORMATS = {
   fullPickerInput: { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' },

@@ -43,6 +43,7 @@ var upload = multer({ storage: storage, limits: { fileSize: 25 * 2048 * 2048, fi
 var app = express()
   , server = require('http').createServer(app)
   , io = require('socket.io')(server, {
+    path: '/adminsocket.io/',
     transports: ['polling'],
     cors: {
       origin: "*",
